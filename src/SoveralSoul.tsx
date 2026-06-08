@@ -1,7 +1,8 @@
 import React from "react";
 import { AbsoluteFill, Sequence, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { script, Scene } from "./data/script";
-import { video, gradients, DESIGN_BASE } from "./brand/tokens";
+import { video, DESIGN_BASE } from "./brand/tokens";
+import { Background } from "./components/Background";
 import { LogoIntro } from "./components/scenes/LogoIntro";
 import { HeroImpact } from "./components/scenes/HeroImpact";
 import { Reposition } from "./components/scenes/Reposition";
@@ -65,10 +66,10 @@ const SafeArea: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 export const SoveralSoul: React.FC = () => {
   return (
-    <AbsoluteFill style={{ background: gradients.stage }}>
-      {/* Fundo persistente de marca preenche o frame inteiro (incl. as bordas
-          que sobram nos formatos não-quadrados) e evita piscar branco nas
-          transições. */}
+    <AbsoluteFill>
+      {/* Fundo de marca em frame cheio — contínuo em todos os formatos, sem
+          moldura de quadrado. */}
+      <Background />
       <SafeArea>
         {script.map((scene) => {
           const from = Math.round(scene.startSec * video.fps);
