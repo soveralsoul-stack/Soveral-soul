@@ -1,57 +1,52 @@
 /**
  * ───────────────────────────────────────────────────────────────────────────
- *  SOVERAL SOUL · DESIGN TOKENS  (única fonte de verdade da identidade)
+ *  SOVERAL SOUL · BUSINESS HUB — DESIGN TOKENS
+ *  Marketing · Eventos · Audiovisual — Chapecó, SC
  * ───────────────────────────────────────────────────────────────────────────
- *
- *  >>> PLACEHOLDER <<<
- *  Os valores abaixo são uma base elegante provisória. Substitua pelos tokens
- *  REAIS vindos do arquivo de handoff (cores hex, fontes, espaçamentos da marca).
- *  Tudo no vídeo lê daqui — trocar aqui propaga para todas as cenas.
+ *  Fonte de verdade da identidade, extraída do site oficial (soveralsoul.com.br).
  */
 
+import { DISPLAY, BODY } from "./fonts";
+
 export const colors = {
-  // Fundo principal — plum profundo
-  bg: "#1A0E1F",
-  bgDeep: "#0E060F",
-  // Acento — dourado quente
-  gold: "#D9A441",
-  goldSoft: "#E9C77B",
+  // Fundos (navy quase-preto → azul profundo)
+  bg: "#06080f",
+  bg2: "#0b0e1a",
+  bg3: "#101528",
+  // Acento azul da marca
+  blue: "#2d8fff",
+  blueDim: "#1a6fd4",
+  cyan: "#00d4ff",
   // Texto
-  cream: "#F5ECE0",
-  creamDim: "rgba(245, 236, 224, 0.62)",
-  // Secundária — vinho
-  wine: "#7A2C46",
+  white: "#e8eef8",
+  muted: "#6b7a99",
+  border: "#1a2240",
 } as const;
 
 export const gradients = {
-  // Gradiente de palco usado nos fundos de cena
-  stage: `radial-gradient(120% 120% at 50% 0%, ${colors.bg} 0%, ${colors.bgDeep} 70%)`,
-  goldSheen: `linear-gradient(100deg, ${colors.gold} 0%, ${colors.goldSoft} 50%, ${colors.gold} 100%)`,
+  // Palco: navy profundo com leve glow azul no topo
+  stage: `radial-gradient(120% 90% at 50% 12%, ${colors.bg3} 0%, ${colors.bg2} 45%, ${colors.bg} 100%)`,
+  // Brilho do wordmark/linhas
+  blueSheen: `linear-gradient(100deg, ${colors.blueDim} 0%, ${colors.blue} 45%, ${colors.cyan} 100%)`,
 } as const;
 
-/**
- * Font stack offline-safe. Garante render local sem rede.
- * Para usar a fonte oficial da marca via @remotion/google-fonts, importe-a em
- * src/Root.tsx (ex.: `loadFont` de "@remotion/google-fonts/PlayfairDisplay")
- * e troque os nomes abaixo.
- */
 export const fonts = {
-  display: '"Playfair Display", "Georgia", "Times New Roman", serif',
-  body: '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+  display: DISPLAY, // 'Bebas Neue' — títulos
+  body: BODY, // 'Space Grotesk' — corpo
 } as const;
 
 export const type = {
-  // Tamanhos em px na base 1080p
-  hero: 116,
-  title: 78,
-  subtitle: 44,
-  body: 34,
+  // Tamanhos em px na base de design 1080
+  hero: 168, // Bebas Neue é condensada → pode ser grande
+  title: 92,
+  subtitle: 46,
+  body: 32,
   caption: 24,
-  letterSpacingTight: -2,
-  letterSpacingWide: 8,
+  letterSpacingDisplay: 2,
+  letterSpacingWide: 6,
 } as const;
 
-// Especificações de saída — alinhar ao handoff
+// Especificações de saída
 export const video = {
   fps: 30,
   durationInSeconds: 30,
@@ -59,11 +54,11 @@ export const video = {
 
 export const video_durationInFrames = video.fps * video.durationInSeconds; // 900
 
-// Lado de referência do design. As cenas são autoradas num "palco" quadrado
-// de 1080 e escaladas para caber em qualquer formato (ver SafeArea).
+// Lado de referência do design. As cenas são autoradas num palco quadrado de
+// 1080 e escaladas para caber em qualquer formato (ver SafeArea).
 export const DESIGN_BASE = 1080;
 
-// Os 3 formatos de entrega gerados a partir da MESMA composição.
+// Os 3 formatos gerados a partir da MESMA composição.
 export const formats = [
   { id: "SoveralSoul-Vertical", label: "Reels/Stories 9:16", width: 1080, height: 1920 },
   { id: "SoveralSoul-Square", label: "Feed 1:1", width: 1080, height: 1080 },

@@ -1,69 +1,71 @@
 import React from "react";
-import { interpolate, useCurrentFrame } from "remotion";
+import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { Stage } from "../Stage";
 import { AnimatedText } from "../AnimatedText";
-import { colors, fonts, gradients, type } from "../../brand/tokens";
+import { Logo, Wordmark } from "../Logo";
+import { colors, fonts, type } from "../../brand/tokens";
 
-export const Cta: React.FC<{ wordmark: string; cta: string; handle: string }> = ({
-  wordmark,
-  cta,
+export const Cta: React.FC<{ headline: string; whatsapp: string; handle: string }> = ({
+  headline,
+  whatsapp,
   handle,
 }) => {
   const frame = useCurrentFrame();
-  const lineWidth = interpolate(frame, [10, 40], [0, 300], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const { fps } = useVideoConfig();
+  const pop = spring({ frame, fps, config: { damping: 13, mass: 0.6 }, durationInFrames: 26 });
+  const pillIn = interpolate(frame, [30, 48], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
     <Stage>
-      <div style={{ textAlign: "center" }}>
-        <AnimatedText>
-          <div
-            style={{
-              fontFamily: fonts.body,
-              fontSize: type.subtitle,
-              color: colors.creamDim,
-              marginBottom: 30,
-            }}
-          >
-            {cta}
-          </div>
-        </AnimatedText>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 26, textAlign: "center" }}>
+        <div style={{ transform: `scale(${pop})`, opacity: pop }}>
+          <Logo size={150} />
+        </div>
         <AnimatedText delay={10}>
+          <Wordmark fontSize={type.title} letterSpacing={4} />
+        </AnimatedText>
+        <AnimatedText delay={18}>
           <div
             style={{
-              fontFamily: fonts.display,
-              fontSize: type.title,
-              fontWeight: 600,
-              letterSpacing: type.letterSpacingWide,
-              color: colors.cream,
+              fontFamily: fonts.body,
+              fontWeight: 400,
+              fontSize: type.body,
+              color: colors.muted,
+              maxWidth: 720,
             }}
           >
-            {wordmark}
+            {headline}
           </div>
         </AnimatedText>
-        <div
-          style={{
-            height: 2,
-            width: lineWidth,
-            margin: "24px auto 0",
-            background: gradients.goldSheen,
-          }}
-        />
-        <AnimatedText delay={28}>
+        <div style={{ display: "flex", gap: 16, opacity: pillIn, transform: `translateY(${interpolate(pillIn, [0, 1], [12, 0])}px)` }}>
           <div
             style={{
-              marginTop: 22,
+              padding: "14px 26px",
+              borderRadius: 3,
+              background: colors.blue,
+              color: colors.bg,
               fontFamily: fonts.body,
-              fontSize: type.body,
-              letterSpacing: 3,
-              color: colors.goldSoft,
+              fontWeight: 500,
+              fontSize: type.caption,
+              letterSpacing: 1,
+            }}
+          >
+            {whatsapp}
+          </div>
+          <div
+            style={{
+              padding: "14px 26px",
+              borderRadius: 3,
+              border: `1px solid ${colors.border}`,
+              color: colors.white,
+              fontFamily: fonts.body,
+              fontSize: type.caption,
+              letterSpacing: 1,
             }}
           >
             {handle}
           </div>
-        </AnimatedText>
+        </div>
       </div>
     </Stage>
   );

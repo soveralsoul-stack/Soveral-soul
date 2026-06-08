@@ -1,17 +1,18 @@
 /**
  * ───────────────────────────────────────────────────────────────────────────
- *  ROTEIRO → FRAMES   (mapa de cenas do vídeo de 30s)
- *  SOVERAL SOUL · BUSINESS HUB — reforço de marca (hub/coworking de negócios)
+ *  ROTEIRO → FRAMES   (vídeo de reforço de marca · 30s)
+ *  SOVERAL SOUL · BUSINESS HUB — Marketing · Eventos · Audiovisual
  * ───────────────────────────────────────────────────────────────────────────
- *
- *  Cole/edite aqui as copys REAIS. Cada cena tem:
- *    - id, kind (componente que renderiza), startSec/durationSec, props.
- *  Base: 30 fps. 30s = 900 frames. As janelas cobrem os 30s sem buracos.
+ *  Copys reais extraídas do site oficial. Base 30 fps → 30s = 900 frames.
  */
 
-import { colors } from "../brand/tokens";
-
-export type SceneKind = "logoReveal" | "tagline" | "pillars" | "statement" | "cta";
+export type SceneKind =
+  | "logoIntro"
+  | "heroImpact"
+  | "reposition"
+  | "services"
+  | "authority"
+  | "cta";
 
 export interface Scene {
   id: string;
@@ -23,57 +24,64 @@ export interface Scene {
 
 export const script: Scene[] = [
   {
-    id: "01-abertura",
-    kind: "logoReveal",
+    id: "01-logo",
+    kind: "logoIntro",
     startSec: 0,
     durationSec: 4,
-    props: {
-      wordmark: "SOVERAL SOUL",
-      kicker: "business hub",
-    },
+    props: { eyebrow: "Marketing · Eventos · Audiovisual" },
   },
   {
-    id: "02-tagline",
-    kind: "tagline",
+    id: "02-impacto",
+    kind: "heroImpact",
     startSec: 4,
     durationSec: 5,
+    props: { pre: "Sua marca", merece: "merece", impact: "IMPACTO." },
+  },
+  {
+    id: "03-reposicionamento",
+    kind: "reposition",
+    startSec: 9,
+    durationSec: 4,
     props: {
-      lines: ["Onde ideias", "viram", "negócio."],
-      accentIndex: 1,
+      negate: "Não somos uma agência.",
+      affirm: "Somos a operação por trás do seu crescimento.",
     },
   },
   {
-    id: "03-pilares",
-    kind: "pillars",
-    startSec: 9,
-    durationSec: 8,
+    id: "04-servicos",
+    kind: "services",
+    startSec: 13,
+    durationSec: 9,
     props: {
-      title: "Um hub feito para crescer",
-      pillars: [
-        { label: "Estrutura & Espaço", color: colors.gold },
-        { label: "Comunidade & Networking", color: colors.goldSoft },
-        { label: "Crescimento & Mentoria", color: colors.wine },
+      title: "Do detalhe ao espetáculo.",
+      services: [
+        "Tráfego Pago",
+        "Gestão de Redes & Conteúdo",
+        "Landing Pages",
+        "Produção Audiovisual",
+        "Sonorização & ProAudio",
+        "Produção de Eventos",
       ],
     },
   },
   {
-    id: "04-mensagem",
-    kind: "statement",
-    startSec: 17,
-    durationSec: 7,
+    id: "05-autoridade",
+    kind: "authority",
+    startSec: 22,
+    durationSec: 4,
     props: {
-      quote: "Aqui, empreender é coletivo.",
-      attribution: "— Soveral Soul Business Hub",
+      line: "Empresas sérias escolhem parceiros sérios.",
+      place: "Chapecó · SC",
     },
   },
   {
-    id: "05-cta",
+    id: "06-cta",
     kind: "cta",
-    startSec: 24,
-    durationSec: 6,
+    startSec: 26,
+    durationSec: 4,
     props: {
-      wordmark: "SOVERAL SOUL",
-      cta: "Faça parte do hub.",
+      headline: "Feito para quem leva a marca a sério.",
+      whatsapp: "wa.me/55 49 99911-8781",
       handle: "@soveralsoul",
     },
   },

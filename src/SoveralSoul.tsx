@@ -2,10 +2,11 @@ import React from "react";
 import { AbsoluteFill, Sequence, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { script, Scene } from "./data/script";
 import { video, gradients, DESIGN_BASE } from "./brand/tokens";
-import { LogoReveal } from "./components/scenes/LogoReveal";
-import { Tagline } from "./components/scenes/Tagline";
-import { Pillars } from "./components/scenes/Pillars";
-import { Statement } from "./components/scenes/Statement";
+import { LogoIntro } from "./components/scenes/LogoIntro";
+import { HeroImpact } from "./components/scenes/HeroImpact";
+import { Reposition } from "./components/scenes/Reposition";
+import { Services } from "./components/scenes/Services";
+import { Authority } from "./components/scenes/Authority";
 import { Cta } from "./components/scenes/Cta";
 
 const FADE = 12; // frames de fade in/out por cena
@@ -28,14 +29,16 @@ const SceneFade: React.FC<{ durationInFrames: number; children: React.ReactNode 
 const renderScene = (scene: Scene): React.ReactNode => {
   const p = scene.props as any;
   switch (scene.kind) {
-    case "logoReveal":
-      return <LogoReveal {...p} />;
-    case "tagline":
-      return <Tagline {...p} />;
-    case "pillars":
-      return <Pillars {...p} />;
-    case "statement":
-      return <Statement {...p} />;
+    case "logoIntro":
+      return <LogoIntro {...p} />;
+    case "heroImpact":
+      return <HeroImpact {...p} />;
+    case "reposition":
+      return <Reposition {...p} />;
+    case "services":
+      return <Services {...p} />;
+    case "authority":
+      return <Authority {...p} />;
     case "cta":
       return <Cta {...p} />;
     default:
