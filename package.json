@@ -1,0 +1,30 @@
+{
+  "name": "soveral-soul-video",
+  "version": "1.0.0",
+  "description": "Vídeo de marca Soveral Soul (30s) — produzido em Remotion, render 100% local.",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio",
+    "preview": "remotion studio",
+    "build": "npm run build:vertical && npm run build:square && npm run build:wide",
+    "build:vertical": "remotion render SoveralSoul-Vertical out/soveral-soul-9x16.mp4",
+    "build:square": "remotion render SoveralSoul-Square out/soveral-soul-1x1.mp4",
+    "build:wide": "remotion render SoveralSoul-Wide out/soveral-soul-16x9.mp4",
+    "build:still": "remotion still SoveralSoul-Vertical out/frame.png --frame=60",
+    "upgrade": "remotion upgrade",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.230",
+    "@remotion/google-fonts": "4.0.230",
+    "@remotion/renderer": "4.0.230",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.230"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.6.3"
+  }
+}
