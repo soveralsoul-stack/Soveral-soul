@@ -26,7 +26,7 @@ export const Authority: React.FC<{ line: string; place: string }> = ({ line, pla
             {line}
           </div>
         </AnimatedText>
-        <div style={{ margin: "40px 0 24px" }}>
+        <div style={{ display: "flex", justifyContent: "center", margin: "40px 0 24px" }}>
           <Waveform width={620} intensity={waveIn} maxHeight={70} barCount={64} />
         </div>
         <AnimatedText delay={18}>

@@ -5,10 +5,9 @@ import { AnimatedText } from "../AnimatedText";
 import { Logo, Wordmark } from "../Logo";
 import { colors, fonts, type } from "../../brand/tokens";
 
-export const Cta: React.FC<{ headline: string; whatsapp: string; handle: string }> = ({
+export const Cta: React.FC<{ headline: string; whatsapp: string }> = ({
   headline,
   whatsapp,
-  handle,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -37,10 +36,10 @@ export const Cta: React.FC<{ headline: string; whatsapp: string; handle: string 
             {headline}
           </div>
         </AnimatedText>
-        <div style={{ display: "flex", gap: 16, opacity: pillIn, transform: `translateY(${interpolate(pillIn, [0, 1], [12, 0])}px)` }}>
+        <div style={{ display: "flex", justifyContent: "center", opacity: pillIn, transform: `translateY(${interpolate(pillIn, [0, 1], [12, 0])}px)` }}>
           <div
             style={{
-              padding: "14px 26px",
+              padding: "14px 30px",
               borderRadius: 3,
               background: colors.blue,
               color: colors.bg,
@@ -51,19 +50,6 @@ export const Cta: React.FC<{ headline: string; whatsapp: string; handle: string 
             }}
           >
             {whatsapp}
-          </div>
-          <div
-            style={{
-              padding: "14px 26px",
-              borderRadius: 3,
-              border: `1px solid ${colors.border}`,
-              color: colors.white,
-              fontFamily: fonts.body,
-              fontSize: type.caption,
-              letterSpacing: 1,
-            }}
-          >
-            {handle}
           </div>
         </div>
       </div>
