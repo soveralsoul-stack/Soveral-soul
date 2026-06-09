@@ -2,11 +2,13 @@ import React from "react";
 import { Stage } from "../Stage";
 import { AnimatedText } from "../AnimatedText";
 import { colors, fonts, type } from "../../brand/tokens";
+import { useLayout } from "../LayoutContext";
 
 export const Services: React.FC<{ title: string; services: string[] }> = ({ title, services }) => {
+  const { landscape } = useLayout();
   return (
     <Stage>
-      <div style={{ width: "86%", textAlign: "center" }}>
+      <div style={{ width: landscape ? "78%" : "86%", textAlign: "center" }}>
         <AnimatedText>
           <div
             style={{
@@ -15,13 +17,20 @@ export const Services: React.FC<{ title: string; services: string[] }> = ({ titl
               letterSpacing: type.letterSpacingDisplay,
               textTransform: "uppercase",
               color: colors.white,
-              marginBottom: 54,
+              marginBottom: landscape ? 44 : 54,
             }}
           >
             Do detalhe ao <span style={{ color: colors.blue }}>espetáculo.</span>
           </div>
         </AnimatedText>
-        <div style={{ display: "flex", flexDirection: "column", gap: 22, alignItems: "stretch" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: landscape ? "1fr 1fr" : "1fr",
+            gap: landscape ? "20px 28px" : "22px",
+            alignItems: "stretch",
+          }}
+        >
           {services.map((s, i) => (
             <AnimatedText key={s} delay={14 + i * 10}>
               <div

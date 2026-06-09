@@ -1,16 +1,33 @@
 import React from "react";
-import { AbsoluteFill, Sequence, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Audio,
+  Sequence,
+  interpolate,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
+import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { script, Scene } from "./data/script";
-import { video, DESIGN_BASE } from "./brand/tokens";
+import { video } from "./brand/tokens";
 import { Background } from "./components/Background";
+import { AudioVizContext } from "./components/AudioVizContext";
+import { LayoutContext, CtaVariant } from "./components/LayoutContext";
 import { LogoIntro } from "./components/scenes/LogoIntro";
 import { HeroImpact } from "./components/scenes/HeroImpact";
 import { Reposition } from "./components/scenes/Reposition";
 import { Services } from "./components/scenes/Services";
+import { Portfolio } from "./components/scenes/Portfolio";
 import { Authority } from "./components/scenes/Authority";
 import { Cta } from "./components/scenes/Cta";
 
 const FADE = 12; // frames de fade in/out por cena
+const AUDIO_SRC = "audio/trilha.wav";
+
+export type SoveralSoulProps = {
+  ctaVariant: CtaVariant;
+};
 
 /** Envelope com fade in/out — suaviza a transição entre cenas. */
 const SceneFade: React.FC<{ durationInFrames: number; children: React.ReactNode }> = ({
@@ -27,7 +44,7 @@ const SceneFade: React.FC<{ durationInFrames: number; children: React.ReactNode 
   return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
 };
 
-const renderScene = (scene: Scene): React.ReactNode => {
+const renderScene = (scene: Scene, ctaVariant: CtaVariant): React.ReactNode => {
   const p = scene.props as any;
   switch (scene.kind) {
     case "logoIntro":
@@ -38,49 +55,67 @@ const renderScene = (scene: Scene): React.ReactNode => {
       return <Reposition {...p} />;
     case "services":
       return <Services {...p} />;
+    case "portfolio":
+      return <Portfolio {...p} />;
     case "authority":
       return <Authority {...p} />;
     case "cta":
-      return <Cta {...p} />;
+      return <Cta {...p} variant={ctaVariant} />;
     default:
       return null;
   }
 };
 
 /**
- * O design é autorado num palco quadrado de DESIGN_BASE e escalado para caber
- * em qualquer formato (9:16, 1:1, 16:9), centralizado. Assim a tipografia fica
- * legível e consistente nos 3 formatos a partir de uma única composição.
+ * O conteúdo é autorado num "palco" e escalado para caber no frame, centralizado.
+ * Em landscape (16:9) o palco é mais largo (1920×1080), liberando layouts que
+ * usam a largura; em retrato/quadrado é 1080×1080.
  */
 const SafeArea: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { width, height } = useVideoConfig();
-  const scale = Math.min(width, height) / DESIGN_BASE;
+  const landscape = width > height * 1.2;
+  const dw = landscape ? 1920 : 1080;
+  const dh = 1080;
+  const scale = Math.min(width / dw, height / dh);
   return (
-    <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
-      <div style={{ position: "relative", width: DESIGN_BASE, height: DESIGN_BASE, transform: `scale(${scale})` }}>
-        {children}
-      </div>
-    </AbsoluteFill>
+    <LayoutContext.Provider value={{ landscape, dw, dh }}>
+      <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
+        <div style={{ position: "relative", width: dw, height: dh, transform: `scale(${scale})` }}>
+          {children}
+        </div>
+      </AbsoluteFill>
+    </LayoutContext.Provider>
   );
 };
 
-export const SoveralSoul: React.FC = () => {
+export const SoveralSoul: React.FC<SoveralSoulProps> = ({ ctaVariant }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const audioData = useAudioData(staticFile(AUDIO_SRC));
+  const viz =
+    audioData != null
+      ? visualizeAudio({ fps, frame, audioData, numberOfSamples: 32, optimizeFor: "accuracy" })
+      : null;
+
   return (
     <AbsoluteFill>
-      {/* Fundo de marca em frame cheio — contínuo em todos os formatos, sem
-          moldura de quadrado. */}
+      <Audio src={staticFile(AUDIO_SRC)} />
       <Background />
-      <SafeArea>
-        {script.map((scene) => {
-          const from = Math.round(scene.startSec * video.fps);
-          const durationInFrames = Math.round(scene.durationSec * video.fps);
-          return (
-            <Sequence key={scene.id} from={from} durationInFrames={durationInFrames} name={scene.id}>
-              <SceneFade durationInFrames={durationInFrames}>{renderScene(scene)}</SceneFade>
-            </Sequence>
-          );
-        })}
-      </SafeArea>
+      <AudioVizContext.Provider value={viz}>
+        <SafeArea>
+          {script.map((scene) => {
+            const from = Math.round(scene.startSec * video.fps);
+            const durationInFrames = Math.round(scene.durationSec * video.fps);
+            return (
+              <Sequence key={scene.id} from={from} durationInFrames={durationInFrames} name={scene.id}>
+                <SceneFade durationInFrames={durationInFrames}>
+                  {renderScene(scene, ctaVariant)}
+                </SceneFade>
+              </Sequence>
+            );
+          })}
+        </SafeArea>
+      </AudioVizContext.Provider>
     </AbsoluteFill>
   );
 };

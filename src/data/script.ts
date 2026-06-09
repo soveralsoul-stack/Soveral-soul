@@ -4,6 +4,7 @@
  *  SOVERAL SOUL · BUSINESS HUB — Marketing · Eventos · Audiovisual
  * ───────────────────────────────────────────────────────────────────────────
  *  Copys reais extraídas do site oficial. Base 30 fps → 30s = 900 frames.
+ *  Cortes (s): 0 · 3.5 · 7 · 10.5 · 17 · 22.5 · 26 — alinhados aos impactos da trilha.
  */
 
 export type SceneKind =
@@ -11,6 +12,7 @@ export type SceneKind =
   | "heroImpact"
   | "reposition"
   | "services"
+  | "portfolio"
   | "authority"
   | "cta";
 
@@ -27,31 +29,28 @@ export const script: Scene[] = [
     id: "01-logo",
     kind: "logoIntro",
     startSec: 0,
-    durationSec: 4,
+    durationSec: 3.5,
     props: { eyebrow: "Marketing · Eventos · Audiovisual" },
   },
   {
     id: "02-impacto",
     kind: "heroImpact",
-    startSec: 4,
-    durationSec: 5,
+    startSec: 3.5,
+    durationSec: 3.5,
     props: { pre: "Sua marca", merece: "merece", impact: "IMPACTO." },
   },
   {
     id: "03-reposicionamento",
     kind: "reposition",
-    startSec: 9,
-    durationSec: 4,
-    props: {
-      negate: "Não somos uma agência.",
-      affirm: "Somos a operação por trás do seu crescimento.",
-    },
+    startSec: 7,
+    durationSec: 3.5,
+    props: { negate: "Não somos uma agência." },
   },
   {
     id: "04-servicos",
     kind: "services",
-    startSec: 13,
-    durationSec: 9,
+    startSec: 10.5,
+    durationSec: 6.5,
     props: {
       title: "Do detalhe ao espetáculo.",
       services: [
@@ -65,17 +64,35 @@ export const script: Scene[] = [
     },
   },
   {
-    id: "05-autoridade",
+    id: "05-portfolio",
+    kind: "portfolio",
+    startSec: 17,
+    durationSec: 5.5,
+    props: {
+      label: "Projetos realizados",
+      caption: "Case eXata Imobiliária · Chapecó/SC",
+      photos: [
+        "galeria/EXATA_04.jpg",
+        "galeria/IMG_3936.jpg",
+        "galeria/EXATA_01.jpg",
+        "galeria/EXATA_05.jpg",
+        "galeria/EXATA_06.jpg",
+        "galeria/IMG_3919.jpg",
+      ],
+    },
+  },
+  {
+    id: "06-autoridade",
     kind: "authority",
-    startSec: 22,
-    durationSec: 4,
+    startSec: 22.5,
+    durationSec: 3.5,
     props: {
       line: "Empresas sérias escolhem parceiros sérios.",
       place: "Chapecó · SC",
     },
   },
   {
-    id: "06-cta",
+    id: "07-cta",
     kind: "cta",
     startSec: 26,
     durationSec: 4,

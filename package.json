@@ -6,11 +6,10 @@
   "scripts": {
     "dev": "remotion studio",
     "preview": "remotion studio",
-    "build": "npm run build:vertical && npm run build:square && npm run build:wide",
-    "build:vertical": "remotion render SoveralSoul-Vertical out/soveral-soul-9x16.mp4",
-    "build:square": "remotion render SoveralSoul-Square out/soveral-soul-1x1.mp4",
-    "build:wide": "remotion render SoveralSoul-Wide out/soveral-soul-16x9.mp4",
-    "build:still": "remotion still SoveralSoul-Vertical out/frame.png --frame=60",
+    "build": "npm run build:wpp && npm run build:ig",
+    "build:wpp": "remotion render SoveralSoul-Vertical-WhatsApp out/wpp-9x16.mp4 && remotion render SoveralSoul-Square-WhatsApp out/wpp-1x1.mp4 && remotion render SoveralSoul-Wide-WhatsApp out/wpp-16x9.mp4",
+    "build:ig": "remotion render SoveralSoul-Vertical-Instagram out/ig-9x16.mp4 && remotion render SoveralSoul-Square-Instagram out/ig-1x1.mp4 && remotion render SoveralSoul-Wide-Instagram out/ig-16x9.mp4",
+    "build:still": "remotion still SoveralSoul-Vertical-WhatsApp out/frame.png --frame=60",
     "upgrade": "remotion upgrade",
     "typecheck": "tsc --noEmit"
   },
@@ -18,6 +17,7 @@
     "@remotion/cli": "4.0.230",
     "@remotion/fonts": "^4.0.230",
     "@remotion/google-fonts": "4.0.230",
+    "@remotion/media-utils": "^4.0.230",
     "@remotion/renderer": "4.0.230",
     "react": "18.3.1",
     "react-dom": "18.3.1",
