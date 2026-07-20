@@ -1,0 +1,43 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  SOVERAL SOUL — Agendador de posts do Instagram (cPanel)              ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+VOCÊ RECEBEU 2 ZIPS. ELES VÃO PRA LUGARES DIFERENTES:
+
+┌─ 1) posts.zip  →  MÍDIAS (públicas) ────────────────────────────────┐
+│  cPanel → Gerenciador de Arquivos → public_html                     │
+│  • Envie posts.zip dentro de public_html e clique em "Extract".      │
+│  • Deve ficar assim:  public_html/posts/carousel-1.jpg  (etc.)       │
+│  • Teste no navegador: https://soveralsoul.com.br/posts/carousel-1.jpg│
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─ 2) soveral-publisher.zip  →  SCRIPTS (PRIVADO, com o token) ───────┐
+│  ⚠️ NÃO coloque dentro de public_html (o .env tem seu token!).       │
+│  cPanel → Gerenciador de Arquivos → suba um nível até /home/SEU_USER │
+│  • Envie soveral-publisher.zip aí e "Extract".                       │
+│  • Deve ficar:  /home/SEU_USER/soveral-publisher/run-due.js (etc.)   │
+└──────────────────────────────────────────────────────────────────────┘
+
+──────────────────────────────────────────────────────────────────────
+CONFIGURAR (uma vez):
+1) Precisa de Node 18+ no servidor.
+   No cPanel: "Setup Node.js App" (ou via SSH: node -v).
+2) Entre na pasta soveral-publisher e crie o .env a partir do exemplo:
+       cp .env.example .env
+   Edite o .env e preencha:
+       IG_USER_ID=17841452861747596
+       IG_ACCESS_TOKEN=SEU_TOKEN_DE_LONGA_DURACAO
+       MEDIA_BASE_URL=https://soveralsoul.com.br/posts
+3) Teste sem publicar:
+       node --env-file=.env run-due.js --dry
+4) Teste publicando UM post (recomendado — comece por um Story):
+       node --env-file=.env publish-one.js seg-story-85
+
+LIGAR O AUTOMÁTICO (cron do cPanel → "Cron Jobs"):
+   A cada 10 minutos:
+   */10 * * * * cd /home/SEU_USER/soveral-publisher && node --env-file=.env run-due.js >> publisher.log 2>&1
+
+NÃO PRECISA de "npm install" — os scripts usam só recursos nativos do Node.
+Token dura ~60 dias: gere de novo no painel da Meta e atualize o .env.
+Programação da semana: edite schedule.json (dias, horas, legendas, mídias).
+──────────────────────────────────────────────────────────────────────
