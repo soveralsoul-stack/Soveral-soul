@@ -9,6 +9,7 @@
  *   MEDIA_BASE_URL    URL pública base das mídias (ex.: https://soveralsoul.com.br/posts)
  *   DRY_RUN=1         (opcional) só simula, não publica
  */
+require("./loadenv");
 const fs = require("fs");
 const path = require("path");
 const { publishItem } = require("./ig");

@@ -7,6 +7,7 @@
  *   node --env-file=.env publish-one.js --list         # lista os ids
  *   node --env-file=.env publish-one.js <id> --dry      # simula
  */
+require("./loadenv");
 const fs = require("fs");
 const path = require("path");
 const { publishItem } = require("./ig");

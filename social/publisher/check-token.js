@@ -7,6 +7,7 @@
  * coloque um no .env, rode isto; depois troque pelo outro e rode de novo.
  * O que responder "OK" e com o username certo é o que vai no .env.
  */
+require("./loadenv");
 const { IG_USER_ID, IG_ACCESS_TOKEN, GRAPH_BASE } = process.env;
 const BASE = (GRAPH_BASE || "https://graph.instagram.com") + "/v21.0";
 
