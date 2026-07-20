@@ -1,0 +1,24 @@
+{
+  "imoveispro": {
+    "name": "IMÓVEIS<b>PRO</b>",
+    "mark": "IM",
+    "accent": "#e0a64e",
+    "cta": "#2d8fff",
+    "bg": "#0d1420",
+    "line": "#24344d",
+    "phone": "(49) 9 9911-8781",
+    "handle": "@imoveispro",
+    "city": "Chapecó/SC"
+  },
+  "verdelar": {
+    "name": "VERDE<b>LAR</b>",
+    "mark": "VL",
+    "accent": "#37c98a",
+    "cta": "#1f9d68",
+    "bg": "#0e1512",
+    "line": "#1f3a2e",
+    "phone": "(49) 9 8888-1234",
+    "handle": "@verdelar.imoveis",
+    "city": "Chapecó/SC"
+  }
+}

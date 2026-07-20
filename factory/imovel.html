@@ -64,6 +64,8 @@
   const S = document.documentElement.style;
   if (d.brand?.accent) S.setProperty('--accent', d.brand.accent);
   if (d.brand?.cta) S.setProperty('--cta', d.brand.cta);
+  if (d.brand?.bg) S.setProperty('--ink', d.brand.bg);
+  if (d.brand?.line) S.setProperty('--line', d.brand.line);
   document.getElementById('photo').style.backgroundImage = `url('${d.photo}')`;
   document.getElementById('badge').textContent = d.badge || 'À VENDA';
   document.getElementById('logomark').textContent = d.brand?.mark || 'IM';
