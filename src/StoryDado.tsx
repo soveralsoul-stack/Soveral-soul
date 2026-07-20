@@ -14,6 +14,7 @@ import { Background } from "./components/Background";
 import { Logo, Wordmark } from "./components/Logo";
 import { Waveform } from "./components/Waveform";
 import { AudioVizContext } from "./components/AudioVizContext";
+import { STORIES } from "./data/stories";
 
 const AUDIO_SRC = "audio/trilha.wav";
 
@@ -42,33 +43,32 @@ const Reveal: React.FC<{
   );
 };
 
-export const StoryIA85: React.FC = () => {
+export const StoryDado: React.FC<{ storyId: string }> = ({ storyId }) => {
+  const data = STORIES.find((s) => s.id === storyId) ?? STORIES[0];
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
 
-  // trilha → espectro (frame absoluto) p/ a waveform reagir
   const audioData = useAudioData(staticFile(AUDIO_SRC));
   const viz =
     audioData != null
       ? visualizeAudio({ fps, frame, audioData, numberOfSamples: 32, optimizeFor: "accuracy" })
       : null;
 
-  // contagem lenta 0 → 85
-  const count = Math.round(
-    interpolate(frame, [52, 150], [0, 85], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
-  );
-  // pop sutil quando o número "assenta"
+  // stat: contagem numérica (0 → countTo) ou texto fixo (ex.: "24/7")
+  const counted =
+    data.countTo != null
+      ? `${Math.round(
+          interpolate(frame, [52, 150], [0, data.countTo], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
+        )}%`
+      : data.statText ?? "";
   const pop = spring({ frame: frame - 52, fps, config: { damping: 14, mass: 0.8 }, durationInFrames: 60 });
   const statScale = interpolate(pop, [0, 1], [0.86, 1]);
 
-  // deriva lenta cinematográfica no bloco todo
   const drift = interpolate(frame, [0, durationInFrames], [1.0, 1.035]);
-  // waveform entra devagar
   const waveIn = interpolate(frame, [300, 360], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // fade final
   const outro = interpolate(frame, [durationInFrames - 24, durationInFrames], [1, 0], { extrapolateLeft: "clamp" });
 
-  const stat: React.CSSProperties = {
+  const statStyle: React.CSSProperties = {
     fontFamily: fonts.display,
     fontSize: 470,
     lineHeight: 0.8,
@@ -92,14 +92,7 @@ export const StoryIA85: React.FC = () => {
       <Audio src={staticFile(AUDIO_SRC)} volume={0.9} />
       <Background />
       <AudioVizContext.Provider value={viz}>
-        <AbsoluteFill
-          style={{
-            padding: "150px 84px 168px",
-            display: "flex",
-            flexDirection: "column",
-            opacity: outro,
-          }}
-        >
+        <AbsoluteFill style={{ padding: "150px 84px 160px", display: "flex", flexDirection: "column", opacity: outro }}>
           {/* header */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <Reveal at={4} y={0}>
@@ -122,13 +115,22 @@ export const StoryIA85: React.FC = () => {
                   padding: "9px 16px",
                 }}
               >
-                IA &amp; Automação
+                {data.pill}
               </div>
             </Reveal>
           </div>
 
           {/* bloco central */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", transform: `scale(${drift})`, transformOrigin: "left center" }}>
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              transform: `scale(${drift})`,
+              transformOrigin: "left center",
+            }}
+          >
             <Reveal at={34} style={{ marginBottom: 6 }}>
               <div
                 style={{
@@ -146,18 +148,16 @@ export const StoryIA85: React.FC = () => {
               </div>
             </Reveal>
 
-            <div style={{ ...stat, transform: `scale(${statScale})`, transformOrigin: "left bottom" }}>{count}%</div>
+            <div style={{ ...statStyle, transform: `scale(${statScale})`, transformOrigin: "left bottom" }}>
+              {counted}
+            </div>
 
             <div style={{ marginTop: 8 }}>
-              <Reveal at={132}>
-                <div style={subLine}>das empresas seguem</div>
-              </Reveal>
-              <Reveal at={146}>
-                <div style={{ ...subLine, color: colors.blue }}>sem estratégia</div>
-              </Reveal>
-              <Reveal at={160}>
-                <div style={{ ...subLine, color: colors.blue }}>formal de IA.</div>
-              </Reveal>
+              {data.sub.map((l, i) => (
+                <Reveal key={i} at={132 + i * 14}>
+                  <div style={{ ...subLine, color: l.blue ? colors.blue : colors.white }}>{l.t}</div>
+                </Reveal>
+              ))}
             </div>
 
             <Reveal at={205} style={{ marginTop: 44 }}>
@@ -172,41 +172,41 @@ export const StoryIA85: React.FC = () => {
                 }}
               >
                 <span style={{ width: 5, borderRadius: 5, background: `linear-gradient(180deg, ${colors.cyan}, ${colors.blueDim})` }} />
-                <p style={{ fontFamily: fonts.body, fontSize: 30, lineHeight: 1.42, color: "#cdd6e6" }}>
-                  E só <b style={{ color: "#fff" }}>11% das equipes</b> têm dados de marketing acessíveis e de
-                  qualidade. O gargalo não é a ferramenta — é a <b style={{ color: "#fff" }}>operação</b>.
-                </p>
+                <p style={{ fontFamily: fonts.body, fontSize: 30, lineHeight: 1.42, color: "#cdd6e6" }}>{data.note}</p>
               </div>
             </Reveal>
 
             <Reveal at={252} style={{ marginTop: 22 }}>
-              <div style={{ fontFamily: fonts.body, fontSize: 20, letterSpacing: 1, color: colors.muted }}>
-                Fonte: Relatório Supermetrics · 14/07/2025
-              </div>
+              <div style={{ fontFamily: fonts.body, fontSize: 20, letterSpacing: 1, color: colors.muted }}>{data.source}</div>
             </Reveal>
           </div>
 
-          {/* rodapé */}
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24 }}>
-            <div>
-              <Reveal at={300}>
-                <div style={{ fontFamily: fonts.display, fontSize: 66, lineHeight: 0.96, letterSpacing: 1, textTransform: "uppercase", color: colors.white }}>
-                  Não seja mais
-                  <br />
-                  uma <span style={{ color: colors.blue }}>estatística.</span>
-                </div>
-              </Reveal>
-              <div style={{ marginTop: 18 }}>
-                <Waveform width={460} intensity={waveIn} maxHeight={64} barCount={30} align="bottom" />
-              </div>
-            </div>
-            <Reveal at={320} y={0}>
-              <div style={{ fontFamily: fonts.body, fontSize: 22, letterSpacing: 2, color: colors.muted, textAlign: "right" }}>
-                Marketing · Eventos · Audiovisual
-                <br />
-                <b style={{ color: colors.white }}>@soveralsoul</b>
+          {/* rodapé: fecho em largura cheia + (waveform | handle) */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            <Reveal at={300}>
+              <div
+                style={{
+                  fontFamily: fonts.display,
+                  fontSize: 64,
+                  lineHeight: 0.98,
+                  letterSpacing: 1,
+                  textTransform: "uppercase",
+                  color: colors.white,
+                }}
+              >
+                {data.take}
               </div>
             </Reveal>
+            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24 }}>
+              <Waveform width={440} intensity={waveIn} maxHeight={60} barCount={28} align="bottom" />
+              <Reveal at={320} y={0}>
+                <div style={{ fontFamily: fonts.body, fontSize: 22, letterSpacing: 2, color: colors.muted, textAlign: "right" }}>
+                  Marketing · Eventos · Audiovisual
+                  <br />
+                  <b style={{ color: colors.white }}>@soveralsoul</b>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </AbsoluteFill>
       </AudioVizContext.Provider>

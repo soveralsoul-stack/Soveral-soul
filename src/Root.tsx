@@ -1,7 +1,8 @@
 import React from "react";
 import { Composition } from "remotion";
 import { SoveralSoul } from "./SoveralSoul";
-import { StoryIA85 } from "./StoryIA85";
+import { StoryDado } from "./StoryDado";
+import { STORIES } from "./data/stories";
 import { video, video_durationInFrames, formats } from "./brand/tokens";
 import { CtaVariant } from "./components/LayoutContext";
 
@@ -27,15 +28,19 @@ export const RemotionRoot: React.FC = () => {
           />
         ))
       )}
-      {/* Stories animado (câmera lenta) — dado da semana: 85% */}
-      <Composition
-        id="Story-IA85"
-        component={StoryIA85}
-        durationInFrames={15 * video.fps}
-        fps={video.fps}
-        width={1080}
-        height={1920}
-      />
+      {/* Stories animados (câmera lenta) — um por "dado da semana" */}
+      {STORIES.map((s) => (
+        <Composition
+          key={s.id}
+          id={`Story-${s.id}`}
+          component={StoryDado}
+          durationInFrames={15 * video.fps}
+          fps={video.fps}
+          width={1080}
+          height={1920}
+          defaultProps={{ storyId: s.id }}
+        />
+      ))}
     </>
   );
 };
