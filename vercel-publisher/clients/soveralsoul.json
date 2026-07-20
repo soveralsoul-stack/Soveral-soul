@@ -1,7 +1,21 @@
 {
+  "id": "soveralsoul",
+  "name": "SoveralSoul Business Hub",
+  "igUserId": "17841452861747596",
+  "tokenEnv": "IG_ACCESS_TOKEN",
+  "mediaBaseUrl": "https://soveralsoul.com.br/posts",
   "timezoneOffsetHours": -3,
   "windowHours": 6,
-  "items": [
+  "brand": {
+    "accent": "#2d8fff",
+    "cta": "#2d8fff",
+    "bg": "#06080f",
+    "line": "#1a2240",
+    "handle": "@soveralsoul",
+    "city": "Chapecó/SC",
+    "phone": "wa.me/55 49 99911-8781"
+  },
+  "schedule": [
     {
       "id": "seg-carrossel-85",
       "dow": 1,
