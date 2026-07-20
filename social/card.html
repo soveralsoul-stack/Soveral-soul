@@ -10,6 +10,7 @@
   .f-feed .stat{font-size:340px}
   .f-square .stat{font-size:300px}
   .f-story .stat{font-size:380px}
+  .f-story .stat{margin-top:22px}
 
   .sub{font-family:'Bebas Neue';text-transform:uppercase;letter-spacing:1px;line-height:.98;color:var(--white);margin-top:8px}
   .sub .b{color:var(--blue)}
@@ -33,9 +34,7 @@
   .eyebrow{margin-top:46px}
   .f-square .eyebrow{margin-top:34px}
   .f-story .eyebrow{margin-top:60px}
-  .f-story .stat{margin-top:22px}
   .spacer{flex:1}
-  /* centraliza o bloco principal verticalmente só no Stories */
   .top-spacer{display:none}
   .f-story .top-spacer{display:block;flex:1}
 </style></head><body class="f-feed">
@@ -44,21 +43,18 @@
     <div class="inner">
       <div class="hd">
         <div class="brand"><img src="../public/logo-soveralsoul.png"><div class="wm">SOVERAL<b>SOUL</b></div></div>
-        <div class="pill">IA &amp; Automação</div>
+        <div class="pill" id="pill">IA &amp; Automação</div>
       </div>
       <div class="spacer top-spacer"></div>
-      <div class="eyebrow"><span class="ln"></span> O dado da semana</div>
-      <div class="stat">85%</div>
-      <div class="sub">das empresas seguem <span class="b">sem estratégia formal de IA.</span></div>
-      <div class="note">
-        <div class="bar"></div>
-        <p>E só <b>11% das equipes</b> têm dados de marketing acessíveis e de qualidade entre os sistemas. O gargalo não é a ferramenta — é a <b>operação</b>.</p>
-      </div>
-      <div class="source src">Fonte: Relatório Supermetrics · 14/07/2025</div>
+      <div class="eyebrow"><span class="ln"></span> <span id="eyebrow">O dado da semana</span></div>
+      <div class="stat" id="stat">85%</div>
+      <div class="sub" id="sub"></div>
+      <div class="note"><div class="bar"></div><p id="note"></p></div>
+      <div class="source src" id="source"></div>
       <div class="spacer"></div>
       <div class="foot">
         <div>
-          <div class="take">Não seja mais<br>uma <span class="b">estatística.</span></div>
+          <div class="take" id="take"></div>
           <div class="wave" id="wave" style="margin-top:16px"></div>
         </div>
         <div class="handle">Marketing · Eventos · Audiovisual<br><b>@soveralsoul</b></div>
@@ -67,8 +63,45 @@
     <div class="vig"></div>
   </section>
 <script>
-  const f=new URLSearchParams(location.search).get('f')||'feed';
-  document.body.className='f-'+f;
+  /* ─── DADOS DOS POSTS — adicione novos aqui e renderize com ?post=chave&f=formato ─── */
+  const POSTS = {
+    ia85: {
+      pill: "IA &amp; Automação",
+      stat: "85%",
+      sub: 'das empresas seguem <span class="b">sem estratégia formal de IA.</span>',
+      note: 'E só <b>11% das equipes</b> têm dados de marketing acessíveis e de qualidade entre os sistemas. O gargalo não é a ferramenta — é a <b>operação</b>.',
+      source: "Fonte: Relatório Supermetrics · 14/07/2025",
+      take: 'Não seja mais<br>uma <span class="b">estatística.</span>'
+    },
+    atendimento: {
+      pill: "IA &amp; Atendimento",
+      stat: "24/7",
+      sub: 'seu atendimento com <span class="b">agentes de IA</span> não dorme, não falta e não perde lead.',
+      note: '<b>PwC e OpenAI</b> lançaram agentes de atendimento para contact centers (AI Agent Store). O que era coisa de gigante agora escala pra <b>qualquer negócio</b>.',
+      source: "Fonte: PwC × OpenAI · AI Agent Store · jul/2025",
+      take: 'Responda em<br><span class="b">segundos.</span>'
+    },
+    eventos: {
+      pill: "IA &amp; Eventos",
+      stat: "97%",
+      sub: 'de cobertura: cada contato de evento vira <span class="b">lead pronto no CRM.</span>',
+      note: 'A parceria <b>Popl × Apollo.io</b> usa enriquecimento por IA para transformar cada interação presencial em <b>lead qualificado</b> — automaticamente.',
+      source: "Fonte: Popl × Apollo.io · 14/07/2025",
+      take: 'Seu evento não termina<br>no <span class="b">aperto de mão.</span>'
+    }
+  };
+
+  const q = new URLSearchParams(location.search);
+  const f = q.get('f') || 'feed';
+  const post = POSTS[q.get('post') || 'ia85'] || POSTS.ia85;
+  document.body.className = 'f-' + f;
+  document.getElementById('pill').innerHTML   = post.pill;
+  document.getElementById('stat').textContent = post.stat;
+  document.getElementById('sub').innerHTML     = post.sub;
+  document.getElementById('note').innerHTML    = post.note;
+  document.getElementById('source').textContent= post.source;
+  document.getElementById('take').innerHTML    = post.take;
+
   const hs=[14,26,20,38,30,44,24,40,18,34,28,42,22,36,16,30,24,38,20,32];
   const w=document.getElementById('wave');hs.forEach(h=>{const b=document.createElement('i');b.style.height=h+'px';w.appendChild(b)});
 </script>

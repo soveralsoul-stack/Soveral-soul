@@ -3,6 +3,13 @@ const EXE='/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const base='file:///home/user/Soveral-soul/social/';
 const out='/home/user/Soveral-soul/out/';
 
+const POSTS = ['ia85','atendimento','eventos'];
+const FORMATS = [
+  { f:'feed',   w:1080, h:1350, sfx:'feed-4x5' },
+  { f:'square', w:1080, h:1080, sfx:'square-1x1' },
+  { f:'story',  w:1080, h:1920, sfx:'story-9x16' },
+];
+
 async function ready(page){
   await page.evaluate(async () => {
     await document.fonts.ready;
@@ -13,22 +20,21 @@ async function ready(page){
 
 (async () => {
   const browser = await chromium.launch({ executablePath: EXE });
-  // --- card em 3 formatos ---
-  const cards = [
-    { f:'feed',   w:1080, h:1350, file:'card-feed-4x5.png' },
-    { f:'square', w:1080, h:1080, file:'card-square-1x1.png' },
-    { f:'story',  w:1080, h:1920, file:'card-story-9x16.png' },
-  ];
-  for (const c of cards){
-    const page = await browser.newPage({ viewport:{width:c.w,height:c.h}, deviceScaleFactor:2 });
-    await page.goto(base+'card.html?f='+c.f, { waitUntil:'load' });
-    await ready(page);
-    const el = await page.$('.slide');
-    await el.screenshot({ path: out+c.file });
-    await page.close();
-    console.log('card', c.file);
+
+  // cards: cada post em cada formato
+  for (const post of POSTS){
+    for (const c of FORMATS){
+      const page = await browser.newPage({ viewport:{width:c.w,height:c.h}, deviceScaleFactor:2 });
+      await page.goto(`${base}card.html?post=${post}&f=${c.f}`, { waitUntil:'load' });
+      await ready(page);
+      const el = await page.$('.slide');
+      await el.screenshot({ path: `${out}card-${post}-${c.sfx}.png` });
+      await page.close();
+      console.log('card', post, c.sfx);
+    }
   }
-  // --- carrossel: 4 slides ---
+
+  // carrossel (85%)
   const page = await browser.newPage({ viewport:{width:1080,height:1350}, deviceScaleFactor:2 });
   await page.goto(base+'carousel.html', { waitUntil:'load' });
   await ready(page);
