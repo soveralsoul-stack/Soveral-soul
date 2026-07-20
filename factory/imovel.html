@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<style>
+  @font-face{ font-family:'Bebas Neue'; src:url('../public/fonts/BebasNeue-Regular.ttf') format('truetype'); font-weight:400; }
+  @font-face{ font-family:'Space Grotesk'; src:url('../public/fonts/SpaceGrotesk.ttf') format('truetype'); font-weight:300 700; }
+  :root{ --ink:#0d1420; --line:#24344d; --accent:#e0a64e; --cta:#2d8fff; --white:#eef3fb; --muted:#8fa2bd; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  .card{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--ink);
+    font-family:'Space Grotesk',sans-serif;color:var(--white);display:flex;flex-direction:column}
+  .photo{position:relative;height:812px;flex:0 0 auto;overflow:hidden;background:#0d1826 center 42%/cover no-repeat}
+  .photo .fade{position:absolute;left:0;right:0;bottom:0;height:260px;background:linear-gradient(to bottom,transparent,var(--ink))}
+  .photo .topfade{position:absolute;left:0;right:0;top:0;height:210px;background:linear-gradient(to bottom,rgba(8,14,24,.60),transparent)}
+  .badge{position:absolute;top:40px;left:40px;background:var(--accent);color:#20160a;
+    font-family:'Bebas Neue';font-size:30px;letter-spacing:2px;padding:10px 22px;border-radius:4px}
+  .clogo{position:absolute;top:40px;right:40px;display:flex;align-items:center;gap:12px}
+  .clogo .mark{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;
+    font-family:'Bebas Neue';font-size:22px;color:#fff}
+  .clogo .nm{font-family:'Bebas Neue';font-size:30px;letter-spacing:2px}
+  .clogo .nm b{color:var(--accent);font-weight:400}
+  .info{flex:1;padding:44px 60px 56px;display:flex;flex-direction:column}
+  .eyebrow{display:flex;align-items:center;gap:14px;font-size:20px;letter-spacing:5px;text-transform:uppercase;color:var(--muted)}
+  .eyebrow .ln{width:40px;height:1px;background:var(--accent)}
+  .price{font-family:'Bebas Neue';font-size:132px;line-height:.9;letter-spacing:1px;margin-top:10px;color:#fff}
+  .price small{color:var(--muted);font-size:34px;letter-spacing:1px;font-family:'Space Grotesk';font-weight:400}
+  .specs{display:flex;gap:14px;margin-top:34px}
+  .spec{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;border:1px solid var(--line);
+    border-radius:10px;padding:20px 8px;background:rgba(255,255,255,.02)}
+  .spec svg{width:34px;height:34px;stroke:var(--accent)}
+  .spec .v{font-family:'Bebas Neue';font-size:40px;letter-spacing:1px;line-height:1}
+  .spec .k{font-size:16px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+  .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .cta{background:var(--cta);color:#04101f;font-family:'Space Grotesk';font-weight:600;font-size:26px;
+    letter-spacing:.5px;padding:20px 34px;border-radius:6px}
+  .loc{font-size:24px;color:var(--muted);text-align:right;line-height:1.4}
+  .loc b{color:#fff}
+</style></head><body>
+  <div class="card">
+    <div class="photo" id="photo">
+      <div class="topfade"></div>
+      <div class="badge" id="badge">À VENDA</div>
+      <div class="clogo"><div class="mark" id="logomark">IM</div><div class="nm" id="logoname"></div></div>
+      <div class="fade"></div>
+    </div>
+    <div class="info">
+      <div class="eyebrow"><span class="ln"></span> <span id="eyebrow"></span></div>
+      <div class="price" id="price"></div>
+      <div class="specs" id="specs"></div>
+      <div class="foot">
+        <div class="cta" id="cta">Agende sua visita →</div>
+        <div class="loc" id="loc"></div>
+      </div>
+    </div>
+  </div>
+<script>
+  // ícones por chave de spec
+  const ICON = {
+    quartos:'<path d="M2 17v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4M2 17h20M4 11V7a1 1 0 0 1 1-1h6M20 11V7a1 1 0 0 0-1-1h-6M2 17v3M22 17v3"/>',
+    banheiros:'<path d="M4 12V6a2 2 0 0 1 2-2 2 2 0 0 1 2 2M2 12h20v3a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4zM6 19l-1 2M18 19l1 2"/>',
+    vagas:'<path d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13M5 13h14v4H5zM7 17v2M17 17v2M7 13.5h.01M17 13.5h.01"/>',
+    area:'<path d="M4 20h16M6 20V8l6-4 6 4v12M10 20v-5h4v5"/>',
+    estado:'<path d="M3 21V9l9-6 9 6v12M3 21h18M8 21v-6h8v6"/>'
+  };
+  const d = JSON.parse(decodeURIComponent(escape(atob(new URLSearchParams(location.search).get('d')))));
+  const S = document.documentElement.style;
+  if (d.brand?.accent) S.setProperty('--accent', d.brand.accent);
+  if (d.brand?.cta) S.setProperty('--cta', d.brand.cta);
+  document.getElementById('photo').style.backgroundImage = `url('${d.photo}')`;
+  document.getElementById('badge').textContent = d.badge || 'À VENDA';
+  document.getElementById('logomark').textContent = d.brand?.mark || 'IM';
+  document.getElementById('logoname').innerHTML = d.brand?.name || 'IMÓVEIS<b>PRO</b>';
+  document.getElementById('eyebrow').textContent = d.eyebrow || '';
+  document.getElementById('price').innerHTML = `${d.price} <small>· ${d.area}</small>`;
+  document.getElementById('cta').textContent = d.ctaText || 'Agende sua visita →';
+  document.getElementById('loc').innerHTML = `<b>${d.phone||''}</b><br>${d.handle||''} · ${d.city||''}`;
+  document.getElementById('specs').innerHTML = (d.specs||[]).map(s =>
+    `<div class="spec"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICON[s.icon]||''}</svg>`+
+    `<div class="v">${s.v}</div><div class="k">${s.k}</div></div>`).join('');
+</script>
+</body></html>
