@@ -12,9 +12,7 @@
 
   /* ---------- SLOT DA FOTO (o que o cliente envia / IA gera) ---------- */
   .photo{position:relative;height:812px;flex:0 0 auto;overflow:hidden;
-    /* placeholder: gradiente elegante no lugar da foto real */
-    background:
-      radial-gradient(120% 90% at 70% 10%, #2a3d5c 0%, #16233a 55%, #0d1826 100%);}
+    background:#0d1826 url('../../public/nicho/apto.png') center 42%/cover no-repeat;}
   .photo .grid{position:absolute;inset:0;opacity:.10;
     background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
     background-size:60px 60px}
@@ -25,6 +23,8 @@
     padding:12px 22px;font-size:20px;letter-spacing:.5px;color:#cdd9ec;backdrop-filter:blur(2px)}
   .photo .fade{position:absolute;left:0;right:0;bottom:0;height:260px;
     background:linear-gradient(to bottom,transparent,var(--ink))}
+  .photo .topfade{position:absolute;left:0;right:0;top:0;height:210px;
+    background:linear-gradient(to bottom,rgba(8,14,24,.60),transparent)}
   .badge{position:absolute;top:40px;left:40px;background:var(--gold);color:#20160a;
     font-family:'Bebas Neue';font-size:30px;letter-spacing:2px;padding:10px 22px;border-radius:4px}
   .clogo{position:absolute;top:40px;right:40px;display:flex;align-items:center;gap:12px}
@@ -56,11 +56,7 @@
   <div class="card">
     <!-- SLOT DA FOTO -->
     <div class="photo">
-      <div class="grid"></div>
-      <svg class="bldg" width="360" height="360" viewBox="0 0 24 24" fill="none" stroke="#cfe0ff" stroke-width="0.6">
-        <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M8 9h1M11 9h1M14 9h1M8 12h1M11 12h1M14 12h1"/>
-      </svg>
-      <div class="slot-tag">📷 Foto do imóvel — enviada pelo cliente (ou gerada/melhorada por IA)</div>
+      <div class="topfade"></div>
       <div class="badge">À VENDA</div>
       <div class="clogo"><div class="mark">IM</div><div class="nm">IMÓVEIS<b>PRO</b></div></div>
       <div class="fade"></div>
