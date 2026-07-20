@@ -19,6 +19,19 @@ VOCÊ RECEBEU 2 ZIPS. ELES VÃO PRA LUGARES DIFERENTES:
 └──────────────────────────────────────────────────────────────────────┘
 
 ──────────────────────────────────────────────────────────────────────
+QUAIS CREDENCIAIS USAR NO .env  (importante!)
+  O .env precisa de SÓ 3 coisas: IG_USER_ID, IG_ACCESS_TOKEN, MEDIA_BASE_URL.
+    • ID do aplicativo (App ID) ....... NÃO usar (guarde).
+    • Web secret (App Secret) ......... NUNCA colocar aqui (é o segredo mais
+                                        sensível; o script não usa).
+    • Token de acesso ................. USAR só o de LONGA duração (~60 dias).
+                                        Se você tem 2 tokens, o correto costuma
+                                        ser o "segundo"/longa duração.
+  Não sabe qual token é o certo? Rode o verificador:
+       node --env-file=.env check-token.js
+  Ele diz se o token é válido e mostra o @ da conta. Teste um, depois o outro:
+  o que responder "✅ Token OK" com a conta certa é o que fica no .env.
+──────────────────────────────────────────────────────────────────────
 CONFIGURAR (uma vez):
 1) Precisa de Node 18+ no servidor.
    No cPanel: "Setup Node.js App" (ou via SSH: node -v).
