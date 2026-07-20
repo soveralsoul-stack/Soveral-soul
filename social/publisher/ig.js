@@ -4,7 +4,9 @@
  * um App Meta com `instagram_content_publish` e um token de longa duração.
  * Node 18+ (usa fetch global).
  */
-const GRAPH = "https://graph.facebook.com/v21.0";
+// Fluxo novo "Instagram API com login do Instagram" → base graph.instagram.com.
+// Se você usou o fluxo clássico (Facebook Login), defina GRAPH_BASE=https://graph.facebook.com
+const GRAPH = (process.env.GRAPH_BASE || "https://graph.instagram.com") + "/v21.0";
 
 async function api(path, params = {}, method = "GET") {
   const url = new URL(`${GRAPH}/${path}`);

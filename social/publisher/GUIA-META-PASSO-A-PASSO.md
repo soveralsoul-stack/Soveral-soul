@@ -27,6 +27,18 @@ Objetivo: deixar o agendador (`run-due.js`) publicando sozinho. Você vai obter
 6. Anote em **App settings → Basic**: o **App ID** e o **App Secret** (clique em Show).
 
 ## PARTE 3 — Token + IG_USER_ID (15 min)
+
+> 🟢 **Fluxo NOVO (Instagram API com login do Instagram) — foi o usado aqui:**
+> - O token gerado pelo botão **já é de longa duração (~60 dias)** → **pule** a
+>   troca `oauth/access_token?grant_type=fb_exchange_token` (aquilo é do fluxo clássico).
+> - A base da API é **`graph.instagram.com`** (já é o padrão do `ig.js`; nada a fazer).
+> - IG_USER_ID: `GET https://graph.instagram.com/me?fields=user_id,username`.
+> - Renovar depois: volte na tela e gere de novo, **ou** chame
+>   `GET https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=TOKEN`.
+>
+> O passo a passo abaixo com o Graph API Explorer é do **fluxo clássico (Facebook Login)** —
+> use só se tiver ido por esse caminho (aí defina `GRAPH_BASE=https://graph.facebook.com` no `.env`).
+
 Vamos usar o **Graph API Explorer**: developers.facebook.com/tools/explorer
 
 7. No topo direito do Explorer, selecione o seu app (`SoveralSoul Publisher`).
