@@ -21,11 +21,13 @@
     "@remotion/renderer": "4.0.230",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "remotion": "4.0.230"
+    "remotion": "4.0.230",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
+    "playwright": "^1.56.0",
     "typescript": "5.6.3"
   }
 }
