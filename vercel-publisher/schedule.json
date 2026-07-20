@@ -1,0 +1,70 @@
+{
+  "timezoneOffsetHours": -3,
+  "windowHours": 6,
+  "items": [
+    {
+      "id": "seg-carrossel-85",
+      "dow": 1,
+      "time": "09:00",
+      "type": "carousel",
+      "media": ["carousel-1.jpg", "carousel-2.jpg", "carousel-3.jpg", "carousel-4.jpg"],
+      "caption": "85% das empresas ainda operam SEM estratégia formal de IA. 🤯 (Relatório Supermetrics, 14/07)\n\nE o que quase ninguém fala: só 11% têm dados de marketing acessíveis e de qualidade entre os sistemas. O gargalo não é a ferramenta — é a OPERAÇÃO por trás dela.\n\nÉ aí que a SoveralSoul Business Hub entra: tráfego pago, conteúdo, landing pages, audiovisual e automação com IA.\n\n👉 Saia dos 85%. Chame no WhatsApp (link na bio).\n\n#InteligenciaArtificial #MarketingDigital #IAnoMarketing #TrafegoPago #Chapeco #SoveralSoul #BusinessHub"
+    },
+    {
+      "id": "seg-story-85",
+      "dow": 1,
+      "time": "19:00",
+      "type": "story",
+      "media": ["story-ia85.mp4"],
+      "caption": ""
+    },
+    {
+      "id": "ter-reel-marca",
+      "dow": 2,
+      "time": "12:00",
+      "type": "reels",
+      "media": ["reel-marca-9x16.mp4"],
+      "caption": "Sua marca merece impacto. 🎬\n\nMarketing · Eventos · Audiovisual — a operação por trás do seu crescimento.\nCase: eXata Imobiliária.\n\n📲 Fale com a gente no WhatsApp (link na bio).\n\n#SoveralSoul #BusinessHub #Audiovisual #Eventos #Chapeco #MarketingDigital"
+    },
+    {
+      "id": "qua-card-atendimento",
+      "dow": 3,
+      "time": "09:00",
+      "type": "image",
+      "media": ["card-atendimento.jpg"],
+      "caption": "Enquanto você dorme, seu concorrente responde. 🤖\n\nPwC e OpenAI acabaram de levar agentes de IA pro atendimento — e não é mais coisa só de gigante. Atendimento 24/7, resposta em segundos, zero lead perdido.\n\nQuer isso no seu negócio? Chame no WhatsApp (link na bio).\n\n#IA #Atendimento #Automacao #SoveralSoul #BusinessHub #Chapeco"
+    },
+    {
+      "id": "qua-story-atendimento",
+      "dow": 3,
+      "time": "19:00",
+      "type": "story",
+      "media": ["story-atendimento.mp4"],
+      "caption": ""
+    },
+    {
+      "id": "qui-card-eventos",
+      "dow": 4,
+      "time": "09:00",
+      "type": "image",
+      "media": ["card-eventos.jpg"],
+      "caption": "Seu evento não termina no aperto de mão. 🤝\n\nCom IA, cada contato presencial vira lead pronto no CRM (a Popl + Apollo.io já batem 97% de cobertura). Produção de evento + captação inteligente = ROI que dá pra medir.\n\nVamos montar o seu? Chame no WhatsApp (link na bio).\n\n#Eventos #CRM #IA #SoveralSoul #BusinessHub #Chapeco"
+    },
+    {
+      "id": "qui-story-eventos",
+      "dow": 4,
+      "time": "19:00",
+      "type": "story",
+      "media": ["story-eventos.mp4"],
+      "caption": ""
+    },
+    {
+      "id": "sex-cta",
+      "dow": 5,
+      "time": "17:00",
+      "type": "image",
+      "media": ["carousel-4.jpg"],
+      "caption": "SAIA DOS 85%. 🚀\n\nEstruture sua estratégia de marketing + IA com quem faz a operação acontecer. Menos achismo, mais resultado.\n\n📲 Chame no WhatsApp (link na bio) e vamos conversar sobre o crescimento da sua marca.\n\n#SoveralSoul #BusinessHub #MarketingComIA #TrafegoPago #Chapeco"
+    }
+  ]
+}
