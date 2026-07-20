@@ -1,0 +1,22 @@
+{
+  "id": "imoveispro",
+  "name": "ImóveisPro (demo)",
+  "igUserId": "",
+  "tokenEnv": "IG_TOKEN_IMOVEISPRO",
+  "mediaBaseUrl": "",
+  "timezoneOffsetHours": -3,
+  "windowHours": 6,
+  "niche": "imovel",
+  "brand": {
+    "name": "IMÓVEIS<b>PRO</b>",
+    "mark": "IM",
+    "accent": "#e0a64e",
+    "cta": "#2d8fff",
+    "bg": "#0d1420",
+    "line": "#24344d",
+    "handle": "@imoveispro",
+    "city": "Chapecó/SC",
+    "phone": "(49) 9 9911-8781"
+  },
+  "schedule": []
+}
