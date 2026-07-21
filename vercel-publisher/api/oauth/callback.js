@@ -1,6 +1,6 @@
 /** Recebe o code do Instagram, troca por token longo e guarda no Upstash (por cliente). */
 const { exchangeCode, exchangeLong, getMe } = require("../../oauth");
-const { kvSet } = require("../../lib");
+const { kvSet, saveClient } = require("../../lib");
 
 const page = (title, body) =>
   `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title></head>` +
@@ -20,6 +20,11 @@ module.exports = async (req, res) => {
     const saved = await kvSet(`igtoken:client:${clientKey}`, JSON.stringify({
       token: long.access_token, userId: me.user_id || short.user_id, username: me.username, at: new Date().toISOString(),
     }));
+    // registro do cliente dinâmico (captura igUserId/username automaticamente)
+    await saveClient(clientKey, {
+      igUserId: String(me.user_id || short.user_id || ""),
+      username: me.username, accountType: me.account_type, connectedAt: new Date().toISOString(),
+    });
     return res.end(page("Conectado", `
       <h1 style="color:#2d8fff;font-size:1.8rem">Instagram conectado</h1>
       <p style="color:#9fb0c9">Conta: <b style="color:#fff">@${me.username || ""}</b></p>

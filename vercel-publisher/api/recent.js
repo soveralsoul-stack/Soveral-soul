@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
   if (!authOk(req)) return res.status(401).json({ error: "unauthorized" });
 
   const clientId = q.client || defaultClientId();
-  const client = resolveClient(clientId);
+  const client = await resolveClient(clientId);
   if (!client) return res.status(404).json({ error: `cliente "${clientId}" não encontrado` });
   const token = await resolveToken(client);
   if (!client.igUserId || !token) return res.status(500).json({ error: "igUserId/token ausente" });

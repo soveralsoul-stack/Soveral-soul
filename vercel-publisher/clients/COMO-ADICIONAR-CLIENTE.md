@@ -1,45 +1,50 @@
-# Como adicionar um cliente novo (multi-tenant)
+# Como adicionar um cliente (onboarding)
 
-O sistema é multi-cliente. Cada cliente é isolado: agenda, marca, conta IG e token
-próprios. O **@soveralsoul** é o cliente #1 (referência).
+O sistema é multi-cliente e isolado (agenda, marca, conta IG e token próprios).
+Há dois jeitos: **self-service (recomendado)** e **estático (via arquivo)**.
 
-## Passos para onboarding de um cliente (ex.: `labela`)
+## A) Self-service (via OAuth + admin) — sem deploy
+Fluxo para onboardar um cliente novo (ex.: `labela`), sem tocar em código:
 
-1. **Criar `clients/labela.json`** (copie o `soveralsoul.json` e ajuste). NÃO coloque
-   o token aqui — só o **nome** da env var em `tokenEnv`:
-   ```json
+1. **Cliente conecta o Instagram:** envie a ele o link
+   ```
+   https://SEU-APP.vercel.app/api/connect?client=labela
+   ```
+   Ele clica em "Conectar Instagram" e autoriza. O sistema:
+   - guarda o **token de longa duração** no Upstash (`igtoken:client:labela`);
+   - cria o **registro do cliente** capturando o `igUserId` e `@username` automaticamente.
+
+2. **Você preenche marca/mídia/agenda** (uma vez), via admin:
+   ```
+   POST https://SEU-APP.vercel.app/api/admin/client?key=SECRET&client=labela
+   Content-Type: application/json
+
    {
-     "id": "labela",
      "name": "Labela",
-     "igUserId": "178414XXXXXXXXXXX",
-     "tokenEnv": "IG_TOKEN_LABELA",
      "mediaBaseUrl": "https://.../labela/posts",
      "timezoneOffsetHours": -3,
      "windowHours": 6,
-     "brand": { "accent": "#...", "cta": "#...", "handle": "@labela", "city": "..." },
-     "schedule": [ /* posts da semana */ ]
+     "brand": { "name": "LA<b>BELA</b>", "mark": "LB", "accent": "#...", "cta": "#...",
+                "handle": "@labela", "city": "..." },
+     "schedule": [ { "id": "seg", "dow": 1, "time": "09:00", "type": "image",
+                     "media": ["post1.jpg"], "caption": "..." } ]
    }
    ```
+   (Ver o registro: `GET /api/admin/client?key=SECRET&client=labela`.)
 
-2. **Registrar em `clients/index.js`:**
-   ```js
-   labela: require("./labela.json"),
+3. **Mídias públicas** do cliente hospedadas em `mediaBaseUrl`.
+
+4. **Cron do cliente:**
+   ```
+   https://SEU-APP.vercel.app/api/publish?key=SECRET&client=labela
    ```
 
-3. **Token do cliente na Vercel** → Settings → Environment Variables:
-   - `IG_TOKEN_LABELA` = token de longa duração da conta da Labela.
-   - Redeploy.
+Pronto. Nenhum arquivo editado, nenhum deploy.
 
-4. **Mídias públicas do cliente** → hospedar as artes em `mediaBaseUrl`
-   (site do cliente, um bucket, ou uma subpasta sua).
-
-5. **IG do cliente** precisa estar como **tester do app** (fase dev) ou o app já
-   aprovado no **App Review** (produção).
-
-6. **Cron do cliente** → apontar um cron para:
-   ```
-   https://SEU-APP.vercel.app/api/publish?key=SEU_SECRET&client=labela
-   ```
+## B) Estático (via arquivo no repo)
+Para clientes "fixos" (ex.: o próprio `soveralsoul`): crie `clients/<id>.json`,
+registre em `clients/index.js`, e ponha o token na env `tokenEnv`. (Detalhe do modelo:
+ver `soveralsoul.json`.)
 
 ## Verificar um cliente
 - Saúde/token: `/api/health?key=SECRET&client=labela`
@@ -47,7 +52,7 @@ próprios. O **@soveralsoul** é o cliente #1 (referência).
 - Publicar 1 item de teste: `/api/publish?key=SECRET&client=labela&id=<id>`
 
 ## Notas
-- Sem `&client=`, usa o cliente padrão (`DEFAULT_CLIENT`, ou `soveralsoul`).
-- O dedup (Upstash) é **por cliente** (`ig:<cliente>:<semana>:<id>`), então um cliente
-  nunca interfere no outro.
-- Segredos (tokens) **nunca** entram no repositório — só em env vars da Vercel.
+- Antes do **App Review**, o IG do cliente precisa ser **testador do app**.
+- O token vem primeiro do OAuth (Upstash); se não houver, cai no env `tokenEnv`.
+- Dedup é por cliente (`ig:<cliente>:<semana>:<id>`), sem interferência entre contas.
+- Segredos (tokens) nunca ficam no repositório.

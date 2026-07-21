@@ -41,9 +41,21 @@ async function markOnce(key) {
 }
 
 // ---------- Clientes ----------
-function resolveClient(id) {
-  const c = CLIENTS[id];
-  return c ? { ...c } : null;
+// Estáticos: clients/*.json (no repo). Dinâmicos: registro no Upstash (client:<id>),
+// criados via OAuth/onboarding, sem precisar de deploy.
+async function resolveClient(id) {
+  if (CLIENTS[id]) return { ...CLIENTS[id] };
+  const rec = await kvGet(`client:${id}`);
+  if (rec) { try { return JSON.parse(rec); } catch { return null; } }
+  return null;
+}
+/** Cria/atualiza (merge) o registro de um cliente dinâmico no Upstash. */
+async function saveClient(id, patch) {
+  const existing = await kvGet(`client:${id}`);
+  const base = existing ? JSON.parse(existing) : { id, timezoneOffsetHours: -3, windowHours: 6, brand: {}, schedule: [] };
+  const merged = { ...base, ...patch, id };
+  await kvSet(`client:${id}`, JSON.stringify(merged));
+  return merged;
 }
 function defaultClientId() { return process.env.DEFAULT_CLIENT || "soveralsoul"; }
 
@@ -81,6 +93,6 @@ function targetMs(dow, timeStr, offsetHours, localNow) {
 
 module.exports = {
   kvSet, kvGet, dedupOn, markOnce,
-  resolveClient, defaultClientId, resolveToken,
+  resolveClient, saveClient, defaultClientId, resolveToken,
   authOk, weekKey, targetMs,
 };
