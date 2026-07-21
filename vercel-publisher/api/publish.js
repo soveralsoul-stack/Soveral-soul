@@ -13,7 +13,7 @@
  * cliente na var apontada por "tokenEnv" no clients/<id>.json.
  */
 const { publishItem } = require("../ig");
-const { resolveClient, defaultClientId, authOk, markOnce, weekKey, targetMs } = require("../lib");
+const { resolveClient, defaultClientId, resolveToken, authOk, markOnce, weekKey, targetMs } = require("../lib");
 
 module.exports = async (req, res) => {
   const q = req.query || {};
@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
   const clientId = q.client || defaultClientId();
   const client = resolveClient(clientId);
   if (!client) return res.status(404).json({ error: `cliente "${clientId}" não encontrado` });
-  if (!client.igUserId || !client.token || !client.mediaBaseUrl) {
+  const token = await resolveToken(client);
+  if (!client.igUserId || !token || !client.mediaBaseUrl) {
     return res.status(500).json({ error: `cliente "${clientId}" sem igUserId/token/mediaBaseUrl` });
   }
 
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
     const isVideo = item.media[0].toLowerCase().endsWith(".mp4");
     if (dry) return { id: item.id, dry: true, urls };
     const mediaId = await publishItem({
-      igId: client.igUserId, token: client.token, type: item.type, urls, caption: item.caption || "", isVideo,
+      igId: client.igUserId, token, type: item.type, urls, caption: item.caption || "", isVideo,
     });
     return { id: item.id, mediaId };
   };

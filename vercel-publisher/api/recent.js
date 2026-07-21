@@ -2,7 +2,7 @@
  * Lista stories ativos e posts recentes de um cliente (para verificar publicação).
  *   https://SEU-APP.vercel.app/api/recent?key=SEU_SECRET&client=soveralsoul
  */
-const { resolveClient, defaultClientId, authOk } = require("../lib");
+const { resolveClient, defaultClientId, resolveToken, authOk } = require("../lib");
 
 module.exports = async (req, res) => {
   const q = req.query || {};
@@ -11,7 +11,8 @@ module.exports = async (req, res) => {
   const clientId = q.client || defaultClientId();
   const client = resolveClient(clientId);
   if (!client) return res.status(404).json({ error: `cliente "${clientId}" não encontrado` });
-  if (!client.igUserId || !client.token) return res.status(500).json({ error: "igUserId/token ausente" });
+  const token = await resolveToken(client);
+  if (!client.igUserId || !token) return res.status(500).json({ error: "igUserId/token ausente" });
 
   const base = (process.env.GRAPH_BASE || "https://graph.instagram.com") + "/v21.0";
   const get = async (edge, fields) => {
@@ -19,7 +20,7 @@ module.exports = async (req, res) => {
       const url = new URL(`${base}/${client.igUserId}/${edge}`);
       url.searchParams.set("fields", fields);
       url.searchParams.set("limit", "8");
-      url.searchParams.set("access_token", client.token);
+      url.searchParams.set("access_token", token);
       const r = await fetch(url);
       const j = await r.json();
       if (j.error) return { error: j.error.message };
