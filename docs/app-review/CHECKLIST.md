@@ -22,10 +22,10 @@ Objetivo: sair de "publica só na minha conta" (modo Dev / testadores) para
 1. Painel do app > **App Review > Permissions and Features**.
 2. Localize **`instagram_business_content_publish`** > **Request Advanced Access**.
 3. Preencha:
-   - [ ] **Como o app usa a permissão** (texto claro): "O SoveralSoul agenda e publica
-         posts (feed, carrossel, stories, reels) na conta de Instagram do próprio usuário,
-         que autoriza o acesso. O usuário fornece as artes/legendas; o app apenas publica
-         em nome dele, nos horários definidos."
+   - [ ] **Como o app usa a permissão** (texto claro): "O FlowPilot (by Soveral Soul) agenda
+         e publica posts (feed, carrossel, stories, reels) na conta de Instagram do próprio
+         usuário, que autoriza o acesso. O usuário fornece as artes/legendas; o app apenas
+         publica em nome dele, nos horários definidos." (texto pronto em `roteiro-video.md`)
    - [ ] **Screencast** demonstrando o fluxo completo (ver `roteiro-video.md`).
    - [ ] **Passos para o revisor reproduzir** (credenciais/instruções de teste).
 4. Envie e acompanhe o status.
