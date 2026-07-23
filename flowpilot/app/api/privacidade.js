@@ -73,8 +73,8 @@ const HTML = `<!DOCTYPE html>
   E-mail: <a href="mailto:soveralsoul@gmail.com">soveralsoul@gmail.com</a><br>
   WhatsApp: (49) 9 9911-8781</p>
 
-  <p class="muted">Razão social / CNPJ: [PREENCHER]. Ao conectar sua conta, você concorda
-  com esta política.</p>
+  <p class="muted">Razão social: Soveral Soul · CNPJ: 64.687.983/0001-69. Ao conectar sua
+  conta, você concorda com esta política.</p>
 </body>
 </html>`;
 
