@@ -30,10 +30,12 @@
     const inset = Math.round(s * 0.105);   // distância da faixa até a borda
     const stroke = Math.round(s * 0.028);  // espessura da faixa
     const r = Math.round(s * 0.155);       // arredondamento da faixa
+    // avião opticamente centralizado: o desenho fica ~3u alto no viewBox (centro em y≈9, não 12)
+    const PLANE_C = PLANE.replace('<path', '<g transform="translate(0 3.02)"><path').replace('</svg>', '</g></svg>');
     el.innerHTML =
       `<div class="icon" style="width:${s}px;height:${s}px;position:relative">` +
         `<div style="position:absolute;top:${inset}px;left:${inset}px;right:${inset}px;bottom:${inset}px;border:${stroke}px solid #fff;border-radius:${r}px"></div>` +
-        PLANE +
+        PLANE_C +
       `</div>`;
   } else if (mode === 'icon') {
     const s = 1024;
