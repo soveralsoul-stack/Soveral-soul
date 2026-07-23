@@ -20,7 +20,9 @@
   .wm .g{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 </style></head><body>
 <script>
-  const PLANE = '<svg viewBox="0 0 24 24"><path class="plane" d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05zM10.3 12.3l7.3-6.4-5.1 7.9-.9 3.5-1.3-5z"/></svg>';
+  // avião branco SÓLIDO (silhueta externa, sem o vinco que deixa o gradiente vazar por dentro)
+  const D_SOLID = 'M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z';
+  const PLANE = `<svg viewBox="0 0 24 24"><path class="plane" d="${D_SOLID}"/></svg>`;
   const mode = new URLSearchParams(location.search).get('mode') || 'icon';
   const el = document.body;
   if (mode === 'favicon') {
@@ -30,9 +32,7 @@
     const inset = Math.round(s * 0.105);   // distância da faixa até a borda
     const stroke = Math.round(s * 0.028);  // espessura da faixa
     const r = Math.round(s * 0.155);       // arredondamento da faixa
-    // avião BRANCO SÓLIDO (sem o vinco que deixa o gradiente vazar por dentro) e
     // opticamente centralizado: o desenho fica ~3u alto no viewBox (centro em y≈9, não 12)
-    const D_SOLID = 'M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z';
     const PLANE_C = `<svg viewBox="0 0 24 24"><g transform="translate(0 3.02)"><path class="plane" d="${D_SOLID}"/></g></svg>`;
     el.innerHTML =
       `<div class="icon" style="width:${s}px;height:${s}px;position:relative">` +
