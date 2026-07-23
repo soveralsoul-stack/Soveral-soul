@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   res.setHeader("content-type", "text/html; charset=utf-8");
   res.end(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Painel do cliente · PostPilot</title>
+<title>Painel do cliente · FlowPilot</title>
 <style>
   *{margin:0;box-sizing:border-box} :root{--a1:#4f8cff;--a2:#7c5cff}
   body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
