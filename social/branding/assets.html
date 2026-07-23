@@ -24,11 +24,16 @@
   const mode = new URLSearchParams(location.search).get('mode') || 'icon';
   const el = document.body;
   if (mode === 'favicon') {
-    // igual ao ícone, com uma borda branca contornando (referência ao Instagram)
-    const s = 256, pad = Math.round(s * 0.085);
+    // gradiente de ponta a ponta (cor na borda) + faixa branca inset emoldurando o avião,
+    // como o contorno branco da câmera na logomarca do Instagram
+    const s = 256;
+    const inset = Math.round(s * 0.105);   // distância da faixa até a borda
+    const stroke = Math.round(s * 0.028);  // espessura da faixa
+    const r = Math.round(s * 0.155);       // arredondamento da faixa
     el.innerHTML =
-      `<div style="width:${s}px;height:${s}px;border-radius:24%;background:#fff;display:flex;align-items:center;justify-content:center">` +
-        `<div class="icon" style="width:${s - 2*pad}px;height:${s - 2*pad}px;border-radius:22%">${PLANE}</div>` +
+      `<div class="icon" style="width:${s}px;height:${s}px;position:relative">` +
+        `<div style="position:absolute;top:${inset}px;left:${inset}px;right:${inset}px;bottom:${inset}px;border:${stroke}px solid #fff;border-radius:${r}px"></div>` +
+        PLANE +
       `</div>`;
   } else if (mode === 'icon') {
     const s = 1024;
