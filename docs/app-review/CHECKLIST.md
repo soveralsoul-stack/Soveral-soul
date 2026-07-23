@@ -13,7 +13,7 @@ Objetivo: sair de "publica só na minha conta" (modo Dev / testadores) para
 - [ ] Produto **Instagram** configurado no app (o mesmo que você já usa).
 - [ ] **App em modo Live** (não Development), com ícone, nome, categoria e e-mail de contato.
 - [ ] **Política de Privacidade** publicada numa URL pública (use a página que preparei:
-      `soveralsoul.com.br/privacidade`). Cole essa URL em App Settings > Basic.
+      `flowpilot.app.br/privacidade`). Cole essa URL em App Settings > Basic.
 - [ ] **URL de exclusão de dados** (ou instruções de exclusão) — a mesma política já cobre isso.
 - [ ] **Verificação de Negócio** concluída (Business Settings > Security Center):
       documento da empresa (CNPJ/contrato social) + comprovante. Pode levar alguns dias.

@@ -23,7 +23,7 @@ Deixe tudo aberto e pronto para não travar durante a tomada:
 3. **Uma arte + legenda prontas** para publicar de verdade (um post real, simples).
    - No `clients/soveralsoul.json`, tenha um item de agenda com um `id` fácil, ex.: `demo`.
 4. Duas abas abertas:
-   - **Aba A:** `https://SEU-APP.vercel.app/api/connect?client=soveralsoul` (tela Conectar).
+   - **Aba A:** `https://flowpilot.app.br/api/connect?client=soveralsoul` (tela Conectar).
    - **Aba B:** o **Instagram** da conta de teste (para mostrar o post no ar).
 5. Um app de screen recording (Loom, OBS, ou a gravação nativa do sistema). 1080p.
 
@@ -54,7 +54,7 @@ Deixe tudo aberto e pronto para não travar durante a tomada:
 ### 3 · Publicação real (0:40–1:05)
 - Vá para a aba/URL que dispara a publicação de UM item, ao vivo:
   ```
-  https://SEU-APP.vercel.app/api/publish?key=SEU_SECRET&client=soveralsoul&id=demo
+  https://flowpilot.app.br/api/publish?key=SEU_SECRET&client=soveralsoul&id=demo
   ```
   - Mostre a **resposta JSON** com `"ok": true` / o id publicado (prova de que o app publicou).
 - **Narração:**
@@ -103,14 +103,14 @@ Deixe tudo aberto e pronto para não travar durante a tomada:
 > Instagram Login (OAuth) consent screen, and the user can revoke access at any time.
 
 **"Steps for the reviewer to reproduce"** (instruções + credenciais de teste):
-> 1. Open the connect page: https://SEU-APP.vercel.app/api/connect?client=demo
+> 1. Open the connect page: https://flowpilot.app.br/api/connect?client=demo
 > 2. Click "Conectar Instagram" and log in with the test account provided below.
 > 3. On the consent screen, grant the "Publish content" permission.
 > 4. The app then publishes a scheduled post to that account (see the demo video).
 > 5. The published post appears on the account's Instagram profile.
 >
 > Test IG account: <usuário> / <senha>   (conta profissional de teste)
-> App base URL: https://SEU-APP.vercel.app
+> App base URL: https://flowpilot.app.br
 
 > ⚠️ Coloque credenciais de teste reais e **descartáveis**, nunca as suas pessoais.
 > Não versione senhas neste repositório — preencha direto no formulário da Meta.
