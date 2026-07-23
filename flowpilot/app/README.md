@@ -5,7 +5,7 @@ Publica a programação da semana via API oficial do Instagram, rodando como
 (`soveralsoul.com.br/posts`) — só o "robô" que publica é que mudou de casa.
 
 ```
-vercel-publisher/
+flowpilot/app/
   api/publish.js   → endpoint que publica o que está na hora (e ?id= para teste)
   api/health.js    → checa se o token/conta estão ok
   ig.js            → chamadas à Graph API do Instagram
@@ -15,7 +15,7 @@ vercel-publisher/
 ## 1) Deploy na Vercel (5 min)
 1. Acesse **vercel.com** → login com o **GitHub**.
 2. **Add New → Project** → importe o repositório `soveralsoul-stack/Soveral-soul`.
-3. Em **Root Directory**, selecione **`vercel-publisher`** (importante!).
+3. Em **Root Directory**, selecione **`flowpilot/app`** (importante!).
 4. Framework Preset: **Other**. Clique **Deploy**.
 
 ## 2) Variáveis de ambiente (Vercel → Settings → Environment Variables)
@@ -63,7 +63,7 @@ Como a função roda a cada 15 min, vale garantir que cada post saia **uma vez s
 
 ## Manutenção
 - **Token (~60 dias):** quando renovar na Meta, atualize `IG_ACCESS_TOKEN` na Vercel e Redeploy.
-- **Próxima semana:** edite `vercel-publisher/schedule.json` (dias, horas, legendas,
+- **Próxima semana:** edite `flowpilot/app/schedule.json` (dias, horas, legendas,
   mídias) e faça commit — a Vercel redeploya sozinha.
 - **Mídias:** continuam no cPanel em `public_html/posts/` (arquivo estático — o que
   funciona bem lá). Para trocar uma peça, suba o novo arquivo lá e ajuste o nome no schedule.

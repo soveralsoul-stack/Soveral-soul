@@ -9,7 +9,7 @@ const listing = {
   badge: "À VENDA",
   eyebrow: "Apartamento · Jardim Itália",
   price: "R$ 720.000", area: "92 m²",
-  photo: "../public/nicho/apto.png",
+  photo: "../assets/nicho/apto.png",
   specs: [
     { icon:"quartos", v:"3", k:"Quartos" },
     { icon:"banheiros", v:"2", k:"Banheiros" },

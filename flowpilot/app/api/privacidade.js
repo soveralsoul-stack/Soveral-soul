@@ -2,7 +2,7 @@
  * Política de privacidade do FlowPilot (App Review da Meta).
  *   /privacidade  (rewrite em vercel.json)  ->  /api/privacidade
  * HTML embutido para não depender de leitura de arquivo em runtime.
- * Fonte da verdade do texto: docs/app-review/privacidade.html — manter em sincronia.
+ * Fonte da verdade do texto: flowpilot/docs/privacidade.html — manter em sincronia.
  */
 const HTML = `<!DOCTYPE html>
 <html lang="pt-BR">

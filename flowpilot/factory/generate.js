@@ -1,6 +1,6 @@
 /**
  * Gera cards de um CLIENTE usando o brand kit do config dele.
- * A marca vem de vercel-publisher/clients/<id>.json (mesma fonte do publisher).
+ * A marca vem de app/clients/<id>.json (mesma fonte do publisher).
  *
  * Uso:
  *   node factory/generate.js --client imoveispro --template imovel
@@ -15,7 +15,7 @@ const clientId = arg('client', 'imoveispro');
 const template = arg('template', 'imovel');
 const listingsFile = arg('listings', path.join(__dirname, `listings-${clientId}.json`));
 
-const client = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'vercel-publisher', 'clients', `${clientId}.json`), 'utf8'));
+const client = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'app', 'clients', `${clientId}.json`), 'utf8'));
 const listings = JSON.parse(fs.readFileSync(listingsFile, 'utf8'));
 const B = client.brand || {};
 
