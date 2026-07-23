@@ -14,23 +14,14 @@ Fluxo para onboardar um cliente novo (ex.: `labela`), sem tocar em código:
    - guarda o **token de longa duração** no Upstash (`igtoken:client:labela`);
    - cria o **registro do cliente** capturando o `igUserId` e `@username` automaticamente.
 
-2. **Você preenche marca/mídia/agenda** (uma vez), via admin:
+2. **Você preenche marca/mídia/agenda** (uma vez) no **painel** — formulário, sem JSON:
    ```
-   POST https://SEU-APP.vercel.app/api/admin/client?key=SECRET&client=labela
-   Content-Type: application/json
-
-   {
-     "name": "Labela",
-     "mediaBaseUrl": "https://.../labela/posts",
-     "timezoneOffsetHours": -3,
-     "windowHours": 6,
-     "brand": { "name": "LA<b>BELA</b>", "mark": "LB", "accent": "#...", "cta": "#...",
-                "handle": "@labela", "city": "..." },
-     "schedule": [ { "id": "seg", "dow": 1, "time": "09:00", "type": "image",
-                     "media": ["post1.jpg"], "caption": "..." } ]
-   }
+   https://SEU-APP.vercel.app/api/admin/ui?key=SECRET&client=labela
    ```
-   (Ver o registro: `GET /api/admin/client?key=SECRET&client=labela`.)
+   Cola a chave, preenche os campos (dados, marca, agenda com adicionar/remover posts) e salva.
+   (Por baixo ele usa a API `POST /api/admin/client`; para automações dá pra chamar direto com o
+   mesmo body `{ name, mediaBaseUrl, timezoneOffsetHours, windowHours, brand:{...}, schedule:[...] }`.
+   Ver o registro cru: `GET /api/admin/client?key=SECRET&client=labela`.)
 
 3. **Mídias públicas** do cliente hospedadas em `mediaBaseUrl`.
 
