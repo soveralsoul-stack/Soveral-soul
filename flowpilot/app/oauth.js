@@ -7,8 +7,11 @@
 const SCOPES = "instagram_business_basic,instagram_business_content_publish";
 
 function redirectUri(req) {
+  // Preferível: fixar o domínio canônico via env (evita "redirect_uri mismatch" em
+  // previews/www/apex). Se não houver, deriva do host da requisição.
   if (process.env.OAUTH_REDIRECT_URI) return process.env.OAUTH_REDIRECT_URI;
-  const host = req.headers["x-forwarded-host"] || req.headers.host;
+  const raw = req.headers["x-forwarded-host"] || req.headers.host || "";
+  const host = raw.split(",")[0].trim(); // atrás de proxy pode vir "a, b"
   return `https://${host}/api/oauth/callback`;
 }
 
