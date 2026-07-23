@@ -30,8 +30,10 @@
     const inset = Math.round(s * 0.105);   // distância da faixa até a borda
     const stroke = Math.round(s * 0.028);  // espessura da faixa
     const r = Math.round(s * 0.155);       // arredondamento da faixa
-    // avião opticamente centralizado: o desenho fica ~3u alto no viewBox (centro em y≈9, não 12)
-    const PLANE_C = PLANE.replace('<path', '<g transform="translate(0 3.02)"><path').replace('</svg>', '</g></svg>');
+    // avião BRANCO SÓLIDO (sem o vinco que deixa o gradiente vazar por dentro) e
+    // opticamente centralizado: o desenho fica ~3u alto no viewBox (centro em y≈9, não 12)
+    const D_SOLID = 'M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z';
+    const PLANE_C = `<svg viewBox="0 0 24 24"><g transform="translate(0 3.02)"><path class="plane" d="${D_SOLID}"/></g></svg>`;
     el.innerHTML =
       `<div class="icon" style="width:${s}px;height:${s}px;position:relative">` +
         `<div style="position:absolute;top:${inset}px;left:${inset}px;right:${inset}px;bottom:${inset}px;border:${stroke}px solid #fff;border-radius:${r}px"></div>` +
