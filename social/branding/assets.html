@@ -20,34 +20,38 @@
   .wm .g{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 </style></head><body>
 <script>
-  // avião branco SÓLIDO (silhueta externa, sem o vinco que deixa o gradiente vazar por dentro)
+  // avião branco SÓLIDO e opticamente centralizado
+  // (o desenho fica ~3u alto no viewBox: centro em y≈9, não 12 → translate baixa 3.02u)
   const D_SOLID = 'M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z';
-  const PLANE = `<svg viewBox="0 0 24 24"><path class="plane" d="${D_SOLID}"/></svg>`;
+  const PLANE = `<svg viewBox="0 0 24 24"><g transform="translate(0 3.02)"><path class="plane" d="${D_SOLID}"/></g></svg>`;
+
+  // MARCA PADRÃO: tile gradiente + faixa branca inset (estilo Instagram) + avião centralizado
+  function framedSquare(s){
+    const inset = Math.round(s * 0.105), stroke = Math.max(2, Math.round(s * 0.028)), r = Math.round(s * 0.155);
+    return `<div class="icon" style="width:${s}px;height:${s}px;position:relative">`
+      + `<div style="position:absolute;top:${inset}px;left:${inset}px;right:${inset}px;bottom:${inset}px;border:${stroke}px solid #fff;border-radius:${r}px"></div>`
+      + PLANE + `</div>`;
+  }
+  // PERFIL: gradiente full-bleed + faixa branca CIRCULAR (o IG corta em círculo) + avião centralizado
+  function framedProfile(s){
+    const inset = Math.round(s * 0.135), stroke = Math.max(2, Math.round(s * 0.026));
+    return `<div class="profile" style="position:relative">`
+      + `<div style="position:absolute;top:${inset}px;left:${inset}px;right:${inset}px;bottom:${inset}px;border:${stroke}px solid #fff;border-radius:50%"></div>`
+      + PLANE + `</div>`;
+  }
+
   const mode = new URLSearchParams(location.search).get('mode') || 'icon';
   const el = document.body;
-  if (mode === 'favicon') {
-    // gradiente de ponta a ponta (cor na borda) + faixa branca inset emoldurando o avião,
-    // como o contorno branco da câmera na logomarca do Instagram
-    const s = 256;
-    const inset = Math.round(s * 0.105);   // distância da faixa até a borda
-    const stroke = Math.round(s * 0.028);  // espessura da faixa
-    const r = Math.round(s * 0.155);       // arredondamento da faixa
-    // opticamente centralizado: o desenho fica ~3u alto no viewBox (centro em y≈9, não 12)
-    const PLANE_C = `<svg viewBox="0 0 24 24"><g transform="translate(0 3.02)"><path class="plane" d="${D_SOLID}"/></g></svg>`;
-    el.innerHTML =
-      `<div class="icon" style="width:${s}px;height:${s}px;position:relative">` +
-        `<div style="position:absolute;top:${inset}px;left:${inset}px;right:${inset}px;bottom:${inset}px;border:${stroke}px solid #fff;border-radius:${r}px"></div>` +
-        PLANE_C +
-      `</div>`;
-  } else if (mode === 'icon') {
-    const s = 1024;
-    el.innerHTML = `<div class="icon" style="width:${s}px;height:${s}px">${PLANE}</div>`;
-  } else if (mode === 'profile') {
-    el.innerHTML = `<div class="profile">${PLANE}</div>`;
-  } else if (mode === 'wm-dark') {
-    el.innerHTML = `<div class="lockup"><div class="mk">${PLANE}</div><div class="wm" style="color:#eaf0ff">Post<span class="g">Pilot</span></div></div>`;
-  } else if (mode === 'wm-light') {
-    el.innerHTML = `<div class="lockup"><div class="mk">${PLANE}</div><div class="wm" style="color:#0b1020">Post<span class="g">Pilot</span></div></div>`;
-  }
+  // padrão (com faixa)
+  if (mode === 'icon')             el.innerHTML = framedSquare(1024);
+  else if (mode === 'favicon')     el.innerHTML = framedSquare(256);
+  else if (mode === 'profile')     el.innerHTML = framedProfile(1080);
+  else if (mode === 'wm-dark')     el.innerHTML = `<div class="lockup">${framedSquare(120)}<div class="wm" style="color:#eaf0ff">Post<span class="g">Pilot</span></div></div>`;
+  else if (mode === 'wm-light')    el.innerHTML = `<div class="lockup">${framedSquare(120)}<div class="wm" style="color:#0b1020">Post<span class="g">Pilot</span></div></div>`;
+  // versões LISAS (sem faixa) — para situações específicas
+  else if (mode === 'icon-plain')     el.innerHTML = `<div class="icon" style="width:1024px;height:1024px">${PLANE}</div>`;
+  else if (mode === 'profile-plain')  el.innerHTML = `<div class="profile">${PLANE}</div>`;
+  else if (mode === 'wm-dark-plain')  el.innerHTML = `<div class="lockup"><div class="mk">${PLANE}</div><div class="wm" style="color:#eaf0ff">Post<span class="g">Pilot</span></div></div>`;
+  else if (mode === 'wm-light-plain') el.innerHTML = `<div class="lockup"><div class="mk">${PLANE}</div><div class="wm" style="color:#0b1020">Post<span class="g">Pilot</span></div></div>`;
 </script>
 </body></html>
