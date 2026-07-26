@@ -14,7 +14,7 @@ ter entrado por `www`, apex, ou uma URL de preview do Vercel.
 
 **Vercel → Settings → Environment Variables:**
 ```
-OAUTH_REDIRECT_URI = https://flowpilot.app.br/api/oauth/callback
+OAUTH_REDIRECT_URI = https://www.flowpilot.app.br/api/oauth/callback
 ```
 (Defina para Production. Ao mudar env, faça um redeploy.)
 
