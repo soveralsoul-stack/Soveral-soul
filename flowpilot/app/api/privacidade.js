@@ -67,7 +67,16 @@ const HTML = `<!DOCTYPE html>
   <a href="mailto:soveralsoul@gmail.com">soveralsoul@gmail.com</a> com o assunto
   "Exclusão de dados" e o nome de usuário do Instagram. Concluímos a exclusão em até 30 dias.</p>
 
-  <h2>7. Contato</h2>
+  <h2>7. Solicitações de autoridades públicas</h2>
+  <p>Caso alguma autoridade pública solicite dados pessoais de usuários, aplicamos as
+  seguintes práticas: <strong>análise da legitimidade</strong> e da base legal de cada
+  solicitação antes de qualquer resposta; <strong>contestação</strong> de solicitações
+  que consideremos ilegais ou excessivamente amplas; fornecimento apenas do
+  <strong>mínimo necessário</strong> (minimização de dados); e <strong>registro
+  interno</strong> de todas as solicitações recebidas. Até hoje, nunca recebemos
+  solicitações dessa natureza.</p>
+
+  <h2>8. Contato</h2>
   <p>FlowPilot — um serviço da Soveral Soul · Chapecó/SC<br>
   Site: <a href="https://flowpilot.app.br">flowpilot.app.br</a><br>
   E-mail: <a href="mailto:soveralsoul@gmail.com">soveralsoul@gmail.com</a><br>
