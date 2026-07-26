@@ -106,14 +106,14 @@ Deixe tudo aberto e pronto para não travar durante a tomada:
 > Instagram Login (OAuth) consent screen, and the user can revoke access at any time.
 
 **"Steps for the reviewer to reproduce"** (instruções + credenciais de teste):
-> 1. Open the connect page: https://flowpilot.app.br/api/connect?client=demo
+> 1. Open the connect page: https://www.flowpilot.app.br/api/connect?client=teste
 > 2. Click "Conectar Instagram" and log in with the test account provided below.
 > 3. On the consent screen, grant the "Publish content" permission.
 > 4. The app then publishes a scheduled post to that account (see the demo video).
 > 5. The published post appears on the account's Instagram profile.
 >
 > Test IG account: <usuário> / <senha>   (conta profissional de teste)
-> App base URL: https://flowpilot.app.br
+> App base URL: https://www.flowpilot.app.br
 
 > ⚠️ Coloque credenciais de teste reais e **descartáveis**, nunca as suas pessoais.
 > Não versione senhas neste repositório — preencha direto no formulário da Meta.
