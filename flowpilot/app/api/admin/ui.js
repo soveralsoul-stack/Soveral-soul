@@ -186,9 +186,10 @@ function save(){
   .finally(()=>{ $("save").disabled=false; $("saving").style.display="none"; });
 }
 
-// entrada: tenta a chave salva; senão mostra o portão
+// entrada: usa a chave da URL (?key=) se vier; senão a salva no navegador; senão o portão
 (function(){
-  const saved = localStorage.getItem("pp_key");
+  const urlKey = new URLSearchParams(location.search).get("key");
+  const saved = urlKey || localStorage.getItem("pp_key");
   if(saved){ $("key").value=saved; load(); }
   else { $("gate").style.display="block"; }
 })();
