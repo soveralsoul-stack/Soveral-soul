@@ -40,6 +40,16 @@ async function kvDel(key) {
   return j.result || 0;
 }
 
+/** SET key 1 EX <seconds> NX — trava simples (true = passou; false = ainda na janela). */
+async function rateLimit(key, seconds) {
+  const c = kvCreds(); if (!c) return true; // sem storage, não bloqueia
+  const r = await fetch(`${c.url}/set/${encodeURIComponent(key)}/1/EX/${seconds}/NX`, {
+    headers: { Authorization: `Bearer ${c.tok}` },
+  });
+  const j = await r.json().catch(() => ({}));
+  return j.result === "OK";
+}
+
 /** SET key 1 EX 8d NX — dedup (retorna {fresh:true} se marcou agora). */
 async function markOnce(key) {
   const c = kvCreds(); if (!c) return { enabled: false, fresh: true };
@@ -102,7 +112,7 @@ function targetMs(dow, timeStr, offsetHours, localNow) {
 }
 
 module.exports = {
-  kvSet, kvGet, kvDel, dedupOn, markOnce,
+  kvSet, kvGet, kvDel, dedupOn, markOnce, rateLimit,
   resolveClient, saveClient, defaultClientId, resolveToken,
   authOk, weekKey, targetMs,
 };

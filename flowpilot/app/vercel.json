@@ -3,6 +3,7 @@
     "api/*.js": { "maxDuration": 60 }
   },
   "rewrites": [
-    { "source": "/privacidade", "destination": "/api/privacidade" }
+    { "source": "/privacidade", "destination": "/api/privacidade" },
+    { "source": "/demo", "destination": "/api/demo" }
   ]
 }
