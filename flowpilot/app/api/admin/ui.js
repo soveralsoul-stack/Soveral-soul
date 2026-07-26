@@ -19,9 +19,8 @@ module.exports = async (req, res) => {
     background:radial-gradient(120% 60% at 50% 0%,#101528,#06080f);color:#e8eef8;min-height:100vh;padding:28px 18px}
   .wrap{max-width:720px;margin:0 auto}
   h1{font-size:1.5rem;display:flex;align-items:center;gap:12px}
-  .mk{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--a1),var(--a2));
-    display:flex;align-items:center;justify-content:center}
-  .mk svg{width:20px;height:20px;fill:#fff}
+  .mk{width:34px;height:34px;display:flex}
+  .mk svg{width:100%;height:100%}
   .sub{color:#8a97c2;margin:6px 0 22px;font-size:.92rem}
   .card{background:rgba(255,255,255,.03);border:1px solid #1a2240;border-radius:14px;padding:20px;margin-bottom:16px}
   .card h2{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#7f8fc0;margin-bottom:14px}
@@ -44,7 +43,7 @@ module.exports = async (req, res) => {
   .gate{max-width:420px;margin:8vh auto;text-align:center}
 </style></head><body>
 <div class="wrap">
-  <h1><span class="mk"><svg viewBox="0 0 24 24"><path d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05zM10.3 12.3l7.3-6.4-5.1 7.9-.9 3.5-1.3-5z"/></svg></span>Painel do cliente</h1>
+  <h1><span class="mk"><svg viewBox="0 0 100 100"><defs><linearGradient id="fp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#fp)"/><rect x="12" y="12" width="76" height="76" rx="18" fill="none" stroke="#fff" stroke-width="4"/><g transform="translate(50 50) scale(2.05) translate(-12 -9)"><path fill="#fff" d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z"/></g></svg></span>Painel do cliente</h1>
   <p class="sub">Cliente: <b id="cid">${client || "(defina ?client=)"}</b> · preencha e salve. A conta do Instagram é conectada pelo link de OAuth, não aqui.</p>
 
   <div id="gate" class="card gate" style="display:none">

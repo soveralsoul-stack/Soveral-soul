@@ -26,7 +26,11 @@ module.exports = async (req, res) => {
       username: me.username, accountType: me.account_type, connectedAt: new Date().toISOString(),
     });
     return res.end(page("Conectado", `
-      <h1 style="color:#2d8fff;font-size:1.8rem">Instagram conectado</h1>
+      <div style="display:inline-flex;align-items:center;gap:11px;margin-bottom:22px">
+        <svg viewBox="0 0 100 100" style="width:38px;height:38px"><defs><linearGradient id="fp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#fp)"/><rect x="12" y="12" width="76" height="76" rx="18" fill="none" stroke="#fff" stroke-width="4"/><g transform="translate(50 50) scale(2.05) translate(-12 -9)"><path fill="#fff" d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z"/></g></svg>
+        <span style="font-weight:700;font-size:1.3rem">Flow<span style="background:linear-gradient(120deg,#4f8cff,#7c5cff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Pilot</span></span>
+      </div>
+      <h1 style="color:#4f8cff;font-size:1.8rem">Instagram conectado</h1>
       <p style="color:#9fb0c9">Conta: <b style="color:#fff">@${me.username || ""}</b></p>
       <p style="color:#61728e;font-size:.9rem">client: <b>${clientKey}</b> · user_id: ${me.user_id || short.user_id}${saved ? "" : " · (aviso: token não gravado, configure o Upstash)"}</p>
       <p style="color:#9fb0c9;margin-top:14px">Pode fechar esta página.</p>`));
