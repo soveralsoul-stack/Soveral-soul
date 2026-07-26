@@ -29,6 +29,16 @@ async function kvGet(key) {
   const j = await r.json().catch(() => ({}));
   return j.result ?? null;
 }
+async function kvDel(key) {
+  const c = kvCreds(); if (!c) return 0;
+  const r = await fetch(c.url, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${c.tok}`, "Content-Type": "application/json" },
+    body: JSON.stringify(["DEL", key]),
+  });
+  const j = await r.json().catch(() => ({}));
+  return j.result || 0;
+}
 
 /** SET key 1 EX 8d NX — dedup (retorna {fresh:true} se marcou agora). */
 async function markOnce(key) {
@@ -92,7 +102,7 @@ function targetMs(dow, timeStr, offsetHours, localNow) {
 }
 
 module.exports = {
-  kvSet, kvGet, dedupOn, markOnce,
+  kvSet, kvGet, kvDel, dedupOn, markOnce,
   resolveClient, saveClient, defaultClientId, resolveToken,
   authOk, weekKey, targetMs,
 };
