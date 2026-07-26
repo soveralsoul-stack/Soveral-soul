@@ -1,0 +1,19 @@
+{
+  "id": "teste",
+  "name": "Teste (validação de publicação)",
+  "igUserId": "17841452861747596",
+  "mediaBaseUrl": "https://soveral-soul-tve4.vercel.app",
+  "timezoneOffsetHours": -3,
+  "windowHours": 6,
+  "brand": {},
+  "schedule": [
+    {
+      "id": "story-teste",
+      "dow": 1,
+      "time": "12:00",
+      "type": "story",
+      "media": ["story-teste.jpg"],
+      "caption": ""
+    }
+  ]
+}
