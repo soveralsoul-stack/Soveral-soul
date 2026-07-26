@@ -7,7 +7,10 @@ script sem cortes que "pulem" a autorização ou a publicação.
 - **Produto:** FlowPilot · **Empresa/CNPJ:** Soveral Soul (é o negócio que faz a
   Verificação de Negócio e hospeda a política de privacidade).
 - **Duração alvo:** 90–120 s. **Uma tomada contínua por etapa.**
-- **Idioma:** narração/legendas **em inglês** (o revisor costuma ser internacional).
+- **Idioma:** a narração falada é **opcional** (pode ser em português, ou vídeo mudo);
+  o que precisa estar **em inglês** são as **legendas na tela** (uma por cena, na edição) —
+  o revisor costuma ser internacional e avalia o que vê. Os textos PT + EN estão no
+  checklist `gravacao.html`.
 - **Grave a tela com o cursor visível** e mostre a **barra de URL** nos momentos-chave.
 
 ---
