@@ -4,3 +4,6 @@ out/
 *.log
 .DS_Store
 .env
+
+# gravacoes brutas do App Review (colocar main.mp4/proof.mp4 aqui para re-render)
+public/appreview/
