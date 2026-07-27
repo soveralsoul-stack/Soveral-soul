@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>SoveralSoul — Nova Geração de IA</title>
+<style>
+  @font-face { font-family:'Bricolage'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/BricolageGrotesque-Bold.ttf'); font-weight:700; }
+  @font-face { font-family:'Bricolage'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/BricolageGrotesque-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'InstrSans'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSans-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'InstrSans'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSans-Bold.ttf'); font-weight:700; }
+  @font-face { font-family:'InstrSerif'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSerif-Italic.ttf'); font-style:italic; }
+  @font-face { font-family:'Geist'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/GeistMono-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'Geist'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/GeistMono-Bold.ttf'); font-weight:700; }
+
+  :root{
+    --paper:#ECE7DC;
+    --paper-hi:#F4F0E7;
+    --ink:#242721;
+    --ink-soft:#4A4E44;
+    --sage:#8F977F;
+    --sage-deep:#4C5644;
+    --blue:#5E6E93;
+    --blue-deep:#3C4A6E;
+    --gold:#AF8447;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#111;}
+  .slide{
+    position:relative; width:1080px; height:1350px; overflow:hidden;
+    background:
+      radial-gradient(1200px 900px at 78% 8%, var(--paper-hi) 0%, rgba(244,240,231,0) 55%),
+      radial-gradient(900px 700px at 12% 96%, #E5DFD2 0%, rgba(229,223,210,0) 60%),
+      var(--paper);
+    font-family:'InstrSans',sans-serif; color:var(--ink);
+  }
+  /* paper grain */
+  .grain{position:absolute;inset:0;opacity:.5;mix-blend-mode:multiply;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.55 0 0 0 0 0.53 0 0 0 0 0.47 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");}
+  /* frame furniture */
+  .rail{position:absolute;left:88px;top:206px;bottom:206px;width:1px;background:linear-gradient(180deg,rgba(36,39,33,0) 0%,rgba(36,39,33,.28) 12%,rgba(36,39,33,.28) 88%,rgba(36,39,33,0) 100%);}
+  .pageno{position:absolute;left:64px;bottom:88px;font-family:'Geist';font-size:26px;letter-spacing:.08em;color:var(--ink-soft);}
+  .pageno u{text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:6px;}
+  .orbit{position:absolute;border:1px solid rgba(36,39,33,.20);border-radius:50%;}
+  .orbit .sat{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--sage-deep);}
+  .star{position:absolute;color:var(--gold);}
+  .star svg{display:block;}
+  .footnote{position:absolute;left:50%;transform:translateX(-50%);bottom:92px;display:flex;align-items:center;gap:18px;white-space:nowrap;font-size:23px;color:var(--ink-soft);letter-spacing:.01em;}
+  .footnote .dash{width:56px;height:1px;background:rgba(36,39,33,.35);}
+  .footnote b{font-weight:700;color:var(--ink);}
+  .corner-moon{position:absolute;right:-150px;bottom:-150px;width:390px;height:390px;border-radius:50%;background:var(--sage);opacity:.55;}
+  .head{position:absolute;left:150px;top:170px;width:800px;}
+  .eyebrow{display:inline-block;font-family:'Geist';font-size:24px;letter-spacing:.34em;background:var(--sage-deep);color:#EDE9DE;padding:12px 22px 10px;margin-bottom:34px;}
+  h1{font-family:'Bricolage';font-weight:700;font-size:104px;line-height:1.02;letter-spacing:-0.015em;}
+  h1 .lite{color:var(--blue-deep);}
+  h1 .serif{font-family:'InstrSerif';font-style:italic;font-weight:400;letter-spacing:0;}
+  h1 .green{color:var(--sage-deep);}
+  .sub{margin-top:30px;font-size:33px;line-height:1.45;color:var(--ink-soft);max-width:640px;}
+  .sub b{color:var(--ink);}
+  .headrule{width:340px;height:2px;background:var(--ink);margin-top:34px;opacity:.75;}
+
+  /* ============ SLIDE 1 — CAPA ============ */
+  #s1 h1{font-size:92px;}
+  #s1 .footnote{bottom:76px;}
+  .sunwrap{position:absolute;left:50%;top:325px;transform:translateX(-50%);}
+  .colonnade{position:absolute;left:50%;bottom:152px;transform:translateX(-50%);display:flex;align-items:flex-end;gap:26px;}
+  .col-el{width:74px;background:linear-gradient(180deg,#6F7E9E 0%,var(--blue-deep) 100%);box-shadow:inset 3px 0 0 rgba(255,255,255,.28), 14px 18px 0 rgba(36,39,33,.10);}
+  .col-el.g{background:linear-gradient(180deg,#9AA28A 0%,var(--sage-deep) 100%);}
+  .baseline{position:absolute;left:150px;right:150px;bottom:150px;height:1px;background:rgba(36,39,33,.4);}
+  .cap-handle{position:absolute;right:150px;top:186px;font-family:'Geist';font-size:25px;letter-spacing:.12em;color:var(--ink-soft);}
+
+  /* ============ GENÉRICO: métrica lateral ============ */
+  .meter{position:absolute;right:96px;top:420px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .meter .tick{width:26px;height:1px;background:rgba(36,39,33,.4);}
+  .meter .tick.s{width:14px;}
+  .meter .lbl{font-family:'Geist';font-size:19px;letter-spacing:.22em;color:var(--ink-soft);writing-mode:vertical-rl;}
+
+  /* ============ SLIDE 2 — EVOLUÇÃO ============ */
+  #s2 .steps{position:absolute;left:50%;transform:translateX(-50%);bottom:210px;display:flex;align-items:flex-end;gap:0;}
+  #s2 .step{width:150px;border-top:2px solid var(--ink);position:relative;background:linear-gradient(180deg,rgba(143,151,127,.34),rgba(143,151,127,.06));}
+  #s2 .step .yr{position:absolute;top:-46px;left:0;font-family:'Geist';font-size:21px;letter-spacing:.14em;color:var(--ink-soft);}
+  #s2 .step .dot{position:absolute;top:-7px;left:-1px;width:12px;height:12px;border-radius:50%;background:var(--ink);}
+  #s2 .step.hot{background:linear-gradient(180deg,rgba(94,110,147,.5),rgba(94,110,147,.08));}
+  #s2 .step.hot .dot{background:var(--gold);width:16px;height:16px;top:-9px;box-shadow:0 0 0 6px rgba(175,132,71,.22);}
+
+  /* ============ SLIDE 3 — CAPACIDADE (labirinto concêntrico) ============ */
+  #s3 .maze{position:absolute;left:50%;bottom:135px;transform:translateX(-50%);}
+
+  /* ============ SLIDE 4 — VELOCIDADE ============ */
+  #s4 .speed{position:absolute;left:0;right:0;bottom:150px;height:560px;}
+
+  /* ============ SLIDE 5 — CADA TAREFA ============ */
+  .duo{position:absolute;left:150px;right:150px;bottom:225px;display:flex;gap:40px;}
+  .card{flex:1;background:var(--paper-hi);border:1px solid rgba(36,39,33,.28);padding:46px 42px 42px;position:relative;box-shadow:16px 20px 0 rgba(36,39,33,.08);}
+  .card .tag{position:absolute;top:-20px;left:40px;font-family:'Geist';font-size:19px;letter-spacing:.2em;padding:10px 16px 8px;color:#EDE9DE;white-space:nowrap;}
+  .card.blue .tag{background:var(--blue-deep);}
+  .card.green .tag{background:var(--sage-deep);}
+  .card h3{font-family:'Bricolage';font-weight:700;font-size:38px;line-height:1.12;margin:14px 0 18px;}
+  .card p{font-size:24.5px;line-height:1.46;color:var(--ink-soft);}
+  .card .foot{margin-top:26px;font-family:'Geist';font-size:18px;letter-spacing:.07em;color:var(--gold);white-space:nowrap;}
+  .card .bar{height:8px;margin-top:14px;background:rgba(36,39,33,.12);position:relative;}
+  .card .bar i{position:absolute;left:0;top:0;bottom:0;}
+  .card.blue .bar i{background:var(--blue-deep);}
+  .card.green .bar i{background:var(--sage-deep);}
+
+  /* ============ SLIDE 6 — PROGRAMAÇÃO (barras) ============ */
+  #s6 h1{font-size:84px;}
+  #s6 .bars{position:absolute;left:50%;transform:translateX(-50%);bottom:200px;display:flex;align-items:flex-end;gap:42px;}
+  #s6 .bar3d{position:relative;}
+  #s6 .bar3d .face{width:104px;box-shadow:18px 22px 0 rgba(36,39,33,.10);}
+  #s6 .bar3d .top{position:absolute;left:0;top:-26px;width:104px;height:26px;transform:skewX(-42deg);transform-origin:bottom left;}
+  #s6 .bar3d .side{position:absolute;right:-24px;top:-13px;width:24px;height:calc(100% + 0px);transform:skewY(-48deg);transform-origin:top left;}
+  #s6 .blab{position:absolute;left:50%;transform:translateX(-50%);bottom:-52px;font-family:'Geist';font-size:19px;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap;}
+  #s6 .pct{position:absolute;left:50%;transform:translateX(-50%);top:-64px;font-family:'Geist';font-weight:700;font-size:26px;color:var(--blue-deep);}
+
+  /* ============ SLIDE 7 — TRILHAS ============ */
+  #s7 .topo{position:absolute;left:0;right:0;bottom:130px;}
+
+  /* ============ SLIDE 8 — PORTAL ============ */
+  #s8 h1{font-size:90px;}
+  #s8 .portal{position:absolute;right:105px;bottom:150px;}
+  .shield{position:absolute;left:150px;bottom:250px;width:260px;font-size:23px;line-height:1.5;color:var(--ink-soft);}
+  .shield svg{margin-bottom:14px;}
+  .shield b{color:var(--ink);}
+
+  /* ============ SLIDE 9 — ONDE USAR ============ */
+  .usegrid{position:absolute;left:150px;right:150px;bottom:200px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .use{background:var(--paper-hi);border:1px solid rgba(36,39,33,.26);padding:32px 36px 30px;position:relative;box-shadow:12px 14px 0 rgba(36,39,33,.07);}
+  .use .n{font-family:'Geist';font-size:20px;letter-spacing:.18em;color:var(--gold);}
+  .use h3{font-family:'Bricolage';font-weight:700;font-size:37px;margin:8px 0 8px;}
+  .use p{font-size:23.5px;line-height:1.4;color:var(--ink-soft);}
+  .use.wide{grid-column:1 / -1;display:flex;align-items:center;gap:44px;background:var(--sage-deep);border-color:var(--sage-deep);color:#EDE9DE;}
+  .use.wide h3{color:#F2EFE6;margin:8px 0 8px;}
+  .use.wide p{color:rgba(242,239,230,.85);}
+  .use.wide .n{color:#D8B98A;}
+
+  /* ============ SLIDE 10 — CTA ============ */
+  #s10 h1{font-size:96px;}
+  .cta-box{position:absolute;right:120px;top:645px;width:385px;background:var(--sage-deep);color:#F2EFE6;padding:40px 40px 38px;box-shadow:20px 24px 0 rgba(36,39,33,.12);}
+  .cta-box .small{font-family:'Geist';font-size:20px;letter-spacing:.22em;color:#D8B98A;margin-bottom:14px;white-space:nowrap;}
+  .cta-box .big{font-family:'Bricolage';font-weight:700;font-size:60px;line-height:1.05;}
+  .cta-box p{margin-top:18px;font-size:24px;line-height:1.45;color:rgba(242,239,230,.88);}
+  .cta-steps{position:absolute;left:150px;top:652px;width:390px;}
+  .cta-step{display:flex;gap:22px;align-items:flex-start;margin-bottom:34px;}
+  .cta-step .num{font-family:'Geist';font-weight:700;font-size:24px;color:var(--gold);border:1px solid rgba(175,132,71,.6);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
+  .cta-step p{font-size:26px;line-height:1.42;color:var(--ink-soft);padding-top:7px;}
+  .cta-step b{color:var(--ink);}
+  .handle-foot{position:absolute;left:50%;transform:translateX(-50%);bottom:112px;font-family:'Geist';font-size:22px;letter-spacing:.16em;color:var(--ink);white-space:nowrap;}
+  .handle-foot span{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 — CAPA ================= -->
+<section class="slide" id="s1">
+  <div class="orbit" style="width:560px;height:560px;right:-210px;top:-215px;"><span class="sat" style="left:84px;top:452px;"></span></div>
+  <div class="orbit" style="width:300px;height:300px;left:-130px;top:44%;"></div>
+  <div class="star" style="left:96px;top:120px;"><svg width="30" height="30" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="star" style="right:210px;top:508px;"><svg width="20" height="20" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="cap-handle">@soveralsoul</div>
+
+  <div class="head" style="top:186px;width:880px;">
+    <div class="eyebrow">NOVA GERAÇÃO DE IA</div>
+    <h1>O salto que muda<br><span class="serif green">como você</span> trabalha</h1>
+    <div class="sub" style="max-width:590px;">Capacidade, velocidade e eficiência — e <b>onde usar cada uma</b> no seu negócio.</div>
+  </div>
+
+  <!-- sol geométrico -->
+  <div class="sunwrap" style="top:800px;">
+    <svg width="640" height="360" viewBox="0 0 640 360">
+      <g fill="none" stroke="#242721" stroke-opacity=".35" stroke-width="1">
+        <circle cx="320" cy="330" r="300"/>
+        <circle cx="320" cy="330" r="252"/>
+        <circle cx="320" cy="330" r="204"/>
+      </g>
+      <circle cx="320" cy="330" r="156" fill="#AF8447" fill-opacity=".16"/>
+      <circle cx="320" cy="330" r="112" fill="#AF8447" fill-opacity=".28"/>
+      <circle cx="320" cy="330" r="70" fill="#AF8447"/>
+      <circle cx="524" cy="238" r="7" fill="#4C5644"/>
+      <circle cx="112" cy="196" r="5" fill="#3C4A6E"/>
+    </svg>
+  </div>
+
+  <!-- colunata -->
+  <div class="colonnade">
+    <div class="col-el g" style="height:95px;"></div>
+    <div class="col-el" style="height:145px;"></div>
+    <div class="col-el g" style="height:200px;"></div>
+    <div class="col-el" style="height:260px;"></div>
+    <div class="col-el" style="height:330px;"></div>
+  </div>
+  <div class="baseline"></div>
+
+  <div class="pageno"><u>01</u></div>
+  <div class="footnote"><span class="dash"></span>deslize para o panorama completo<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 2 — EVOLUÇÃO ================= -->
+<section class="slide" id="s2">
+  <div class="rail"></div>
+  <div class="orbit" style="width:430px;height:430px;right:-170px;top:-160px;"><span class="sat" style="left:60px;top:340px;"></span></div>
+  <div class="star" style="left:104px;top:128px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="corner-moon"></div>
+
+  <div class="head">
+    <h1>Evolução em<br><span class="serif lite">ritmo</span> recorde</h1>
+    <div class="headrule"></div>
+    <div class="sub">A cada ciclo, os modelos dão saltos maiores. Saber <b>qual ferramenta usar em cada tarefa</b> é o que transforma produtividade.</div>
+  </div>
+
+  <div class="meter">
+    <span class="lbl">CAPACIDADE</span>
+    <span class="tick"></span><span class="tick s"></span><span class="tick s"></span>
+    <span class="tick"></span><span class="tick s"></span><span class="tick s"></span>
+    <span class="tick"></span>
+  </div>
+
+  <div class="steps">
+    <div class="step" style="height:110px;"><span class="yr">2022</span><span class="dot"></span></div>
+    <div class="step" style="height:180px;"><span class="yr">2023</span><span class="dot"></span></div>
+    <div class="step" style="height:260px;"><span class="yr">2024</span><span class="dot"></span></div>
+    <div class="step" style="height:355px;"><span class="yr">2025</span><span class="dot"></span></div>
+    <div class="step hot" style="height:470px;"><span class="yr" style="font-weight:700;color:#3C4A6E;">AGORA</span><span class="dot"></span></div>
+  </div>
+
+  <div class="pageno"><u>02</u></div>
+  <div class="footnote"><span class="dash"></span>o intervalo entre os saltos só diminui<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 3 — CAPACIDADE ================= -->
+<section class="slide" id="s3">
+  <div class="rail"></div>
+  <div class="orbit" style="width:380px;height:380px;left:-150px;top:-140px;"></div>
+  <div class="star" style="right:120px;top:150px;"><svg width="26" height="26" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Mais <span class="serif lite">capacidade</span><br>de raciocínio</h1>
+    <div class="headrule"></div>
+    <div class="sub">Modelos de ponta assumem <b>análises profundas</b> e problemas de várias camadas.</div>
+  </div>
+
+  <div class="maze">
+    <svg width="620" height="549" viewBox="0 0 700 620">
+      <g fill="none" stroke="#242721" stroke-width="1.6" stroke-opacity=".8">
+        <rect x="30"  y="30"  width="640" height="560"/>
+        <rect x="82"  y="76"  width="536" height="468"/>
+        <rect x="134" y="122" width="432" height="376"/>
+        <rect x="186" y="168" width="328" height="284"/>
+      </g>
+      <g fill="none" stroke="#3C4A6E" stroke-width="2">
+        <rect x="238" y="214" width="224" height="192"/>
+      </g>
+      <rect x="290" y="260" width="120" height="100" fill="#3C4A6E"/>
+      <circle cx="350" cy="310" r="26" fill="#ECE7DC"/>
+      <circle cx="350" cy="310" r="10" fill="#AF8447"/>
+      <!-- rota de entrada -->
+      <path d="M30 590 L30 310 L134 310" stroke="#AF8447" stroke-width="3" fill="none"/>
+      <path d="M134 310 L186 310" stroke="#AF8447" stroke-width="3" fill="none" stroke-dasharray="2 10" stroke-linecap="round"/>
+      <path d="M186 310 L238 310" stroke="#AF8447" stroke-width="3" fill="none"/>
+      <path d="M238 310 L290 310" stroke="#AF8447" stroke-width="3" fill="none" stroke-dasharray="2 10" stroke-linecap="round"/>
+      <circle cx="30" cy="590" r="8" fill="#AF8447"/>
+      <!-- cotas -->
+      <g font-family="Geist" font-size="19" fill="#4A4E44" letter-spacing="2">
+        <text x="52" y="60">CONTEXTO</text>
+        <text x="104" y="106">DADOS</text>
+        <text x="156" y="152">NUANCE</text>
+        <text x="208" y="198">LÓGICA</text>
+        <text x="262" y="246" fill="#ECE7DC" opacity="0">.</text>
+      </g>
+      <text x="350" y="440" text-anchor="middle" font-family="Geist" font-size="20" fill="#3C4A6E" letter-spacing="3">RESPOSTA</text>
+    </svg>
+  </div>
+
+  <div class="pageno"><u>03</u></div>
+  <div class="footnote"><span class="dash"></span>profundidade é a nova régua<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 4 — VELOCIDADE ================= -->
+<section class="slide" id="s4">
+  <div class="rail"></div>
+  <div class="orbit" style="width:460px;height:460px;right:-190px;top:-170px;"><span class="sat" style="left:70px;top:368px;"></span></div>
+  <div class="star" style="left:100px;top:132px;"><svg width="22" height="22" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Mais <span class="serif green">velocidade</span><br>no dia a dia</h1>
+    <div class="headrule"></div>
+    <div class="sub">Modelos leves respondem em segundos — feitos para <b>volume, rotina e atendimento</b> sem fila.</div>
+  </div>
+
+  <div class="speed">
+    <svg width="1080" height="560" viewBox="0 0 1080 560">
+      <!-- pistas -->
+      <g stroke="#242721" stroke-opacity=".25" stroke-width="1">
+        <line x1="0" y1="140" x2="1080" y2="140"/>
+        <line x1="0" y1="250" x2="1080" y2="250"/>
+        <line x1="0" y1="360" x2="1080" y2="360"/>
+        <line x1="0" y1="470" x2="1080" y2="470"/>
+      </g>
+      <!-- cometas -->
+      <g stroke-linecap="round">
+        <line x1="150" y1="140" x2="560" y2="140" stroke="#8F977F" stroke-width="10" opacity=".45"/>
+        <line x1="330" y1="140" x2="640" y2="140" stroke="#4C5644" stroke-width="10"/>
+        <circle cx="640" cy="140" r="17" fill="#4C5644"/>
+
+        <line x1="150" y1="250" x2="700" y2="250" stroke="#7d8aa8" stroke-width="10" opacity=".45"/>
+        <line x1="430" y1="250" x2="820" y2="250" stroke="#3C4A6E" stroke-width="10"/>
+        <circle cx="820" cy="250" r="17" fill="#3C4A6E"/>
+
+        <line x1="150" y1="360" x2="830" y2="360" stroke="#c4a068" stroke-width="10" opacity=".5"/>
+        <line x1="560" y1="360" x2="952" y2="360" stroke="#AF8447" stroke-width="10"/>
+        <circle cx="952" cy="360" r="17" fill="#AF8447"/>
+
+        <line x1="150" y1="470" x2="470" y2="470" stroke="#8F977F" stroke-width="10" opacity=".35"/>
+        <line x1="260" y1="470" x2="540" y2="470" stroke="#4C5644" stroke-width="10" opacity=".75"/>
+        <circle cx="540" cy="470" r="14" fill="#4C5644" opacity=".85"/>
+      </g>
+      <!-- linha de chegada -->
+      <g>
+        <line x1="1000" y1="90" x2="1000" y2="520" stroke="#242721" stroke-width="2" stroke-opacity=".6"/>
+        <g fill="#242721" fill-opacity=".55">
+          <rect x="1000" y="90" width="12" height="12"/><rect x="1012" y="102" width="12" height="12"/>
+          <rect x="1000" y="114" width="12" height="12"/><rect x="1012" y="126" width="12" height="12"/>
+        </g>
+      </g>
+      <g font-family="Geist" font-size="20" fill="#4A4E44" letter-spacing="2">
+        <text x="150" y="110">RESPOSTA A CLIENTE</text>
+        <text x="150" y="220">TRIAGEM DE MENSAGENS</text>
+        <text x="150" y="330">RESUMOS &amp; RELATÓRIOS</text>
+        <text x="150" y="440">TAREFAS REPETITIVAS</text>
+        <text x="985" y="66" text-anchor="middle" fill="#242721">SEGUNDOS</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="pageno"><u>04</u></div>
+  <div class="footnote"><span class="dash"></span>latência baixa muda a experiência do cliente<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 5 — CADA TAREFA ================= -->
+<section class="slide" id="s5">
+  <div class="rail"></div>
+  <div class="orbit" style="width:420px;height:420px;right:-160px;top:-150px;"></div>
+  <div class="star" style="right:150px;top:190px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Cada tarefa<br>pede <span class="serif green">um modelo</span></h1>
+    <div class="headrule"></div>
+    <div class="sub" style="max-width:560px;">Combine <b>capacidade</b> e <b>velocidade</b> conforme a tarefa.</div>
+  </div>
+
+  <div class="duo" style="bottom:205px;">
+    <div class="card blue">
+      <span class="tag">COMPLEXIDADE ALTA</span>
+      <h3>Modelo de maior capacidade</h3>
+      <p>Análises profundas, decisões de negócio, código crítico.</p>
+      <div class="bar"><i style="width:92%;"></i></div>
+      <div class="foot">PRECISÃO ▲&nbsp;&nbsp;·&nbsp;&nbsp;CUSTO ▲</div>
+    </div>
+    <div class="card green">
+      <span class="tag">ROTINA &amp; VOLUME</span>
+      <h3>Modelo rápido e econômico</h3>
+      <p>Atendimento, triagem e tarefas repetitivas em escala.</p>
+      <div class="bar"><i style="width:64%;"></i></div>
+      <div class="foot">VELOCIDADE ▲&nbsp;&nbsp;·&nbsp;&nbsp;CUSTO ▼</div>
+    </div>
+  </div>
+
+  <div class="pageno"><u>05</u></div>
+  <div class="footnote"><span class="dash"></span>a escolha certa paga a conta da IA<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 6 — PROGRAMAÇÃO ================= -->
+<section class="slide" id="s6">
+  <div class="rail"></div>
+  <div class="orbit" style="width:470px;height:470px;right:-180px;top:-170px;"><span class="sat" style="left:64px;top:376px;"></span></div>
+  <div class="star" style="left:100px;top:136px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Mais força em <span class="lite">fluxos de programação</span></h1>
+    <div class="headrule"></div>
+    <div class="sub">O modelo de maior capacidade lidera as <b>tarefas complexas</b> de código.</div>
+  </div>
+
+  <div class="bars">
+    <div class="bar3d"><span class="pct">32%</span><div class="face" style="height:115px;background:linear-gradient(180deg,#A9B2C6,#8B97B4);"></div><div class="top" style="background:#C3CAD9;"></div><div class="side" style="background:#77839f;"></div><span class="blab">GERAR</span></div>
+    <div class="bar3d"><span class="pct">48%</span><div class="face" style="height:180px;background:linear-gradient(180deg,#93A0BC,#75849F);"></div><div class="top" style="background:#B4BDD1;"></div><div class="side" style="background:#64718d;"></div><span class="blab">REVISAR</span></div>
+    <div class="bar3d"><span class="pct">61%</span><div class="face" style="height:245px;background:linear-gradient(180deg,#7E8DAD,#5E6E93);"></div><div class="top" style="background:#A3AEC8;"></div><div class="side" style="background:#4d5b7a;"></div><span class="blab">DEPURAR</span></div>
+    <div class="bar3d"><span class="pct">74%</span><div class="face" style="height:310px;background:linear-gradient(180deg,#67789E,#4A5A82);"></div><div class="top" style="background:#93A0BE;"></div><div class="side" style="background:#3d4a6b;"></div><span class="blab">REFATORAR</span></div>
+    <div class="bar3d"><span class="pct">88%</span><div class="face" style="height:375px;background:linear-gradient(180deg,#4E6090,#3C4A6E);"></div><div class="top" style="background:#8291B5;"></div><div class="side" style="background:#2f3a58;"></div><span class="blab">FLUXO TOTAL</span></div>
+  </div>
+
+  <div class="pageno"><u>06</u></div>
+  <div class="footnote"><span class="dash"></span>dados ilustrativos — consulte os números oficiais<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 7 — MENOS ETAPAS ================= -->
+<section class="slide" id="s7">
+  <div class="rail"></div>
+  <div class="orbit" style="width:400px;height:400px;left:-160px;top:-150px;"></div>
+  <div class="star" style="right:130px;top:150px;"><svg width="26" height="26" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Mais resultado,<br><span class="serif green">menos</span> etapas</h1>
+    <div class="headrule"></div>
+    <div class="sub">Maior eficiência na resolução de <b>tarefas especializadas</b> — menos idas e vindas até o destino.</div>
+  </div>
+
+  <div class="topo">
+    <svg width="1080" height="620" viewBox="0 0 1080 620">
+      <!-- curvas de nível -->
+      <g fill="none" stroke="#242721" stroke-opacity=".14" stroke-width="1.4">
+        <path d="M-40 560 C 200 500, 300 585, 540 545 S 950 480, 1120 540"/>
+        <path d="M-40 500 C 210 435, 330 525, 560 480 S 940 415, 1120 480"/>
+        <path d="M-40 440 C 220 370, 360 465, 580 415 S 930 350, 1120 420"/>
+        <path d="M-40 380 C 230 310, 390 405, 600 350 S 920 285, 1120 360"/>
+        <path d="M-40 320 C 240 250, 420 345, 620 285 S 910 225, 1120 300"/>
+        <path d="M-40 260 C 250 195, 450 285, 640 225 S 900 165, 1120 240"/>
+        <path d="M-40 200 C 260 140, 480 225, 660 165 S 890 110, 1120 180"/>
+        <path d="M-40 140 C 270 85, 510 165, 680 110 S 880 60, 1120 120"/>
+      </g>
+      <!-- rota longa (antiga) -->
+      <path d="M180 585 C 90 505, 260 480, 190 400 C 120 320, 300 330, 240 250 C 190 185, 320 175, 300 120"
+            fill="none" stroke="#8F977F" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+      <circle cx="300" cy="120" r="11" fill="none" stroke="#8F977F" stroke-width="5"/>
+      <!-- rota média -->
+      <path d="M560 590 C 640 520, 560 470, 650 415 C 740 360, 660 330, 730 285"
+            fill="none" stroke="#9c6b7c" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+      <circle cx="730" cy="285" r="11" fill="none" stroke="#9c6b7c" stroke-width="5"/>
+      <!-- rota direta (nova) -->
+      <path d="M400 600 C 540 520, 600 430, 700 340 C 790 260, 840 210, 880 150"
+            fill="none" stroke="#3C4A6E" stroke-width="11" stroke-linecap="round"/>
+      <circle cx="400" cy="600" r="10" fill="#3C4A6E"/>
+      <!-- pino de chegada -->
+      <g transform="translate(880 128)">
+        <circle cx="0" cy="60" r="26" fill="#AF8447" opacity=".22"/>
+        <path d="M0 -14 C -20 -14 -30 0 -30 14 C -30 34 0 58 0 58 C 0 58 30 34 30 14 C 30 0 20 -14 0 -14 Z" fill="#AF8447"/>
+        <circle cx="0" cy="12" r="11" fill="#ECE7DC"/>
+      </g>
+      <g font-family="Geist" font-size="20" fill="#4A4E44" letter-spacing="2">
+        <text x="150" y="612">PROCESSO ANTIGO</text>
+        <text x="855" y="92" text-anchor="middle" fill="#242721">ENTREGA</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="pageno"><u>07</u></div>
+  <div class="footnote"><span class="dash"></span>compare sempre com métricas oficiais<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 8 — PORTAL ================= -->
+<section class="slide" id="s8">
+  <div class="rail"></div>
+  <div class="orbit" style="width:440px;height:440px;right:-170px;top:-160px;"><span class="sat" style="left:66px;top:352px;"></span></div>
+  <div class="star" style="left:104px;top:140px;"><svg width="22" height="22" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <div class="eyebrow" style="letter-spacing:.3em;">NOVA GERAÇÃO DE IA</div>
+    <h1>Capacidade digital<br>em <span class="serif green">evolução</span></h1>
+    <div class="sub" style="max-width:600px;">Mais <b>precisão</b> para analisar cenários complexos — com responsabilidade.</div>
+  </div>
+
+  <div class="shield">
+    <svg width="46" height="54" viewBox="0 0 46 54"><path d="M23 2 L44 10 V26 C44 40 34 48 23 52 C12 48 2 40 2 26 V10 Z" fill="none" stroke="#4C5644" stroke-width="2.6"/><path d="M14 26 L21 33 L33 19" fill="none" stroke="#AF8447" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <b>Segurança</b> deve permanecer no centro de cada aplicação.
+  </div>
+
+  <div class="portal">
+    <svg width="500" height="484" viewBox="0 0 620 600">
+      <!-- feixes -->
+      <g stroke-linecap="round">
+        <line x1="80"  y1="480" x2="560" y2="105" stroke="#8F977F" stroke-width="3" opacity=".8"/>
+        <line x1="60"  y1="420" x2="580" y2="180" stroke="#8F977F" stroke-width="2.5" opacity=".6"/>
+        <line x1="90"  y1="530" x2="575" y2="255" stroke="#AF8447" stroke-width="2.5" opacity=".7"/>
+        <line x1="70"  y1="360" x2="560" y2="330" stroke="#8F977F" stroke-width="2" opacity=".5"/>
+      </g>
+      <!-- pórtico -->
+      <g>
+        <rect x="150" y="70" width="66" height="470" fill="#6E6F66"/>
+        <rect x="150" y="70" width="14" height="470" fill="#8B8C82"/>
+        <rect x="404" y="70" width="66" height="470" fill="#565750"/>
+        <rect x="404" y="70" width="14" height="470" fill="#787970"/>
+        <rect x="216" y="70" width="188" height="470" fill="#3A3B35"/>
+        <g stroke="#B9C4D8" stroke-width="4" opacity=".9">
+          <line x1="238" y1="90" x2="238" y2="520"/><line x1="262" y1="90" x2="262" y2="520"/>
+          <line x1="286" y1="90" x2="286" y2="520"/><line x1="310" y1="90" x2="310" y2="520"/>
+          <line x1="334" y1="90" x2="334" y2="520"/><line x1="358" y1="90" x2="358" y2="520"/>
+          <line x1="382" y1="90" x2="382" y2="520"/>
+        </g>
+        <rect x="216" y="70" width="188" height="470" fill="url(#glow)"/>
+      </g>
+      <defs>
+        <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#5E6E93" stop-opacity=".55"/>
+          <stop offset=".5" stop-color="#DCE4F2" stop-opacity=".28"/>
+          <stop offset="1" stop-color="#5E6E93" stop-opacity=".55"/>
+        </linearGradient>
+      </defs>
+      <!-- partículas -->
+      <g fill="#5E6E93">
+        <circle cx="120" cy="300" r="4"/><circle cx="96" cy="330" r="3"/><circle cx="140" cy="352" r="5"/>
+        <circle cx="80" cy="282" r="2.6"/><circle cx="118" cy="258" r="3.4"/><circle cx="66" cy="368" r="3"/>
+        <circle cx="104" cy="398" r="4"/><circle cx="136" cy="428" r="3"/><circle cx="78" cy="440" r="2.4"/>
+      </g>
+      <!-- base -->
+      <rect x="110" y="540" width="400" height="3" fill="#242721" opacity=".5"/>
+      <rect x="150" y="552" width="320" height="2" fill="#242721" opacity=".25"/>
+    </svg>
+  </div>
+
+  <div class="pageno"><u>08</u></div>
+  <div class="footnote"><span class="dash"></span>precisão sem responsabilidade não é evolução<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 9 — ONDE USAR ================= -->
+<section class="slide" id="s9">
+  <div class="rail"></div>
+  <div class="orbit" style="width:400px;height:400px;right:-160px;top:-150px;"></div>
+  <div class="star" style="left:100px;top:132px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Onde <span class="serif green">usar?</span></h1>
+    <div class="headrule"></div>
+  </div>
+
+  <div class="usegrid">
+    <div class="use"><span class="n">01</span><h3>Pesquisa</h3><p>Mercado e concorrência em minutos.</p></div>
+    <div class="use"><span class="n">02</span><h3>Programação</h3><p>Do protótipo ao sistema inteiro.</p></div>
+    <div class="use"><span class="n">03</span><h3>Conteúdo</h3><p>Textos e criativos com voz de marca.</p></div>
+    <div class="use"><span class="n">04</span><h3>Planejamento</h3><p>Planos, cenários e prioridades.</p></div>
+    <div class="use wide">
+      <div style="flex:none;">
+        <svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="41" fill="none" stroke="#D8B98A" stroke-width="2"/><path d="M22 56 L36 40 L48 50 L64 28" fill="none" stroke="#F2EFE6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="64" cy="28" r="5" fill="#D8B98A"/></svg>
+      </div>
+      <div><span class="n">05</span><h3>Análise</h3><p>Indicadores traduzidos em decisão.</p></div>
+    </div>
+  </div>
+
+  <div class="pageno"><u>09</u></div>
+  <div class="footnote"><span class="dash"></span>escolha o modelo conforme a complexidade da tarefa<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ================= SLIDE 10 — CTA ================= -->
+<section class="slide" id="s10">
+  <div class="orbit" style="width:520px;height:520px;right:-200px;top:-190px;"><span class="sat" style="left:78px;top:420px;"></span></div>
+  <div class="orbit" style="width:300px;height:300px;left:-120px;bottom:220px;"></div>
+  <div class="star" style="left:96px;top:120px;"><svg width="28" height="28" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="star" style="right:200px;top:560px;"><svg width="18" height="18" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="corner-moon" style="opacity:.45;"></div>
+
+  <div class="head" style="top:160px;width:840px;">
+    <h1>Quer essa IA<br><span class="serif green">trabalhando</span> pelo<br>seu negócio?</h1>
+    <div class="sub" style="margin-top:26px;">Atendimento 24h no WhatsApp, qualificação de leads e vendas — <b>no automático</b>.</div>
+  </div>
+
+  <div class="cta-steps">
+    <div class="cta-step"><span class="num">1</span><p><b>Salve</b> este carrossel para consultar depois.</p></div>
+    <div class="cta-step"><span class="num">2</span><p><b>Compartilhe</b> com alguém que precisa acompanhar essa evolução.</p></div>
+    <div class="cta-step"><span class="num">3</span><p>Peça seu <b>diagnóstico grátis</b> no link da bio.</p></div>
+  </div>
+
+  <div class="cta-box">
+    <div class="small">QUER O PASSO A PASSO?</div>
+    <div class="big">COMENTA<br>“IA”</div>
+    <p>Eu te mostro como aplicar a nova geração de IA no seu atendimento.</p>
+  </div>
+
+  <div class="handle-foot"><span>@</span>soveralsoul&nbsp;&nbsp;•&nbsp;&nbsp;IA &amp; AUTOMAÇÃO</div>
+  <div class="pageno"><u>10</u></div>
+  <div class="grain"></div>
+</section>
+
+</body>
+</html>
