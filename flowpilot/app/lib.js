@@ -69,6 +69,26 @@ async function resolveClient(id) {
   if (rec) { try { return JSON.parse(rec); } catch { return null; } }
   return null;
 }
+/** Lista os ids de TODOS os clientes: estáticos (repo) + dinâmicos (Upstash). */
+async function listClientIds() {
+  const ids = new Set(Object.keys(CLIENTS));
+  const c = kvCreds();
+  if (c) {
+    let cursor = "0";
+    do {
+      const r = await fetch(`${c.url}/scan/${cursor}/match/client:*/count/200`, {
+        headers: { Authorization: `Bearer ${c.tok}` },
+      });
+      const j = await r.json().catch(() => ({}));
+      const res = j.result;
+      if (!Array.isArray(res)) break;
+      cursor = String(res[0]);
+      for (const k of res[1] || []) ids.add(String(k).replace(/^client:/, ""));
+    } while (cursor && cursor !== "0");
+  }
+  return [...ids];
+}
+
 /** Cria/atualiza (merge) o registro de um cliente dinâmico no Upstash. */
 async function saveClient(id, patch) {
   const existing = await kvGet(`client:${id}`);
@@ -113,6 +133,6 @@ function targetMs(dow, timeStr, offsetHours, localNow) {
 
 module.exports = {
   kvSet, kvGet, kvDel, dedupOn, markOnce, rateLimit,
-  resolveClient, saveClient, defaultClientId, resolveToken,
+  resolveClient, saveClient, defaultClientId, resolveToken, listClientIds,
   authOk, weekKey, targetMs,
 };
