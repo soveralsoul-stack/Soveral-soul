@@ -18,32 +18,105 @@
     "phone": "wa.me/55 49 99911-8781"
   },
   "schedule": [
-    { "id": "d1-12h-story01", "dow": 1, "time": "12:00", "type": "story", "media": ["story-01.mp4"], "caption": "" },
-    { "id": "d1-19h-story02", "dow": 1, "time": "19:00", "type": "story", "media": ["story-02.mp4"], "caption": "" },
-    { "id": "d2-12h-story03", "dow": 2, "time": "12:00", "type": "story", "media": ["story-03.mp4"], "caption": "" },
-    { "id": "d2-19h-story04", "dow": 2, "time": "19:00", "type": "story", "media": ["story-04.mp4"], "caption": "" },
-    { "id": "d3-12h-story05", "dow": 3, "time": "12:00", "type": "story", "media": ["story-05.mp4"], "caption": "" },
-    { "id": "d3-19h-story06", "dow": 3, "time": "19:00", "type": "story", "media": ["story-06.mp4"], "caption": "" },
-    { "id": "d4-12h-story07", "dow": 4, "time": "12:00", "type": "story", "media": ["story-07.mp4"], "caption": "" },
-    { "id": "d4-19h-story08", "dow": 4, "time": "19:00", "type": "story", "media": ["story-08.mp4"], "caption": "" },
-    { "id": "d5-12h-story09", "dow": 5, "time": "12:00", "type": "story", "media": ["story-09.mp4"], "caption": "" },
-    { "id": "d5-19h-story10", "dow": 5, "time": "19:00", "type": "story", "media": ["story-10.mp4"], "caption": "" },
     {
-      "id": "orbita-ed01",
-      "dow": 4,
-      "time": "20:00",
-      "type": "carousel",
+      "id": "d1-12h-story01",
+      "dow": 1,
+      "time": "12:00",
+      "type": "story",
       "media": [
-        "orbita-ed01-01.jpg",
-        "orbita-ed01-02.jpg",
-        "orbita-ed01-03.jpg",
-        "orbita-ed01-04.jpg",
-        "orbita-ed01-05.jpg",
-        "orbita-ed01-06.jpg",
-        "orbita-ed01-07.jpg",
-        "orbita-ed01-08.jpg"
+        "story-01.mp4"
       ],
-      "caption": "Semana grande para quem usa IA no negócio. A Anthropic cortou pela metade o preço do modelo mais forte, o Claude agora executa tarefas por voz em português, o Google inundou o mercado de modelos baratos, a OpenAI entrou no atendimento ao cliente e um incidente de segurança lembrou que autonomia exige critério.\n\nNeste carrossel, cada notícia vem traduzida no que muda para o seu negócio.\n\nSalve para consultar, compartilhe com quem decide, e comenta ÓRBITA para receber o diagnóstico grátis de IA no seu atendimento.\n\n#InteligenciaArtificial #IA #Automacao #AgentesDeIA #Claude #Gemini #OpenAI #AtendimentoAutomatico #SoveralSoul"
+      "caption": ""
+    },
+    {
+      "id": "d1-19h-story02",
+      "dow": 1,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "story-02.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d2-12h-story03",
+      "dow": 2,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "story-03.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d2-19h-story04",
+      "dow": 2,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "story-04.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d3-12h-story05",
+      "dow": 3,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "story-05.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d3-19h-story06",
+      "dow": 3,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "story-06.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d4-12h-story07",
+      "dow": 4,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "story-07.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d4-19h-story08",
+      "dow": 4,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "story-08.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d5-12h-story09",
+      "dow": 5,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "story-09.mp4"
+      ],
+      "caption": ""
+    },
+    {
+      "id": "d5-19h-story10",
+      "dow": 5,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "story-10.mp4"
+      ],
+      "caption": ""
     }
   ]
 }
