@@ -50,4 +50,4 @@ Duas opções:
 ## Observação
 - `.app.br` é domínio Registro.br (BR), **não** o `.app` global — não há exigência de
   HSTS-preload. O HTTPS vem do Vercel de qualquer forma.
-- O e-mail de exclusão de dados segue `soveralsoul@gmail.com` (da empresa Soveral Soul).
+- O e-mail de exclusão de dados segue `comercial@soveralsoul.com.br` (da empresa Soveral Soul).

@@ -64,7 +64,7 @@ const HTML = `<!DOCTYPE html>
   <p>Você pode, a qualquer momento, revogar o acesso do aplicativo à sua conta do Instagram
   (em Configurações do Instagram &gt; Apps e sites) e solicitar a exclusão dos seus dados.</p>
   <p><strong>Para solicitar exclusão de dados</strong>, envie um e-mail para
-  <a href="mailto:soveralsoul@gmail.com">soveralsoul@gmail.com</a> com o assunto
+  <a href="mailto:comercial@soveralsoul.com.br">comercial@soveralsoul.com.br</a> com o assunto
   "Exclusão de dados" e o nome de usuário do Instagram. Concluímos a exclusão em até 30 dias.</p>
 
   <h2>7. Solicitações de autoridades públicas</h2>
@@ -79,7 +79,7 @@ const HTML = `<!DOCTYPE html>
   <h2>8. Contato</h2>
   <p>FlowPilot — um serviço da Soveral Soul · Chapecó/SC<br>
   Site: <a href="https://flowpilot.app.br">flowpilot.app.br</a><br>
-  E-mail: <a href="mailto:soveralsoul@gmail.com">soveralsoul@gmail.com</a><br>
+  E-mail: <a href="mailto:comercial@soveralsoul.com.br">comercial@soveralsoul.com.br</a><br>
   WhatsApp: (49) 9 9911-8781</p>
 
   <p class="muted">Razão social: SOVERALSOUL PRODUCOES LTDA · CNPJ: 64.687.983/0001-69. Ao conectar sua
