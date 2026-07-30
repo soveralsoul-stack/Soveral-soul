@@ -9,7 +9,7 @@
  * agendadas; authOk() aceita esse valor (ou o PUBLISH_SECRET, para disparo manual).
  */
 const { listClientIds, resolveClient, resolveToken, authOk } = require("../lib");
-const { publishDue } = require("../publisher");
+const { publishDue, resolvePending } = require("../publisher");
 
 module.exports = async (req, res) => {
   if (!authOk(req)) return res.status(401).json({ error: "unauthorized" });
@@ -34,14 +34,23 @@ module.exports = async (req, res) => {
         resumo.push({ client: id, skip: "sem igUserId/token/mediaBaseUrl" });
         continue;
       }
-      if (!(client.schedule || []).length) { resumo.push({ client: id, skip: "agenda vazia" }); continue; }
+      // fase 2: conclui vídeos que ficaram processando em rodadas anteriores
+      const pend = dry ? { done: [], aguardando: [], falhas: [] } : await resolvePending(client, token);
+
+      if (!(client.schedule || []).length) {
+        resumo.push({ client: id, skip: "agenda vazia", concluidos: pend.done.map((p) => p.id) });
+        continue;
+      }
 
       const out = await publishDue(client, token, { dry });
       resumo.push({
         client: id,
         publicados: out.published.map((p) => p.id),
+        processando: out.published.filter((p) => p.pending).map((p) => p.id),
+        concluidos: pend.done.map((p) => p.id),
+        aguardando: pend.aguardando,
         pulados: out.skipped,
-        erros: out.errors,
+        erros: [...out.errors, ...pend.falhas],
       });
     } catch (e) {
       // um cliente com problema nunca pode derrubar a rodada dos outros

@@ -62,8 +62,37 @@ async function publish(igId, token, creationId, { tries = 6, delayMs = 3000 } = 
   throw lastErr;
 }
 
+/** Status atual de um container (FINISHED | IN_PROGRESS | ERROR | null). */
+async function statusOf(containerId, token) {
+  try {
+    const r = await api(containerId, { access_token: token, fields: "status_code,status" });
+    return r.status_code || null;
+  } catch { return null; }
+}
+
 /**
- * Publica um item conforme o tipo.
+ * Cria o container de mídia SEM esperar/publicar. Usado no fluxo assíncrono:
+ * vídeo demora para o Instagram processar e não cabe no limite da função.
+ * Retorna o creation id.
+ */
+async function createFor({ igId, token, type, urls, caption, isVideo }) {
+  if (type === "image") return createContainer(igId, token, { image_url: urls[0], caption });
+  if (type === "reels") return createContainer(igId, token, { media_type: "REELS", video_url: urls[0], caption });
+  if (type === "story") {
+    return createContainer(igId, token, isVideo
+      ? { media_type: "STORIES", video_url: urls[0] }
+      : { media_type: "STORIES", image_url: urls[0] });
+  }
+  if (type === "carousel") {
+    const children = [];
+    for (const u of urls) children.push(await createContainer(igId, token, { image_url: u, is_carousel_item: "true" }));
+    return createContainer(igId, token, { media_type: "CAROUSEL", children: children.join(","), caption });
+  }
+  throw new Error(`Tipo desconhecido: ${type}`);
+}
+
+/**
+ * Publica um item conforme o tipo (fluxo síncrono, para mídia rápida).
  *  type: "image" | "carousel" | "reels" | "story"
  *  urls: array de URLs públicas (JPEG p/ imagem, MP4 H.264/AAC p/ vídeo)
  */
@@ -105,4 +134,4 @@ async function publishItem({ igId, token, type, urls, caption, isVideo }) {
   throw new Error(`Tipo desconhecido: ${type}`);
 }
 
-module.exports = { api, publishItem, publish };
+module.exports = { api, publishItem, publish, createFor, statusOf, waitReady };

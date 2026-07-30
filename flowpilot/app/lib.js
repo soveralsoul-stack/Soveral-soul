@@ -69,23 +69,28 @@ async function resolveClient(id) {
   if (rec) { try { return JSON.parse(rec); } catch { return null; } }
   return null;
 }
+/** Varre chaves do Upstash por padrão (SCAN paginado). */
+async function scanKeys(pattern) {
+  const c = kvCreds(); if (!c) return [];
+  const out = [];
+  let cursor = "0";
+  do {
+    const r = await fetch(`${c.url}/scan/${cursor}/match/${encodeURIComponent(pattern)}/count/200`, {
+      headers: { Authorization: `Bearer ${c.tok}` },
+    });
+    const j = await r.json().catch(() => ({}));
+    const res = j.result;
+    if (!Array.isArray(res)) break;
+    cursor = String(res[0]);
+    out.push(...(res[1] || []).map(String));
+  } while (cursor && cursor !== "0");
+  return out;
+}
+
 /** Lista os ids de TODOS os clientes: estáticos (repo) + dinâmicos (Upstash). */
 async function listClientIds() {
   const ids = new Set(Object.keys(CLIENTS));
-  const c = kvCreds();
-  if (c) {
-    let cursor = "0";
-    do {
-      const r = await fetch(`${c.url}/scan/${cursor}/match/client:*/count/200`, {
-        headers: { Authorization: `Bearer ${c.tok}` },
-      });
-      const j = await r.json().catch(() => ({}));
-      const res = j.result;
-      if (!Array.isArray(res)) break;
-      cursor = String(res[0]);
-      for (const k of res[1] || []) ids.add(String(k).replace(/^client:/, ""));
-    } while (cursor && cursor !== "0");
-  }
+  for (const k of await scanKeys("client:*")) ids.add(k.replace(/^client:/, ""));
   return [...ids];
 }
 
@@ -132,7 +137,7 @@ function targetMs(dow, timeStr, offsetHours, localNow) {
 }
 
 module.exports = {
-  kvSet, kvGet, kvDel, dedupOn, markOnce, rateLimit,
+  kvSet, kvGet, kvDel, dedupOn, markOnce, rateLimit, scanKeys,
   resolveClient, saveClient, defaultClientId, resolveToken, listClientIds,
   authOk, weekKey, targetMs,
 };
