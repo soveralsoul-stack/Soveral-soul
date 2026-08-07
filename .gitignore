@@ -10,3 +10,6 @@ public/appreview/
 public/appreview/
 social/orbita/build/f[0-9]*/
 social/orbita/build/chk-*.png
+social/orbita/build/all/
+social/orbita/build/ed02-story-*.mp4
+social/orbita/build/reels-orbita-ed02.mp4

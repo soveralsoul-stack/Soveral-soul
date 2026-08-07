@@ -17,5 +17,102 @@
     "city": "Chapecó/SC",
     "phone": "wa.me/55 49 99911-8781"
   },
-  "schedule": []
+  "schedule": [
+    {
+      "id": "ed02-s01",
+      "dow": 5,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed02-story-01.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    },
+    {
+      "id": "ed02-s02",
+      "dow": 6,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed02-story-02.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    },
+    {
+      "id": "ed02-s03",
+      "dow": 6,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed02-story-03.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    },
+    {
+      "id": "ed02-s04",
+      "dow": 7,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed02-story-04.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    },
+    {
+      "id": "ed02-s05",
+      "dow": 7,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed02-story-05.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    },
+    {
+      "id": "ed02-s06",
+      "dow": 1,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed02-story-06.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    },
+    {
+      "id": "ed02-s07",
+      "dow": 1,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed02-story-07.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    },
+    {
+      "id": "ed02-reels",
+      "dow": 2,
+      "time": "08:00",
+      "type": "reels",
+      "media": [
+        "reels-orbita-ed02.mp4"
+      ],
+      "caption": "Agora a IA tem carteira. E essa é a notícia que muda o seu custo.\n\nNesta semana três coisas aconteceram quase juntas: a OpenAI abriu a compra de mídia dentro do ChatGPT, a PubMatic colocou agentes operando leilão de anúncio sozinhos e a Cloudflare lançou carteiras que dão identidade e limite de gasto para esses agentes.\n\nJunte as três e o recado é um só. A automação deixou de apenas responder e passou a gastar dinheiro.\n\nO que separa quem economiza de quem toma susto no fim do mês não é a ferramenta, é o teto. Limite por tarefa, limite por dia, log de tudo que foi gasto.\n\nAutomação sem limite definido não é eficiência, é risco.\n\nSalve para revisar antes de ligar qualquer agente no seu negócio, e comenta ÓRBITA que eu te mando o diagnóstico grátis do seu atendimento.\n\n#InteligenciaArtificial #IA #Automacao #AgentesDeIA #CustoDeIA #ChatGPT #SoveralSoul",
+      "from": "2026-08-07",
+      "until": "2026-08-11"
+    }
+  ]
 }

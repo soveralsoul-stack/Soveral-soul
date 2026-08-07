@@ -1,0 +1,65 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Dia dos Pais — feed 4:5</title>
+<style>
+@font-face{font-family:'BS';src:url('../build/fonts/BebasNeue-Regular.ttf');font-weight:700}
+@font-face{font-family:'IN';src:url('../build/fonts/Inter-Regular.ttf');font-weight:400}
+@font-face{font-family:'IN';src:url('../build/fonts/Inter-Bold.ttf');font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0A1422;--teal:#5BC1D4;--amber:#D9A85C;--white:#FFF}
+body{background:#111}
+.card{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--navy);
+  font-family:'IN',sans-serif;color:var(--white)}
+
+/* foto */
+.foto{position:absolute;inset:0;background-image:url('../build/pais-foto.jpg');
+  background-size:cover;background-position:50% 34%;z-index:1}
+/* leve correcao: a foto e noturna, entao damos respiro em vez de escurecer */
+.tone{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(10,20,34,.55) 0%,rgba(10,20,34,0) 26%,
+             rgba(10,20,34,0) 46%,rgba(10,20,34,.72) 76%,rgba(10,20,34,.96) 100%)}
+/* um respingo da marca, sem competir com o rosto de ninguem */
+.tint{position:absolute;inset:0;z-index:3;mix-blend-mode:soft-light;
+  background:radial-gradient(120% 70% at 50% 100%,rgba(91,193,212,.55),transparent 60%)}
+
+/* topo */
+.top{position:absolute;top:56px;left:64px;right:64px;z-index:10;
+  display:flex;align-items:flex-start;justify-content:space-between}
+.wm{font-family:'BS';font-weight:700;font-size:44px;letter-spacing:.055em;line-height:1}
+.wm b{color:var(--teal);font-weight:700}
+.wm .l2{display:block;margin-top:6px;font-family:'IN';font-size:14px;font-weight:700;
+  letter-spacing:.42em;color:rgba(255,255,255,.72)}
+.date{font-family:'IN';font-size:17px;font-weight:700;letter-spacing:.24em;
+  color:var(--teal);text-align:right;padding-top:6px}
+
+/* base */
+.base{position:absolute;left:72px;right:72px;bottom:96px;z-index:10}
+.rule{width:96px;height:6px;background:var(--teal);border-radius:4px;margin-bottom:30px}
+h1{font-family:'BS';font-weight:700;font-size:104px;line-height:.95;text-transform:uppercase;
+  letter-spacing:.01em}
+h1 .cy{color:var(--teal)}
+.sub{margin-top:26px;font-size:31px;line-height:1.46;color:rgba(255,255,255,.94);max-width:880px}
+.sub b{color:var(--white)}
+.hand{position:absolute;left:72px;bottom:44px;z-index:10;font-size:19px;font-weight:700;
+  letter-spacing:.2em;color:rgba(255,255,255,.6)}
+</style></head><body>
+
+<div class="card">
+  <div class="foto"></div>
+  <div class="tone"></div>
+  <div class="tint"></div>
+
+  <div class="top">
+    <div class="wm">SOVERAL<b>SOUL</b><span class="l2">SERVIÇOS DE IA</span></div>
+    <div class="date">DIA DOS PAIS<br>2026</div>
+  </div>
+
+  <div class="base">
+    <div class="rule"></div>
+    <h1>O que eu<br>automatizo<br><span class="cy">volta pra elas</span></h1>
+    <p class="sub">Todo processo que eu tiro das minhas mãos vira o mesmo bem para todo mundo: <b>tempo</b>.</p>
+  </div>
+
+  <div class="hand">@SOVERALSOUL</div>
+</div>
+
+</body></html>

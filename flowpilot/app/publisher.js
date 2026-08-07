@@ -93,8 +93,14 @@ async function publishDue(client, token, { dry = false, now = Date.now() } = {})
   const localNow = new Date(now + offset * 3600e3);
   const wk = weekKey(localNow);
 
+  const today = localNow.toISOString().slice(0, 10);
+
   const published = [], skipped = [], errors = [];
   for (const item of schedule) {
+    // campanha com data de validade: passou de "until", o item para de sozinho.
+    // Sem isso, uma agenda de campanha vira post semanal eterno.
+    if (item.until && today > item.until) continue;
+    if (item.from && today < item.from) continue;
     const t = targetMs(item.dow, item.time, offset, localNow);
     if (!(now >= t && now <= t + windowMs)) continue;
     const mark = await markOnce(`ig:${client.id}:${wk}:${item.id}`);
