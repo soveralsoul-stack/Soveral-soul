@@ -55,6 +55,18 @@
       "until": "2026-08-11"
     },
     {
+      "id": "pais-2026",
+      "dow": 7,
+      "time": "10:00",
+      "type": "image",
+      "media": [
+        "pais-2026.jpg"
+      ],
+      "caption": "Dia dos Pais.\n\nEu passo o dia tirando tarefa repetida da mão das pessoas. Fluxo, atendimento, agente respondendo às duas da manhã. De vez em quando me perguntam pra quê tanto.\n\nÉ pra isso aqui.\n\nAutomação, no fim, é só um jeito mais direto de dizer que eu quero estar presente. Cada processo que passa a rodar sozinho é uma noite que eu não passo na frente do computador.\n\nFeliz Dia dos Pais para quem também está tentando comprar tempo de volta.\n\n#DiaDosPais #Paternidade #SoveralSoul",
+      "from": "2026-08-09",
+      "until": "2026-08-09"
+    },
+    {
       "id": "ed02-s04",
       "dow": 7,
       "time": "12:00",
