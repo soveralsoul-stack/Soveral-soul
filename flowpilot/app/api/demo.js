@@ -7,9 +7,36 @@
  * customer goes through, so it exercises instagram_business_basic (identify the
  * connected account) and instagram_business_content_publish (publish on behalf).
  */
-const { kvGet } = require("../lib");
+const { kvGet, resolveClient, saveClient } = require("../lib");
 
 const DEMO_CLIENT = "reviewer";
+const DOW = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+/**
+ * Garante que a conta do revisor tenha uma agenda de verdade para olhar.
+ * A agenda é o produto: o cliente define uma vez, e o cron (a cada 15 min,
+ * ver vercel.json) publica no horário. Sem isso o revisor via só um botão de
+ * teste, e foi exatamente essa a leitura que derrubou a primeira submissão.
+ */
+async function ensureSchedule(host) {
+  const client = (await resolveClient(DEMO_CLIENT)) || {};
+  if ((client.schedule || []).length) return client;
+  return saveClient(DEMO_CLIENT, {
+    mediaBaseUrl: `https://${host}`,
+    timezoneOffsetHours: 0,
+    windowHours: 6,
+    schedule: [
+      { id: "demo-mon", dow: 1, time: "08:00", type: "story", media: ["story-teste.jpg"], caption: "" },
+      { id: "demo-wed", dow: 3, time: "12:00", type: "story", media: ["story-teste.jpg"], caption: "" },
+      { id: "demo-fri", dow: 5, time: "19:00", type: "story", media: ["story-teste.jpg"], caption: "" },
+    ],
+  });
+}
+
+const scheduleRows = (client) => (client.schedule || [])
+  .map((i) => `<tr><td>${DOW[i.dow] || i.dow}</td><td>${i.time} UTC</td>
+    <td>${i.type}</td><td><code>${String(i.media?.[0] || "").replace(/[<>]/g, "")}</code></td></tr>`)
+  .join("");
 
 const page = (body) => `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +55,12 @@ const page = (body) => `<!doctype html><html lang="en"><head><meta charset="utf-
   .wm{font-weight:700;font-size:1.3rem;letter-spacing:-.02em}
   .wm .g{background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   h1{font-size:1.45rem;margin-bottom:12px}
+  h2{font-size:1.02rem;margin:26px 0 10px;color:#cfe0f5}
   p{color:#9fb0c9}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;color:#c3d2e6}
+  th{text-align:left;font-weight:700;color:#8fa4c0;font-size:.76rem;letter-spacing:.08em;
+    text-transform:uppercase;padding:0 10px 8px 0;border-bottom:1px solid #1a2240}
+  td{padding:9px 10px 9px 0;border-bottom:1px solid #131a33}
   ol{color:#9fb0c9;padding-left:20px;margin:14px 0}
   ol li{margin-bottom:7px}
   .btn{display:inline-flex;align-items:center;gap:10px;margin-top:22px;
@@ -85,15 +117,33 @@ module.exports = async (req, res) => {
     ${q.media ? `Media ID: <code>${String(q.media).replace(/[^0-9]/g, "")}</code>` : ""}</div>` : "";
   const err = q.error ? `<div class="err">${String(q.error).slice(0, 200).replace(/[<>]/g, "")}</div>` : "";
 
+  const host = (req.headers["x-forwarded-host"] || req.headers.host || "").split(",")[0].trim();
+  let client = {};
+  try { client = await ensureSchedule(host); } catch { /* segue sem a tabela */ }
+
   return res.end(page(`
     <h1>Connected: @${(connected.username || "").replace(/[<>]/g, "")}</h1>
-    <p>FlowPilot is now authorized to publish on this account. Click below and it will publish a
-    test story to your profile through the Instagram Graph API.</p>
+    <p>This is the core of the product: a <b>publishing schedule</b>. The account owner fills it in
+    once, and FlowPilot publishes to their Instagram Business account at each scheduled time,
+    without anyone opening the app.</p>
+
+    <h2>Publishing schedule for this account</h2>
+    <table>
+      <tr><th>Day</th><th>Time</th><th>Format</th><th>Media</th></tr>
+      ${scheduleRows(client) || `<tr><td colspan="4">schedule unavailable</td></tr>`}
+    </table>
+    <p class="small">A scheduler runs every 15 minutes, checks which items are due, and publishes
+    them through the Instagram Graph API using <code>instagram_business_content_publish</code>.
+    This is the only reason the app requests that permission: without it, nothing on this table
+    can ever be published and the product has no function.</p>
+
     ${at}${err}
+    <p>You do not have to wait for the next scheduled slot. The button below runs the scheduler
+    immediately for the first item above, so you can see the result on your profile right now.</p>
     <form method="POST" action="/api/demo-publish">
-      <button class="btn" type="submit">Publish test post</button>
+      <button class="btn" type="submit">Run the scheduler now</button>
     </form>
-    <p class="small">The image published is a branded test card. The story disappears after 24 hours.
+    <p class="small">It publishes a branded test card as a story, which disappears after 24 hours.
     To disconnect, revoke access in Instagram → Settings → Accounts Center → Website permissions.</p>`));
 };
 
