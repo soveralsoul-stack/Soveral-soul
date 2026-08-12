@@ -4,6 +4,7 @@
   },
   "rewrites": [
     { "source": "/privacidade", "destination": "/api/privacidade" },
+    { "source": "/termos", "destination": "/api/termos" },
     { "source": "/demo", "destination": "/api/demo" }
   ],
   "crons": [
