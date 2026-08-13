@@ -5,7 +5,7 @@
  */
 const { chromium } = require('playwright');
 const path = require('path'), fs = require('fs');
-const FPS = 30, DUR = 10.0, N = Math.round(FPS * DUR);
+const FPS = 30, DUR = 25.0, N = Math.round(FPS * DUR);
 const DIR = path.join(__dirname, 'f8h');
 
 (async () => {

@@ -1,5 +1,5 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<title>Post 8h — story em video</title>
+<title>Post 8h — story em video 25s</title>
 <style>
 @font-face{font-family:'BS';src:url('../build/fonts/BigShoulders-Bold.ttf') format('truetype');font-weight:700}
 @font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Regular.ttf') format('truetype');font-weight:400}
@@ -35,26 +35,46 @@ body{background:#111}
 h1{font-family:'BS';font-weight:700;font-size:104px;line-height:.96;text-transform:uppercase;
   letter-spacing:.01em}
 h1 .cy{color:var(--teal)}
-.oferta{margin-top:34px;font-size:44px;line-height:1.34;color:rgba(255,255,255,.95);max-width:900px}
-.oferta b{color:var(--teal);font-weight:700}
+.slot{position:relative;margin-top:34px;min-height:210px}
+.oferta,.cta{position:absolute;top:0;left:0;right:0;font-size:44px;line-height:1.34;
+  color:rgba(255,255,255,.95);max-width:900px}
+.oferta b,.cta b{color:var(--teal);font-weight:700}
 
 .hand{position:absolute;left:72px;bottom:262px;z-index:10;font-size:21px;font-weight:700;
   letter-spacing:.2em;color:rgba(255,255,255,.55)}
 
-/* ---- animacoes (variante em video) ---- */
-.foto{animation:push 10s linear forwards;transform-origin:52% 30%}
-@keyframes push{from{transform:scale(1)}to{transform:scale(1.07)}}
+/* ---- animacoes (variante em video, 25s) ----
+   A foto respira o tempo todo. Os textos entram nos 2 primeiros segundos,
+   e aos 12,5s a linha de oferta cede lugar ao CTA: sem isso os 23 segundos
+   finais seriam so zoom, e o story perde o espectador no meio. */
+.foto{animation:push 25s linear forwards;transform-origin:52% 30%}
+@keyframes push{from{transform:scale(1)}to{transform:scale(1.10)}}
 .top{opacity:0;animation:fade 1s ease .2s forwards}
 .rule{opacity:0;transform:scaleX(.2);transform-origin:left;
   animation:grow .8s cubic-bezier(.2,.8,.2,1) .7s forwards}
 @keyframes grow{to{opacity:1;transform:none}}
 h1{opacity:0;transform:translateY(46px);
   animation:rise 1s cubic-bezier(.2,.7,.2,1) .95s forwards}
-.oferta{opacity:0;transform:translateY(34px);
-  animation:rise 1s cubic-bezier(.2,.7,.2,1) 1.55s forwards}
 .hand{opacity:0;animation:fade .9s ease 2.1s forwards}
 @keyframes rise{to{opacity:1;transform:none}}
 @keyframes fade{to{opacity:1}}
+
+.oferta{opacity:0;animation:ofertaSeq 25s linear forwards}
+@keyframes ofertaSeq{
+  0%{opacity:0;transform:translateY(34px)}
+  6.2%{opacity:0;transform:translateY(34px)}
+  10.2%{opacity:1;transform:none}
+  50%{opacity:1;transform:none}
+  54%{opacity:0;transform:translateY(-28px)}
+  100%{opacity:0;transform:translateY(-28px)}
+}
+.cta{opacity:0;animation:ctaSeq 25s linear forwards}
+@keyframes ctaSeq{
+  0%{opacity:0;transform:translateY(32px)}
+  54%{opacity:0;transform:translateY(32px)}
+  58.5%{opacity:1;transform:none}
+  100%{opacity:1;transform:none}
+}
 </style></head><body>
 
 <div class="card">
@@ -69,8 +89,11 @@ h1{opacity:0;transform:translateY(46px);
   <div class="bloco">
     <div class="rule"></div>
     <h1>Eu não vendo IA.<br>Eu acho <span class="cy">onde dói</span>.</h1>
-    <p class="oferta">Mapeio <b>onde a sua empresa perde tempo e dinheiro</b>, e automatizo
-    só esse ponto.</p>
+    <div class="slot">
+      <p class="oferta">Mapeio <b>onde a sua empresa perde tempo e dinheiro</b>, e automatizo
+      só esse ponto.</p>
+      <p class="cta">Comenta <b>ÓRBITA</b> que eu faço o diagnóstico da sua.</p>
+    </div>
   </div>
 
   <div class="hand">@SOVERALSOUL</div>
