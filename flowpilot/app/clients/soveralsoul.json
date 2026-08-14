@@ -19,112 +19,28 @@
   },
   "schedule": [
     {
-      "id": "ed02-s01",
+      "id": "onde-doi-reels",
       "dow": 5,
-      "time": "19:00",
-      "type": "story",
-      "media": [
-        "ed02-story-01.mp4"
-      ],
-      "caption": "",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
-    },
-    {
-      "id": "ed02-s02",
-      "dow": 6,
-      "time": "12:00",
-      "type": "story",
-      "media": [
-        "ed02-story-02.mp4"
-      ],
-      "caption": "",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
-    },
-    {
-      "id": "ed02-s03",
-      "dow": 6,
-      "time": "19:00",
-      "type": "story",
-      "media": [
-        "ed02-story-03.mp4"
-      ],
-      "caption": "",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
-    },
-    {
-      "id": "pais-2026",
-      "dow": 7,
-      "time": "10:00",
-      "type": "image",
-      "media": [
-        "pais-2026.jpg"
-      ],
-      "caption": "Dia dos Pais.\n\nEu passo o dia tirando tarefa repetida da mão das pessoas. Fluxo, atendimento, agente respondendo às duas da manhã. De vez em quando me perguntam pra quê tanto.\n\nÉ pra isso aqui.\n\nAutomação, no fim, é só um jeito mais direto de dizer que eu quero estar presente. Cada processo que passa a rodar sozinho é uma noite que eu não passo na frente do computador.\n\nFeliz Dia dos Pais para quem também está tentando comprar tempo de volta.\n\n#DiaDosPais #Paternidade #SoveralSoul",
-      "from": "2026-08-09",
-      "until": "2026-08-09"
-    },
-    {
-      "id": "ed02-s04",
-      "dow": 7,
-      "time": "12:00",
-      "type": "story",
-      "media": [
-        "ed02-story-04.mp4"
-      ],
-      "caption": "",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
-    },
-    {
-      "id": "ed02-s05",
-      "dow": 7,
-      "time": "19:00",
-      "type": "story",
-      "media": [
-        "ed02-story-05.mp4"
-      ],
-      "caption": "",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
-    },
-    {
-      "id": "ed02-s06",
-      "dow": 1,
-      "time": "12:00",
-      "type": "story",
-      "media": [
-        "ed02-story-06.mp4"
-      ],
-      "caption": "",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
-    },
-    {
-      "id": "ed02-s07",
-      "dow": 1,
-      "time": "19:00",
-      "type": "story",
-      "media": [
-        "ed02-story-07.mp4"
-      ],
-      "caption": "",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
-    },
-    {
-      "id": "ed02-reels",
-      "dow": 2,
-      "time": "08:00",
+      "time": "07:00",
       "type": "reels",
       "media": [
-        "reels-orbita-ed02.mp4"
+        "onde-doi.mp4"
       ],
-      "caption": "Agora a IA tem carteira. E essa é a notícia que muda o seu custo.\n\nNesta semana três coisas aconteceram quase juntas: a OpenAI abriu a compra de mídia dentro do ChatGPT, a PubMatic colocou agentes operando leilão de anúncio sozinhos e a Cloudflare lançou carteiras que dão identidade e limite de gasto para esses agentes.\n\nJunte as três e o recado é um só. A automação deixou de apenas responder e passou a gastar dinheiro.\n\nO que separa quem economiza de quem toma susto no fim do mês não é a ferramenta, é o teto. Limite por tarefa, limite por dia, log de tudo que foi gasto.\n\nAutomação sem limite definido não é eficiência, é risco.\n\nSalve para revisar antes de ligar qualquer agente no seu negócio, e comenta ÓRBITA que eu te mando o diagnóstico grátis do seu atendimento.\n\n#InteligenciaArtificial #IA #Automacao #AgentesDeIA #CustoDeIA #ChatGPT #SoveralSoul",
-      "from": "2026-08-07",
-      "until": "2026-08-11"
+      "caption": "A pergunta que mais me fazem é qual ferramenta usar.\n\nÉ a pergunta errada.\n\nAntes de falar em ferramenta, eu procuro onde a empresa trava. E quase nunca trava num lugar só. Trava no orçamento que leva três dias pra sair. Na mensagem de sábado que ninguém viu. No pedido digitado duas vezes, em dois sistemas. Na cobrança que só é lembrada depois de vencer. Na informação que mora na cabeça de uma pessoa e para quando ela tira férias.\n\nNada disso é problema de tecnologia. É problema de estrutura.\n\nA tecnologia entra depois, e entra pequena, no ponto exato onde a conta não fecha. Quem inverte essa ordem compra ferramenta cara pra automatizar um processo que estava errado desde o começo.\n\nMeu trabalho começa nesse diagnóstico. Fale comigo e vamos marcar o da sua empresa, sem custo.\n\n(49) 9 9911-8781\n\n#InteligenciaArtificial #IA #Automacao #GestaoEmpresarial #ProcessosInternos #SoveralSoul",
+      "from": "2026-08-14",
+      "until": "2026-08-14"
+    },
+    {
+      "id": "onde-doi-story",
+      "dow": 5,
+      "time": "08:00",
+      "type": "story",
+      "media": [
+        "onde-doi.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-14",
+      "until": "2026-08-14"
     }
   ]
 }
