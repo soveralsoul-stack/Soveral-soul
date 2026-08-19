@@ -19,28 +19,100 @@
   },
   "schedule": [
     {
-      "id": "onde-doi-reels",
-      "dow": 5,
-      "time": "07:00",
-      "type": "reels",
-      "media": [
-        "onde-doi.mp4"
-      ],
-      "caption": "A pergunta que mais me fazem é qual ferramenta usar.\n\nÉ a pergunta errada.\n\nAntes de falar em ferramenta, eu procuro onde a empresa trava. E quase nunca trava num lugar só. Trava no orçamento que leva três dias pra sair. Na mensagem de sábado que ninguém viu. No pedido digitado duas vezes, em dois sistemas. Na cobrança que só é lembrada depois de vencer. Na informação que mora na cabeça de uma pessoa e para quando ela tira férias.\n\nNada disso é problema de tecnologia. É problema de estrutura.\n\nA tecnologia entra depois, e entra pequena, no ponto exato onde a conta não fecha. Quem inverte essa ordem compra ferramenta cara pra automatizar um processo que estava errado desde o começo.\n\nMeu trabalho começa nesse diagnóstico. Fale comigo e vamos marcar o da sua empresa, sem custo.\n\n(49) 9 9911-8781\n\n#InteligenciaArtificial #IA #Automacao #GestaoEmpresarial #ProcessosInternos #SoveralSoul",
-      "from": "2026-08-14",
-      "until": "2026-08-14"
-    },
-    {
-      "id": "onde-doi-story",
-      "dow": 5,
-      "time": "08:00",
+      "id": "ed03-s01",
+      "dow": 3,
+      "time": "19:00",
       "type": "story",
       "media": [
-        "onde-doi.mp4"
+        "ed03-story-01.mp4"
       ],
       "caption": "",
-      "from": "2026-08-14",
-      "until": "2026-08-14"
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s02",
+      "dow": 4,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed03-story-02.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s03",
+      "dow": 4,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed03-story-03.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s04",
+      "dow": 5,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed03-story-04.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s05",
+      "dow": 5,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed03-story-05.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s06",
+      "dow": 6,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed03-story-06.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s07",
+      "dow": 6,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed03-story-07.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-reels",
+      "dow": 1,
+      "time": "08:00",
+      "type": "reels",
+      "media": [
+        "reels-orbita-ed03.mp4"
+      ],
+      "caption": "Você não abre mais a IA. Ela já está onde o seu cliente decide.\n\nCinco notícias desta semana, e em nenhuma delas alguém precisa abrir um aplicativo de inteligência artificial.\n\nA OpenAI ligou os anúncios dentro do ChatGPT no Brasil, exibidos na hora da decisão de compra. A Salesforce e a Atlassian colocaram agentes morando dentro do CRM e das ferramentas de equipe, sem sistema novo. A OpenAI prepara um modelo até 14 vezes mais rápido, feito para responder durante a conversa. O Gemini passou de 1 bilhão de usuários por mês, com 63% do uso por voz. E o Grok Bot trouxe agentes que rodam sozinhos na nuvem, sem ninguém abrir nada.\n\nJunte tudo e o recado é um só: a IA deixou de ser um lugar onde você entra e virou a camada por onde as decisões passam. Quem só aparece no Google está chegando depois.\n\nSe a IA já é a porta de entrada, ela já achou a sua empresa?\n\nFale comigo e vamos marcar o diagnóstico gratuito da sua.\n(49) 9 9911-8781\n\n#InteligenciaArtificial #IA #Automacao #ChatGPT #MarketingDigital #SoveralSoul",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
     }
   ]
 }
