@@ -38,30 +38,47 @@ export const SbBackground: React.FC = () => (
   </AbsoluteFill>
 );
 
-/** Símbolo da marca: balão de conversa com hub de 3 nós. */
+/**
+ * Símbolo da marca (v2): balão de conversa com o miolo em triângulo de nós.
+ * Mesmo desenho que está no site, em app/page.tsx do repo soulbot. Anúncio e
+ * destino precisam parecer a mesma marca, então este arquivo acompanha o de lá.
+ */
 export const SbMark: React.FC<{ size?: number }> = ({ size = 140 }) => (
-  <svg width={size} height={size} viewBox="0 0 40 40">
+  <svg width={size} height={size} viewBox="0 0 64 64">
     <defs>
-      <linearGradient id="sbmg" x1="0" y1="0" x2="1" y2="1">
+      <linearGradient id="sbmg" x1="10" y1="10" x2="56" y2="54" gradientUnits="userSpaceOnUse">
         <stop offset="0" stopColor={sb.cyan} />
         <stop offset="1" stopColor={sb.violet} />
       </linearGradient>
     </defs>
     <path
-      d="M7 5h26a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H16l-8 6v-6H7a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4Z"
-      fill="url(#sbmg)"
-      opacity={0.16}
-    />
-    <path
-      d="M7 5h26a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H16l-8 6v-6H7a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4Z"
+      d="M32 8C18 8 8 17.5 8 29.5c0 6.8 3.4 12.7 8.8 16.6L14 56l10.5-5.2c2.4.6 4.9.9 7.5.9 14 0 24-9.5 24-21.5S46 8 32 8z"
       fill="none"
       stroke="url(#sbmg)"
-      strokeWidth={1.6}
+      strokeWidth={3.4}
+      strokeLinejoin="round"
     />
-    <circle cx={14} cy={14} r={2.7} fill="url(#sbmg)" />
-    <circle cx={27} cy={12} r={2.7} fill={sb.cyan} />
-    <circle cx={24} cy={24} r={2.7} fill={sb.violet} />
-    <path d="M14 14 27 12 24 24 14 14" fill="none" stroke="url(#sbmg)" strokeWidth={1.4} strokeLinejoin="round" />
+    <path d="M21 26 40 21 35.5 40 21 26" fill="none" stroke="url(#sbmg)" strokeWidth={2.2} strokeLinejoin="round" />
+    <circle cx={21} cy={26} r={4.4} fill="url(#sbmg)" />
+    <circle cx={40} cy={21} r={4.4} fill={sb.cyan} />
+    <circle cx={35.5} cy={40} r={4.4} fill={sb.violet} />
+  </svg>
+);
+
+/** Mesmo símbolo em currentColor, pro avatar cujo fundo já é o gradiente. */
+export const SbMarkSolid: React.FC<{ size?: number }> = ({ size = 52 }) => (
+  <svg width={size} height={size} viewBox="0 0 64 64">
+    <path
+      d="M32 8C18 8 8 17.5 8 29.5c0 6.8 3.4 12.7 8.8 16.6L14 56l10.5-5.2c2.4.6 4.9.9 7.5.9 14 0 24-9.5 24-21.5S46 8 32 8z"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={3.8}
+      strokeLinejoin="round"
+    />
+    <path d="M21 26 40 21 35.5 40 21 26" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinejoin="round" />
+    <circle cx={21} cy={26} r={4.4} fill="currentColor" />
+    <circle cx={40} cy={21} r={4.4} fill="currentColor" />
+    <circle cx={35.5} cy={40} r={4.4} fill="currentColor" />
   </svg>
 );
 

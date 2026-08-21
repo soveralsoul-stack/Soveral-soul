@@ -130,6 +130,10 @@ export const AdV2: React.FC = () => (
       <span style={{ color: sb.violet }}>do concorrente.</span>
     </Punch>
     <ChatFlash />
-    <BrandClose at={CLOSE_AT} tagline="Atendimento com IA no WhatsApp, 24h, com a sua cara." cta="Chama no WhatsApp" />
+    <BrandClose
+      at={CLOSE_AT}
+      tagline="Atendimento com IA no WhatsApp. Teste grátis por 7 dias."
+      cta="soulbot.app.br"
+    />
   </AbsoluteFill>
 );

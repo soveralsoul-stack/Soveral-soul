@@ -6,7 +6,7 @@
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { sb, sbGrad, SB_BODY, SB_DISPLAY, SAFE_TOP, SAFE_BOTTOM, SAFE_SIDE, SAFE_RIGHT_RAIL } from "./tokens";
-import { Bubble, BrandClose, Pop, SbBackground, SbMark, Typing } from "./shared";
+import { Bubble, BrandClose, Pop, SbBackground, SbMarkSolid, Typing } from "./shared";
 
 // Ritmo calibrado pra leitura de ~3 palavras por segundo: cada mensagem
 // tem tempo de ser lida antes da proxima entrar.
@@ -100,7 +100,7 @@ const Chat: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <SbMark size={52} />
+            <SbMarkSolid size={52} />
           </div>
           <div>
             <div style={{ fontFamily: SB_DISPLAY, fontWeight: 600, fontSize: 40, color: "#fff" }}>Sabor do Dendê</div>
@@ -192,6 +192,10 @@ export const AdV1: React.FC = () => (
     <SbBackground />
     <Hook />
     <Chat />
-    <BrandClose at={CLOSE_AT} tagline="Seu WhatsApp atendendo 24h, com a sua cara." cta="Chama no WhatsApp" />
+    <BrandClose
+      at={CLOSE_AT}
+      tagline="Seu WhatsApp atendendo 24h. Teste grátis por 7 dias."
+      cta="soulbot.app.br"
+    />
   </AbsoluteFill>
 );
