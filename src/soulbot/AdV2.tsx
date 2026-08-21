@@ -7,10 +7,11 @@ import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } fr
 import { sb, SB_BODY, SB_DISPLAY, SAFE_BOTTOM, SAFE_TOP } from "./tokens";
 import { BrandClose, Bubble, Pop, SbBackground, Typing } from "./shared";
 
-export const AD_V2_DURATION = 450; // 15s @ 30fps
+// Ritmo calibrado pra leitura: cada frase de impacto fica ~2.8s na tela.
+export const AD_V2_DURATION = 540; // 18s @ 30fps
 
-const CHAT_AT = 215;
-const CLOSE_AT = 345;
+const CHAT_AT = 262;
+const CLOSE_AT = 445;
 
 /** Frase que entra com soco (escala 1.14 -> 1) e sai antes da próxima. */
 const Punch: React.FC<{
@@ -81,12 +82,12 @@ const ChatFlash: React.FC = () => {
         <Bubble at={CHAT_AT + 10} side="in" time="19:42">
           Oi, ainda dá tempo de pedir pra hoje?
         </Bubble>
-        <Typing from={CHAT_AT + 34} to={CHAT_AT + 52} />
-        <Bubble at={CHAT_AT + 52} side="out" time="19:42">
+        <Typing from={CHAT_AT + 40} to={CHAT_AT + 62} />
+        <Bubble at={CHAT_AT + 62} side="out" time="19:42">
           Dá sim! Entregamos até 22h. Me diz seu bairro que eu já confirmo a taxa
         </Bubble>
       </div>
-      <Pop at={CHAT_AT + 78} style={{ marginTop: 46, textAlign: "center" }}>
+      <Pop at={CHAT_AT + 100} style={{ marginTop: 46, textAlign: "center" }}>
         <div
           style={{
             fontFamily: SB_BODY,
@@ -108,17 +109,17 @@ const ChatFlash: React.FC = () => {
 export const AdV2: React.FC = () => (
   <AbsoluteFill>
     <SbBackground />
-    <Punch from={4} to={70}>
+    <Punch from={4} to={85}>
       3 clientes chamaram
       <br />
       <span style={{ color: sb.cyan }}>ontem à noite.</span>
     </Punch>
-    <Punch from={74} to={140}>
+    <Punch from={89} to={170}>
       Você respondeu
       <br />
       às 9h da manhã.
     </Punch>
-    <Punch from={144} to={210}>
+    <Punch from={174} to={258}>
       Dois já tinham comprado
       <br />
       <span style={{ color: sb.violet }}>do concorrente.</span>

@@ -8,10 +8,12 @@ import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { sb, sbGrad, SB_BODY, SB_DISPLAY, SAFE_TOP, SAFE_BOTTOM } from "./tokens";
 import { Bubble, BrandClose, Pop, SbBackground, SbMark, Typing } from "./shared";
 
-export const AD_V1_DURATION = 540; // 18s @ 30fps
+// Ritmo calibrado pra leitura de ~3 palavras por segundo: cada mensagem
+// tem tempo de ser lida antes da proxima entrar.
+export const AD_V1_DURATION = 720; // 24s @ 30fps
 
 const CHAT_IN = 70;
-const CLOSE_AT = 440;
+const CLOSE_AT = 625;
 
 const Hook: React.FC = () => {
   const frame = useCurrentFrame();
@@ -116,22 +118,22 @@ const Chat: React.FC = () => {
             background: `linear-gradient(180deg, ${sb.waBg}, ${sb.waBg2})`,
           }}
         >
-          <Bubble at={95} side="in" time="19:42">
+          <Bubble at={100} side="in" time="19:42">
             Oi, vocês entregam hoje? Queria uma moqueca
           </Bubble>
-          <Typing from={125} to={152} />
-          <Bubble at={152} side="out" time="19:42">
+          <Typing from={132} to={165} />
+          <Bubble at={165} side="out" time="19:42">
             Oi! Entregamos sim, até 22h aqui na região central. A{" "}
             <span style={{ color: "#7FE9D6" }}>moqueca de peixe</span> serve bem 2 pessoas
           </Bubble>
-          <Bubble at={218} side="in" time="19:43">
+          <Bubble at={290} side="in" time="19:43">
             Perfeito. E tem sem pimenta?
           </Bubble>
-          <Typing from={246} to={272} />
-          <Bubble at={272} side="out" time="19:43">
+          <Typing from={318} to={350} />
+          <Bubble at={350} side="out" time="19:43">
             Tem sim, a gente separa a pimenta à parte. Quer que eu já chame alguém do salão pra fechar seu pedido?
           </Bubble>
-          <Pop at={332} style={{ alignSelf: "center" }}>
+          <Pop at={490} style={{ alignSelf: "center" }}>
             <div
               style={{
                 fontFamily: SB_BODY,
@@ -146,13 +148,13 @@ const Chat: React.FC = () => {
               Cliente encaminhado pra atendente humana
             </div>
           </Pop>
-          <Bubble at={360} side="out" time="19:43">
+          <Bubble at={515} side="out" time="19:43">
             A Fabi vai te chamar em 1 minutinho pra confirmar o endereço
           </Bubble>
         </div>
       </div>
 
-      <Pop at={396} style={{ position: "absolute", left: 0, right: 0, bottom: SAFE_BOTTOM - 190, textAlign: "center" }}>
+      <Pop at={548} style={{ position: "absolute", left: 0, right: 0, bottom: SAFE_BOTTOM - 190, textAlign: "center" }}>
         <div
           style={{
             display: "inline-block",
