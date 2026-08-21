@@ -308,6 +308,10 @@ funcionando, dá pra passar pra LANDING_PAGE_VIEWS, que faz a Meta buscar quem
 de fato abre a página em vez de quem só clica e desiste no meio do carregamento.
 Costuma render menos cliques e mais gente chegando de verdade.
 
-Não foi alterado por conta própria: muda como o dinheiro é gasto e a decisão é
-do Jerson. O conjunto está parado, então dá pra trocar a qualquer momento antes
-de ativar.
+Trocado em 21/08/2026 a pedido do Jerson. O conjunto `120251779060030597`
+está agora em LANDING_PAGE_VIEWS.
+
+Detalhe da montagem: a primeira tentativa mandou junto um `promoted_object` com
+o `pixel_id`, e a Meta recusou com "Promoted Object Invalid". Em campanha de
+tráfego o destino é o link do criativo, não um objeto promovido, então o campo
+sai sozinho e a troca passa limpa. Guardar isso pra próxima.
