@@ -5,7 +5,7 @@
 import React from "react";
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { sb, SB_BODY, SB_DISPLAY, SAFE_BOTTOM, SAFE_TOP, SAFE_SIDE, SAFE_RIGHT_RAIL } from "./tokens";
-import { BrandClose, Bubble, Pop, SbBackground, Typing } from "./shared";
+import { BrandClose, Bubble, Pop, SbBackground, SbTrilha, Typing } from "./shared";
 
 // Ritmo calibrado pra leitura: cada frase de impacto fica ~2.8s na tela.
 export const AD_V2_DURATION = 585; // 19.5s @ 30fps (fechamento com ~4.7s de tela)
@@ -113,6 +113,7 @@ const ChatFlash: React.FC = () => {
 
 export const AdV2: React.FC = () => (
   <AbsoluteFill>
+    <SbTrilha fadeOutAt={AD_V2_DURATION} />
     <SbBackground />
     <Punch from={4} to={85}>
       3 clientes chamaram

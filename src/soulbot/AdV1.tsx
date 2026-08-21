@@ -6,7 +6,7 @@
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 import { sb, sbGrad, SB_BODY, SB_DISPLAY, SAFE_TOP, SAFE_BOTTOM, SAFE_SIDE, SAFE_RIGHT_RAIL } from "./tokens";
-import { Bubble, BrandClose, Pop, SbBackground, SbMarkSolid, Typing } from "./shared";
+import { Bubble, BrandClose, Pop, SbBackground, SbMarkSolid, SbTrilha, Typing } from "./shared";
 
 // Ritmo calibrado pra leitura de ~3 palavras por segundo: cada mensagem
 // tem tempo de ser lida antes da proxima entrar.
@@ -189,6 +189,7 @@ const Chat: React.FC = () => {
 
 export const AdV1: React.FC = () => (
   <AbsoluteFill>
+    <SbTrilha fadeOutAt={AD_V1_DURATION} />
     <SbBackground />
     <Hook />
     <Chat />

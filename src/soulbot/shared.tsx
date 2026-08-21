@@ -3,8 +3,39 @@
  * bolhas de chat e fecho de marca. Base de design: 1080x1920 (9:16).
  */
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { sb, sbGrad, sbStage, SB_BODY, SB_DISPLAY, SAFE_BOTTOM } from "./tokens";
+
+/**
+ * Trilha dos anúncios: a mesma do vídeo institucional da SoveralSoul, então o
+ * anúncio soa como a marca e não como faixa de banco de áudio.
+ *
+ * Arquivo próprio, trilha-anuncio.wav: é a trilha.wav normalizada pra -15.6
+ * LUFS (pico real -1.3 dBTP). A original está em -21.5 LUFS, nível de vídeo
+ * institucional que se assiste por vontade própria; no feed, onde o anúncio
+ * toca logo depois de outro vídeo, isso soa 6 dB mais fraco que a vizinhança.
+ * A trilha.wav original NÃO foi tocada: StoryDado e SoveralSoul usam ela.
+ * Com os fades, os MP4s saem em -16.1 LUFS e pico real -3.6 dBTP.
+ *
+ * Volume 1 de propósito. Não há locução aqui, a música é o único áudio, então
+ * ela é a faixa principal e não uma cama pra ficar por baixo de alguma coisa.
+ * Os vídeos seguem funcionando mudos, a leitura é que carrega a mensagem.
+ *
+ * Fade nas duas pontas: sem isso a faixa começa e corta seco, o que soa
+ * amador logo no gancho e bem no fecho de marca.
+ */
+export const SbTrilha: React.FC<{ fadeOutAt: number }> = ({ fadeOutAt }) => {
+  const frame = useCurrentFrame();
+  const entrada = interpolate(frame, [0, 20], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const saida = interpolate(frame, [fadeOutAt - 36, fadeOutAt], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  return <Audio src={staticFile("audio/trilha-anuncio.wav")} volume={Math.min(entrada, saida)} />;
+};
 
 /** Fundo navy com glows ciano/violeta, mesma atmosfera da landing. */
 export const SbBackground: React.FC = () => (
