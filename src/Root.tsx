@@ -5,6 +5,8 @@ import { StoryDado } from "./StoryDado";
 import { STORIES } from "./data/stories";
 import { video, video_durationInFrames, formats } from "./brand/tokens";
 import { CtaVariant } from "./components/LayoutContext";
+import { AdV1, AD_V1_DURATION } from "./soulbot/AdV1";
+import { AdV2, AD_V2_DURATION } from "./soulbot/AdV2";
 
 const ctaVariants: { suffix: string; value: CtaVariant }[] = [
   { suffix: "WhatsApp", value: "whatsapp" },
@@ -41,6 +43,23 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{ storyId: s.id }}
         />
       ))}
+      {/* Anúncios SoulBot (Reels/Story 9:16) */}
+      <Composition
+        id="SoulBot-Ad-V1"
+        component={AdV1}
+        durationInFrames={AD_V1_DURATION}
+        fps={video.fps}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="SoulBot-Ad-V2"
+        component={AdV2}
+        durationInFrames={AD_V2_DURATION}
+        fps={video.fps}
+        width={1080}
+        height={1920}
+      />
     </>
   );
 };
