@@ -111,3 +111,41 @@ Links diretos:
 3. Decidir a declaração de conteúdo gerado por IA no anúncio. Os vídeos são
    renderizados por código (Remotion), não por IA generativa, mas a declaração
    é responsabilidade do anunciante e vale a decisão do Jerson.
+
+## Anúncios criados (21/08/2026)
+
+Vídeos na biblioteca da conta de anúncios:
+- `1370917495240826` soulbotadv19x16.mp4 (25,5s)
+- `1856818371969361` soulbotadv29x16.mp4 (19,5s)
+
+Anúncios, os dois PAUSADOS sob o conjunto `120251777047180597`:
+- `120251777495080597` · SoulBot | A | 19h42 | 9x16
+- `120251777506990597` · SoulBot | B | Quantos você perdeu | 9x16
+
+Nenhum erro de bloqueio de entrega na campanha, conjunto ou anúncios.
+
+### Aprendizados da montagem (pra próxima campanha CTWA)
+
+1. O destino do WhatsApp NÃO vem de link `wa.me` no criativo. A Meta recusa
+   com "Too many parameters in Call To Action". O número é o que estiver
+   conectado à página, e o criativo leva
+   `call_to_action: {type: WHATSAPP_MESSAGE, value: {app_destination: WHATSAPP}}`.
+   Consequência: o texto de origem ("Vim pelo anúncio do SoulBot") não entra
+   por link. Se quiser mensagem pré-preenchida, configura no Gerenciador.
+2. A descrição (link_description) não é aceita junto do CTA de WhatsApp, então
+   a linha "Atendimento com IA, feito em Chapecó" ficou de fora. O texto
+   principal e o título entraram inteiros.
+3. Vídeo exige miniatura explícita. Sem imagem própria enviada, dá pra usar a
+   URL do campo `picture` do próprio vídeo, que a Meta gera no upload.
+4. O criativo montado pelo atalho simplificado da ferramenta não vira CTWA
+   válido ("Invalid Creative For Objective"). Precisa do `object_story_spec`
+   escrito na mão dentro da criação do anúncio.
+
+### Pendências antes de ativar
+
+- Nenhuma conta do Instagram aparece vinculada a essa conta de anúncios. O
+  conjunto mira Stories e Reels no Instagram, mas o criativo saiu com
+  identidade só de Facebook. Vale vincular o Instagram da marca na conta de
+  anúncios, senão a entrega no Instagram fica prejudicada.
+- Confirmar que o WhatsApp conectado à página Soveral Soul é o 49 99911-8781.
+- Declaração de conteúdo gerado por IA: não foi preenchida, é decisão do dono.
