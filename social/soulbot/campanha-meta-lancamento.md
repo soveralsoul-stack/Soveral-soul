@@ -211,3 +211,51 @@ O cartão final dos dois vídeos diz "Chama no WhatsApp", enquanto o botão do
 anúncio diz "Saiba mais" e leva ao site. A landing tem o WhatsApp como CTA
 principal, então o caminho continua coerente, mas se incomodar dá pra renderizar
 uma variante com o fecho apontando pro site.
+
+## Copy revisada pro funil de autocadastro (21/08/2026)
+
+O produto ganhou autocadastro e 7 dias de teste grátis, e a landing trocou os
+botões de WhatsApp por "Criar minha conta grátis". A copy anterior falava em
+conhecer o produto e não mencionava o teste, que é o gancho mais forte.
+
+Muda também o botão do anúncio: de "Saiba mais" (LEARN_MORE) pra "Cadastre-se"
+(SIGN_UP), casando com o botão que a pessoa encontra ao chegar.
+
+### Anúncio A, criativo V1 "19h42"
+
+Texto principal:
+Seu cliente manda mensagem às 19h42, no meio do corre. Se ninguém responde na
+hora, ele pergunta pro concorrente.
+
+O SoulBot atende o WhatsApp da sua empresa 24h, tira dúvida, qualifica o cliente
+e te chama quando é hora de fechar. Você ensina ele conversando, sem planilha e
+sem código.
+
+Crie sua conta em soulbot.app.br e teste grátis por 7 dias.
+
+Título: Teste o SoulBot grátis por 7 dias
+Descrição: Atendimento com IA, feito em Chapecó
+Botão: Cadastre-se
+
+### Anúncio B, criativo V2 "Quantos você perdeu"
+
+Texto principal:
+Três clientes chamaram ontem à noite. Você respondeu de manhã. Dois já tinham
+comprado de outro.
+
+O SoulBot responde na hora, dia e noite. Ele não inventa: fora do que você
+ensinou, ele confirma e te encaminha. Não fecha negócio sozinho, qualifica e
+chama você.
+
+Monte o seu em soulbot.app.br. Sete dias grátis, sem instalar nada.
+
+Título: Quantos clientes você perdeu por demorar?
+Descrição: Sete dias grátis, sem instalar nada
+Botão: Cadastre-se
+
+### Quando aplicar
+
+Criativo na Meta é imutável, então trocar copy exige recriar os anúncios. Como
+os vídeos também mudaram (fecho novo apontando pro site), o certo é fazer as
+duas coisas de uma vez, quando os MP4 novos estiverem na biblioteca da conta.
+Assim não se queima uma rodada de anúncio à toa.
