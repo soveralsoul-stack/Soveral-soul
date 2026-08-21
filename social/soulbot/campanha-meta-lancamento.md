@@ -315,3 +315,37 @@ Detalhe da montagem: a primeira tentativa mandou junto um `promoted_object` com
 o `pixel_id`, e a Meta recusou com "Promoted Object Invalid". Em campanha de
 tráfego o destino é o link do criativo, não um objeto promovido, então o campo
 sai sozinho e a troca passa limpa. Guardar isso pra próxima.
+
+## Campanha NO AR (21/08/2026)
+
+Ativada a pedido do Jerson, os três níveis ligados, que é o que a Meta exige
+pra entregar. Ativar só o anúncio não faz nada acontecer enquanto campanha e
+conjunto seguem pausados.
+
+- Campanha `120251779058870597` · ACTIVE · R$ 25,00 BRL por dia (CBO)
+- Conjunto `120251779060030597` · ACTIVE · otimizando por LANDING_PAGE_VIEWS
+- `120251781304220597` · Site B | Quantos você perdeu · ACTIVE, já aprovado
+- `120251781301630597` · Site A | 19h42 · ACTIVE, em PENDING_REVIEW
+
+O anúncio A entra em entrega assim que a análise da Meta liberar. Não é erro,
+é a fila de revisão normal, e não bloqueia o B de rodar enquanto isso.
+
+Sem erro de bloqueio de entrega em nenhum dos quatro.
+
+### O que olhar nos primeiros dias
+
+- Se o A ficar preso em PENDING_REVIEW por muitas horas, vale conferir se não
+  virou rejeição. A ferramenta de erros não cobre rejeição de anúncio, isso só
+  aparece no Gerenciador.
+- CompleteRegistration no pixel é a métrica que interessa de verdade: clique e
+  visualização de página medem o caminho, conta criada mede o resultado.
+- O orçamento é de campanha (CBO), então a Meta distribui entre A e B sozinha.
+  Se um dos dois comer tudo cedo, é ela escolhendo, não erro de montagem.
+
+### Ainda em aberto
+
+- Declaração de conteúdo gerado por IA nos anúncios: não preenchida. Os vídeos
+  são renderizados por código (Remotion), não por IA generativa, mas a
+  declaração é responsabilidade do anunciante.
+- Ficha da SoveralSoul: `phone_number_id` e `donos` seguem como PREENCHER,
+  travados enquanto o 8781 não estiver no app SOVERBOT.
