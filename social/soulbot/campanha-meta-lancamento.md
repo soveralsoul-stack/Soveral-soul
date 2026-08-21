@@ -149,3 +149,30 @@ Nenhum erro de bloqueio de entrega na campanha, conjunto ou anúncios.
   anúncios, senão a entrega no Instagram fica prejudicada.
 - Confirmar que o WhatsApp conectado à página Soveral Soul é o 49 99911-8781.
 - Declaração de conteúdo gerado por IA: não foi preenchida, é decisão do dono.
+
+## Instagram vinculado e anúncios refeitos (21/08/2026)
+
+O Jerson vinculou o Instagram. Confirmado por API na conta de anúncios:
+`17841452861747596` · @soveralsoul.
+
+Como criativo na Meta é imutável, os dois anúncios foram recriados com a
+identidade do Instagram embutida (`instagram_user_id` no criativo e dentro do
+`object_story_spec`). A confirmação de que pegou está no campo `page_platform`
+do retorno, que passou de FACEBOOK para INSTAGRAM.
+
+Anúncios válidos, os dois PAUSADOS:
+- `120251778260180597` · SoulBot | A | 19h42 | 9x16 | IG
+- `120251778263790597` · SoulBot | B | Quantos você perdeu | 9x16 | IG
+
+Anúncios antigos (sem Instagram), ARQUIVADOS pra não serem ativados por engano:
+- `120251777495080597` e `120251777506990597`
+
+Sem erro de bloqueio de entrega em campanha, conjunto ou anúncios.
+
+### Observação sobre a miniatura
+
+A capa dos dois vídeos é o primeiro quadro, que na nossa animação é o fundo
+navy quase vazio (o relógio do V1 só entra no quadro 4). Em Reels e Stories o
+vídeo dá play sozinho, então isso quase não aparece, mas se incomodar dá pra
+escolher outro quadro como capa na edição do anúncio no Gerenciador. A outra
+saída seria renderizar com conteúdo já no quadro 0, o que exige novo upload.
