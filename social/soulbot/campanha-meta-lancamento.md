@@ -259,3 +259,55 @@ Criativo na Meta é imutável, então trocar copy exige recriar os anúncios. Co
 os vídeos também mudaram (fecho novo apontando pro site), o certo é fazer as
 duas coisas de uma vez, quando os MP4 novos estiverem na biblioteca da conta.
 Assim não se queima uma rodada de anúncio à toa.
+
+## Anúncios refeitos com trilha e copy do autocadastro (21/08/2026)
+
+O Jerson subiu na biblioteca da conta os dois vídeos editados por ele, com a
+trilha que ele mesmo montou. Criativo na Meta é imutável, então os anúncios
+foram recriados do zero, não editados.
+
+Vídeos usados (casados por DURAÇÃO, não por nome, porque houve arquivo com nome
+trocado na biblioteca):
+- `1063053452871477` soulbotadv19x16.mp4, 25,5s, é o V1
+- `1937567700218736` soulbotadv29x16.mp4, 19,5s, é o V2
+
+Anúncios novos, os dois PAUSADOS sob o conjunto `120251779060030597`:
+- `120251781301630597` · SoulBot | Site A | 19h42 | 9x16 | trilha
+- `120251781304220597` · SoulBot | Site B | Quantos você perdeu | 9x16 | trilha
+
+O que mudou em relação aos anteriores:
+- Copy do funil de autocadastro, com o teste grátis de 7 dias no texto e no
+  título, no lugar de "veja funcionando" e "entenda como funciona"
+- Botão SIGN_UP ("Cadastre-se") no lugar de LEARN_MORE ("Saiba mais"), casando
+  com o botão que a pessoa encontra ao chegar na landing
+- `conversion_domain` soulbot.app.br declarado, que é o que liga o anúncio à
+  medição de eventos agregados do domínio
+- Identidade @soveralsoul confirmada: `page_platform` voltou INSTAGRAM nos dois
+
+A `link_description` foi aceita desta vez. Ela tinha caído fora nos anúncios de
+WhatsApp, mas ali a recusa vinha do CTA de WhatsApp, não da descrição em si.
+
+Anúncios antigos de tráfego, ARQUIVADOS pra não serem ativados por engano:
+- `120251779068370597` e `120251779077060597`
+
+Sem erro de bloqueio de entrega em campanha, conjunto ou anúncios.
+
+### Pixel confirmado em produção
+
+O pixel `1553214922923491` (Soulbot LP) está recebendo evento de verdade:
+PageView registrado em 21/08 no site publicado. Ou seja, a instalação na landing
+está de pé, não é só código no repositório.
+
+Ainda não há CompleteRegistration porque ninguém criou conta pelo anúncio, o
+que é o esperado com a campanha parada.
+
+### Próxima decisão: meta de otimização do conjunto
+
+O conjunto está em LINK_CLICKS, escolhido quando não havia pixel. Com o pixel
+funcionando, dá pra passar pra LANDING_PAGE_VIEWS, que faz a Meta buscar quem
+de fato abre a página em vez de quem só clica e desiste no meio do carregamento.
+Costuma render menos cliques e mais gente chegando de verdade.
+
+Não foi alterado por conta própria: muda como o dinheiro é gasto e a decisão é
+do Jerson. O conjunto está parado, então dá pra trocar a qualquer momento antes
+de ativar.
