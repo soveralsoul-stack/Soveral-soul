@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checklist de gravação · App Review · FlowPilot</title>
+<style>
+  :root{--a1:#4f8cff;--a2:#7c5cff;--ink:#eaf0ff;--muted:#93a1c8;--bg:#080c1a;--card:rgba(255,255,255,.035);--line:#1c2545}
+  *{margin:0;box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.55;padding:34px 18px 80px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-size:1.5rem;display:flex;gap:10px;align-items:center;margin-bottom:4px}
+  .sub{color:var(--muted);font-size:.95rem;margin-bottom:26px}
+  h2{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--a1);margin:30px 0 10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 18px;margin-bottom:10px}
+  label.item{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer}
+  label.item:last-child{border-bottom:none}
+  input[type=checkbox]{width:19px;height:19px;margin-top:2px;accent-color:var(--a1);flex:none}
+  label.item.done{opacity:.45;text-decoration:line-through}
+  .say{background:rgba(79,140,255,.08);border-left:3px solid var(--a1);border-radius:0 10px 10px 0;
+    padding:10px 14px;margin:8px 0 14px;font-style:italic;color:#cdd9f6}
+  .say b{color:var(--a1);font-style:normal;font-size:.78rem;letter-spacing:.1em;display:block;margin-bottom:3px}
+  code,.url{font-family:ui-monospace,Consolas,monospace;font-size:.86em;background:#0c1224;border:1px solid #232c4e;
+    border-radius:7px;padding:2px 8px;word-break:break-all}
+  a{color:var(--a1)}
+  .warn{background:rgba(224,160,60,.1);border:1px solid #6b5322;border-radius:12px;padding:14px 16px;margin:16px 0;color:#f0d6a0;font-size:.94rem}
+  .tip{color:var(--muted);font-size:.88rem;margin:6px 0 0 31px}
+  .t{color:#6b7aa6;font-size:.8rem;font-weight:600;margin-left:auto;white-space:nowrap;padding-left:10px}
+  .reset{margin-top:26px;background:none;border:1px dashed #2d3760;color:var(--muted);padding:9px 16px;border-radius:9px;cursor:pointer}
+</style></head><body><div class="wrap">
+  <h1>🎬 Checklist de gravação — App Review</h1>
+  <p class="sub">FlowPilot · alvo 90–120s · fale em português (ou grave mudo) e adicione as legendas em inglês na edição · uma tomada contínua por cena. Marque conforme avança; o progresso fica salvo neste navegador.</p>
+
+  <h2>Antes de gravar (10 min)</h2>
+  <div class="card">
+    <label class="item"><input type="checkbox"><span><b>Revogar o acesso</b> do app no Instagram, pra gravar a conexão do zero: app do Instagram → Configurações → Central de Contas → Permissões do site (Apps e sites) → remover o app.</span></label>
+    <label class="item"><input type="checkbox"><span><b>Celular com o Instagram</b> logado na @soveralsoul à mão (pra cena da prova; filmar a tela do celular ou usar o espelhamento).</span></label>
+    <label class="item"><input type="checkbox"><span><b>OBS</b> configurado: 1080p, capturando a tela inteira do Chrome, microfone testado.</span></label>
+    <label class="item"><input type="checkbox"><span><b>Chrome limpo:</b> janela nova, sem abas pessoais, notificações do Windows silenciadas (Assistente de foco).</span></label>
+    <label class="item"><input type="checkbox"><span><b>Aba A</b> aberta: <a href="https://www.flowpilot.app.br/api/connect?client=teste" target="_blank" class="url">www.flowpilot.app.br/api/connect?client=teste</a></span></label>
+    <label class="item"><input type="checkbox"><span><b>Aba B</b> pronta (digitada, sem carregar): a URL do publish (cena 3, abaixo).</span></label>
+    <label class="item"><input type="checkbox"><span><b>Ensaio seco:</b> ler a fala (PT) em voz alta 1 vez (está em cada cena abaixo). A narração falada é opcional; as legendas em inglês entram na edição.</span></label>
+  </div>
+
+  <h2>Cena 1 · Abertura — 0:00–0:08</h2>
+  <div class="card">
+    <label class="item"><input type="checkbox"><span>Mostrar a <b>Aba A</b> (página "Conectar Instagram") com a <b>barra de URL visível</b>.</span><span class="t">8s</span></label>
+  </div>
+  <div class="say"><b>FALA (português)</b>"Este é o FlowPilot, da Soveral Soul. Ele agenda e publica posts no Instagram do próprio dono da conta, nos horários que ele define."</div><div class="say" style="border-left-color:#7c5cff"><b style="color:#7c5cff">LEGENDA NA EDIÇÃO (inglês)</b>“FlowPilot (by Soveral Soul) schedules and publishes Instagram posts for the account owner.”</div>
+
+  <h2>Cena 2 · Autorização — 0:08–0:40 · A MAIS IMPORTANTE</h2>
+  <div class="card">
+    <label class="item"><input type="checkbox"><span>Clicar em <b>"Conectar Instagram"</b>.</span></label>
+    <label class="item"><input type="checkbox"><span>Fazer <b>login</b> na @soveralsoul (a tela de login pode ser cortada na edição se digitar senha; melhor já estar logado no Instagram web).</span></label>
+    <label class="item"><input type="checkbox"><span><b>PARAR 2–3s na tela de consentimento</b> mostrando a permissão de <b>publicar conteúdo</b> legível. Sem cortes aqui.</span></label>
+    <label class="item"><input type="checkbox"><span>Clicar <b>Permitir</b> → mostrar a tela <b>"Instagram conectado · @soveralsoul"</b>.</span></label>
+  </div>
+  <div class="say"><b>FALA (português)</b>"Primeiro, o dono da conta conecta o Instagram e concede a permissão de publicação. Nada é publicado sem essa autorização."</div><div class="say" style="border-left-color:#7c5cff"><b style="color:#7c5cff">LEGENDA NA EDIÇÃO (inglês)</b>“The account owner connects their Instagram and grants the content publishing permission.”</div>
+
+  <h2>Cena 3 · Publicação — 0:40–1:05</h2>
+  <div class="card">
+    <label class="item"><input type="checkbox"><span>Ir pra <b>Aba B</b> e carregar:<br><span class="url">https://www.flowpilot.app.br/api/publish?key=ss-pub-7h2k9m4x&client=teste&id=story-teste</span></span></label>
+    <label class="item"><input type="checkbox"><span>Mostrar o <b>JSON de sucesso</b> com o <code>mediaId</code> (prova de que o app publicou).</span></label>
+  </div>
+  <p class="tip">Pode publicar de novo sem medo: o modo por <code>id</code> não tem trava de duplicata; só vai sair mais um story.</p>
+  <div class="say"><b>FALA (português)</b>"Conectado, o FlowPilot cria o contêiner de mídia e publica o post na conta autorizada, pela API do Instagram."</div><div class="say" style="border-left-color:#7c5cff"><b style="color:#7c5cff">LEGENDA NA EDIÇÃO (inglês)</b>“FlowPilot publishes the post to the authorized account via the Instagram Graph API.”</div>
+
+  <h2>Cena 4 · Prova — 1:05–1:20</h2>
+  <div class="card">
+    <label class="item"><input type="checkbox"><span>Abrir o <b>Instagram</b> (celular ou instagram.com/soveralsoul) e mostrar o <b>Story "FUNCIONOU."</b> no ar.</span></label>
+  </div>
+  <div class="say"><b>FALA (português)</b>"Aqui está o post no ar, no perfil que autorizou o aplicativo."</div><div class="say" style="border-left-color:#7c5cff"><b style="color:#7c5cff">LEGENDA NA EDIÇÃO (inglês)</b>“The post is now live on the authorized Instagram profile.”</div>
+
+  <h2>Cena 5 · Revogação — 1:20–1:35</h2>
+  <div class="card">
+    <label class="item"><input type="checkbox"><span>Mostrar onde se remove o acesso: Instagram → Configurações → Central de Contas → Permissões do site / Apps e sites → o app com o botão de <b>remover</b>. (Só mostrar; não precisa remover.)</span></label>
+  </div>
+  <div class="say"><b>FALA (português)</b>"O usuário pode revogar o acesso a qualquer momento nas configurações do Instagram. Nossa política de privacidade explica o uso e a exclusão dos dados."</div><div class="say" style="border-left-color:#7c5cff"><b style="color:#7c5cff">LEGENDA NA EDIÇÃO (inglês)</b>“Access can be revoked anytime in Instagram settings. Our privacy policy covers data use and deletion.”</div>
+
+  <div class="warn">⚠️ <b>Depois de gravar, troque a chave.</b> A URL da cena 3 mostra o <code>PUBLISH_SECRET</code> no vídeo. Assim que terminar: Vercel → Settings → Environment Variables → editar <code>PUBLISH_SECRET</code> pra um valor novo → Redeploy. (1 minuto, e o vídeo pode circular sem risco.)</div>
+
+  <h2>Depois da gravação</h2>
+  <div class="card">
+    <label class="item"><input type="checkbox"><span><b>Editar:</b> adicionar as 5 legendas em inglês (uma por cena, embaixo da tela, 2–4s cada).</span></label>
+    <label class="item"><input type="checkbox"><span><b>Rever o vídeo:</b> a permissão aparece legível? A URL aparece na autorização? O story aparece? Sem cortes na cena 2? Legendas em inglês no lugar?</span></label>
+    <label class="item"><input type="checkbox"><span><b>Trocar o PUBLISH_SECRET</b> no Vercel (aviso acima).</span></label>
+    <label class="item"><input type="checkbox"><span><b>Formulário do Review:</b> colar os 2 textos prontos de <code>flowpilot/docs/roteiro-video.md</code> ("How your app uses this permission" e "Steps to reproduce") + credenciais de teste.</span></label>
+    <label class="item"><input type="checkbox"><span><b>Pré-requisitos:</b> app em modo Live · Verificação de Negócio concluída · política no ar (<a href="https://flowpilot.app.br/privacidade" target="_blank">/privacidade</a>).</span></label>
+    <label class="item"><input type="checkbox"><span><b>Submeter</b> o App Review e acompanhar o status no painel da Meta.</span></label>
+  </div>
+
+  <button class="reset" onclick="localStorage.removeItem('fp_grav');location.reload()">Limpar progresso</button>
+</div>
+<script>
+  const KEY='fp_grav';
+  const boxes=[...document.querySelectorAll('input[type=checkbox]')];
+  const saved=JSON.parse(localStorage.getItem(KEY)||'[]');
+  boxes.forEach((b,i)=>{ b.checked=!!saved[i]; b.parentElement.classList.toggle('done',b.checked);
+    b.addEventListener('change',()=>{ b.parentElement.classList.toggle('done',b.checked);
+      localStorage.setItem(KEY, JSON.stringify(boxes.map(x=>x.checked?1:0))); });
+  });
+</script>
+</body></html>

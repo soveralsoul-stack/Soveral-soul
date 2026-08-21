@@ -1,7 +1,0 @@
-{
-  "name": "soveralsoul-vercel-publisher",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Agendador de posts do Instagram (Vercel Serverless).",
-  "engines": { "node": ">=18" }
-}

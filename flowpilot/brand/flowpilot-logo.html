@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<style>
+  @font-face{ font-family:'Space Grotesk'; src:url('../assets/fonts/SpaceGrotesk.ttf') format('truetype'); font-weight:300 700; }
+  :root{ --bg:#0b1020; --bg2:#0f1630; --ink:#eaf0ff; --muted:#8a97c2; --a1:#4f8cff; --a2:#7c5cff; }
+  *{margin:0;box-sizing:border-box}
+  .board{width:1200px;height:1200px;background:radial-gradient(120% 80% at 50% -10%,#141d3d,#0b1020 60%);
+    font-family:'Space Grotesk',sans-serif;color:var(--ink);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .glow{position:absolute;top:16%;left:50%;transform:translateX(-50%);width:640px;height:420px;
+    background:#5b7cff;opacity:.16;filter:blur(120px);border-radius:50%}
+  .grid{position:absolute;inset:0;opacity:.06;
+    background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:56px 56px}
+
+  .lockup{position:relative;display:flex;align-items:center;gap:30px}
+  .mark{width:132px;height:132px;border-radius:30px;background:linear-gradient(135deg,var(--a1),var(--a2));
+    display:flex;align-items:center;justify-content:center;box-shadow:0 24px 60px rgba(91,124,255,.45)}
+  .mark svg{width:70px;height:70px}
+  .wm{font-weight:700;font-size:120px;letter-spacing:-3px;line-height:1}
+  .wm .p2{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .tag{position:relative;margin-top:34px;font-size:32px;letter-spacing:.5px;color:var(--muted)}
+
+  .vars{position:absolute;bottom:70px;display:flex;gap:26px;align-items:center}
+  .chip{display:flex;align-items:center;gap:12px;padding:16px 22px;border:1px solid #26315a;border-radius:14px;background:rgba(255,255,255,.03)}
+  .chip .mini{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--a1),var(--a2));display:flex;align-items:center;justify-content:center}
+  .chip .mini svg{width:22px;height:22px}
+  .chip.mono .mini{background:#eaf0ff}
+  .chip.mono .mini svg path{fill:#0b1020}
+  .chip .txt{font-weight:600;font-size:26px}
+  .chip .txt .p2{color:var(--a1)}
+  .chip.light{background:#eaf0ff;border-color:#eaf0ff}
+  .chip.light .txt{color:#0b1020}
+  .chip.light .txt .p2{color:var(--a2)}
+</style></head><body>
+  <div class="board">
+    <div class="glow"></div><div class="grid"></div>
+
+    <div class="lockup">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z"/></svg>
+      </div>
+      <div class="wm">Flow<span class="p2">Pilot</span></div>
+    </div>
+    <div class="tag">O piloto dos seus posts.</div>
+
+    <div class="vars">
+      <div class="chip">
+        <div class="mini"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z"/></svg></div>
+        <div class="txt">Flow<span class="p2">Pilot</span></div>
+      </div>
+      <div class="chip mono">
+        <div class="mini"><svg viewBox="0 0 24 24"><path d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z"/></svg></div>
+        <div class="txt" style="color:#eaf0ff">Flow<span style="color:#8a97c2">Pilot</span></div>
+      </div>
+      <div class="chip light">
+        <div class="mini"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z"/></svg></div>
+        <div class="txt">Flow<span class="p2">Pilot</span></div>
+      </div>
+    </div>
+  </div>
+</body></html>

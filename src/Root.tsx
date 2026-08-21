@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { SoveralSoul } from "./SoveralSoul";
 import { StoryDado } from "./StoryDado";
+import { AppReview, APP_REVIEW_DURATION } from "./AppReview";
 import { STORIES } from "./data/stories";
 import { video, video_durationInFrames, formats } from "./brand/tokens";
 import { CtaVariant } from "./components/LayoutContext";
@@ -30,6 +31,15 @@ export const RemotionRoot: React.FC = () => {
           />
         ))
       )}
+      {/* Vídeo do App Review (Meta) — trechos gravados + legendas EN */}
+      <Composition
+        id="AppReview"
+        component={AppReview}
+        durationInFrames={APP_REVIEW_DURATION}
+        fps={video.fps}
+        width={1920}
+        height={1080}
+      />
       {/* Stories animados (câmera lenta) — um por "dado da semana" */}
       {STORIES.map((s) => (
         <Composition

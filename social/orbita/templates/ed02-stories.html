@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<title>Órbita ed. 02 — stories</title>
+<style>
+@font-face{font-family:'BS';src:url('../build/fonts/BigShoulders-Bold.ttf') format('truetype');font-weight:700}
+@font-face{font-family:'IS';src:url('../build/fonts/InstrumentSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'IS';src:url('../build/fonts/InstrumentSans-Bold.ttf') format('truetype');font-weight:700}
+:root{--teal:#5BC1D4;--amber:#D9A85C;--white:#fff;--soft:#AFC2D4;--body:#D7E1EA;--navy:#0A1422}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000}
+.story{position:relative;width:1080px;height:1920px;overflow:hidden;display:none;
+  font-family:'IS';color:var(--white);
+  background:radial-gradient(120% 70% at 50% 0%,#1D3A5C,#14273F 45%,#0A1422)}
+.story.active{display:block}
+.net{position:absolute;inset:0;z-index:1}
+.grid{position:absolute;inset:0;z-index:0;opacity:.09;
+  background-image:linear-gradient(#5BC1D4 1px,transparent 1px),linear-gradient(90deg,#5BC1D4 1px,transparent 1px);
+  background-size:110px 110px;
+  -webkit-mask-image:radial-gradient(circle at 50% 45%,#000 35%,transparent 80%)}
+/* barra de progresso */
+.prog{position:absolute;top:54px;left:70px;right:70px;height:6px;border-radius:4px;
+  background:rgba(175,194,212,.25);z-index:20;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--teal);border-radius:4px;
+  animation:fill 9s linear forwards}
+@keyframes fill{to{width:100%}}
+/* topo */
+.topbar{position:absolute;top:96px;left:70px;right:70px;display:flex;justify-content:space-between;
+  align-items:flex-start;z-index:15}
+.l1{font-family:'BS';font-size:42px;letter-spacing:.05em;font-weight:700}
+.l1 b{color:var(--teal)}
+.l2{margin-top:6px;font-size:17px;letter-spacing:.42em;color:var(--soft);font-weight:700}
+.pg{font-family:'BS';font-weight:700;font-size:38px;color:var(--soft)}
+.pg b{color:var(--teal)}
+/* conteudo */
+.headzone{position:absolute;left:80px;right:80px;top:330px;z-index:15}
+.tag{display:inline-block;font-size:20px;font-weight:700;letter-spacing:.2em;border-radius:40px;
+  padding:13px 26px 11px;border:2px solid var(--teal);color:var(--teal);margin-bottom:34px}
+.tag.a{border-color:var(--amber);color:var(--amber)}
+.tag.solid{background:var(--teal);color:var(--navy);border-color:var(--teal)}
+h1{font-family:'BS';font-weight:700;font-size:112px;line-height:.98;text-transform:uppercase}
+h1 .cy{color:var(--teal)} h1 .am{color:var(--amber)}
+.sub{margin-top:30px;font-size:36px;line-height:1.5;color:var(--body)}
+.sub b{color:var(--white)}
+/* bloco "o que muda" */
+.muda{position:absolute;left:80px;right:80px;bottom:430px;z-index:15;
+  background:rgba(10,20,34,.86);border:2px solid rgba(91,193,212,.45);
+  border-left:12px solid var(--teal);border-radius:22px;padding:36px 40px}
+.muda.a{border-color:rgba(217,168,92,.5);border-left-color:var(--amber)}
+.muda .c{font-size:19px;font-weight:700;letter-spacing:.26em;color:var(--teal);margin-bottom:14px}
+.muda.a .c{color:var(--amber)}
+.muda p{font-size:34px;line-height:1.42}
+.fonte{position:absolute;left:80px;bottom:330px;z-index:15;font-size:20px;letter-spacing:.16em;
+  color:var(--soft);font-weight:700}
+.urlline{position:absolute;left:0;right:0;bottom:120px;text-align:center;z-index:15;
+  font-size:22px;letter-spacing:.22em;color:var(--teal);font-weight:700}
+/* orbes */
+.orb{position:absolute;border-radius:50%;z-index:2}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);opacity:.5;z-index:1}
+.so{background:radial-gradient(circle at 34% 30%,#F7E6BE,#D9A85C 55%,#8A5F27)}
+.te{background:radial-gradient(circle at 34% 30%,#BFE6EE,#4FA8C0 55%,#1B4C66)}
+.lu{background:radial-gradient(circle at 34% 30%,#F6F4EE,#C2BFB6 55%,#7E7B72)}
+/* CTA final */
+.ctabanner{position:absolute;left:80px;right:80px;bottom:430px;z-index:16;background:var(--teal);
+  border-radius:30px;padding:52px 56px;text-align:center;color:var(--navy)}
+.ctabanner .big{font-family:'BS';font-weight:700;font-size:88px;letter-spacing:.03em;line-height:1}
+.ctabanner p{margin-top:18px;font-size:32px;font-weight:700;line-height:1.35}
+/* numero grande (dado) */
+.bignum{position:absolute;left:0;right:0;top:960px;text-align:center;z-index:14;
+  font-family:'BS';font-weight:700;font-size:300px;line-height:1;color:var(--teal);opacity:.16}
+/* animacoes */
+.a-rise{opacity:0;transform:translateY(52px);animation:rise .95s cubic-bezier(.2,.7,.2,1) forwards;
+  animation-delay:var(--d,0s)}
+@keyframes rise{to{opacity:1;transform:none}}
+.a-fade{opacity:0;animation:fade 1.1s ease forwards;animation-delay:var(--d,0s)}
+@keyframes fade{to{opacity:1}}
+.a-pop{opacity:0;transform:scale(.9);animation:pop .8s cubic-bezier(.2,1.3,.3,1) forwards;
+  animation-delay:var(--d,0s)}
+@keyframes pop{to{opacity:1;transform:none}}
+.drift{animation:drift 9s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(-26px,34px)}}
+</style></head><body>
+
+<!-- ===== 01 GANCHO ===== -->
+<section class="story" id="s1">
+  <div class="grid"></div>
+  <svg class="net" viewBox="0 0 1080 1920"><g stroke="#5BC1D4" stroke-opacity=".3" stroke-width="2" fill="none">
+    <path d="M-40 1520 L200 1420 L440 1520 L320 1660"/><path d="M880 700 L1010 800 L930 950"/></g>
+    <g fill="#5BC1D4"><circle cx="200" cy="1420" r="9"/><circle cx="440" cy="1520" r="7"/><circle cx="1010" cy="800" r="8"/></g></svg>
+  <div class="glow drift" style="width:820px;height:820px;top:1080px;left:180px;background:#D9A85C"></div>
+  <div class="orb drift" style="width:420px;height:420px;top:1180px;left:340px" data-cls="so"></div>
+  <div class="prog"><i></i></div>
+  <div class="topbar"><div><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>01</b>/07</div></div>
+  <div class="headzone">
+    <div class="tag a-fade" style="--d:.15s">ÓRBITA DA SEMANA · ED. 02</div>
+    <h1><div class="a-rise" style="--d:.35s">Agora a IA</div>
+        <div class="a-rise" style="--d:.75s">tem <span class="cy">carteira.</span></div></h1>
+    <div class="sub a-rise" style="--d:1.4s">E ela já pode <b>gastar o seu dinheiro</b> sem te perguntar.</div>
+  </div>
+  <div class="fonte a-fade" style="--d:2.4s">5 NOTÍCIAS DA SEMANA</div>
+  <div class="urlline a-fade" style="--d:2.8s">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ===== 02 CHATGPT ADS ===== -->
+<section class="story" id="s2">
+  <div class="grid"></div>
+  <div class="glow drift" style="width:760px;height:760px;top:1500px;left:-260px;background:#4FA8C0"></div>
+  <div class="orb drift" style="width:340px;height:340px;top:1600px;left:-90px" data-cls="te"></div>
+  <div class="prog"><i></i></div>
+  <div class="topbar"><div><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>02</b>/07</div></div>
+  <div class="headzone">
+    <div class="tag solid a-fade" style="--d:.15s">CONFIRMADO</div>
+    <h1><div class="a-rise" style="--d:.35s">Já dá para</div>
+        <div class="a-rise" style="--d:.7s">anunciar <span class="cy">dentro</span></div>
+        <div class="a-rise" style="--d:1.05s"><span class="cy">do ChatGPT</span></div></h1>
+    <div class="sub a-rise" style="--d:1.6s">O Ads Manager beta abriu a compra direta de mídia: lances por clique, API de conversões e campanhas em ads.openai.com.</div>
+  </div>
+  <div class="muda a-pop" style="--d:2.4s"><div class="c">O QUE MUDA PRA VOCÊ</div>
+    <p>Seu cliente pergunta ao assistente e encontra um anúncio. Nasceu um canal de mídia novo.</p></div>
+  <div class="fonte a-fade" style="--d:3s">FONTE: BLOG DA OPENAI</div>
+  <div class="urlline a-fade" style="--d:3.3s">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ===== 03 PUBMATIC ===== -->
+<section class="story" id="s3">
+  <div class="grid"></div>
+  <div class="glow drift" style="width:700px;height:700px;top:1520px;left:620px;background:#4FA8C0"></div>
+  <div class="orb drift" style="width:300px;height:300px;top:1620px;left:830px" data-cls="te"></div>
+  <div class="prog"><i></i></div>
+  <div class="topbar"><div><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>03</b>/07</div></div>
+  <div class="headzone">
+    <div class="tag solid a-fade" style="--d:.15s">CONFIRMADO</div>
+    <h1><div class="a-rise" style="--d:.35s">Agentes já</div>
+        <div class="a-rise" style="--d:.7s">compram e</div>
+        <div class="a-rise" style="--d:1.05s"><span class="cy">vendem mídia</span></div></h1>
+    <div class="sub a-rise" style="--d:1.6s">A PubMatic lançou o AgenticOS, com <b>guardrails</b> para agentes de IA operando compra e venda em mídia programática.</div>
+  </div>
+  <div class="muda a-pop" style="--d:2.4s"><div class="c">O QUE MUDA PRA VOCÊ</div>
+    <p>Quando o agente opera o leilão, a regra do jogo passa a ser o limite que você define.</p></div>
+  <div class="fonte a-fade" style="--d:3s">FONTE: AGILE BRAND GUIDE</div>
+  <div class="urlline a-fade" style="--d:3.3s">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ===== 04 CLOUDFLARE WALLETS (nucleo do tema) ===== -->
+<section class="story" id="s4">
+  <div class="grid"></div>
+  <div class="glow drift" style="width:820px;height:820px;top:1480px;left:-320px;background:#D9A85C"></div>
+  <div class="orb drift" style="width:380px;height:380px;top:1580px;left:-120px" data-cls="so"></div>
+  <div class="prog"><i></i></div>
+  <div class="topbar"><div><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>04</b>/07</div></div>
+  <div class="headzone">
+    <div class="tag solid a-fade" style="--d:.15s">CONFIRMADO</div>
+    <h1><div class="a-rise" style="--d:.35s">O agente</div>
+        <div class="a-rise" style="--d:.7s">ganhou <span class="cy">teto</span></div>
+        <div class="a-rise" style="--d:1.05s"><span class="cy">de gasto</span></div></h1>
+    <div class="sub a-rise" style="--d:1.6s">Os Cloudflare Wallets dão identidade e <b>limite de pagamento</b> a agentes autônomos.</div>
+  </div>
+  <div class="muda a-pop" style="--d:2.4s"><div class="c">O QUE MUDA PRA VOCÊ</div>
+    <p>Automação que compra sozinha precisa de teto, não de confiança.</p></div>
+  <div class="fonte a-fade" style="--d:3s">FONTE: AI AGENT STORE</div>
+  <div class="urlline a-fade" style="--d:3.3s">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ===== 05 AI ACT (alerta) ===== -->
+<section class="story" id="s5">
+  <div class="grid"></div>
+  <div class="glow drift" style="width:740px;height:740px;top:1510px;left:600px;background:#D9A85C"></div>
+  <div class="orb drift" style="width:320px;height:320px;top:1610px;left:840px" data-cls="so"></div>
+  <div class="prog"><i></i></div>
+  <div class="topbar"><div><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>05</b>/07</div></div>
+  <div class="headzone">
+    <div class="tag a a-fade" style="--d:.15s">ALERTA</div>
+    <h1><div class="a-rise" style="--d:.35s">Conteúdo de</div>
+        <div class="a-rise" style="--d:.7s">IA precisa se</div>
+        <div class="a-rise" style="--d:1.05s"><span class="am">identificar</span></div></h1>
+    <div class="sub a-rise" style="--d:1.6s">O Artigo 50 do AI Act já vale na Europa, com transparência obrigatória para conteúdo gerado por IA.</div>
+  </div>
+  <div class="muda a a-pop" style="--d:2.4s"><div class="c">O QUE MUDA PRA VOCÊ</div>
+    <p>Alcança contrato de agência e agente configurado por marca. Quem atende cliente europeu ajusta agora.</p></div>
+  <div class="fonte a-fade" style="--d:3s">FONTE: AGILE BRAND GUIDE</div>
+  <div class="urlline a-fade" style="--d:3.3s">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ===== 06 72% ===== -->
+<section class="story" id="s6">
+  <div class="grid"></div>
+  <div class="bignum a-fade" style="--d:.5s">72%</div>
+  <div class="glow drift" style="width:680px;height:680px;top:1530px;left:-240px;background:#C2BFB6"></div>
+  <div class="orb drift" style="width:280px;height:280px;top:1630px;left:-80px" data-cls="lu"></div>
+  <div class="prog"><i></i></div>
+  <div class="topbar"><div><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>06</b>/07</div></div>
+  <div class="headzone">
+    <div class="tag solid a-fade" style="--d:.15s">CONFIRMADO</div>
+    <h1><div class="a-rise" style="--d:.35s"><span class="cy">72%</span> já decidem</div>
+        <div class="a-rise" style="--d:.7s">a compra</div>
+        <div class="a-rise" style="--d:1.05s">com IA</div></h1>
+    <div class="sub a-rise" style="--d:1.6s">Pesquisa da Optimove nos EUA mostra a jornada passando cada vez mais por assistentes.</div>
+  </div>
+  <div class="muda a-pop" style="--d:2.4s"><div class="c">O QUE MUDA PRA VOCÊ</div>
+    <p>Se o assistente não encontra o seu negócio, você não existe na hora da decisão.</p></div>
+  <div class="fonte a-fade" style="--d:3s">FONTE: AGILE BRAND GUIDE</div>
+  <div class="urlline a-fade" style="--d:3.3s">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ===== 07 CTA ===== -->
+<section class="story" id="s7">
+  <div class="grid"></div>
+  <svg class="net" viewBox="0 0 1080 1920"><g stroke="#5BC1D4" stroke-opacity=".28" stroke-width="2" fill="none">
+    <path d="M-40 1560 L180 1460 L420 1560"/><path d="M860 620 L1000 700 L940 850"/></g>
+    <g fill="#5BC1D4"><circle cx="180" cy="1460" r="8"/><circle cx="1000" cy="700" r="8"/></g></svg>
+  <div class="glow drift" style="width:760px;height:760px;top:250px;left:280px;background:#4FA8C0"></div>
+  <div class="prog"><i></i></div>
+  <div class="topbar"><div><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>07</b>/07</div></div>
+  <div class="headzone" style="top:420px">
+    <h1><div class="a-rise" style="--d:.2s">A sua IA</div>
+        <div class="a-rise" style="--d:.6s">tem <span class="cy">teto de</span></div>
+        <div class="a-rise" style="--d:1s"><span class="cy">gasto?</span></div></h1>
+    <div class="sub a-rise" style="--d:1.5s">Automação sem limite definido não é eficiência, <b>é risco</b>.</div>
+  </div>
+  <div class="ctabanner a-pop" style="--d:2.1s">
+    <div class="big">COMENTA "ÓRBITA"</div>
+    <p>Eu te mando o diagnóstico grátis do seu atendimento.</p>
+  </div>
+  <div class="fonte a-fade" style="--d:2.9s">ÓRBITA DA SEMANA · ED. 02</div>
+  <div class="urlline a-fade" style="--d:3.2s">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<script>
+  // aplica a classe do orbe (so/te/lu) marcada em data-cls
+  document.querySelectorAll('.orb[data-cls]').forEach(el=>el.classList.add(el.dataset.cls));
+  const n = parseInt(new URLSearchParams(location.search).get('s') || '1', 10);
+  const all = document.querySelectorAll('.story');
+  if (all[n-1]) all[n-1].classList.add('active');
+</script>
+</body></html>

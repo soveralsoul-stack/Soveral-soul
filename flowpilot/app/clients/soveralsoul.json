@@ -1,0 +1,118 @@
+{
+  "id": "soveralsoul",
+  "name": "SoveralSoul IA & Automação",
+  "igUserId": "17841452861747596",
+  "tokenEnv": "IG_ACCESS_TOKEN",
+  "mediaBaseUrl": "https://www.flowpilot.app.br/orbita",
+  "timezoneOffsetHours": -3,
+  "windowHours": 6,
+  "brand": {
+    "name": "SOVERAL<b>SOUL</b>",
+    "mark": "SS",
+    "accent": "#5BC1D4",
+    "cta": "#57B8C7",
+    "bg": "#0A1422",
+    "line": "#1D3A5C",
+    "handle": "@soveralsoul",
+    "city": "Chapecó/SC",
+    "phone": "wa.me/55 49 99911-8781"
+  },
+  "schedule": [
+    {
+      "id": "ed03-s01",
+      "dow": 3,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed03-story-01.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s02",
+      "dow": 4,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed03-story-02.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s03",
+      "dow": 4,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed03-story-03.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s04",
+      "dow": 5,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed03-story-04.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s05",
+      "dow": 5,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed03-story-05.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s06",
+      "dow": 6,
+      "time": "12:00",
+      "type": "story",
+      "media": [
+        "ed03-story-06.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-s07",
+      "dow": 6,
+      "time": "19:00",
+      "type": "story",
+      "media": [
+        "ed03-story-07.mp4"
+      ],
+      "caption": "",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    },
+    {
+      "id": "ed03-reels",
+      "dow": 1,
+      "time": "08:00",
+      "type": "reels",
+      "media": [
+        "reels-orbita-ed03.mp4"
+      ],
+      "caption": "Você não abre mais a IA. Ela já está onde o seu cliente decide.\n\nCinco notícias desta semana, e em nenhuma delas alguém precisa abrir um aplicativo de inteligência artificial.\n\nA OpenAI ligou os anúncios dentro do ChatGPT no Brasil, exibidos na hora da decisão de compra. A Salesforce e a Atlassian colocaram agentes morando dentro do CRM e das ferramentas de equipe, sem sistema novo. A OpenAI prepara um modelo até 14 vezes mais rápido, feito para responder durante a conversa. O Gemini passou de 1 bilhão de usuários por mês, com 63% do uso por voz. E o Grok Bot trouxe agentes que rodam sozinhos na nuvem, sem ninguém abrir nada.\n\nJunte tudo e o recado é um só: a IA deixou de ser um lugar onde você entra e virou a camada por onde as decisões passam. Quem só aparece no Google está chegando depois.\n\nSe a IA já é a porta de entrada, ela já achou a sua empresa?\n\nFale comigo e vamos marcar o diagnóstico gratuito da sua.\n(49) 9 9911-8781\n\n#InteligenciaArtificial #IA #Automacao #ChatGPT #MarketingDigital #SoveralSoul",
+      "from": "2026-08-19",
+      "until": "2026-08-24"
+    }
+  ]
+}

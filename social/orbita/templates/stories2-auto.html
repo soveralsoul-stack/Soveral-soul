@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>SoveralSoul — Stories v2</title>
+<style>
+  @font-face { font-family:'BigShoulders'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/BigShoulders-Bold.ttf'); font-weight:700; }
+  @font-face { font-family:'BigShoulders'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/BigShoulders-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'InstrSans'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSans-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'InstrSans'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSans-Bold.ttf'); font-weight:700; }
+
+  :root{
+    --bg0:#0A1422; --bg1:#14273F; --bg2:#1D3A5C;
+    --white:#FFFFFF; --soft:#AFC2D4;
+    --cyan:#5BC1D4; --cyan-soft:rgba(91,193,212,.35); --teal:#57B8C7; --navy-text:#0C1B2B;
+    --sun1:#F0D49A; --sun2:#D9A85C; --sun3:#9A6D30;
+    --moon1:#F0EEE8; --moon2:#C2BFB6; --moon3:#8F8C82;
+    --earth1:#9BD4E0; --earth2:#4FA8C0; --earth3:#1F5B7A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#000;}
+  .story{position:relative;width:1080px;height:1920px;overflow:hidden;display:none;
+    background:
+      radial-gradient(1300px 1000px at 75% 0%, var(--bg2) 0%, rgba(29,58,92,0) 60%),
+      radial-gradient(1000px 900px at 8% 100%, #10233B 0%, rgba(16,35,59,0) 60%),
+      linear-gradient(160deg, var(--bg1) 0%, var(--bg0) 70%);
+    font-family:'InstrSans',sans-serif;color:var(--white);}
+  .story.active{display:block;}
+
+  /* ===== constelação ===== */
+  .net{position:absolute;inset:0;z-index:1;}
+
+  /* ===== mobiliário da marca ===== */
+  .prog{position:absolute;top:150px;left:100px;right:100px;height:4px;background:rgba(91,193,212,.18);z-index:30;}
+  .prog i{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--cyan);transform-origin:left;animation:growbar 9s linear forwards;}
+  .topbar{position:absolute;top:196px;left:100px;right:100px;display:flex;justify-content:space-between;align-items:flex-start;z-index:30;}
+  .logo{line-height:1;}
+  .logo .l1{font-family:'BigShoulders';font-weight:700;font-size:44px;letter-spacing:.06em;}
+  .logo .l1 b{color:var(--cyan);font-weight:700;}
+  .logo .l2{margin-top:10px;font-size:20px;letter-spacing:.42em;color:var(--soft);font-weight:700;}
+  .pg{font-family:'BigShoulders';font-weight:700;font-size:40px;letter-spacing:.08em;color:var(--soft);padding-top:4px;}
+  .pg b{color:var(--cyan);}
+  .urlline{position:absolute;left:50%;transform:translateX(-50%);bottom:250px;font-size:26px;letter-spacing:.22em;color:var(--cyan);font-weight:700;z-index:30;}
+
+  /* ===== texto ===== */
+  .headzone{position:absolute;left:100px;right:100px;top:360px;z-index:20;}
+  .pill{display:inline-block;font-size:24px;font-weight:700;letter-spacing:.3em;color:var(--cyan);border:2px solid var(--cyan);border-radius:60px;padding:16px 34px 14px;margin-bottom:44px;}
+  h1{font-family:'BigShoulders';font-weight:700;font-size:150px;line-height:.98;letter-spacing:.01em;text-transform:uppercase;}
+  h1 .cy{color:var(--cyan);}
+  .sub{margin-top:34px;font-size:40px;line-height:1.45;color:var(--soft);max-width:840px;}
+  .sub b{color:var(--white);}
+
+  /* ===== orbes ===== */
+  .orb{border-radius:50%;position:relative;}
+  .orb.sun{background:radial-gradient(circle at 36% 32%, var(--sun1) 0%, var(--sun2) 52%, var(--sun3) 100%);box-shadow:0 0 130px rgba(217,168,92,.45), inset -16px -22px 48px rgba(110,72,26,.6);}
+  .orb.earth{background:radial-gradient(circle at 36% 30%, var(--earth1) 0%, var(--earth2) 55%, var(--earth3) 100%);box-shadow:0 0 110px rgba(79,168,192,.35), inset -16px -22px 48px rgba(16,54,74,.65);}
+  .orb.earth::after{content:'';position:absolute;inset:0;border-radius:50%;background:
+    radial-gradient(34% 26% at 30% 38%, rgba(240,238,232,.35) 0%, rgba(240,238,232,0) 100%),
+    radial-gradient(26% 20% at 66% 60%, rgba(31,91,122,.55) 0%, rgba(31,91,122,0) 100%);}
+  .orb.moon{background:radial-gradient(circle at 38% 32%, var(--moon1) 0%, var(--moon2) 58%, var(--moon3) 100%);box-shadow:0 0 90px rgba(240,238,232,.22), inset -14px -18px 40px rgba(80,78,70,.6);}
+  .orb.moon::after{content:'';position:absolute;inset:0;border-radius:50%;background:
+    radial-gradient(12% 12% at 40% 55%, rgba(110,107,98,.55) 0%, rgba(110,107,98,0) 100%),
+    radial-gradient(9% 9% at 62% 34%, rgba(110,107,98,.5) 0%, rgba(110,107,98,0) 100%);}
+
+  /* ===== animações ===== */
+  @keyframes rise{from{opacity:0;transform:translateY(80px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadein{from{opacity:0;}to{opacity:1;}}
+  @keyframes pop{0%{opacity:0;transform:scale(.5);}70%{opacity:1;transform:scale(1.06);}100%{opacity:1;transform:scale(1);}}
+  @keyframes slideL{from{opacity:0;transform:translateX(-90px);}to{opacity:1;transform:translateX(0);}}
+  @keyframes slideR{from{opacity:0;transform:translateX(90px);}to{opacity:1;transform:translateX(0);}}
+  @keyframes growbar{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-22px);}}
+  @keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.045);}}
+  @keyframes arrowup{0%,100%{transform:translateY(0);opacity:.9;}50%{transform:translateY(-26px);opacity:1;}}
+  @keyframes pulseglow{0%,100%{box-shadow:0 0 0 0 rgba(87,184,199,.35);}50%{box-shadow:0 0 0 24px rgba(87,184,199,0);}}
+  .a-rise{opacity:0;animation:rise .9s cubic-bezier(.22,.9,.32,1) forwards;animation-delay:var(--d,0s);}
+  .a-fade{opacity:0;animation:fadein 1s ease forwards;animation-delay:var(--d,0s);}
+  .a-pop{opacity:0;animation:pop .95s cubic-bezier(.34,1.4,.5,1) forwards;animation-delay:var(--d,0s);}
+  .a-slideL{opacity:0;animation:slideL .85s cubic-bezier(.22,.9,.32,1) forwards;animation-delay:var(--d,0s);}
+  .a-slideR{opacity:0;animation:slideR .85s cubic-bezier(.22,.9,.32,1) forwards;animation-delay:var(--d,0s);}
+  .f-float{animation:floaty 4.6s ease-in-out infinite;animation-delay:var(--fd,0s);}
+  .f-breathe{animation:breathe 4.2s ease-in-out infinite;animation-delay:var(--fd,0s);}
+
+  /* ===== listas com check (padrão da marca) ===== */
+  .ulist{position:absolute;left:100px;right:100px;top:1120px;z-index:20;}
+  .ulist .cap{font-size:26px;font-weight:700;letter-spacing:.3em;color:var(--cyan);margin-bottom:38px;}
+  .uitem{display:flex;gap:26px;align-items:flex-start;margin-bottom:38px;}
+  .uitem .tick{flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--cyan);display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .uitem p{font-size:38px;line-height:1.35;color:var(--soft);}
+  .uitem p b{color:var(--white);}
+
+  .heroorb{position:absolute;right:95px;top:660px;z-index:10;}
+
+  /* ===== cards escuros ===== */
+  .panel{background:rgba(255,255,255,.05);border:1.5px solid rgba(91,193,212,.35);border-radius:24px;backdrop-filter:none;}
+
+  /* S2 família */
+  #v2 .fam{position:absolute;left:100px;right:100px;top:1240px;display:flex;justify-content:space-between;align-items:flex-end;z-index:10;}
+  #v2 .fam .f{text-align:center;}
+  #v2 .fam .lb{margin-top:30px;font-family:'BigShoulders';font-weight:700;font-size:40px;letter-spacing:.24em;color:var(--white);}
+
+  /* S3 mapa */
+  .maprow{position:absolute;left:100px;right:100px;z-index:15;display:flex;align-items:center;gap:40px;padding:38px 44px;}
+  .maprow h3{font-family:'BigShoulders';font-weight:700;font-size:52px;letter-spacing:.2em;color:var(--white);}
+  .maprow p{font-size:32px;color:var(--soft);margin-top:8px;line-height:1.3;}
+
+  /* S7 regra */
+  .rrow{position:absolute;left:100px;right:100px;display:flex;align-items:center;gap:30px;padding:40px 44px;z-index:15;}
+  .rrow .q{flex:1;font-size:38px;color:var(--white);line-height:1.25;font-weight:700;}
+  .rrow .q small{display:block;font-size:28px;color:var(--soft);margin-top:6px;font-weight:400;}
+  .chip{display:flex;align-items:center;gap:18px;font-family:'BigShoulders';font-weight:700;font-size:44px;letter-spacing:.16em;color:var(--white);}
+  .chip .dot{width:48px;height:48px;border-radius:50%;flex:none;}
+  .dot.sunc{background:radial-gradient(circle at 36% 32%, var(--sun1), var(--sun2) 60%, var(--sun3));}
+  .dot.earthc{background:radial-gradient(circle at 36% 32%, var(--earth1), var(--earth2) 60%, var(--earth3));}
+  .dot.moonc{background:radial-gradient(circle at 36% 32%, var(--moon1), var(--moon2) 60%, var(--moon3));}
+
+  #v8 h1{font-size:118px;}
+  /* S8 pipeline */
+  .pl{position:absolute;left:158px;top:1020px;height:500px;width:2px;background:rgba(91,193,212,.5);transform-origin:top;z-index:9;}
+  .pst{position:absolute;left:100px;right:100px;display:flex;gap:36px;align-items:center;z-index:15;}
+  .pst .porb{flex:none;width:118px;height:118px;}
+  .pst h4{font-family:'BigShoulders';font-weight:700;font-size:44px;letter-spacing:.12em;}
+  .pst h4 span{color:var(--cyan);font-size:32px;letter-spacing:.1em;}
+  .pst p{font-size:34px;line-height:1.35;color:var(--soft);margin-top:8px;max-width:700px;}
+  .pst p b{color:var(--white);}
+
+  /* S9 perguntas */
+  .qcard{position:absolute;left:100px;right:100px;padding:46px 48px 40px;z-index:15;}
+  .qcard .qn{position:absolute;top:-24px;left:40px;font-size:24px;font-weight:700;background:var(--cyan);color:var(--navy-text);padding:12px 24px 10px;border-radius:40px;letter-spacing:.14em;}
+  .qcard p{font-size:40px;color:var(--white);line-height:1.3;font-weight:700;}
+  .qcard .ans{margin-top:18px;display:flex;align-items:center;gap:18px;font-family:'BigShoulders';font-weight:700;font-size:38px;letter-spacing:.16em;color:var(--cyan);}
+  .qcard .ans .dot{width:42px;height:42px;border-radius:50%;}
+
+  /* S10 CTA teal (padrão do post da marca) */
+  #v10 h1{font-size:118px;}
+  #v10 .ctawrap{position:absolute;left:100px;right:100px;top:1090px;z-index:15;}
+  #v10 .ctabanner{background:var(--teal);border-radius:28px;padding:56px 60px;text-align:center;color:var(--navy-text);animation:pulseglow 2.4s ease-in-out infinite;}
+  #v10 .ctabanner .big{font-family:'BigShoulders';font-weight:700;font-size:96px;letter-spacing:.04em;line-height:1;}
+  #v10 .ctabanner p{margin-top:18px;font-size:34px;font-weight:700;line-height:1.4;}
+  #v10 .linkup{position:absolute;left:50%;transform:translateX(-50%);bottom:330px;text-align:center;z-index:15;}
+  #v10 .linkup .arr{margin:0 auto 16px;width:60px;}
+  #v10 .linkup .t{font-size:28px;letter-spacing:.2em;color:var(--white);font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- ============ V1 — GANCHO ============ -->
+<section class="story" id="v1">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".28" stroke-width="2" fill="none">
+      <path d="M-40 1560 L180 1460 L420 1560 L300 1700"/>
+      <path d="M900 760 L1010 860 L940 1010"/>
+      <path d="M760 300 L920 250 L1040 340"/>
+    </g>
+    <g fill="#5BC1D4">
+      <circle cx="180" cy="1460" r="9"/><circle cx="420" cy="1560" r="7"/><circle cx="300" cy="1700" r="6"/>
+      <circle cx="1010" cy="860" r="8"/><circle cx="940" cy="1010" r="6"/>
+      <circle cx="920" cy="250" r="7"/>
+    </g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>01</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <div class="pill a-pop" style="--d:.15s;">NOVA GERAÇÃO DE IA</div>
+    <h1>
+      <div class="a-rise" style="--d:.5s;">A IA errada</div>
+      <div class="a-rise cy" style="--d:.95s;">custa caro.</div>
+    </h1>
+    <div class="sub a-rise" style="--d:1.6s;font-size:46px;color:var(--white);font-weight:700;margin-top:40px;">E quase todo mundo escolhe errado.</div>
+  </div>
+
+  <div class="a-pop" style="--d:2.3s;position:absolute;left:150px;top:1130px;z-index:10;">
+    <div class="f-float"><div class="orb sun" style="width:300px;height:300px;"></div></div>
+  </div>
+  <div class="a-pop" style="--d:2.6s;position:absolute;left:520px;top:1200px;z-index:10;">
+    <div class="f-float" style="--fd:.7s;"><div class="orb earth" style="width:210px;height:210px;"></div></div>
+  </div>
+  <div class="a-pop" style="--d:2.9s;position:absolute;left:800px;top:1250px;z-index:10;">
+    <div class="f-float" style="--fd:1.3s;"><div class="orb moon" style="width:140px;height:140px;"></div></div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:3.6s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V2 — FAMÍLIA ============ -->
+<section class="story" id="v2">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".26" stroke-width="2" fill="none">
+      <path d="M60 880 L220 980 L160 1140"/>
+      <path d="M880 1600 L1000 1500 L1060 1650"/>
+    </g>
+    <g fill="#5BC1D4"><circle cx="220" cy="980" r="8"/><circle cx="160" cy="1140" r="6"/><circle cx="1000" cy="1500" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>02</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1>
+      <div class="a-rise" style="--d:.2s;">Não existe</div>
+      <div class="a-rise" style="--d:.65s;"><span class="cy">"a melhor"</span> IA.</div>
+    </h1>
+    <div class="sub a-rise" style="--d:1.4s;">A nova geração é uma <b>família</b>. Cada modelo brilha em um tipo de tarefa.</div>
+  </div>
+
+  <div class="fam">
+    <div class="f a-pop" style="--d:2.1s;"><div class="f-float"><div class="orb sun" style="width:260px;height:260px;margin:0 auto;"></div></div><div class="lb a-fade" style="--d:2.6s;">SOL</div></div>
+    <div class="f a-pop" style="--d:2.5s;"><div class="f-float" style="--fd:.6s;"><div class="orb earth" style="width:220px;height:220px;margin:0 auto;"></div></div><div class="lb a-fade" style="--d:3s;">TERRA</div></div>
+    <div class="f a-pop" style="--d:2.9s;"><div class="f-float" style="--fd:1.2s;"><div class="orb moon" style="width:180px;height:180px;margin:0 auto;"></div></div><div class="lb a-fade" style="--d:3.4s;">LUA</div></div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:4s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V3 — MAPA ============ -->
+<section class="story" id="v3">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".26" stroke-width="2" fill="none"><path d="M840 300 L980 380 L920 520"/></g>
+    <g fill="#5BC1D4"><circle cx="980" cy="380" r="8"/><circle cx="920" cy="520" r="6"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>03</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1>
+      <div class="a-rise" style="--d:.2s;">Grave <span class="cy">este</span></div>
+      <div class="a-rise" style="--d:.6s;">mapa:</div>
+    </h1>
+  </div>
+
+  <div class="maprow panel a-slideL" style="--d:1.2s;top:880px;">
+    <div class="f-breathe"><div class="orb sun" style="width:130px;height:130px;"></div></div>
+    <div><h3>SOL</h3><p>potência máxima para os desafios complexos</p></div>
+  </div>
+  <div class="maprow panel a-slideR" style="--d:1.9s;top:1145px;">
+    <div class="f-breathe" style="--fd:.5s;"><div class="orb earth" style="width:130px;height:130px;"></div></div>
+    <div><h3>TERRA</h3><p>equilíbrio para o trabalho do dia a dia</p></div>
+  </div>
+  <div class="maprow panel a-slideL" style="--d:2.6s;top:1410px;">
+    <div class="f-breathe" style="--fd:1s;"><div class="orb moon" style="width:130px;height:130px;"></div></div>
+    <div><h3>LUA</h3><p>rapidez e economia para respostas em escala</p></div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:3.6s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V4 — SOL ============ -->
+<section class="story" id="v4">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".24" stroke-width="2" fill="none"><path d="M100 1680 L260 1600 L420 1690"/></g>
+    <g fill="#5BC1D4"><circle cx="260" cy="1600" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>04</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1>
+      <div class="a-rise" style="--d:.2s;">Sol</div>
+      <div class="a-rise cy" style="--d:.6s;">potência sob demanda</div>
+    </h1>
+    <div class="sub a-rise" style="--d:1.3s;max-width:560px;">Caro por resposta, <b>barato por decisão certa</b>.</div>
+  </div>
+
+  <div class="heroorb a-pop" style="--d:1.7s;top:790px;right:70px;">
+    <div class="f-float"><div class="orb sun" style="width:290px;height:290px;"></div></div>
+  </div>
+
+  <div class="ulist" style="top:1130px;">
+    <div class="cap a-fade" style="--d:2.3s;">QUANDO ACIONAR</div>
+    <div class="uitem a-slideL" style="--d:2.6s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Análises profundas</b> e cenários de mercado</p></div>
+    <div class="uitem a-slideL" style="--d:3s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Propostas e contratos</b> onde errar custa caro</p></div>
+    <div class="uitem a-slideL" style="--d:3.4s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Código crítico</b> e fluxos complexos</p></div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:4.2s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V5 — TERRA ============ -->
+<section class="story" id="v5">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".24" stroke-width="2" fill="none"><path d="M860 1620 L1000 1540 L1060 1680"/></g>
+    <g fill="#5BC1D4"><circle cx="1000" cy="1540" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>05</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1>
+      <div class="a-rise" style="--d:.2s;">Terra</div>
+      <div class="a-rise cy" style="--d:.6s;">o motor do dia a dia</div>
+    </h1>
+    <div class="sub a-rise" style="--d:1.3s;max-width:560px;">Equilíbrio entre inteligência, velocidade e custo. É onde a <b>rotina roda</b>.</div>
+  </div>
+
+  <div class="heroorb a-pop" style="--d:1.7s;top:790px;right:70px;">
+    <div class="f-float"><div class="orb earth" style="width:290px;height:290px;"></div></div>
+  </div>
+
+  <div class="ulist" style="top:1130px;">
+    <div class="cap a-fade" style="--d:2.3s;">QUANDO ACIONAR</div>
+    <div class="uitem a-slideL" style="--d:2.6s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Conteúdo e e-mails</b> com a voz da marca</p></div>
+    <div class="uitem a-slideL" style="--d:3s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Relatórios e resumos</b> de reuniões</p></div>
+    <div class="uitem a-slideL" style="--d:3.4s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Qualificação de leads</b> com critério</p></div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:4.2s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V6 — LUA ============ -->
+<section class="story" id="v6">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".24" stroke-width="2" fill="none"><path d="M80 700 L240 780 L180 940"/></g>
+    <g fill="#5BC1D4"><circle cx="240" cy="780" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>06</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1>
+      <div class="a-rise" style="--d:.2s;">Lua</div>
+      <div class="a-rise cy" style="--d:.6s;">resposta em segundos</div>
+    </h1>
+    <div class="sub a-rise" style="--d:1.3s;max-width:560px;">O mais leve e econômico. Feito para <b>volume</b>. Cliente não espera.</div>
+  </div>
+
+  <div class="heroorb a-pop" style="--d:1.7s;top:790px;right:70px;">
+    <div class="f-float"><div class="orb moon" style="width:290px;height:290px;"></div></div>
+  </div>
+
+  <div class="ulist" style="top:1130px;">
+    <div class="cap a-fade" style="--d:2.3s;">QUANDO ACIONAR</div>
+    <div class="uitem a-slideL" style="--d:2.6s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Atendimento 24h</b> no WhatsApp</p></div>
+    <div class="uitem a-slideL" style="--d:3s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Triagem</b> e dúvidas frequentes</p></div>
+    <div class="uitem a-slideL" style="--d:3.4s;"><span class="tick"><svg width="24" height="19" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#5BC1D4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Tarefas repetitivas</b> em escala</p></div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:4.2s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V7 — REGRA DE OURO ============ -->
+<section class="story" id="v7">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".24" stroke-width="2" fill="none"><path d="M840 340 L980 420 L920 560"/></g>
+    <g fill="#5BC1D4"><circle cx="980" cy="420" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>07</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1><div class="a-rise" style="--d:.2s;">A regra <span class="cy">de ouro</span></div></h1>
+    <div class="sub a-rise" style="--d:.8s;">Olhe para a <b>tarefa</b>, não para o modelo.</div>
+  </div>
+
+  <div class="rrow panel a-slideL" style="--d:1.5s;top:880px;">
+    <div class="q">Errar custa caro?<small>decisões, propostas, análises</small></div>
+    <div class="chip"><span class="dot sunc"></span>SOL</div>
+  </div>
+  <div class="rrow panel a-slideR" style="--d:2.2s;top:1150px;">
+    <div class="q">Rotina com critério?<small>conteúdo, relatórios, leads</small></div>
+    <div class="chip"><span class="dot earthc"></span>TERRA</div>
+  </div>
+  <div class="rrow panel a-slideL" style="--d:2.9s;top:1420px;">
+    <div class="q">Volume e pressa?<small>atendimento, triagem, escala</small></div>
+    <div class="chip"><span class="dot moonc"></span>LUA</div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:3.8s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V8 — NO AUTOMÁTICO ============ -->
+<section class="story" id="v8">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".24" stroke-width="2" fill="none"><path d="M860 400 L1000 480 L940 620"/></g>
+    <g fill="#5BC1D4"><circle cx="1000" cy="480" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>08</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1>
+      <div class="a-rise" style="--d:.2s;">Os três juntos,</div>
+      <div class="a-rise cy" style="--d:.6s;">no automático</div>
+    </h1>
+    <div class="sub a-rise" style="--d:1.2s;">Assim roda um <b>atendimento inteligente</b>:</div>
+  </div>
+
+  <div class="pl a-fade" style="--d:1.6s;animation-duration:2.4s;"></div>
+
+  <div class="pst a-slideR" style="--d:1.8s;top:960px;">
+    <div class="f-breathe"><div class="orb moon porb"></div></div>
+    <div><h4>LUA <span>3 SEGUNDOS</span></h4><p>Responde o cliente no WhatsApp <b>na hora</b>.</p></div>
+  </div>
+  <div class="pst a-slideR" style="--d:2.6s;top:1210px;">
+    <div class="f-breathe" style="--fd:.5s;"><div class="orb earth porb"></div></div>
+    <div><h4>TERRA <span>EM SEGUIDA</span></h4><p><b>Qualifica o lead</b>: dor, orçamento, momento.</p></div>
+  </div>
+  <div class="pst a-slideR" style="--d:3.4s;top:1460px;">
+    <div class="f-breathe" style="--fd:1s;"><div class="orb sun porb"></div></div>
+    <div><h4>SOL <span>SÓ QUANDO VALE</span></h4><p>Monta a <b>proposta sob medida</b>.</p></div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:4.4s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V9 — CHECKLIST ============ -->
+<section class="story" id="v9">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".24" stroke-width="2" fill="none"><path d="M80 380 L240 460 L180 620"/></g>
+    <g fill="#5BC1D4"><circle cx="240" cy="460" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>09</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1><div class="a-rise" style="--d:.2s;">Print <span class="cy">este</span> story</div></h1>
+    <div class="sub a-rise" style="--d:.8s;">Antes de acionar a IA, <b>uma pergunta</b>:</div>
+  </div>
+
+  <div class="qcard panel a-pop" style="--d:1.5s;top:880px;">
+    <span class="qn">PERGUNTA 01</span>
+    <p>"Se errar, perco dinheiro ou cliente?"</p>
+    <div class="ans"><span class="dot sunc"></span>VAI DE SOL</div>
+  </div>
+  <div class="qcard panel a-pop" style="--d:2.3s;top:1150px;">
+    <span class="qn">PERGUNTA 02</span>
+    <p>"É rotina que exige bom senso?"</p>
+    <div class="ans"><span class="dot earthc"></span>VAI DE TERRA</div>
+  </div>
+  <div class="qcard panel a-pop" style="--d:3.1s;top:1420px;">
+    <span class="qn">PERGUNTA 03</span>
+    <p>"É volume alto e resposta rápida?"</p>
+    <div class="ans"><span class="dot moonc"></span>VAI DE LUA</div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:4s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<!-- ============ V10 — CTA ============ -->
+<section class="story" id="v10">
+  <svg class="net a-fade" style="--d:.3s;" width="1080" height="1920" viewBox="0 0 1080 1920">
+    <g stroke="#5BC1D4" stroke-opacity=".28" stroke-width="2" fill="none">
+      <path d="M-40 1600 L160 1500 L380 1600"/>
+      <path d="M860 480 L1000 560 L940 700"/>
+    </g>
+    <g fill="#5BC1D4"><circle cx="160" cy="1500" r="8"/><circle cx="1000" cy="560" r="8"/></g>
+  </svg>
+  <div class="prog"><i></i></div>
+  <div class="topbar">
+    <div class="logo"><div class="l1">SOVERAL<b>SOUL</b></div><div class="l2">SERVIÇOS DE IA</div></div>
+    <div class="pg"><b>10</b>/10</div>
+  </div>
+
+  <div class="headzone" style="top:400px;">
+    <h1>
+      <div class="a-rise" style="--d:.2s;">Seu negócio já</div>
+      <div class="a-rise" style="--d:.6s;">pode operar <span class="cy">assim.</span></div>
+    </h1>
+    <div class="sub a-rise" style="--d:1.3s;">Sol, Terra e Lua no seu atendimento, <b>enquanto você cuida do resto</b>.</div>
+  </div>
+
+  <div class="ctawrap a-pop" style="--d:1.9s;"><div class="ctabanner"><div class="big">COMENTA "ÓRBITA"</div><p>Eu te mando o diagnóstico grátis do seu atendimento.</p></div></div>
+
+  <div class="linkup a-fade" style="--d:3s;">
+    <div class="t">OU CHAMA NO DIRECT · LINK NA BIO</div>
+  </div>
+
+  <div class="urlline a-fade" style="--d:3.6s;">WWW.SOVERALSOUL.COM.BR</div>
+</section>
+
+<script>
+  const p = new URLSearchParams(location.search);
+  const n = parseInt(p.get('s') || '1', 10);
+  document.querySelectorAll('.story').forEach((el,i)=>{ if(i===n-1) el.classList.add('active'); });
+</script>
+</body>
+</html>

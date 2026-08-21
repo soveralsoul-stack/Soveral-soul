@@ -1,0 +1,70 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Post 8h — posicionamento</title>
+<style>
+@font-face{font-family:'BS';src:url('../build/fonts/BigShoulders-Bold.ttf') format('truetype');font-weight:700}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Bold.ttf') format('truetype');font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0A1422;--teal:#5BC1D4;--amber:#D9A85C;--white:#FFF}
+body{background:#111}
+.card{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--navy);
+  font-family:'IN',sans-serif;color:var(--white)}
+
+/* foto: o Rodrigo fica na metade direita, olhando para o texto */
+.foto{position:absolute;left:31%;right:0;top:0;bottom:0;
+  background-image:url('../../acervo/retrato-sofa-perto.jpg');
+  background-size:cover;background-position:52% 26%;z-index:1}
+/* escurece a esquerda para o texto respirar, sem apagar o rosto */
+.tone{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(96deg,rgba(10,20,34,1) 0%,rgba(10,20,34,1) 29%,
+             rgba(10,20,34,.86) 37%,rgba(10,20,34,.34) 46%,rgba(10,20,34,.06) 56%,
+             rgba(10,20,34,0) 70%)}
+.vig{position:absolute;inset:0;z-index:3;
+  background:linear-gradient(180deg,rgba(10,20,34,.55) 0%,rgba(10,20,34,0) 22%,
+             rgba(10,20,34,0) 74%,rgba(10,20,34,.8) 100%)}
+/* respingo da marca vindo de baixo */
+.tint{position:absolute;inset:0;z-index:4;mix-blend-mode:soft-light;
+  background:radial-gradient(80% 55% at 4% 80%,rgba(91,193,212,.8),transparent 60%)}
+
+.top{position:absolute;top:56px;left:64px;z-index:10}
+.wm{font-family:'BS';font-weight:700;font-size:44px;letter-spacing:.055em;line-height:1}
+.wm b{color:var(--teal);font-weight:700}
+.wm .l2{display:block;margin-top:6px;font-family:'IN';font-size:14px;font-weight:700;
+  letter-spacing:.42em;color:rgba(255,255,255,.72)}
+
+.mid{position:absolute;left:64px;top:400px;width:580px;z-index:10}
+.rule{width:72px;height:5px;background:var(--teal);border-radius:4px;margin-bottom:34px}
+h1{font-family:'BS';font-weight:700;font-size:76px;line-height:.98;text-transform:uppercase;
+  letter-spacing:.01em}
+h1 .cy{color:var(--teal)}
+
+.foot{position:absolute;left:64px;bottom:104px;width:600px;z-index:10}
+.foot p{font-size:40px;line-height:1.32;color:rgba(255,255,255,.9)}
+.foot p b{color:var(--teal);font-weight:700}
+.hand{position:absolute;left:64px;bottom:44px;z-index:10;font-size:18px;font-weight:700;
+  letter-spacing:.2em;color:rgba(255,255,255,.55)}
+</style></head><body>
+
+<div class="card">
+  <div class="foto"></div>
+  <div class="tone"></div>
+  <div class="vig"></div>
+  <div class="tint"></div>
+
+  <div class="top">
+    <div class="wm">SOVERAL<b>SOUL</b><span class="l2">SERVIÇOS DE IA</span></div>
+  </div>
+
+  <div class="mid">
+    <div class="rule"></div>
+    <h1>Eu não vendo IA.<br>Eu acho <span class="cy">onde dói</span>.</h1>
+  </div>
+
+  <div class="foot">
+    <p>Mapeio <b>onde a sua empresa perde tempo e dinheiro</b>, e automatizo só esse ponto.</p>
+  </div>
+
+  <div class="hand">@SOVERALSOUL</div>
+</div>
+
+</body></html>

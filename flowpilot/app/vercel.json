@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/*.js": { "maxDuration": 60 }
+  },
+  "rewrites": [
+    { "source": "/privacidade", "destination": "/api/privacidade" },
+    { "source": "/termos", "destination": "/api/termos" },
+    { "source": "/demo", "destination": "/api/demo" }
+  ],
+  "crons": [
+    { "path": "/api/cron", "schedule": "*/15 * * * *" }
+  ]
+}

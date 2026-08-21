@@ -4,3 +4,21 @@ out/
 *.log
 .DS_Store
 .env
+
+# gravacoes brutas do App Review (colocar main.mp4/proof.mp4 aqui para re-render)
+public/appreview/
+public/appreview/
+social/orbita/build/f[0-9]*/
+social/orbita/build/chk-*.png
+social/orbita/build/all/
+social/orbita/build/ed02-story-*.mp4
+social/orbita/build/reels-orbita-ed02.mp4
+social/orbita/build/pais-foto.jpg
+social/orbita/build/pais-dia-dos-pais.jpg
+social/orbita/build/post-8h.jpg
+social/orbita/build/post-8h-story.jpg
+social/orbita/build/post-8h-story-mudo.mp4
+social/orbita/build/post-8h-story.mp4
+social/orbita/build/ed03-story-*.mp4
+social/orbita/build/reels-orbita-ed03.mp4
+social/orbita/build/render03.log

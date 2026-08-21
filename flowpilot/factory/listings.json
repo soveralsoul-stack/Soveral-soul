@@ -1,0 +1,38 @@
+[
+  {
+    "badge": "À VENDA",
+    "eyebrow": "Apartamento · Jardim Itália",
+    "price": "R$ 720.000",
+    "area": "92 m²",
+    "photo": "../assets/nicho/apto.png",
+    "specs": [
+      { "icon": "quartos", "v": "3", "k": "Quartos" },
+      { "icon": "banheiros", "v": "2", "k": "Banheiros" },
+      { "icon": "vagas", "v": "2", "k": "Vagas" },
+      { "icon": "estado", "v": "Novo", "k": "Estado" }
+    ],
+    "ctaText": "Agende sua visita →",
+    "phone": "(49) 9 9911-8781",
+    "handle": "@imoveispro",
+    "city": "Chapecó/SC",
+    "brand": { "mark": "IM", "name": "IMÓVEIS<b>PRO</b>", "accent": "#e0a64e", "cta": "#2d8fff" }
+  },
+  {
+    "badge": "ALUGA-SE",
+    "eyebrow": "Apartamento · Centro",
+    "price": "R$ 3.200",
+    "area": "por mês",
+    "photo": "../assets/nicho/apto.png",
+    "specs": [
+      { "icon": "quartos", "v": "2", "k": "Quartos" },
+      { "icon": "banheiros", "v": "1", "k": "Banheiro" },
+      { "icon": "vagas", "v": "1", "k": "Vaga" },
+      { "icon": "area", "v": "78", "k": "m²" }
+    ],
+    "ctaText": "Fale com a gente →",
+    "phone": "(49) 9 9911-8781",
+    "handle": "@imoveispro",
+    "city": "Chapecó/SC",
+    "brand": { "mark": "IM", "name": "IMÓVEIS<b>PRO</b>", "accent": "#e0a64e", "cta": "#2d8fff" }
+  }
+]

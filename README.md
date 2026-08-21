@@ -1,4 +1,19 @@
-# Soveral Soul — Vídeo de Marca (30s)
+# Soveral Soul — Workspace
+
+Este repositório reúne dois projetos independentes:
+
+- **Vídeo de marca (Remotion)** — este README, código em `src/` + `public/`.
+- **FlowPilot** — o produto de agendamento/publicação no Instagram, isolado e
+  autocontido em **[`flowpilot/`](flowpilot/README.md)** (app, marca, fábrica de
+  artes, docs de App Review, comercial). Pensado para virar um repositório próprio
+  no futuro (ver `flowpilot/README.md`).
+
+A pasta `social/` guarda conteúdo/renders avulsos da Soveral Soul (cards e mídias
+já geradas). A pasta `out/` é saída de render (ignorada pelo git).
+
+---
+
+## Vídeo de Marca (30s)
 
 Vídeo de marca produzido em **Remotion** (React → MP4), com render **100% local**,
 frame-accurate e controle total de texto/logo. Sem dependência de cloud/cloudfront.

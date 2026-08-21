@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>SoveralSoul — Sol, Terra e Lua</title>
+<style>
+  @font-face { font-family:'Bricolage'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/BricolageGrotesque-Bold.ttf'); font-weight:700; }
+  @font-face { font-family:'Bricolage'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/BricolageGrotesque-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'InstrSans'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSans-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'InstrSans'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSans-Bold.ttf'); font-weight:700; }
+  @font-face { font-family:'InstrSerif'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/InstrumentSerif-Italic.ttf'); font-style:italic; }
+  @font-face { font-family:'Geist'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/GeistMono-Regular.ttf'); font-weight:400; }
+  @font-face { font-family:'Geist'; src:url('/root/.claude/skills/canvas-design/canvas-fonts/GeistMono-Bold.ttf'); font-weight:700; }
+
+  :root{
+    --paper:#ECE7DC; --paper-hi:#F4F0E7; --ink:#242721; --ink-soft:#4A4E44;
+    --sage:#8F977F; --sage-deep:#4C5644; --blue:#5E6E93; --blue-deep:#3C4A6E; --gold:#AF8447;
+    --sun1:#E9CE96; --sun2:#C89455; --sun3:#96692F;
+    --moon1:#EAE7DE; --moon2:#BDBAB0; --moon3:#8F8C82;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#111;}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;
+    background:
+      radial-gradient(1200px 900px at 78% 8%, var(--paper-hi) 0%, rgba(244,240,231,0) 55%),
+      radial-gradient(900px 700px at 12% 96%, #E5DFD2 0%, rgba(229,223,210,0) 60%),
+      var(--paper);
+    font-family:'InstrSans',sans-serif;color:var(--ink);}
+  .grain{position:absolute;inset:0;opacity:.5;mix-blend-mode:multiply;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.55 0 0 0 0 0.53 0 0 0 0 0.47 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .rail{position:absolute;left:88px;top:206px;bottom:206px;width:1px;background:linear-gradient(180deg,rgba(36,39,33,0) 0%,rgba(36,39,33,.28) 12%,rgba(36,39,33,.28) 88%,rgba(36,39,33,0) 100%);}
+  .pageno{position:absolute;left:64px;bottom:88px;font-family:'Geist';font-size:26px;letter-spacing:.08em;color:var(--ink-soft);}
+  .pageno u{text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:6px;}
+  .orbit{position:absolute;border:1px solid rgba(36,39,33,.20);border-radius:50%;}
+  .orbit .sat{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--sage-deep);}
+  .star{position:absolute;color:var(--gold);}
+  .star svg{display:block;}
+  .footnote{position:absolute;left:50%;transform:translateX(-50%);bottom:92px;display:flex;align-items:center;gap:18px;white-space:nowrap;font-size:23px;color:var(--ink-soft);letter-spacing:.01em;}
+  .footnote .dash{width:56px;height:1px;background:rgba(36,39,33,.35);}
+  .footnote b{font-weight:700;color:var(--ink);}
+  .corner-moon{position:absolute;right:-150px;bottom:-150px;width:390px;height:390px;border-radius:50%;background:var(--sage);opacity:.55;}
+  .head{position:absolute;left:150px;top:170px;width:800px;}
+  .eyebrow{display:inline-block;font-family:'Geist';font-size:24px;letter-spacing:.3em;background:var(--sage-deep);color:#EDE9DE;padding:12px 22px 10px;margin-bottom:34px;}
+  h1{font-family:'Bricolage';font-weight:700;font-size:100px;line-height:1.03;letter-spacing:-0.015em;}
+  h1 .lite{color:var(--blue-deep);}
+  h1 .serif{font-family:'InstrSerif';font-style:italic;font-weight:400;letter-spacing:0;}
+  h1 .green{color:var(--sage-deep);}
+  h1 .gold{color:var(--gold);}
+  .sub{margin-top:30px;font-size:33px;line-height:1.45;color:var(--ink-soft);max-width:640px;}
+  .sub b{color:var(--ink);}
+  .headrule{width:340px;height:2px;background:var(--ink);margin-top:34px;opacity:.75;}
+
+  /* ===== orbes ===== */
+  .orb{border-radius:50%;position:relative;}
+  .orb.sun{background:radial-gradient(circle at 36% 32%, var(--sun1) 0%, var(--sun2) 52%, var(--sun3) 100%);box-shadow:0 0 90px rgba(200,148,85,.5), inset -14px -18px 40px rgba(122,82,34,.55);}
+  .orb.earth{background:radial-gradient(circle at 36% 30%, #93A6C6 0%, var(--blue) 55%, var(--blue-deep) 100%);box-shadow:inset -14px -18px 40px rgba(30,39,64,.6);}
+  .orb.earth::after{content:'';position:absolute;inset:0;border-radius:50%;background:
+    radial-gradient(34% 26% at 30% 38%, rgba(143,151,127,.85) 0%, rgba(143,151,127,0) 100%),
+    radial-gradient(26% 20% at 66% 60%, rgba(143,151,127,.7) 0%, rgba(143,151,127,0) 100%),
+    radial-gradient(20% 16% at 52% 24%, rgba(244,240,231,.55) 0%, rgba(244,240,231,0) 100%);}
+  .orb.moon{background:radial-gradient(circle at 38% 32%, var(--moon1) 0%, var(--moon2) 58%, var(--moon3) 100%);box-shadow:inset -12px -16px 34px rgba(90,88,80,.55);}
+  .orb.moon::after{content:'';position:absolute;inset:0;border-radius:50%;background:
+    radial-gradient(12% 12% at 40% 55%, rgba(120,117,108,.5) 0%, rgba(120,117,108,0) 100%),
+    radial-gradient(9% 9% at 62% 34%, rgba(120,117,108,.45) 0%, rgba(120,117,108,0) 100%),
+    radial-gradient(7% 7% at 55% 68%, rgba(120,117,108,.4) 0%, rgba(120,117,108,0) 100%);}
+  .plinth{position:absolute;left:50%;transform:translateX(-50%);width:130%;height:34px;border-radius:50%;background:#DAD3C3;box-shadow:0 10px 0 rgba(36,39,33,.08);}
+
+  .olabel{font-family:'Geist';letter-spacing:.2em;color:var(--ink);}
+  .olabel small{display:block;font-family:'InstrSans';letter-spacing:.01em;color:var(--ink-soft);margin-top:8px;}
+
+  /* ===== chip ===== */
+  .chip{display:inline-flex;align-items:center;gap:14px;font-family:'Geist';font-size:22px;letter-spacing:.16em;color:var(--ink);}
+  .chip .dot{width:30px;height:30px;border-radius:50%;flex:none;}
+  .chip .dot.sun{background:radial-gradient(circle at 36% 32%, var(--sun1), var(--sun2) 60%, var(--sun3));}
+  .chip .dot.earth{background:radial-gradient(circle at 36% 32%, #93A6C6, var(--blue) 60%, var(--blue-deep));}
+  .chip .dot.moon{background:radial-gradient(circle at 36% 32%, var(--moon1), var(--moon2) 60%, var(--moon3));}
+
+  /* ===== SLIDE 1 ===== */
+  #c1 h1{font-size:96px;}
+  #c1 .stagefloor{position:absolute;left:150px;right:150px;bottom:190px;height:1px;background:rgba(36,39,33,.35);}
+  .pedestal{position:absolute;bottom:206px;}
+  .pedestal .base{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;background:#DFD9CA;box-shadow:0 12px 0 rgba(36,39,33,.09);}
+
+  /* ===== SLIDE 2 ===== */
+  #c2 .gap-viz{position:absolute;left:150px;right:150px;bottom:230px;}
+
+  /* ===== SLIDE 3 ===== */
+  .trio{position:absolute;left:150px;right:150px;bottom:215px;display:flex;gap:36px;}
+  .tcard{flex:1;background:var(--paper-hi);border:1px solid rgba(36,39,33,.26);padding:40px 34px 36px;text-align:center;box-shadow:14px 16px 0 rgba(36,39,33,.08);}
+  .tcard .orb{width:120px;height:120px;margin:0 auto 26px;}
+  .tcard h3{font-family:'Geist';font-weight:700;font-size:26px;letter-spacing:.24em;margin-bottom:14px;}
+  .tcard p{font-size:24px;line-height:1.4;color:var(--ink-soft);}
+
+  /* ===== SLIDES 4-6 (herói) ===== */
+  .hero-orb{position:absolute;right:118px;bottom:300px;}
+  .uselist{position:absolute;left:150px;bottom:255px;width:430px;}
+  .uselist .item{display:flex;gap:18px;align-items:flex-start;margin-bottom:26px;}
+  .uselist .tick{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid rgba(175,132,71,.65);display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .uselist .tick svg{display:block;}
+  .uselist p{font-size:27px;line-height:1.35;color:var(--ink-soft);}
+  .uselist p b{color:var(--ink);}
+  .uselist .cap{font-family:'Geist';font-size:22px;letter-spacing:.24em;color:var(--gold);margin-bottom:26px;}
+
+  /* ===== SLIDE 7 (regra de ouro) ===== */
+  .matrix{position:absolute;left:150px;right:150px;bottom:225px;}
+  .mrow{display:flex;align-items:center;gap:0;background:var(--paper-hi);border:1px solid rgba(36,39,33,.26);margin-bottom:26px;padding:30px 36px;box-shadow:12px 14px 0 rgba(36,39,33,.07);}
+  .mrow .need{flex:1;font-size:28px;color:var(--ink);line-height:1.3;}
+  .mrow .need small{display:block;font-size:22px;color:var(--ink-soft);margin-top:4px;}
+  .mrow .arrow{flex:none;width:110px;text-align:center;color:var(--gold);}
+  .mrow .who{flex:none;width:190px;}
+
+  /* ===== SLIDE 8 (pipeline) ===== */
+  .pipe{position:absolute;left:150px;right:130px;bottom:215px;}
+  .pstage{display:flex;gap:26px;align-items:flex-start;position:relative;padding-left:22px;margin-bottom:34px;}
+  .pstage .porb{flex:none;width:86px;height:86px;}
+  .pstage .ptxt h4{font-family:'Geist';font-weight:700;font-size:23px;letter-spacing:.18em;margin-bottom:8px;}
+  .pstage .ptxt h4 span{color:var(--gold);letter-spacing:.06em;}
+  .pstage .ptxt p{font-size:26px;line-height:1.38;color:var(--ink-soft);max-width:600px;}
+  .pstage .ptxt p b{color:var(--ink);}
+  .pline{position:absolute;left:64px;top:100px;bottom:52px;width:1px;background:rgba(175,132,71,.55);}
+
+  /* ===== SLIDE 9 (checklist) ===== */
+  .check{position:absolute;left:150px;right:150px;bottom:215px;}
+  .qrow{background:var(--paper-hi);border:1px solid rgba(36,39,33,.26);margin-bottom:26px;padding:34px 40px 30px;box-shadow:12px 14px 0 rgba(36,39,33,.07);position:relative;}
+  .qrow .qn{position:absolute;top:-20px;left:36px;font-family:'Geist';font-weight:700;font-size:22px;background:var(--ink);color:#EDE9DE;padding:8px 16px 6px;letter-spacing:.1em;}
+  .qrow p{font-size:29px;color:var(--ink);line-height:1.3;}
+  .qrow .ans{margin-top:14px;}
+
+  /* ===== SLIDE 10 (CTA) ===== */
+  #c10 h1{font-size:92px;}
+  .cta-box{position:absolute;right:120px;top:660px;width:385px;background:var(--sage-deep);color:#F2EFE6;padding:40px 40px 38px;box-shadow:20px 24px 0 rgba(36,39,33,.12);}
+  .cta-box .small{font-family:'Geist';font-size:18px;letter-spacing:.16em;color:#D8B98A;margin-bottom:14px;white-space:nowrap;}
+  .cta-box .big{font-family:'Bricolage';font-weight:700;font-size:60px;line-height:1.05;}
+  .cta-box p{margin-top:18px;font-size:24px;line-height:1.45;color:rgba(242,239,230,.88);}
+  .cta-steps{position:absolute;left:150px;top:668px;width:390px;}
+  .cta-step{display:flex;gap:22px;align-items:flex-start;margin-bottom:34px;}
+  .cta-step .num{font-family:'Geist';font-weight:700;font-size:24px;color:var(--gold);border:1px solid rgba(175,132,71,.6);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
+  .cta-step p{font-size:26px;line-height:1.42;color:var(--ink-soft);padding-top:7px;}
+  .cta-step b{color:var(--ink);}
+  .handle-foot{position:absolute;left:50%;transform:translateX(-50%);bottom:112px;font-family:'Geist';font-size:22px;letter-spacing:.16em;color:var(--ink);white-space:nowrap;}
+  .handle-foot span{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<!-- ============ SLIDE 1 — GANCHO ============ -->
+<section class="slide" id="c1">
+  <div class="orbit" style="width:560px;height:560px;right:-210px;top:-215px;"><span class="sat" style="left:84px;top:452px;"></span></div>
+  <div class="star" style="left:96px;top:120px;"><svg width="30" height="30" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="star" style="right:210px;top:520px;"><svg width="18" height="18" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div style="position:absolute;right:150px;top:186px;font-family:'Geist';font-size:25px;letter-spacing:.12em;color:var(--ink-soft);">@soveralsoul</div>
+
+  <div class="head" style="top:186px;width:880px;">
+    <div class="eyebrow">NOVA GERAÇÃO DE IA</div>
+    <h1>A IA errada<br><span class="serif gold">custa caro.</span><br>E quase todo mundo escolhe errado.</h1>
+  </div>
+
+  <!-- palco com três orbes -->
+  <div class="pedestal" style="left:200px;bottom:250px;">
+    <div class="orb sun" style="width:230px;height:230px;"></div>
+    <div class="base" style="bottom:-52px;width:290px;height:40px;"></div>
+  </div>
+  <div class="pedestal" style="left:500px;bottom:290px;">
+    <div class="orb earth" style="width:160px;height:160px;"></div>
+    <div class="base" style="bottom:-88px;width:210px;height:34px;"></div>
+  </div>
+  <div class="pedestal" style="left:730px;bottom:270px;">
+    <div class="orb moon" style="width:110px;height:110px;"></div>
+    <div class="base" style="bottom:-64px;width:150px;height:28px;"></div>
+  </div>
+  <div id="c1floor" class="stagefloor"></div>
+
+  <div class="pageno"><u>01</u></div>
+  <div class="footnote"><span class="dash"></span>deslize — o guia leva 60 segundos<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 2 — TENSÃO ============ -->
+<section class="slide" id="c2">
+  <div class="rail"></div>
+  <div class="orbit" style="width:430px;height:430px;right:-170px;top:-160px;"><span class="sat" style="left:60px;top:340px;"></span></div>
+  <div class="star" style="left:104px;top:128px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="corner-moon"></div>
+
+  <div class="head">
+    <h1>Não existe <span class="serif lite">"a melhor"</span> IA</h1>
+    <div class="headrule"></div>
+    <div class="sub">A nova geração não trouxe um modelo — trouxe uma <b>família</b>. Cada um brilha em um tipo de tarefa. Pagar o mais caro para responder "oi" é queimar orçamento.</div>
+  </div>
+
+  <div class="gap-viz">
+    <svg width="780" height="430" viewBox="0 0 780 430">
+      <!-- balança de custo simbólica: tarefa simples vs modelo pesado -->
+      <g stroke="#242721" stroke-opacity=".3" stroke-width="1">
+        <line x1="0" y1="400" x2="780" y2="400"/>
+      </g>
+      <!-- coluna: o que a tarefa pede -->
+      <rect x="120" y="300" width="150" height="100" fill="#8F977F" opacity=".75"/>
+      <text x="195" y="270" text-anchor="middle" font-family="Geist" font-size="20" fill="#4A4E44" letter-spacing="2">O QUE A TAREFA PEDE</text>
+      <!-- coluna: o que muita gente paga -->
+      <rect x="480" y="80" width="150" height="320" fill="#3C4A6E"/>
+      <rect x="480" y="80" width="150" height="220" fill="#AF8447" opacity=".28"/>
+      <text x="555" y="50" text-anchor="middle" font-family="Geist" font-size="20" fill="#4A4E44" letter-spacing="2">O QUE SE PAGA SEM SABER</text>
+      <!-- seta de desperdício -->
+      <path d="M660 190 C 710 190, 730 240, 730 290" fill="none" stroke="#AF8447" stroke-width="3" stroke-dasharray="3 10" stroke-linecap="round"/>
+      <text x="742" y="330" text-anchor="end" font-family="Geist" font-size="20" fill="#AF8447" letter-spacing="2">DESPERDÍCIO</text>
+    </svg>
+  </div>
+
+  <div class="pageno"><u>02</u></div>
+  <div class="footnote"><span class="dash"></span>a pergunta certa não é "qual é melhor?"<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 3 — FRAMEWORK ============ -->
+<section class="slide" id="c3">
+  <div class="rail"></div>
+  <div class="orbit" style="width:400px;height:400px;left:-160px;top:-150px;"></div>
+  <div class="star" style="right:130px;top:150px;"><svg width="26" height="26" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>É <span class="serif green">melhor</span><br>para quê?</h1>
+    <div class="headrule"></div>
+    <div class="sub">Grave este mapa: <b>Sol, Terra e Lua</b>. É assim que a família se divide.</div>
+  </div>
+
+  <div class="trio">
+    <div class="tcard">
+      <div class="orb sun"></div>
+      <h3>SOL</h3>
+      <p>Potência máxima para os desafios mais complexos.</p>
+    </div>
+    <div class="tcard">
+      <div class="orb earth"></div>
+      <h3>TERRA</h3>
+      <p>Equilíbrio para o trabalho do dia a dia.</p>
+    </div>
+    <div class="tcard">
+      <div class="orb moon"></div>
+      <h3>LUA</h3>
+      <p>Rapidez e economia para respostas em escala.</p>
+    </div>
+  </div>
+
+  <div class="pageno"><u>03</u></div>
+  <div class="footnote"><span class="dash"></span>três órbitas, três funções — nenhuma disputa a mesma vaga<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 4 — SOL ============ -->
+<section class="slide" id="c4">
+  <div class="rail"></div>
+  <div class="orbit" style="width:460px;height:460px;right:-190px;top:-170px;"></div>
+  <div class="star" style="left:100px;top:132px;"><svg width="22" height="22" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Sol <span class="serif gold">— potência</span><br>sob demanda</h1>
+    <div class="headrule"></div>
+    <div class="sub">O mais capaz da família. Caro por resposta — <b>barato por decisão certa</b>.</div>
+  </div>
+
+  <div class="uselist">
+    <div class="cap">QUANDO ACIONAR</div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Análises profundas</b> e cenários de mercado</p></div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Propostas e contratos</b> em que errar custa caro</p></div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Código crítico</b> e fluxos de várias etapas</p></div>
+  </div>
+
+  <div class="hero-orb">
+    <div class="orb sun" style="width:330px;height:330px;"></div>
+    <div class="plinth" style="bottom:-72px;"></div>
+  </div>
+
+  <div class="pageno"><u>04</u></div>
+  <div class="footnote"><span class="dash"></span>use pouco, use bem<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 5 — TERRA ============ -->
+<section class="slide" id="c5">
+  <div class="rail"></div>
+  <div class="orbit" style="width:420px;height:420px;left:-170px;top:-150px;"></div>
+  <div class="star" style="right:140px;top:150px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Terra <span class="serif lite">— o motor</span><br>do dia a dia</h1>
+    <div class="headrule"></div>
+    <div class="sub">Equilíbrio entre inteligência, velocidade e custo. É onde a <b>rotina roda</b>.</div>
+  </div>
+
+  <div class="uselist">
+    <div class="cap">QUANDO ACIONAR</div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Conteúdo e e-mails</b> com a voz da marca</p></div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Relatórios e resumos</b> de reuniões e dados</p></div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Qualificação de leads</b> com critério</p></div>
+  </div>
+
+  <div class="hero-orb">
+    <div class="orb earth" style="width:330px;height:330px;"></div>
+    <div class="plinth" style="bottom:-72px;"></div>
+  </div>
+
+  <div class="pageno"><u>05</u></div>
+  <div class="footnote"><span class="dash"></span>o cavalo de batalha da operação<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 6 — LUA ============ -->
+<section class="slide" id="c6">
+  <div class="rail"></div>
+  <div class="orbit" style="width:440px;height:440px;right:-180px;top:-160px;"><span class="sat" style="left:66px;top:352px;"></span></div>
+  <div class="star" style="left:104px;top:140px;"><svg width="22" height="22" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Lua <span class="serif green">— resposta</span><br>em segundos</h1>
+    <div class="headrule"></div>
+    <div class="sub">O mais leve e econômico. Feito para <b>volume</b> — e cliente não espera.</div>
+  </div>
+
+  <div class="uselist">
+    <div class="cap">QUANDO ACIONAR</div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Atendimento 24h</b> no WhatsApp</p></div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Triagem de mensagens</b> e dúvidas frequentes</p></div>
+    <div class="item"><span class="tick"><svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 7 L6 11.5 L15 1.5" fill="none" stroke="#AF8447" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><b>Tarefas repetitivas</b> em grande escala</p></div>
+  </div>
+
+  <div class="hero-orb">
+    <div class="orb moon" style="width:330px;height:330px;"></div>
+    <div class="plinth" style="bottom:-72px;"></div>
+  </div>
+
+  <div class="pageno"><u>06</u></div>
+  <div class="footnote"><span class="dash"></span>velocidade também é experiência do cliente<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 7 — REGRA DE OURO ============ -->
+<section class="slide" id="c7">
+  <div class="rail"></div>
+  <div class="orbit" style="width:400px;height:400px;left:-160px;top:-150px;"></div>
+  <div class="star" style="right:130px;top:150px;"><svg width="26" height="26" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>A regra <span class="serif gold">de ouro</span></h1>
+    <div class="headrule"></div>
+    <div class="sub">Olhe para a <b>tarefa</b>, não para o modelo.</div>
+  </div>
+
+  <div class="matrix">
+    <div class="mrow">
+      <div class="need">Errar custa caro?<small>decisões, propostas, análises</small></div>
+      <div class="arrow"><svg width="46" height="16" viewBox="0 0 46 16"><path d="M0 8 H40 M34 2 L42 8 L34 14" fill="none" stroke="#AF8447" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="who"><span class="chip"><span class="dot sun"></span>SOL</span></div>
+    </div>
+    <div class="mrow">
+      <div class="need">Rotina com critério?<small>conteúdo, relatórios, leads</small></div>
+      <div class="arrow"><svg width="46" height="16" viewBox="0 0 46 16"><path d="M0 8 H40 M34 2 L42 8 L34 14" fill="none" stroke="#AF8447" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="who"><span class="chip"><span class="dot earth"></span>TERRA</span></div>
+    </div>
+    <div class="mrow">
+      <div class="need">Volume e pressa?<small>atendimento, triagem, escala</small></div>
+      <div class="arrow"><svg width="46" height="16" viewBox="0 0 46 16"><path d="M0 8 H40 M34 2 L42 8 L34 14" fill="none" stroke="#AF8447" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="who"><span class="chip"><span class="dot moon"></span>LUA</span></div>
+    </div>
+  </div>
+
+  <div class="pageno"><u>07</u></div>
+  <div class="footnote"><span class="dash"></span>não pague preço de Sol em tarefa de Lua<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 8 — NA PRÁTICA ============ -->
+<section class="slide" id="c8">
+  <div class="rail"></div>
+  <div class="orbit" style="width:430px;height:430px;right:-170px;top:-160px;"><span class="sat" style="left:60px;top:340px;"></span></div>
+  <div class="star" style="left:100px;top:132px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Os três juntos,<br><span class="serif green">no automático</span></h1>
+    <div class="headrule"></div>
+    <div class="sub">É assim que um <b>atendimento inteligente</b> roda de verdade:</div>
+  </div>
+
+  <div class="pipe">
+    <div class="pline"></div>
+    <div class="pstage">
+      <div class="orb moon porb"></div>
+      <div class="ptxt">
+        <h4>LUA &nbsp;<span>· 3 SEGUNDOS</span></h4>
+        <p>Responde o cliente no WhatsApp <b>na hora</b>, a qualquer hora.</p>
+      </div>
+    </div>
+    <div class="pstage">
+      <div class="orb earth porb"></div>
+      <div class="ptxt">
+        <h4>TERRA &nbsp;<span>· EM SEGUIDA</span></h4>
+        <p><b>Qualifica o lead</b>: entende a dor, o orçamento e o momento.</p>
+      </div>
+    </div>
+    <div class="pstage" style="margin-bottom:0;">
+      <div class="orb sun porb"></div>
+      <div class="ptxt">
+        <h4>SOL &nbsp;<span>· SÓ QUANDO VALE</span></h4>
+        <p>Monta a <b>proposta sob medida</b> — pronta para fechar.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pageno"><u>08</u></div>
+  <div class="footnote"><span class="dash"></span>cada mensagem no modelo certo — sem você tocar no celular<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 9 — CHECKLIST ============ -->
+<section class="slide" id="c9">
+  <div class="rail"></div>
+  <div class="orbit" style="width:400px;height:400px;right:-160px;top:-150px;"></div>
+  <div class="star" style="left:100px;top:132px;"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+
+  <div class="head">
+    <h1>Salve <span class="serif gold">este</span> slide</h1>
+    <div class="headrule"></div>
+    <div class="sub">Antes de acionar a IA, faça <b>uma pergunta</b>:</div>
+  </div>
+
+  <div class="check">
+    <div class="qrow">
+      <span class="qn">PERGUNTA 01</span>
+      <p>"Se errar, eu perco dinheiro ou cliente?"</p>
+      <div class="ans"><span class="chip"><span class="dot sun"></span>VAI DE SOL</span></div>
+    </div>
+    <div class="qrow">
+      <span class="qn">PERGUNTA 02</span>
+      <p>"É rotina que exige bom senso?"</p>
+      <div class="ans"><span class="chip"><span class="dot earth"></span>VAI DE TERRA</span></div>
+    </div>
+    <div class="qrow">
+      <span class="qn">PERGUNTA 03</span>
+      <p>"É volume alto e resposta rápida?"</p>
+      <div class="ans"><span class="chip"><span class="dot moon"></span>VAI DE LUA</span></div>
+    </div>
+  </div>
+
+  <div class="pageno"><u>09</u></div>
+  <div class="footnote"><span class="dash"></span>decidir em segundos também é produtividade<span class="dash"></span></div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ SLIDE 10 — CTA ============ -->
+<section class="slide" id="c10">
+  <div class="orbit" style="width:520px;height:520px;right:-200px;top:-190px;"><span class="sat" style="left:78px;top:420px;"></span></div>
+  <div class="orbit" style="width:300px;height:300px;left:-120px;bottom:220px;"></div>
+  <div class="star" style="left:96px;top:120px;"><svg width="28" height="28" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="star" style="right:200px;top:560px;"><svg width="18" height="18" viewBox="0 0 30 30"><path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="currentColor"/></svg></div>
+  <div class="corner-moon" style="opacity:.45;"></div>
+
+  <div class="head" style="top:160px;width:860px;">
+    <h1>Seu negócio<br>já pode operar <span class="serif green">assim</span>.</h1>
+    <div class="sub" style="margin-top:26px;">Sol, Terra e Lua trabalhando juntos no seu atendimento — <b>enquanto você cuida do resto</b>.</div>
+  </div>
+
+  <div class="cta-steps">
+    <div class="cta-step"><span class="num">1</span><p><b>Salve</b> o guia para decidir em segundos.</p></div>
+    <div class="cta-step"><span class="num">2</span><p><b>Compartilhe</b> com quem paga caro por resposta simples.</p></div>
+    <div class="cta-step"><span class="num">3</span><p>Peça o <b>diagnóstico grátis</b> no link da bio.</p></div>
+  </div>
+
+  <div class="cta-box">
+    <div class="small">QUER VER NO SEU FUNIL?</div>
+    <div class="big">COMENTA<br>“IA”</div>
+    <p>Eu te mostro onde Sol, Terra e Lua se encaixam no seu atendimento.</p>
+  </div>
+
+  <div class="handle-foot"><span>@</span>soveralsoul&nbsp;&nbsp;•&nbsp;&nbsp;IA &amp; AUTOMAÇÃO</div>
+  <div class="pageno"><u>10</u></div>
+  <div class="grain"></div>
+</section>
+
+</body>
+</html>

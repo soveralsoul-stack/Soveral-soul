@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlowPilot · O piloto dos seus posts</title>
+<meta name="description" content="O FlowPilot agenda e publica seus posts no Instagram sozinho, nos horários que você definir. Feed, stories, carrossel e reels. Um serviço da Soveral Soul.">
+<link rel="canonical" href="https://www.flowpilot.app.br/">
+<meta name="theme-color" content="#080c1a">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FlowPilot">
+<meta property="og:title" content="FlowPilot · O piloto dos seus posts">
+<meta property="og:description" content="Agenda e publica no seu Instagram sozinho, nos horários que você definir. Feed, stories, carrossel e reels.">
+<meta property="og:url" content="https://www.flowpilot.app.br/">
+<meta property="og:image" content="https://www.flowpilot.app.br/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FlowPilot — O piloto dos seus posts">
+<meta property="og:locale" content="pt_BR">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FlowPilot · O piloto dos seus posts">
+<meta name="twitter:description" content="Agenda e publica no seu Instagram sozinho. Feed, stories, carrossel e reels.">
+<meta name="twitter:image" content="https://www.flowpilot.app.br/og.png">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style>
+  @font-face{font-family:'Bebas';src:url('/fonts/BebasNeue-Regular.ttf') format('truetype');font-display:swap}
+  @font-face{font-family:'Space Grotesk';src:url('/fonts/SpaceGrotesk.ttf') format('truetype');font-weight:300 700;font-display:swap}
+
+  :root{
+    --a1:#4f8cff; --a2:#7c5cff; --navy:#080c1a;
+    --ink:#eaf0ff; --muted:#93a1c8;
+    --card:rgba(255,255,255,.035); --border:#1c2545;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Space Grotesk',system-ui,sans-serif;background:var(--navy);color:var(--ink);
+    overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 24px}
+
+  /* fundo atmosférico */
+  .bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+  .bg .glow{position:absolute;top:-18%;left:50%;transform:translateX(-50%);width:900px;height:620px;
+    background:radial-gradient(closest-side,rgba(91,124,255,.42),transparent 70%);filter:blur(30px)}
+  .bg .glow2{position:absolute;bottom:-25%;right:-10%;width:640px;height:520px;
+    background:radial-gradient(closest-side,rgba(124,92,255,.28),transparent 70%);filter:blur(30px)}
+  .bg .grid{position:absolute;inset:0;opacity:.05;
+    background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+    background-size:64px 64px;mask-image:radial-gradient(circle at 50% 30%,#000 40%,transparent 85%)}
+
+  /* marca */
+  .brand{display:inline-flex;align-items:center;gap:12px}
+  .brand .mark{width:34px;height:34px;flex:none}
+  .wm{font-weight:700;font-size:1.32rem;letter-spacing:-.02em;line-height:1}
+  .wm .g{background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+  /* nav */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:linear-gradient(to bottom,rgba(8,12,26,.86),rgba(8,12,26,.4));border-bottom:1px solid rgba(255,255,255,.05)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  nav .links{display:flex;align-items:center;gap:30px}
+  nav .links a{color:var(--muted);font-size:.95rem;transition:color .2s}
+  nav .links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.96rem;padding:12px 20px;border-radius:11px;
+    transition:transform .18s ease,box-shadow .18s ease;white-space:nowrap}
+  .btn.primary{background:linear-gradient(120deg,var(--a1),var(--a2));color:#fff;box-shadow:0 10px 30px rgba(79,140,255,.35)}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(79,140,255,.45)}
+  .btn.ghost{border:1px solid var(--border);color:var(--ink)}
+  .btn.ghost:hover{border-color:#33407a;background:rgba(255,255,255,.03)}
+  nav .btn{padding:10px 18px}
+  .nav-links-mobile{display:none}
+
+  /* hero */
+  .hero{position:relative;padding:86px 0 90px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--a1);border:1px solid var(--border);border-radius:100px;padding:7px 15px;margin-bottom:22px;background:rgba(79,140,255,.06)}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--a1);box-shadow:0 0 10px var(--a1)}
+  h1{font-family:'Bebas',sans-serif;font-weight:400;font-size:clamp(3.4rem,7vw,6.2rem);line-height:.92;
+    letter-spacing:.01em;margin-bottom:22px}
+  h1 .g{background:linear-gradient(120deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lead{font-size:1.18rem;color:var(--muted);max-width:520px;margin-bottom:32px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .cta-row .btn{padding:15px 26px;font-size:1.02rem}
+  .microcopy{margin-top:18px;font-size:.86rem;color:#6b7aa6}
+
+  /* selo grande flutuante */
+  .hero-art{display:flex;align-items:center;justify-content:center;position:relative}
+  .badge{width:min(340px,80%);aspect-ratio:1;position:relative;animation:float 6s ease-in-out infinite}
+  .badge svg{width:100%;height:100%;filter:drop-shadow(0 30px 70px rgba(79,140,255,.45))}
+  .ring{position:absolute;inset:-6%;border:1px solid rgba(124,146,255,.25);border-radius:30%;animation:spin 26s linear infinite}
+  .ring:nth-child(2){inset:-14%;border-style:dashed;border-color:rgba(124,146,255,.14);animation-duration:40s;animation-direction:reverse}
+  @keyframes float{0%,100%{transform:translateY(-10px)}50%{transform:translateY(10px)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* seções */
+  section.block{padding:74px 0}
+  .kicker{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);font-weight:600;margin-bottom:12px}
+  h2{font-family:'Bebas',sans-serif;font-weight:400;font-size:clamp(2.3rem,4.4vw,3.4rem);line-height:1;letter-spacing:.01em;margin-bottom:16px}
+  .section-lead{color:var(--muted);max-width:620px;font-size:1.05rem}
+
+  /* passos */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;position:relative;overflow:hidden}
+  .step:before{content:attr(data-n);position:absolute;top:-14px;right:6px;font-family:'Bebas',sans-serif;font-size:6rem;color:rgba(255,255,255,.045)}
+  .step .ic{width:46px;height:46px;border-radius:12px;background:linear-gradient(120deg,rgba(79,140,255,.18),rgba(124,92,255,.18));
+    border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .step .ic svg{width:24px;height:24px;stroke:var(--a1)}
+  .step h3{font-size:1.18rem;margin-bottom:8px;font-weight:600}
+  .step p{color:var(--muted);font-size:.98rem}
+
+  /* features */
+  .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+  .f{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .2s,transform .2s}
+  .f:hover{border-color:#2e3a6e;transform:translateY(-3px)}
+  .f .fi{font-family:'Bebas',sans-serif;font-size:1.6rem;color:var(--a1);margin-bottom:6px}
+  .f h4{font-size:1.05rem;margin-bottom:6px;font-weight:600}
+  .f p{color:var(--muted);font-size:.94rem}
+
+  /* faixa CTA */
+  .cta-band{margin:20px 0 0;padding:56px 40px;border-radius:24px;position:relative;overflow:hidden;text-align:center;
+    background:linear-gradient(120deg,rgba(79,140,255,.16),rgba(124,92,255,.16));border:1px solid var(--border)}
+  .cta-band h2{margin-bottom:14px}
+  .cta-band p{color:var(--muted);max-width:520px;margin:0 auto 26px}
+  .cta-band .cta-row{justify-content:center}
+
+  /* footer */
+  footer{border-top:1px solid rgba(255,255,255,.06);padding:48px 0 40px;margin-top:70px}
+  .foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .foot .col p{color:var(--muted);font-size:.92rem;margin-top:10px}
+  .foot a{color:var(--muted);transition:color .2s}
+  .foot a:hover{color:var(--ink)}
+  .foot .fl{display:flex;flex-direction:column;gap:8px;font-size:.92rem}
+  .copy{margin-top:34px;color:#5b6890;font-size:.84rem}
+
+  /* reveal no load */
+  .reveal{opacity:0;transform:translateY(22px);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes up{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.28s}.d4{animation-delay:.42s}.d5{animation-delay:.56s}
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;padding:54px 0 40px}
+    .hero-art{order:-1;margin-bottom:8px}
+    .badge{width:210px}
+    nav .links{display:none}
+    .steps,.feat{grid-template-columns:1fr}
+    .foot{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+<div class="bg"><div class="glow"></div><div class="glow2"></div><div class="grid"></div></div>
+
+<!-- marca reutilizável (SVG) -->
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="fp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
+  <symbol id="fpmark" viewBox="0 0 100 100">
+    <rect x="0" y="0" width="100" height="100" rx="24" fill="url(#fp)"/>
+    <rect x="12" y="12" width="76" height="76" rx="18" fill="none" stroke="#fff" stroke-width="4"/>
+    <g transform="translate(50 50) scale(2.05) translate(-12 -9)">
+      <path fill="#fff" d="M21.7 2.3a1 1 0 0 0-1.05-.23L2.9 8.36c-.86.32-.8 1.57.09 1.8l6.2 1.6 1.6 6.2c.23.9 1.48.95 1.8.09l6.29-17.7a1 1 0 0 0-.18-1.05z"/>
+    </g>
+  </symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="/"><svg class="mark"><use href="#fpmark"/></svg>
+        <span class="wm">Flow<span class="g">Pilot</span></span></a>
+      <div class="links">
+        <a href="#como">Como funciona</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#contato">Contato</a>
+        <a class="btn primary" href="https://wa.me/5549999118781?text=Oi!%20Quero%20saber%20do%20FlowPilot" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow reveal d1"><span class="dot"></span>Piloto automático pro seu Instagram</div>
+      <h1 class="reveal d2">O <span class="g">piloto</span><br>dos seus<br>posts</h1>
+      <p class="lead reveal d3">Você define as artes, as legendas e os horários uma vez.
+        O FlowPilot publica sozinho no seu Instagram, na hora certa, todo dia. Feed, stories, carrossel e reels.</p>
+      <div class="cta-row reveal d4">
+        <a class="btn primary" href="https://wa.me/5549999118781?text=Oi!%20Quero%20saber%20do%20FlowPilot" target="_blank" rel="noopener">Quero no meu perfil</a>
+        <a class="btn ghost" href="/api/connect">Conectar Instagram</a>
+      </div>
+      <p class="microcopy reveal d5">Sem app pra instalar. Você autoriza pelo próprio Instagram e revoga quando quiser.</p>
+    </div>
+    <div class="hero-art reveal d3">
+      <div class="badge">
+        <div class="ring"></div><div class="ring"></div>
+        <svg><use href="#fpmark"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="como">
+    <div class="kicker">Como funciona</div>
+    <h2>Três passos e pronto</h2>
+    <p class="section-lead">Configura uma vez, esquece o resto. A rotina de postar deixa de te consumir tempo toda semana.</p>
+    <div class="steps">
+      <div class="step" data-n="1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 0 3-3m-3 3L9 5"/><rect x="4" y="8" width="16" height="12" rx="2"/></svg></div>
+        <h3>Conecta o Instagram</h3>
+        <p>Você autoriza pela tela oficial do Instagram. Nada de senha com a gente, e você revoga na hora que quiser.</p>
+      </div>
+      <div class="step" data-n="2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4m8-4v4"/></svg></div>
+        <h3>Define a agenda</h3>
+        <p>As artes, as legendas e os dias e horários de cada post. A gente ajuda a montar tudo do seu jeito.</p>
+      </div>
+      <div class="step" data-n="3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></div>
+        <h3>FlowPilot publica</h3>
+        <p>No horário combinado, o post sai sozinho no seu perfil. Você acompanha e cuida do resto do negócio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="recursos">
+    <div class="kicker">Recursos</div>
+    <h2>Feito pra quem não tem tempo de postar</h2>
+    <p class="section-lead">Presença constante no Instagram sem depender de você lembrar todo dia.</p>
+    <div class="feat">
+      <div class="f"><div class="fi">Agenda fixa</div><h4>Publicação automática</h4><p>Seus posts saem nos horários definidos, todos os dias, sem você mexer.</p></div>
+      <div class="f"><div class="fi">Todos os formatos</div><h4>Feed, stories, carrossel e reels</h4><p>Um único calendário cuidando de tudo que o seu perfil precisa.</p></div>
+      <div class="f"><div class="fi">Voz humana</div><h4>Legendas que soam como gente</h4><p>Texto natural, no tom da sua marca, sem aquela cara de robô.</p></div>
+      <div class="f"><div class="fi">Suas mídias</div><h4>Fotos e vídeos do seu negócio</h4><p>Anexa o material real (produto, imóvel, prato) e a gente encaixa na arte.</p></div>
+      <div class="f"><div class="fi">Multi-conta</div><h4>Vários perfis, um lugar</h4><p>Cada cliente com sua agenda, sua marca e sua conta, sem misturar.</p></div>
+      <div class="f"><div class="fi">Você no controle</div><h4>Autoriza e revoga quando quiser</h4><p>O acesso é seu. Tira a permissão pelo Instagram a qualquer momento.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="cta-band">
+      <h2>Bora deixar seu Instagram no automático?</h2>
+      <p>Fala com a gente e a gente monta sua primeira agenda de posts. Rápido, sem enrolação.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://wa.me/5549999118781?text=Oi!%20Quero%20saber%20do%20FlowPilot" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn ghost" href="/api/connect">Conectar Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="foot">
+      <div class="col">
+        <a class="brand" href="/"><svg class="mark"><use href="#fpmark"/></svg>
+          <span class="wm">Flow<span class="g">Pilot</span></span></a>
+        <p>O piloto dos seus posts.<br>Um serviço da Soveral Soul, de Chapecó/SC.</p>
+      </div>
+      <div class="col fl">
+        <strong style="color:var(--ink)">Contato</strong>
+        <a href="https://wa.me/5549999118781" target="_blank" rel="noopener">WhatsApp (49) 9 9911-8781</a>
+        <a href="mailto:comercial@soveralsoul.com.br">comercial@soveralsoul.com.br</a>
+      </div>
+      <div class="col fl">
+        <strong style="color:var(--ink)">Legal</strong>
+        <a href="/privacidade">Política de privacidade</a>
+        <a href="/api/connect">Conectar Instagram</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 FlowPilot · Soveral Soul. Todos os direitos reservados.</div>
+  </div>
+</footer>
+</body>
+</html>
