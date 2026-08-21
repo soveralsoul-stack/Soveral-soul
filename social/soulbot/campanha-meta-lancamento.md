@@ -176,3 +176,38 @@ navy quase vazio (o relógio do V1 só entra no quadro 4). Em Reels e Stories o
 vídeo dá play sozinho, então isso quase não aparece, mas se incomodar dá pra
 escolher outro quadro como capa na edição do anúncio no Gerenciador. A outra
 saída seria renderizar com conteúdo já no quadro 0, o que exige novo upload.
+
+## Campanha de tráfego pra landing (21/08/2026)
+
+Criada porque o caminho do WhatsApp travou: o 8781 está registrado na Cloud API
+(WABA SoveralSoul Business Hub) e o fluxo da Caixa de Entrada da página exige
+número livre no app WhatsApp Business. Os dois são mutuamente exclusivos.
+Anúncio de tráfego não depende de número conectado, então destrava o lançamento.
+
+- Campanha `120251779058870597` · SoulBot | Landing | Tráfego | Ago26
+  - OUTCOME_TRAFFIC, leilão, CBO R$ 25 por dia, PAUSADA
+- Conjunto `120251779060030597` · Chapecó e região 50km | 25-55 | Site
+  - Otimização LINK_CLICKS, destino WEBSITE, mesma geo e posicionamentos
+- Anúncios, os dois PAUSADOS e com identidade @soveralsoul:
+  - `120251779068370597` · SoulBot | Site A | 19h42 | 9x16
+  - `120251779077060597` · SoulBot | Site B | Quantos você perdeu | 9x16
+
+Links com marcação de origem:
+- A: soulbot.app.br/?utm_source=facebook&utm_medium=paid&utm_campaign=soulbot_landing_ago26&utm_content=v1_19h42
+- B: soulbot.app.br/?utm_source=facebook&utm_medium=paid&utm_campaign=soulbot_landing_ago26&utm_content=v2_quantos_perdeu
+
+Sem erro de bloqueio de entrega.
+
+### Por que LINK_CLICKS e não LANDING_PAGE_VIEWS
+
+A landing não tem pixel da Meta instalado. Sem pixel, a Meta não consegue medir
+quem de fato abriu a página, só quem clicou. Instalar o pixel liberaria otimizar
+por visualização de página e, mais pra frente, por conversão (clique no botão de
+WhatsApp da landing). É a próxima melhoria de maior retorno da campanha.
+
+### Ressalva do fecho dos vídeos
+
+O cartão final dos dois vídeos diz "Chama no WhatsApp", enquanto o botão do
+anúncio diz "Saiba mais" e leva ao site. A landing tem o WhatsApp como CTA
+principal, então o caminho continua coerente, mas se incomodar dá pra renderizar
+uma variante com o fecho apontando pro site.
