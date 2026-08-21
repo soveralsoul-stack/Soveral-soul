@@ -1,6 +1,7 @@
 # SoulBot · Campanha Meta de lançamento (rascunho pronto pra subir)
 
-Status: aguardando decisão de conta de anúncios e resolução de pagamento.
+Status: campanha e conjunto CRIADOS e PAUSADOS em 21/08/2026. Falta subir os
+vídeos e criar os anúncios.
 Criativos prontos: `out/soulbot-ad-v1-9x16.mp4` e `out/soulbot-ad-v2-9x16.mp4`.
 
 ## Configuração
@@ -79,3 +80,34 @@ os dois dependem do Jerson:
 - Segmentação de Chapecó precisa da chave de cidade da Meta. As ferramentas
   disponíveis aqui não fazem essa busca, então a cidade entra pelo Gerenciador
   ou o Jerson passa a chave.
+
+## Estrutura criada na Meta (21/08/2026)
+
+Pagamento quitado pelo Jerson, a conta BRL `1636115483252733` (Jerd Soveral)
+voltou a ACTIVE. É a conta real de trabalho, com histórico de campanhas e uma
+CTWA anterior ("Edicao IA p/ Corretores").
+
+- Campanha `120251777041510597` · SoulBot | Lançamento | Mensagens WhatsApp | Ago26
+  - Objetivo OUTCOME_ENGAGEMENT, leilão, CBO R$ 25 por dia, PAUSADA
+- Conjunto `120251777047180597` · Chapecó e região 50km | 25-55 | Donos de negócio
+  - Meta de otimização CONVERSATIONS, destino WHATSAPP, página Soveral Soul
+  - Posicionamentos: Stories e Reels no Instagram e no Facebook
+  - Geo: raio de 50 km em torno de -27.1009, -52.6156 (chave de cidade 248896,
+    região 459), reaproveitado da campanha CTWA que já rodou nessa conta
+  - PAUSADO
+
+Links diretos:
+- Campanha: https://www.facebook.com/adsmanager/manage/campaigns/edit?act=1636115483252733&selected_campaign_ids=120251777041510597
+- Conjunto: https://www.facebook.com/adsmanager/manage/adsets/edit?act=1636115483252733&selected_adset_ids=120251777047180597
+
+## Pendências pra ativar
+
+1. Subir `soulbot-ad-v1-9x16.mp4` e `soulbot-ad-v2-9x16.mp4` na biblioteca de
+   mídia da conta. O upload por API exige URL pública sem autenticação e os
+   arquivos são locais, então vai pelo Gerenciador mesmo.
+2. Confirmar que o número +55 49 99911-8781 é o WhatsApp conectado à página
+   Soveral Soul. Anúncio de clique pro WhatsApp entrega as mensagens no número
+   ligado à página, não num link solto.
+3. Decidir a declaração de conteúdo gerado por IA no anúncio. Os vídeos são
+   renderizados por código (Remotion), não por IA generativa, mas a declaração
+   é responsabilidade do anunciante e vale a decisão do Jerson.
