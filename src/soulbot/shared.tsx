@@ -82,6 +82,9 @@ export const Pop: React.FC<{
 }> = ({ at, dur = 26, y = 34, children, style }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  // Antes da hora, fora do layout: num chat ancorado no rodape, elemento
+  // invisivel ocupando espaco empurraria as mensagens visiveis pra cima.
+  if (frame < at) return null;
   const p = spring({ frame: frame - at, fps, config: { damping: 200, mass: 0.9 }, durationInFrames: dur });
   return (
     <div

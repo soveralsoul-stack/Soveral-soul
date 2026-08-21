@@ -5,7 +5,7 @@
  */
 import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
-import { sb, sbGrad, SB_BODY, SB_DISPLAY, SAFE_TOP, SAFE_BOTTOM } from "./tokens";
+import { sb, sbGrad, SB_BODY, SB_DISPLAY, SAFE_TOP, SAFE_BOTTOM, SAFE_SIDE, SAFE_RIGHT_RAIL } from "./tokens";
 import { Bubble, BrandClose, Pop, SbBackground, SbMark, Typing } from "./shared";
 
 // Ritmo calibrado pra leitura de ~3 palavras por segundo: cada mensagem
@@ -64,7 +64,7 @@ const Chat: React.FC = () => {
       style={{
         opacity: Math.min(enter, out),
         transform: `translateY(${interpolate(enter, [0, 1], [60, 0])}px)`,
-        padding: `${SAFE_TOP}px 54px ${SAFE_BOTTOM}px`,
+        padding: `${SAFE_TOP}px ${SAFE_RIGHT_RAIL}px ${SAFE_BOTTOM + 150}px ${SAFE_SIDE}px`,
       }}
     >
       <div
@@ -111,13 +111,24 @@ const Chat: React.FC = () => {
         <div
           style={{
             flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            gap: 22,
-            padding: "36px 30px",
+            position: "relative",
+            overflow: "hidden",
             background: `linear-gradient(180deg, ${sb.waBg}, ${sb.waBg2})`,
           }}
         >
+          {/* Coluna ancorada no rodape: a mensagem mais nova fica sempre
+              inteira e as antigas saem pelo topo, como num chat real. */}
+          <div
+            style={{
+              position: "absolute",
+              left: 30,
+              right: 30,
+              bottom: 30,
+              display: "flex",
+              flexDirection: "column",
+              gap: 22,
+            }}
+          >
           <Bubble at={100} side="in" time="19:42">
             Oi, vocês entregam hoje? Queria uma moqueca
           </Bubble>
@@ -151,10 +162,11 @@ const Chat: React.FC = () => {
           <Bubble at={515} side="out" time="19:43">
             A Fabi vai te chamar em 1 minutinho pra confirmar o endereço
           </Bubble>
+          </div>
         </div>
       </div>
 
-      <Pop at={548} style={{ position: "absolute", left: 0, right: 0, bottom: SAFE_BOTTOM - 190, textAlign: "center" }}>
+      <Pop at={548} style={{ position: "absolute", left: 0, right: 0, bottom: SAFE_BOTTOM + 24, textAlign: "center" }}>
         <div
           style={{
             display: "inline-block",

@@ -45,7 +45,13 @@ loadFont({
   weight: "400 700", // variável
 });
 
-// Zonas seguras de Reels/Story na base 1920 de altura:
-// ~250px no topo (UI) e ~320px embaixo (CTA da Meta).
-export const SAFE_TOP = 250;
-export const SAFE_BOTTOM = 320;
+// Zonas seguras de Reels/Stories (unificadas pela Meta em marco de 2026):
+// topo 14%, base 35%, laterais 6% na tela 1080x1920. Medido tambem em
+// capturas reais de anuncio (botao "Saiba mais" comeca a ~72% da altura).
+// Detalhes e referencias: docs/reels-safe-zone-e-motion-refs.md
+export const SAFE_TOP = 270; // 14% de 1920
+export const SAFE_BOTTOM = 672; // 35% de 1920
+export const SAFE_SIDE = 65; // 6% de 1080
+// Coluna de icones (curtir/comentar/compartilhar): ocupa a faixa direita
+// de ~140px entre ~55% e ~80% da altura. Elementos criticos ficam fora dela.
+export const SAFE_RIGHT_RAIL = 140;

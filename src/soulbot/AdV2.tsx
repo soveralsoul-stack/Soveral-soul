@@ -4,7 +4,7 @@
  */
 import React from "react";
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { sb, SB_BODY, SB_DISPLAY, SAFE_BOTTOM, SAFE_TOP } from "./tokens";
+import { sb, SB_BODY, SB_DISPLAY, SAFE_BOTTOM, SAFE_TOP, SAFE_SIDE, SAFE_RIGHT_RAIL } from "./tokens";
 import { BrandClose, Bubble, Pop, SbBackground, Typing } from "./shared";
 
 // Ritmo calibrado pra leitura: cada frase de impacto fica ~2.8s na tela.
@@ -66,7 +66,12 @@ const ChatFlash: React.FC = () => {
     extrapolateRight: "clamp",
   });
   return (
-    <AbsoluteFill style={{ opacity: Math.min(enter, out), padding: `${SAFE_TOP + 60}px 54px ${SAFE_BOTTOM}px` }}>
+    <AbsoluteFill
+      style={{
+        opacity: Math.min(enter, out),
+        padding: `${SAFE_TOP + 30}px ${SAFE_RIGHT_RAIL}px ${SAFE_BOTTOM}px ${SAFE_SIDE}px`,
+      }}
+    >
       <div
         style={{
           background: sb.waBg,
