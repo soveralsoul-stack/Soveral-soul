@@ -8,7 +8,7 @@ import { sb, SB_BODY, SB_DISPLAY, SAFE_BOTTOM, SAFE_TOP } from "./tokens";
 import { BrandClose, Bubble, Pop, SbBackground, Typing } from "./shared";
 
 // Ritmo calibrado pra leitura: cada frase de impacto fica ~2.8s na tela.
-export const AD_V2_DURATION = 540; // 18s @ 30fps
+export const AD_V2_DURATION = 585; // 19.5s @ 30fps (fechamento com ~4.7s de tela)
 
 const CHAT_AT = 262;
 const CLOSE_AT = 445;

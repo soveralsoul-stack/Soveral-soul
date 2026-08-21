@@ -10,7 +10,7 @@ import { Bubble, BrandClose, Pop, SbBackground, SbMark, Typing } from "./shared"
 
 // Ritmo calibrado pra leitura de ~3 palavras por segundo: cada mensagem
 // tem tempo de ser lida antes da proxima entrar.
-export const AD_V1_DURATION = 720; // 24s @ 30fps
+export const AD_V1_DURATION = 765; // 25.5s @ 30fps (fechamento com ~4.7s de tela)
 
 const CHAT_IN = 70;
 const CLOSE_AT = 625;
