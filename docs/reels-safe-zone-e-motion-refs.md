@@ -159,10 +159,30 @@ terço superior e o meio da tela. Isso bate com o que já está medido acima:
 os 672 px de base e a faixa de 140 px à direita continuam valendo, e legenda
 animada não é exceção.
 
-### O que falta pra usar isso no nosso motor
+### No motor: `src/soulbot/Legenda.tsx`
 
-Ainda não existe componente de legenda no `src/soulbot/`. Quando for fazer,
-o caminho é um `<Legenda>` que receba a frase já fatiada em palavras com os
-quadros de entrada de cada uma, para poder tanto convergir a linha 1 quanto
-construir a linha 2 palavra a palavra, reusando o `Pop` que já está em
-`shared.tsx` e as cores de `tokens.ts`.
+Feito em 21/08/2026. Duas famílias, as duas parametrizadas:
+
+- `<Legenda linha1={[...]} linha2={[...]} />` é a família 2. A `linha1` é
+  dividida ao meio, a primeira metade vem da esquerda e a segunda da direita.
+  A `linha2` se constrói palavra por palavra, começando 14 quadros depois,
+  quando a de cima já assentou. `inverter` troca acento e branco de lugar.
+- `<LegendaFrase palavras={[...]} destaque={i} />` é a família 1, uma linha
+  trocada inteira, com pop curto de escala.
+- `acento` aceita só `cyan` ou `violet`, os da marca. Não dá pra passar cor
+  solta de propósito: é o que impede a legenda de virar arco-íris.
+- `ancora` fica em `alto` ou `meio`. O terço de baixo não é opção.
+- `italico` existe pra imitar a oblíqua das referências, desligado por padrão.
+
+Banco de prova: composição `SoulBot-Legenda-Demo`, em `LegendaDemo.tsx`.
+Quando entrar filmagem real, o `SbBackground` sai e o `<OffthreadVideo>`
+entra no lugar, o resto do arquivo continua igual.
+
+**Achado da montagem, vale pra qualquer animação lateral que a gente fizer:**
+a convergência começava com 260 px de deslocamento e a palavra da esquerda
+entrava em x=26, dentro da margem lateral de 65 px que nós mesmos definimos.
+Só apareceu porque os quadros de entrada foram varridos um a um procurando
+pixel claro dentro da margem, e não olhando de olho. Ficou em 130 px mais
+fade de 8 quadros: enquanto a palavra viaja ela está fraca, quando fica
+legível já chegou. Varredura de 88 quadros depois da correção: limpo.
+Movimento que entra de fora da tela precisa ser medido, não estimado.

@@ -8,6 +8,7 @@ import { video, video_durationInFrames, formats } from "./brand/tokens";
 import { CtaVariant } from "./components/LayoutContext";
 import { AdV1, AD_V1_DURATION } from "./soulbot/AdV1";
 import { AdV2, AD_V2_DURATION } from "./soulbot/AdV2";
+import { LegendaDemo, LEGENDA_DEMO_DURATION } from "./soulbot/LegendaDemo";
 
 const ctaVariants: { suffix: string; value: CtaVariant }[] = [
   { suffix: "WhatsApp", value: "whatsapp" },
@@ -66,6 +67,15 @@ export const RemotionRoot: React.FC = () => {
         id="SoulBot-Ad-V2"
         component={AdV2}
         durationInFrames={AD_V2_DURATION}
+        fps={video.fps}
+        width={1080}
+        height={1920}
+      />
+      {/* Banco de prova do sistema de legenda animada */}
+      <Composition
+        id="SoulBot-Legenda-Demo"
+        component={LegendaDemo}
+        durationInFrames={LEGENDA_DEMO_DURATION}
         fps={video.fps}
         width={1080}
         height={1920}
