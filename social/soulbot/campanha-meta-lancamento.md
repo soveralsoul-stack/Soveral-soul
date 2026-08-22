@@ -408,3 +408,66 @@ estreitamento), e olhar o medidor de tamanho de público, mantendo acima de uns
 Nome de conjunto não é fonte de verdade, é rótulo que alguém digitou. A
 segmentação real só se sabe lendo o campo `targeting` da API. Este doc chegou a
 afirmar "25-55" por acreditar no nome.
+
+
+## Público estreitado e CONFIRMADO por API (21/08/2026)
+
+O Jerson aplicou no Gerenciador e a leitura de volta pela API bateu com a tela.
+Estado guardado no conjunto `120251779060030597`:
+
+- `advantage_audience: 0`, Advantage+ Público desligado
+- `targeting_optimization: "none"`, sem expansão de segmentação
+- `individual_setting: {detailed_targeting: 0, age: 0, gender: 0}`, sem expansão
+  de idade nem de gênero
+- Idade 25 a 65, otimização por LANDING_PAGE_VIEWS
+
+### IDs reais da segmentação, pra reusar sem depender do Gerenciador
+
+Guardados aqui de propósito: as ferramentas de API desta sessão não buscam
+segmentação, então sem esta lista toda campanha nova volta a depender de alguém
+digitar no Gerenciador. Com os IDs, dá pra montar conjunto igual direto por API.
+
+Comportamentos:
+- `6015683810783` Facebook Page admins
+- `6002714898572` Small business owners
+
+Cargo (work_positions):
+- `151785081542575` Proprietário(a)
+
+Interesses:
+- `6003114185392` Empreendedorismo
+- `6003136069408` Pequenas e médias empresas (negócios e finanças)
+- `6003402305839` Negócios (negócios e finanças)
+
+Os dois comportamentos ficam em inglês na base da Meta mesmo em conta BR. Nome
+em inglês não é erro, os IDs são os certos.
+
+### O estreitamento não sufocou a entrega
+
+Era o risco levantado antes de mexer, e não se confirmou. Sem erro de bloqueio
+em nenhum dos quatro níveis, os dois anúncios seguem ACTIVE e a frequência está
+em 1,13, o que mostra público sobrando. A conta de 30 mil pessoas estava certa.
+
+### Efeito colateral do Gerenciador, pendente de decisão
+
+Ao salvar, a interface trocou `location_types` de `[frequently_in, home]` para
+`[frequently_in, home, recent]`. É o padrão dela, ninguém pediu. Na prática
+passa a incluir quem apenas esteve em Chapecó recentemente, turista ou pessoa
+de passagem, que não é cliente de mini-SaaS local. Desperdício pequeno e fácil
+de reverter por API.
+
+Fica a regra: **depois de qualquer edição pelo Gerenciador, reler o targeting
+pela API.** A interface aplica padrões silenciosos ao salvar.
+
+### A contra B, segundo dado parcial
+
+| Anúncio | Impressões | CTR | Visualizações de página |
+|---|---|---|---|
+| Site A, 19h42 | 1.285 | 1,40% | 13 |
+| Site B, Quantos você perdeu | 454 | 2,86% | 14 |
+
+O B entrega mais visita que o A com um terço das impressões, e a Meta segue
+mandando a maior parte da verba pro A. É o comportamento conhecido do CBO, que
+decide cedo com pouco dado. Decisão adiada pro primeiro dia fechado: ou pausar
+o A, ou tirar do CBO e dar orçamento próprio a cada um, o que impede a Meta de
+sufocar o melhor criativo.
