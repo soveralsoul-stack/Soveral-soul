@@ -94,6 +94,7 @@ CTWA anterior ("Edicao IA p/ Corretores").
   - Posicionamentos: Stories e Reels no Instagram e no Facebook
   - Geo: raio de 50 km em torno de -27.1009, -52.6156 (chave de cidade 248896,
     região 459), reaproveitado da campanha CTWA que já rodou nessa conta
+  - ATENÇÃO: o "25-55" do nome estava errado, ver a seção de público no fim
   - PAUSADO
 
 Links diretos:
@@ -349,3 +350,61 @@ Sem erro de bloqueio de entrega em nenhum dos quatro.
   declaração é responsabilidade do anunciante.
 - Ficha da SoveralSoul: `phone_number_id` e `donos` seguem como PREENCHER,
   travados enquanto o 8781 não estiver no app SOVERBOT.
+
+
+## Público: o que estava errado e o que foi corrigido (21/08/2026)
+
+O Jerson perguntou se o público tinha sido segmentado pra empresários, donos de
+pequenos negócios, clínicas e restaurantes. Fui ler a segmentação guardada em
+vez de confiar na memória, e achei duas coisas fora do lugar.
+
+**Não havia nenhuma camada de perfil.** Nem interesse, nem comportamento, nem
+cargo. O conjunto mirava qualquer pessoa dentro do raio.
+
+**A idade não era a do nome.** O conjunto se chamava "25-55" e a segmentação
+guardada era 18 a 65. O doc aqui repetia o "25-55" do nome, então estava
+errado desde a criação.
+
+A causa das duas coisas é a mesma: **Advantage+ Público ligado**. Com ele
+ligado, idade e interesse viram sugestão e a Meta expande à vontade. Não
+adianta preencher e achar que restringiu.
+
+Corrigido por API: idade agora 25-65 e o conjunto renomeado pra
+`Chapecó e região 50km | 25-65 | Site`.
+
+### Por que estreitar aqui não sufoca a entrega
+
+Chapecó e 50 km tem por volta de 300 mil adultos de 25 a 65. Donos de negócio
+são uns 10% disso, perto de 30 mil pessoas. Com R$ 25 por dia a CPM de R$ 9 dá
+cerca de 2.800 impressões diárias, ou 39 mil em 14 dias. Contra 30 mil pessoas
+a frequência fica em torno de 1,3, que é confortável. Ou seja: dá pra estreitar
+sem faltar público, e com R$ 14 gastos o aprendizado mal tinha começado, que é
+a melhor hora pra mexer.
+
+### Camada de perfil: por que ficou pro Gerenciador
+
+Segmentação por interesse na API exige o ID numérico real de cada interesse, e
+as ferramentas disponíveis nesta sessão não têm busca de segmentação. Chutar ID
+miraria outra coisa sem avisar, então não foi feito por aqui. Fica no
+Gerenciador, onde a Meta resolve o ID enquanto se digita o nome.
+
+Lista passada pro Jerson, em ordem de valor:
+
+1. Comportamento: Administradores de Página do Facebook. É o melhor proxy que
+   existe: quem administra página de empresa tem empresa. A Meta ainda deixa
+   refinar por categoria da página, onde aparecem restaurante, loja, clínica.
+2. Cargo: Proprietário de empresa, Proprietários de pequenas empresas.
+3. Interesse, pra alargar: Empreendedorismo, Pequenas e médias empresas,
+   Negócios.
+
+Junto com a lista, três avisos que fazem a diferença entre funcionar e não
+funcionar: desligar o Advantage+ Público antes (senão vira sugestão), não
+marcar "Expansão da segmentação detalhada" no fim da seção (ela desfaz o
+estreitamento), e olhar o medidor de tamanho de público, mantendo acima de uns
+20 mil pra verba não engasgar.
+
+### Lição pra próxima campanha
+
+Nome de conjunto não é fonte de verdade, é rótulo que alguém digitou. A
+segmentação real só se sabe lendo o campo `targeting` da API. Este doc chegou a
+afirmar "25-55" por acreditar no nome.
