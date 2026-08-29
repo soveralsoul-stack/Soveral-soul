@@ -12,11 +12,11 @@ body{background:#111}
 
 /* A foto (3213x5712) e 9:16 quase exato, entra inteira. */
 .foto{position:absolute;inset:0;background-image:url('../../acervo/exata-salao-imovel.jpg');
-  background-size:cover;background-position:50% 34%;z-index:1}
+  background-size:cover;background-position:50% 50%;z-index:1}
 .tone{position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg,rgba(10,20,34,.94) 0%,rgba(10,20,34,.74) 12%,
-             rgba(10,20,34,.34) 20%,rgba(10,20,34,.04) 30%,rgba(10,20,34,.28) 39%,
-             rgba(10,20,34,.86) 47%,rgba(10,20,34,.98) 55%,rgba(10,20,34,1) 100%)}
+  background:linear-gradient(180deg,rgba(10,20,34,.94) 0%,rgba(10,20,34,.76) 10%,
+             rgba(10,20,34,.36) 17%,rgba(10,20,34,.02) 25%,rgba(10,20,34,.06) 48%,
+             rgba(10,20,34,.60) 58%,rgba(10,20,34,.94) 66%,rgba(10,20,34,1) 74%)}
 .tint{position:absolute;inset:0;z-index:3;mix-blend-mode:soft-light;
   background:radial-gradient(85% 42% at 14% 82%,rgba(91,193,212,.72),transparent 62%)}
 
@@ -28,15 +28,16 @@ body{background:#111}
 .wm .l2{display:block;margin-top:7px;font-family:'IN';font-size:15px;font-weight:700;
   letter-spacing:.42em;color:rgba(255,255,255,.72)}
 .local{text-align:right;font-size:16px;font-weight:700;letter-spacing:.2em;line-height:1.5;
-  color:var(--teal);padding-top:6px}
+  color:var(--teal);padding:12px 18px;border:2px solid rgba(91,193,212,.45);border-radius:14px;
+  background:rgba(10,20,34,.62)}
 
-.bloco{position:absolute;left:72px;right:72px;top:900px;z-index:10}
+.bloco{position:absolute;left:72px;right:72px;top:1080px;z-index:10}
 .tag{display:inline-block;font-size:20px;font-weight:700;letter-spacing:.2em;border-radius:40px;
   padding:13px 26px 11px;background:var(--teal);color:var(--navy);margin-bottom:30px}
 h1{font-family:'BS';font-weight:700;font-size:96px;line-height:.95;text-transform:uppercase;
   letter-spacing:.01em}
 h1 .cy{color:var(--teal)}
-.sub{margin-top:28px;font-size:40px;line-height:1.32;color:rgba(255,255,255,.95)}
+.sub{margin-top:26px;font-size:38px;line-height:1.3;color:rgba(255,255,255,.95)}
 .sub b{color:var(--white);font-weight:700}
 .zap{margin-top:26px;font-family:'BS';font-weight:700;font-size:50px;letter-spacing:.02em;
   color:var(--teal);line-height:1}
@@ -56,9 +57,9 @@ h1 .cy{color:var(--teal)}
 
   <div class="bloco">
     <div class="tag">NO ESTANDE DA EXATA</div>
-    <h1>Aqui está<br>nascendo o<br><span class="cy">SSHub</span></h1>
-    <p class="sub">Com a <b>Exata</b>, minha grande parceira, construindo um sistema que cobre
-    a operação imobiliária inteira.</p>
+    <h1>Parceria que<br>vira <span class="cy">sistema</span></h1>
+    <p class="sub">Ao lado da <b>Exata</b>, minha grande parceira, desenvolvendo sistemas
+    imobiliários de alta performance.</p>
     <div class="zap">(49) 9 9911-8781</div>
   </div>
 
