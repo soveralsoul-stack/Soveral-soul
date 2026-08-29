@@ -1,0 +1,68 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>SSHub × Exata — story</title>
+<style>
+@font-face{font-family:'BS';src:url('../build/fonts/BigShoulders-Bold.ttf') format('truetype');font-weight:700}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Bold.ttf') format('truetype');font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0A1422;--teal:#5BC1D4;--amber:#D9A85C;--white:#FFF}
+body{background:#111}
+.card{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--navy);
+  font-family:'IN',sans-serif;color:var(--white)}
+
+/* A foto (3213x5712) e 9:16 quase exato, entra inteira. */
+.foto{position:absolute;inset:0;background-image:url('../../acervo/exata-salao-imovel.jpg');
+  background-size:cover;background-position:50% 34%;z-index:1}
+.tone{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(10,20,34,.94) 0%,rgba(10,20,34,.74) 12%,
+             rgba(10,20,34,.34) 20%,rgba(10,20,34,.04) 30%,rgba(10,20,34,.28) 39%,
+             rgba(10,20,34,.86) 47%,rgba(10,20,34,.98) 55%,rgba(10,20,34,1) 100%)}
+.tint{position:absolute;inset:0;z-index:3;mix-blend-mode:soft-light;
+  background:radial-gradient(85% 42% at 14% 82%,rgba(91,193,212,.72),transparent 62%)}
+
+/* zonas seguras: conteudo entre 280px e 1660px */
+.top{position:absolute;top:290px;left:72px;right:72px;z-index:10;
+  display:flex;align-items:flex-start;justify-content:space-between}
+.wm{font-family:'BS';font-weight:700;font-size:48px;letter-spacing:.055em;line-height:1}
+.wm b{color:var(--teal);font-weight:700}
+.wm .l2{display:block;margin-top:7px;font-family:'IN';font-size:15px;font-weight:700;
+  letter-spacing:.42em;color:rgba(255,255,255,.72)}
+.local{text-align:right;font-size:16px;font-weight:700;letter-spacing:.2em;line-height:1.5;
+  color:var(--teal);padding-top:6px}
+
+.bloco{position:absolute;left:72px;right:72px;top:900px;z-index:10}
+.tag{display:inline-block;font-size:20px;font-weight:700;letter-spacing:.2em;border-radius:40px;
+  padding:13px 26px 11px;background:var(--teal);color:var(--navy);margin-bottom:30px}
+h1{font-family:'BS';font-weight:700;font-size:96px;line-height:.95;text-transform:uppercase;
+  letter-spacing:.01em}
+h1 .cy{color:var(--teal)}
+.sub{margin-top:28px;font-size:40px;line-height:1.32;color:rgba(255,255,255,.95)}
+.sub b{color:var(--white);font-weight:700}
+.zap{margin-top:26px;font-family:'BS';font-weight:700;font-size:50px;letter-spacing:.02em;
+  color:var(--teal);line-height:1}
+.hand{position:absolute;left:72px;bottom:262px;z-index:10;font-size:21px;font-weight:700;
+  letter-spacing:.2em;color:rgba(255,255,255,.55)}
+</style></head><body>
+
+<div class="card">
+  <div class="foto"></div>
+  <div class="tone"></div>
+  <div class="tint"></div>
+
+  <div class="top">
+    <div class="wm">SOVERAL<b>SOUL</b><span class="l2">SERVIÇOS DE IA</span></div>
+    <div class="local">SALÃO DO IMÓVEL<br>CHAPECÓ · 2026</div>
+  </div>
+
+  <div class="bloco">
+    <div class="tag">NO ESTANDE DA EXATA</div>
+    <h1>Aqui está<br>nascendo o<br><span class="cy">SSHub</span></h1>
+    <p class="sub">Com a <b>Exata</b>, minha grande parceira, construindo um sistema que cobre
+    a operação imobiliária inteira.</p>
+    <div class="zap">(49) 9 9911-8781</div>
+  </div>
+
+  <div class="hand">@SOVERALSOUL</div>
+</div>
+
+</body></html>
