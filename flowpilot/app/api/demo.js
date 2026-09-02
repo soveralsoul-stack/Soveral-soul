@@ -113,8 +113,8 @@ module.exports = async (req, res) => {
           button that runs the scheduler immediately so you can see a post go live.</li>
       </ol>
       <a class="btn" href="/api/oauth/start?client=${DEMO_CLIENT}">Connect Instagram</a>
-      <p class="small">You can revoke access at any time in Instagram → Settings → Accounts Center →
-      Website permissions. See our <a href="/privacidade">privacy policy</a>.</p>`));
+      <p class="small">You can revoke access at any time in Instagram → Settings → Website permissions →
+      Apps and websites. See our <a href="/privacidade">privacy policy</a>.</p>`));
   }
 
   // conectado: botão de publicar
@@ -149,7 +149,7 @@ module.exports = async (req, res) => {
       <button class="btn" type="submit">Run the scheduler now</button>
     </form>
     <p class="small">It publishes a branded test card as a story, which disappears after 24 hours.
-    To disconnect, revoke access in Instagram → Settings → Accounts Center → Website permissions.</p>
+    To disconnect, revoke access in Instagram → Settings → Website permissions → Apps and websites.</p>
     <form method="POST" action="/api/demo-reset" style="margin-top:14px">
       <button class="btn2" type="submit">Not your account? Disconnect and connect another</button>
     </form>`));
