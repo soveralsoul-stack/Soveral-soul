@@ -25,6 +25,11 @@ module.exports = async (req, res) => {
   }
 
   for (const id of ids) {
+    // O cliente "reviewer" e a conta que o revisor da Meta (ou o Rodrigo, testando)
+    // conecta em /demo. A agenda dele existe para ser vista e executada pelo botao
+    // "Run the scheduler now", nunca pelo cron: senao cartoes de teste aparecem
+    // sozinhos na conta de quem so queria testar.
+    if (id === "reviewer") { resumo.push({ client: id, skip: "demo: publica so pelo botao" }); continue; }
     try {
       const client = await resolveClient(id);
       if (!client) { resumo.push({ client: id, skip: "registro não encontrado" }); continue; }
