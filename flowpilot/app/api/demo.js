@@ -68,6 +68,9 @@ const page = (body) => `<!doctype html><html lang="en"><head><meta charset="utf-
     text-decoration:none;border:0;padding:15px 26px;border-radius:11px;font-size:1.03rem;cursor:pointer;
     box-shadow:0 10px 30px rgba(79,140,255,.35);font-family:inherit}
   .btn:disabled{opacity:.55;cursor:default;box-shadow:none}
+  .btn2{background:none;border:1px solid #2a3560;color:#9fb0c9;padding:10px 16px;border-radius:9px;
+    font-size:.88rem;cursor:pointer;font-family:inherit}
+  .btn2:hover{border-color:#4f8cff;color:#e8eef8}
   .ok{background:rgba(45,180,120,.12);border:1px solid #1f6b4a;color:#7ee2b0;
     padding:12px 14px;border-radius:10px;margin:16px 0;font-size:.94rem}
   .err{background:rgba(224,85,107,.12);border:1px solid #7a2636;color:#f2a3b0;
@@ -99,13 +102,15 @@ module.exports = async (req, res) => {
   if (!connected) {
     return res.end(page(`
       <h1>App Review demo — no credentials needed</h1>
-      <p>FlowPilot schedules and publishes Instagram posts on behalf of the account owner.
-      To test it, connect <b>your own</b> Instagram professional account:</p>
+      <p>FlowPilot is a scheduling service: the account owner fills in a publishing schedule
+      once, and FlowPilot publishes to their Instagram Business account at each scheduled time.
+      To see it, connect <b>your own</b> Instagram professional account:</p>
       <ol>
         <li>Click <b>Connect Instagram</b> below.</li>
         <li>Log in with your Instagram professional (Business or Creator) account.</li>
         <li>On the consent screen, grant <b>Access and publish content</b>.</li>
-        <li>You will come back here with a button to publish a test post.</li>
+        <li>You come back here to the <b>publishing schedule</b> for your account, with a
+          button that runs the scheduler immediately so you can see a post go live.</li>
       </ol>
       <a class="btn" href="/api/oauth/start?client=${DEMO_CLIENT}">Connect Instagram</a>
       <p class="small">You can revoke access at any time in Instagram → Settings → Accounts Center →
@@ -144,7 +149,10 @@ module.exports = async (req, res) => {
       <button class="btn" type="submit">Run the scheduler now</button>
     </form>
     <p class="small">It publishes a branded test card as a story, which disappears after 24 hours.
-    To disconnect, revoke access in Instagram → Settings → Accounts Center → Website permissions.</p>`));
+    To disconnect, revoke access in Instagram → Settings → Accounts Center → Website permissions.</p>
+    <form method="POST" action="/api/demo-reset" style="margin-top:14px">
+      <button class="btn2" type="submit">Not your account? Disconnect and connect another</button>
+    </form>`));
 };
 
 module.exports.DEMO_CLIENT = DEMO_CLIENT;
