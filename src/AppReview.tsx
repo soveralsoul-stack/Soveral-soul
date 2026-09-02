@@ -10,9 +10,10 @@ import {
 import { BODY } from "./brand/fonts";
 
 /**
- * Vídeo do App Review (Meta): monta os trechos gravados (OBS + espelhamento do
- * celular) e sobrepõe as legendas em inglês, uma por cena. 1080p30, sem áudio.
- * Cortes só removem espera; a cena de autorização (consentimento) fica contínua.
+ * Vídeo do App Review (Meta), 2ª submissão: uma gravação única do Chrome
+ * (demo -> consentimento -> agenda -> publicação -> perfil -> revogação) com
+ * legendas em inglês, uma por cena. Sem áudio. Cortes só removem espera; a
+ * cena de consentimento fica contínua até o clique em Permitir.
  */
 
 const FPS = 30;
@@ -21,40 +22,32 @@ const s = (sec: number) => Math.round(sec * FPS);
 type Seg = { src: string; from: number; to: number; caption: string };
 
 export const SEGMENTS: Seg[] = [
-  {
-    src: "appreview/main.mp4",
-    from: s(14),
-    to: s(19),
-    caption:
-      "FlowPilot (by Soveral Soul) schedules and publishes Instagram posts for the account owner.",
-  },
-  {
-    src: "appreview/main.mp4",
-    from: s(40),
-    to: s(64),
-    caption:
-      "The account owner connects their Instagram and grants the content publishing permission.",
-  },
-  {
-    src: "appreview/main.mp4",
-    from: s(109),
-    to: s(118),
-    caption:
-      "FlowPilot publishes the post to the authorized account via the Instagram Graph API.",
-  },
-  {
-    src: "appreview/proof.mp4",
-    from: s(9),
-    to: s(18),
-    caption: "The post is now live on the authorized Instagram profile.",
-  },
-  {
-    src: "appreview/proof.mp4",
-    from: s(44),
-    to: s(52),
-    caption:
-      "Access can be revoked anytime in Instagram settings. Our privacy policy covers data use and deletion.",
-  },
+  // 1. tela inicial da demo
+  { src: "appreview/main.mp4", from: s(3), to: s(12),
+    caption: "FlowPilot is a scheduling service. The account owner connects their Instagram professional account to get started." },
+  // 2. consentimento com as duas permissoes visiveis, ate o clique em Permitir
+  { src: "appreview/main.mp4", from: s(13.5), to: s(26),
+    caption: "Instagram Login: the owner grants two permissions, basic profile access and content publishing (instagram_business_content_publish)." },
+  // 3. tabela da agenda
+  { src: "appreview/main.mp4", from: s(27), to: s(38),
+    caption: "Back in FlowPilot: the publishing schedule for the connected account. This table is the product." },
+  // 4. explicacao do agendador + botao
+  { src: "appreview/main.mp4", from: s(38), to: s(47.5),
+    caption: "A scheduler runs every 15 minutes and publishes each item at its time. This is the only reason the app needs the publishing permission." },
+  // 5. clique e Media ID
+  { src: "appreview/main.mp4", from: s(47.5), to: s(54),
+    caption: "The owner runs the scheduler now. FlowPilot publishes the first item through the Instagram Graph API and returns the Media ID." },
+  // 6. perfil no Instagram, anel de story
+  { src: "appreview/main.mp4", from: s(80.5), to: s(87.5),
+    caption: "Opening Instagram: the authorized account now has a new story." },
+  // 7. story aberto
+  { src: "appreview/main.mp4", from: s(87.5), to: s(93.5),
+    caption: "The story published by FlowPilot, live on the authorized account." },
+  // 8. revogacao
+  { src: "appreview/main.mp4", from: s(112.5), to: s(118),
+    caption: "Access can be revoked at any time in Instagram settings." },
+  { src: "appreview/main.mp4", from: s(118.5), to: s(127),
+    caption: "Website permissions > Apps and websites lists SoveralSoul Publisher, where the owner can remove it. Our privacy policy covers data use and deletion." },
 ];
 
 export const APP_REVIEW_DURATION = SEGMENTS.reduce(
