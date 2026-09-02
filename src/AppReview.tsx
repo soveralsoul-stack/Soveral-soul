@@ -26,7 +26,7 @@ export const SEGMENTS: Seg[] = [
   { src: "appreview/main.mp4", from: s(3), to: s(12),
     caption: "FlowPilot is a scheduling service. The account owner connects their Instagram professional account to get started." },
   // 2. consentimento com as duas permissoes visiveis, ate o clique em Permitir
-  { src: "appreview/main.mp4", from: s(13.5), to: s(26),
+  { src: "appreview/main.mp4", from: s(13.5), to: s(24),
     caption: "Instagram Login: the owner grants two permissions, basic profile access and content publishing (instagram_business_content_publish)." },
   // 3. tabela da agenda
   { src: "appreview/main.mp4", from: s(27), to: s(38),
@@ -44,9 +44,9 @@ export const SEGMENTS: Seg[] = [
   { src: "appreview/main.mp4", from: s(87.5), to: s(93.5),
     caption: "The story published by FlowPilot, live on the authorized account." },
   // 8. revogacao
-  { src: "appreview/main.mp4", from: s(112.5), to: s(118),
+  { src: "appreview/main.mp4", from: s(113), to: s(119),
     caption: "Access can be revoked at any time in Instagram settings." },
-  { src: "appreview/main.mp4", from: s(118.5), to: s(127),
+  { src: "appreview/main.mp4", from: s(120.5), to: s(129),
     caption: "Website permissions > Apps and websites lists SoveralSoul Publisher, where the owner can remove it. Our privacy policy covers data use and deletion." },
 ];
 
