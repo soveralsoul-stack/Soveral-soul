@@ -55,3 +55,35 @@ Objetivo: sair de "publica só na minha conta" (modo Dev / testadores) para
 2. Iniciar a **Verificação de Negócio** (demora, começa cedo).
 3. Gravar o **vídeo** (roteiro pronto).
 4. Preencher e **submeter** o App Review.
+
+## Histórico do App Review
+
+### 1ª submissão — 26/07/2026 → rejeitada em 11/08
+- Aprovadas: `instagram_business_basic`, `public_profile`.
+- Rejeitada: `instagram_business_content_publish`, Política do Desenvolvedor 1.6
+  ("caso de uso inválido ou desnecessário para a funcionalidade principal").
+- Causa real: o campo de uso só tinha roteiro de teste, sem descrever o produto, e a
+  demo mostrava um botão "publicar post de teste" sem nenhuma agenda visível.
+
+### 2ª submissão — 02/09/2026
+O que mudou antes de reenviar:
+- `/demo` mostra a **tabela da agenda** da conta conectada e o botão vira
+  "Run the scheduler now". Tela inicial reescrita em torno da agenda.
+- `/api/demo-reset` + botão "Not your account? Disconnect and connect another",
+  para o revisor nunca herdar a conta de quem testou antes.
+- Cron ignora o cliente `reviewer` (publica só pelo botão).
+- Caminho de revogação corrigido: Settings → Website permissions → Apps and websites.
+- `/termos` no ar; Configurações do app → Básico com os quatro URLs, e-mail
+  `comercial@soveralsoul.com.br` e domínio `flowpilot.app.br`.
+- Screencast regravado (`out/flowpilot/app-review-v2.mp4`, 74s, legendas EN):
+  demo → consentimento com as duas permissões → agenda → Media ID → story no
+  perfil → revogação. Fonte das legendas: `src/AppReview.tsx`.
+- Campo de uso com as três seções pedidas pela Meta (funcionalidade, integração,
+  experiência), o "how to test" e as notas de reenvio, tudo num campo só.
+
+Enviado em 02/09/2026 via "Solicitar novamente", só `content_publish`.
+
+### Se recusar de novo
+Ler o motivo no painel (o e-mail não traz). Se for 1.6 outra vez, o próximo passo
+é abrir um ticket no Suporte para Desenvolvedores citando o Media ID publicado
+na demo e pedindo revisão humana.
