@@ -18,7 +18,7 @@ Tokens (no `:root` do template):
 
 | Token | Valor | Uso |
 |---|---|---|
-| `--ouro` | #F2B66B | destaque da campanha: etiqueta, "ainda em 2026?", entrada facilitada |
+| `--ouro` | #F2B66B | destaque da campanha: etiqueta, "ainda em 2026", entrada facilitada |
 | `--azul` | #0047BA | azul tradicional da Exata: reservado (logo colorido) |
 | `--laranja` | #FF6100 | laranja da Exata Imobiliária: selo e faixa na variante laranja |
 | `--noite` | #120C08 | fundo e texto escuro |
@@ -45,7 +45,7 @@ Não fazer: pôr o logo sobre outro tom de azul (o manual veta), usar o logo com
 Texto do card:
 
 > PRÉ-LANÇAMENTO · CHAPECÓ
-> **Sair do aluguel ainda em 2026?**
+> **Compre seu imóvel ainda em 2026**
 > MINHA CASA, MINHA VIDA · FINANCIADO
 > Studios com área de lazer completa, a 550 m da Av. Getúlio Vargas.
 > **Entrada facilitada como você nunca viu**
@@ -65,7 +65,7 @@ Olá! Aqui é da Exata Imóveis.
 
 Estamos preparando o pré-lançamento de studios com área de lazer completa, a 550 m da Av. Getúlio Vargas, numa das regiões mais centrais de Chapecó.
 
-São apartamentos financiados pelo Minha Casa, Minha Vida. Para quem quer sair do aluguel ainda em 2026, a entrada vai ser facilitada de um jeito que você nunca viu. As condições do pré-lançamento só serão mostradas pessoalmente, na apresentação do empreendimento.
+São apartamentos financiados pelo Minha Casa, Minha Vida. Para quem quer comprar o seu imóvel ainda em 2026, a entrada vai ser facilitada de um jeito que você nunca viu. As condições do pré-lançamento só serão mostradas pessoalmente, na apresentação do empreendimento.
 
 Você está convidado. Quer reservar um horário para conhecer?
 ```
@@ -138,7 +138,7 @@ Para os lotes seguintes, troque a etiqueta e a janela de `created_at`.
 A pedido do Willian (29/10): resumo do que foi combinado, com a referência de "550 m do McDonald's" (o card segue com a Av. Getúlio Vargas).
 
 ```
-Sair do aluguel ainda em 2026?
+Compre seu imóvel ainda em 2026.
 
 Vem aí o pré-lançamento de studios a 550 m do McDonald's, numa das regiões mais centrais de Chapecó, com área de lazer completa.
 
