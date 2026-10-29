@@ -1,0 +1,144 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Exata — card do pré-lançamento</title>
+<style>
+@font-face{font-family:'BS';src:url('../build/fonts/BigShoulders-Bold.ttf') format('truetype');font-weight:700}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Bold.ttf') format('truetype');font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* Tokens da campanha. --azul e --laranja são as cores da Exata Imobiliária
+   (manual de marca 2025/26, p. 18); --ouro é o destaque da campanha. */
+:root{
+  --noite:#120C08; --ouro:#F2B66B; --azul:#0047BA; --laranja:#FF6100; --white:#FFF;
+  --margem:80px;
+}
+body{background:#111}
+
+/* Faixa da assinatura: uma variante por body[data-faixa].
+   laranja: laranja da marca com transparência, texto e logo brancos
+            (logo monocromático, porque o "imobiliária" laranja sumiria no fundo laranja).
+   dourado: dourado da campanha com transparência, texto escuro e logo oficial colorido
+            (fundo claro pede a versão azul, como no manual, p. 15). */
+body[data-faixa="laranja"]{--faixa-rgb:255,97,0;--faixa-txt:#FFF;--faixa-txt2:rgba(255,255,255,.94)}
+body[data-faixa="dourado"]{--faixa-rgb:242,182,107;--faixa-txt:#120C08;--faixa-txt2:rgba(18,12,8,.84)}
+.logo{display:none;width:auto}
+body[data-faixa="laranja"] .logo.mono{display:block}
+body[data-faixa="dourado"] .logo.cor{display:block}
+
+/* Selo do Minha Casa, Minha Vida: uma variante por body[data-selo], com transparência.
+   laranja: laranja da marca translúcido, texto branco.
+   dourado: vidro dourado com contorno, no mesmo idioma da etiqueta do topo. */
+body[data-selo="laranja"] .mcmv{background:rgba(255,97,0,.72);border:2px solid rgba(255,140,70,.9)}
+body[data-selo="laranja"] .mcmv i{color:var(--white)}
+body[data-selo="dourado"] .mcmv{background:rgba(242,182,107,.16);border:2px solid var(--ouro)}
+body[data-selo="dourado"] .mcmv i{color:var(--ouro)}
+
+/* Um card por formato: 4:5 (feed e cabeçalho do WhatsApp) e 1:1 (reserva).
+   A foto (1080x1440, enviada pela KA Empreendimentos) entra pela largura: as portas do metrô se abrem
+   para o prédio, e a porta aberta fica livre entre o título e a oferta.
+   A faixa translúcida deixa o piso molhado da plataforma aparecer por baixo. */
+.card{position:relative;width:1080px;overflow:hidden;background:var(--noite);
+  font-family:'IN',sans-serif;color:var(--white)}
+.card.f45{height:1350px}
+.card.f11{height:1080px}
+.foto{position:absolute;inset:0;background-image:url('../../acervo/ka-estacao-portas.jpg');
+  background-size:1080px auto;z-index:1}
+/* A arte da KA traz o logo dela aplicado no piso (y 1285-1340 do original). Ampliada a
+   1200 px, esse logo cai abaixo do recorte nos dois formatos e não "fantasma" sob a faixa;
+   a KA entra como logo próprio no alto, à direita (.ka). */
+.f45 .foto,.f11 .foto{background-size:1200px auto}
+.f45 .foto{background-position:50% -60px}
+.f11 .foto{background-position:50% -250px}
+.tone{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(18,12,8,.92) 0%,rgba(18,12,8,.78) 20%,
+             rgba(18,12,8,.18) 32%,rgba(18,12,8,0) 44%,rgba(18,12,8,.30) 54%,rgba(18,12,8,.78) 64%,rgba(18,12,8,.72) 100%)}
+
+.topo{position:absolute;left:var(--margem);right:var(--margem);z-index:10}
+.f45 .topo{top:76px}
+.f11 .topo{top:56px}
+/* Logo da KA Empreendimentos no teto escuro da estação, nas cores originais.
+   Provisório: recortado da arte enviada; trocar pelo arquivo oficial quando chegar. */
+.ka{position:absolute;z-index:10;width:auto;display:block}
+.f45 .ka{right:var(--margem);top:72px;height:74px}
+.f11 .ka{right:var(--margem);top:52px;height:62px}
+.tag{display:inline-block;font-size:23px;font-weight:700;letter-spacing:.2em;
+  padding:12px 24px 10px;border:2px solid var(--ouro);border-radius:40px;color:var(--ouro)}
+h1{font-family:'BS';font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:.005em;
+  margin-top:26px}
+.f45 h1{font-size:106px;margin-top:40px}
+.f11 h1{font-size:96px;margin-top:20px}
+h1 .ou{color:var(--ouro)}
+
+/* Bloco de oferta: sobe para o horizonte, com folga grande acima da faixa */
+.oferta{position:absolute;left:var(--margem);right:var(--margem);z-index:10}
+.f45 .oferta{bottom:300px}
+.f11 .oferta{bottom:250px}
+.mcmv{display:inline-block;border-radius:12px;backdrop-filter:blur(8px);
+  padding:12px 22px 10px;font-size:30px;font-weight:700;letter-spacing:.03em;line-height:1}
+.mcmv i{font-style:normal}
+.f11 .mcmv{font-size:27px;padding:10px 20px 9px}
+.local{margin-top:20px;font-size:34px;line-height:1.26;color:rgba(255,255,255,.95);
+  text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.local b{font-weight:700;color:var(--white)}
+.f11 .local{font-size:30px;margin-top:16px}
+.entrada{margin-top:18px;font-family:'BS';font-weight:700;text-transform:uppercase;
+  font-size:54px;line-height:1;color:var(--ouro);letter-spacing:.01em;
+  text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.f11 .entrada{font-size:47px;margin-top:14px}
+
+/* Faixa translúcida: nasce transparente dentro da foto e fecha na cor da variante,
+   então os telhados de Chapecó aparecem por trás. O conteúdo fica na parte cheia.
+   Margem de segurança do logo = altura do "e" (~60% do logo). */
+.faixa{position:absolute;left:0;right:0;bottom:0;z-index:11;
+  background:linear-gradient(180deg,rgba(var(--faixa-rgb),0) 0%,rgba(var(--faixa-rgb),.70) 34%,
+             rgba(var(--faixa-rgb),.90) 62%,rgba(var(--faixa-rgb),.96) 100%);
+  display:flex;align-items:flex-end;justify-content:space-between;padding:0 var(--margem)}
+.f45 .faixa{height:276px;padding-bottom:50px}
+.f11 .faixa{height:226px;padding-bottom:40px}
+.convite{font-size:30px;line-height:1.3;color:var(--faixa-txt2)}
+.convite b{color:var(--faixa-txt)}
+.f11 .convite{font-size:26px}
+.f45 .logo{height:88px}
+.f11 .logo{height:74px}
+</style></head><body data-faixa="dourado" data-selo="dourado">
+
+<!-- O mesmo conteúdo nos dois formatos; o render tira um screenshot de cada .card por variante -->
+<div class="card f45" id="f45">
+  <div class="foto"></div><div class="tone"></div>
+  <img class="ka" src="../../acervo/ka-empreendimentos-recorte.png" alt="KA Empreendimentos">
+  <div class="topo">
+    <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
+    <h1>Compre seu imóvel<br><span class="ou">ainda em 2026</span></h1>
+  </div>
+  <div class="oferta">
+    <div class="mcmv">MINHA CASA, MINHA VIDA <i>· FINANCIADO</i></div>
+    <p class="local">Studios com <b>área de lazer completa</b>,<br>a <b>550 m da Av. Getúlio Vargas</b>.</p>
+    <p class="entrada">Entrada facilitada como você nunca viu</p>
+  </div>
+  <div class="faixa">
+    <p class="convite">Você está convidado para a<br><b>apresentação exclusiva.</b></p>
+    <img class="logo mono" src="../../acervo/exata-imobiliaria-branca-mono.svg" alt="Exata Imobiliária">
+    <img class="logo cor" src="../../acervo/exata-imobiliaria-azul.svg" alt="Exata Imobiliária">
+  </div>
+</div>
+
+<div class="card f11" id="f11">
+  <div class="foto"></div><div class="tone"></div>
+  <img class="ka" src="../../acervo/ka-empreendimentos-recorte.png" alt="KA Empreendimentos">
+  <div class="topo">
+    <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
+    <h1>Compre seu imóvel<br><span class="ou">ainda em 2026</span></h1>
+  </div>
+  <div class="oferta">
+    <div class="mcmv">MINHA CASA, MINHA VIDA <i>· FINANCIADO</i></div>
+    <p class="local">Studios com <b>área de lazer completa</b>,<br>a <b>550 m da Av. Getúlio Vargas</b>.</p>
+    <p class="entrada">Entrada facilitada como você nunca viu</p>
+  </div>
+  <div class="faixa">
+    <p class="convite">Você está convidado para a<br><b>apresentação exclusiva.</b></p>
+    <img class="logo mono" src="../../acervo/exata-imobiliaria-branca-mono.svg" alt="Exata Imobiliária">
+    <img class="logo cor" src="../../acervo/exata-imobiliaria-azul.svg" alt="Exata Imobiliária">
+  </div>
+</div>
+
+</body></html>
