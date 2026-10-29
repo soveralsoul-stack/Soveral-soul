@@ -34,19 +34,23 @@ body[data-selo="dourado"] .mcmv{background:rgba(242,182,107,.16);border:2px soli
 body[data-selo="dourado"] .mcmv i{color:var(--ouro)}
 
 /* Um card por formato: 4:5 (feed e cabeçalho do WhatsApp) e 1:1 (reserva).
-   A foto (1125x2000) entra pela largura; o horizonte de Chapecó fica no meio
-   e a faixa translúcida deixa os telhados aparecerem por baixo. */
+   A foto (1080x1440, enviada pela KKA) entra pela largura: as portas do metrô se abrem
+   para o prédio, e a porta aberta fica livre entre o título e a oferta.
+   A faixa translúcida deixa o piso molhado da plataforma aparecer por baixo. */
 .card{position:relative;width:1080px;overflow:hidden;background:var(--noite);
   font-family:'IN',sans-serif;color:var(--white)}
 .card.f45{height:1350px}
 .card.f11{height:1080px}
-.foto{position:absolute;inset:0;background-image:url('../../acervo/por-do-sol-chapeco.jpg');
+.foto{position:absolute;inset:0;background-image:url('../../acervo/kka-estacao-portas.jpg');
   background-size:1080px auto;z-index:1}
-.f45 .foto{background-position:50% -430px}
-.f11 .foto{background-position:50% -620px}
+/* A arte da KKA traz o logo dela aplicado no piso (y 1285-1340 do original). Ampliada a
+   1200 px, o logo cai abaixo do recorte nos dois formatos e não "fantasma" sob a faixa. */
+.f45 .foto,.f11 .foto{background-size:1200px auto}
+.f45 .foto{background-position:50% -60px}
+.f11 .foto{background-position:50% -250px}
 .tone{position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg,rgba(18,12,8,.88) 0%,rgba(18,12,8,.58) 24%,
-             rgba(18,12,8,.04) 36%,rgba(18,12,8,0) 46%,rgba(18,12,8,.50) 56%,rgba(18,12,8,.70) 100%)}
+  background:linear-gradient(180deg,rgba(18,12,8,.92) 0%,rgba(18,12,8,.78) 20%,
+             rgba(18,12,8,.18) 32%,rgba(18,12,8,0) 44%,rgba(18,12,8,.30) 54%,rgba(18,12,8,.78) 64%,rgba(18,12,8,.72) 100%)}
 
 .topo{position:absolute;left:var(--margem);right:var(--margem);z-index:10}
 .f45 .topo{top:76px}
@@ -61,8 +65,8 @@ h1 .ou{color:var(--ouro)}
 
 /* Bloco de oferta: sobe para o horizonte, com folga grande acima da faixa */
 .oferta{position:absolute;left:var(--margem);right:var(--margem);z-index:10}
-.f45 .oferta{bottom:372px}
-.f11 .oferta{bottom:282px}
+.f45 .oferta{bottom:300px}
+.f11 .oferta{bottom:250px}
 .mcmv{display:inline-block;border-radius:12px;backdrop-filter:blur(8px);
   padding:12px 22px 10px;font-size:30px;font-weight:700;letter-spacing:.03em;line-height:1}
 .mcmv i{font-style:normal}

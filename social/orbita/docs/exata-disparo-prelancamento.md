@@ -6,8 +6,8 @@ Ideia do Willian (áudio de 29/10/2026): um card com pouca informação, imagem 
 
 - Template: `social/orbita/templates/exata-prelancamento.html`
 - Render: `node social/orbita/build/render-exata-prelancamento.js`
-- Saída: `social/orbita/build/exata-prelancamento-selo-<selo>-4x5.jpg` (1080x1350, cabeçalho do WhatsApp e feed) e `-1x1.jpg` (1080x1080, reserva), com a faixa dourada (a escolhida) e `<selo>` = `laranja` ou `dourado`
-- Foto: `social/acervo/por-do-sol-chapeco.jpg`, o skyline de Chapecó no pôr do sol, escurecida em cima e embaixo para a escrita mandar.
+- Saída: `social/orbita/build/exata-prelancamento-4x5.jpg` (1080x1350, cabeçalho do WhatsApp e feed) e `exata-prelancamento-1x1.jpg` (1080x1080, reserva), na versão escolhida: faixa e selo dourados
+- Foto: `social/acervo/kka-estacao-portas.jpg`, arte enviada pelo gerente (KKA Empreendimentos): as portas do metrô se abrem para o prédio, que fica livre entre o título e a oferta. A arte traz o logo da KKA aplicado no piso; a foto entra ampliada para esse logo ficar fora do recorte e não aparecer "fantasma" sob a faixa translúcida. Se a KKA precisar aparecer, entra o arquivo do logo dela na faixa. A versão anterior usava `social/acervo/por-do-sol-chapeco.jpg`.
 - Identidade da Exata, pelo manual de marca 2025/26 (Teeza): logo oficial em vetor, acima do mínimo digital de 45 px e com a margem de segurança da altura do "e"; o selo do Minha Casa, Minha Vida e a faixa ficam em laranja ou dourado com transparência. O dourado continua como cor de destaque da campanha.
 - A fonte da marca (Anteb) fica restrita ao logo, que entra como vetor oficial; os textos do card usam as fontes do kit.
 
@@ -23,14 +23,14 @@ Tokens (no `:root` do template):
 | `--noite` | #120C08 | fundo e texto escuro |
 | `--margem` | 80 px | recuo lateral de todo o conteúdo |
 
-Faixa da assinatura (`body[data-faixa]`): um degradê que nasce transparente dentro da foto e fecha na cor, então os telhados de Chapecó aparecem por trás.
+Faixa da assinatura (`body[data-faixa]`): um degradê que nasce transparente dentro da foto e fecha na cor, então o piso da plataforma aparece por trás.
 
 | Variante | Fundo | Texto | Logo | Contraste do convite |
 |---|---|---|---|---|
 | `laranja` | laranja da marca | branco | branco monocromático (`exata-imobiliaria-branca-mono.svg`), porque o "imobiliária" laranja sumiria no laranja | 3,6:1, ok para texto grande (30 px) |
 | `dourado` | dourado da campanha | escuro | colorido oficial (`exata-imobiliaria-azul.svg`), como o manual aplica em fundo claro | 9,1:1 |
 
-A faixa escolhida é a **dourada**.
+A versão escolhida é **faixa dourada com selo dourado**.
 
 Selo do Minha Casa, Minha Vida (`body[data-selo]`), sempre com transparência:
 
