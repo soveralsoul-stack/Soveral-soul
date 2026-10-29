@@ -8,14 +8,14 @@ Ideia do Willian (áudio de 29/10/2026): um card com pouca informação, imagem 
 - Render: `node social/orbita/build/render-exata-prelancamento.js`
 - Saída: `social/orbita/build/exata-prelancamento-4x5.jpg` (1080x1350, cabeçalho do WhatsApp e feed) e `exata-prelancamento-1x1.jpg` (1080x1080, reserva)
 - Foto: `social/acervo/por-do-sol-chapeco.jpg`, o skyline de Chapecó no pôr do sol, escurecida em cima e embaixo para a escrita mandar.
-- Identidade da Exata: faixa azul no rodapé (o azul do painel de LED dos eventos) com a marca em branco; o dourado continua como cor de destaque.
-- Logo: o card usa `social/acervo/exata-logo.png` (versão branca, fundo transparente) quando o arquivo existe. Sem ele, entra o nome "eXata" em texto. Basta salvar o logo oficial nesse caminho e renderizar de novo.
+- Identidade da Exata, pelo manual de marca 2025/26 (Teeza): faixa no azul tradicional **#0047BA**, chapado, porque o manual proíbe aplicar a marca sobre outro tom de azul; logo oficial na versão branca (`social/acervo/exata-imobiliaria-branca.svg`, com "imobiliária" no laranja #FF6100), acima do mínimo digital de 45 px e com a margem de segurança da altura do "e". O dourado continua como cor de destaque da campanha.
+- A fonte da marca (Anteb) fica restrita ao logo, que entra como vetor oficial; os textos do card usam as fontes do kit.
 
 Texto do card:
 
 > PRÉ-LANÇAMENTO · CHAPECÓ
 > **Sair do aluguel ainda em 2026?**
-> MINHA CASA, MINHA VIDA · financiado
+> MINHA CASA, MINHA VIDA · FINANCIADO
 > Studios com área de lazer completa, a 550 m da Av. Getúlio Vargas.
 > **Entrada facilitada como você nunca viu**
 > Você está convidado para a apresentação exclusiva.
