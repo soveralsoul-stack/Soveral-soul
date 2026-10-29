@@ -7,7 +7,8 @@ Ideia do Willian (áudio de 29/10/2026): um card com pouca informação, imagem 
 - Template: `social/orbita/templates/exata-prelancamento.html`
 - Render: `node social/orbita/build/render-exata-prelancamento.js`
 - Saída: `social/orbita/build/exata-prelancamento-4x5.jpg` (1080x1350, cabeçalho do WhatsApp e feed) e `exata-prelancamento-1x1.jpg` (1080x1080, reserva), na versão escolhida: faixa e selo dourados
-- Foto: `social/acervo/kka-estacao-portas.jpg`, arte enviada pelo gerente (KKA Empreendimentos): as portas do metrô se abrem para o prédio, que fica livre entre o título e a oferta. A arte traz o logo da KKA aplicado no piso; a foto entra ampliada para esse logo ficar fora do recorte e não aparecer "fantasma" sob a faixa translúcida. Se a KKA precisar aparecer, entra o arquivo do logo dela na faixa. A versão anterior usava `social/acervo/por-do-sol-chapeco.jpg`.
+- Foto: `social/acervo/ka-estacao-portas.jpg`, arte enviada pelo gerente (KA Empreendimentos): as portas do metrô se abrem para o prédio, que fica livre entre o título e a oferta. A arte traz o logo da KA aplicado no piso; a foto entra ampliada para esse logo ficar fora do recorte e não aparecer "fantasma" sob a faixa translúcida. A versão anterior usava `social/acervo/por-do-sol-chapeco.jpg`.
+- Logo da KA: no alto, à direita, sobre o teto escuro da estação, nas cores originais (branco e amarelo). É um recorte provisório da própria arte (`social/acervo/ka-empreendimentos-recorte.png`); trocar pelo arquivo oficial da KA quando chegar.
 - Identidade da Exata, pelo manual de marca 2025/26 (Teeza): logo oficial em vetor, acima do mínimo digital de 45 px e com a margem de segurança da altura do "e"; o selo do Minha Casa, Minha Vida e a faixa ficam em laranja ou dourado com transparência. O dourado continua como cor de destaque da campanha.
 - A fonte da marca (Anteb) fica restrita ao logo, que entra como vetor oficial; os textos do card usam as fontes do kit.
 

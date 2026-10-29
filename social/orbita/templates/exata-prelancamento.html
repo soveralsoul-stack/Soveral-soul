@@ -34,17 +34,18 @@ body[data-selo="dourado"] .mcmv{background:rgba(242,182,107,.16);border:2px soli
 body[data-selo="dourado"] .mcmv i{color:var(--ouro)}
 
 /* Um card por formato: 4:5 (feed e cabeçalho do WhatsApp) e 1:1 (reserva).
-   A foto (1080x1440, enviada pela KKA) entra pela largura: as portas do metrô se abrem
+   A foto (1080x1440, enviada pela KA Empreendimentos) entra pela largura: as portas do metrô se abrem
    para o prédio, e a porta aberta fica livre entre o título e a oferta.
    A faixa translúcida deixa o piso molhado da plataforma aparecer por baixo. */
 .card{position:relative;width:1080px;overflow:hidden;background:var(--noite);
   font-family:'IN',sans-serif;color:var(--white)}
 .card.f45{height:1350px}
 .card.f11{height:1080px}
-.foto{position:absolute;inset:0;background-image:url('../../acervo/kka-estacao-portas.jpg');
+.foto{position:absolute;inset:0;background-image:url('../../acervo/ka-estacao-portas.jpg');
   background-size:1080px auto;z-index:1}
-/* A arte da KKA traz o logo dela aplicado no piso (y 1285-1340 do original). Ampliada a
-   1200 px, o logo cai abaixo do recorte nos dois formatos e não "fantasma" sob a faixa. */
+/* A arte da KA traz o logo dela aplicado no piso (y 1285-1340 do original). Ampliada a
+   1200 px, esse logo cai abaixo do recorte nos dois formatos e não "fantasma" sob a faixa;
+   a KA entra como logo próprio no alto, à direita (.ka). */
 .f45 .foto,.f11 .foto{background-size:1200px auto}
 .f45 .foto{background-position:50% -60px}
 .f11 .foto{background-position:50% -250px}
@@ -55,6 +56,11 @@ body[data-selo="dourado"] .mcmv i{color:var(--ouro)}
 .topo{position:absolute;left:var(--margem);right:var(--margem);z-index:10}
 .f45 .topo{top:76px}
 .f11 .topo{top:56px}
+/* Logo da KA Empreendimentos no teto escuro da estação, nas cores originais.
+   Provisório: recortado da arte enviada; trocar pelo arquivo oficial quando chegar. */
+.ka{position:absolute;z-index:10;width:auto;display:block}
+.f45 .ka{right:var(--margem);top:72px;height:74px}
+.f11 .ka{right:var(--margem);top:52px;height:62px}
 .tag{display:inline-block;font-size:23px;font-weight:700;letter-spacing:.2em;
   padding:12px 24px 10px;border:2px solid var(--ouro);border-radius:40px;color:var(--ouro)}
 h1{font-family:'BS';font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:.005em;
@@ -99,6 +105,7 @@ h1 .ou{color:var(--ouro)}
 <!-- O mesmo conteúdo nos dois formatos; o render tira um screenshot de cada .card por variante -->
 <div class="card f45" id="f45">
   <div class="foto"></div><div class="tone"></div>
+  <img class="ka" src="../../acervo/ka-empreendimentos-recorte.png" alt="KA Empreendimentos">
   <div class="topo">
     <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
     <h1>Sair do aluguel<br><span class="ou">ainda em 2026?</span></h1>
@@ -117,6 +124,7 @@ h1 .ou{color:var(--ouro)}
 
 <div class="card f11" id="f11">
   <div class="foto"></div><div class="tone"></div>
+  <img class="ka" src="../../acervo/ka-empreendimentos-recorte.png" alt="KA Empreendimentos">
   <div class="topo">
     <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
     <h1>Sair do aluguel<br><span class="ou">ainda em 2026?</span></h1>
