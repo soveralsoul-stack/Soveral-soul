@@ -1,0 +1,88 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Exata — card do pré-lançamento</title>
+<style>
+@font-face{font-family:'BS';src:url('../build/fonts/BigShoulders-Bold.ttf') format('truetype');font-weight:700}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Bold.ttf') format('truetype');font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--noite:#120C08;--ouro:#F2B66B;--white:#FFF}
+body{background:#111}
+
+/* Um card por formato: 4:5 (feed e cabeçalho do WhatsApp) e 1:1 (reserva).
+   A foto (1125x2000) entra pela largura; o recorte deixa o horizonte de
+   Chapecó no último terço e o céu limpo para o texto. */
+.card{position:relative;width:1080px;overflow:hidden;background:var(--noite);
+  font-family:'IN',sans-serif;color:var(--white)}
+.card.f45{height:1350px}
+.card.f11{height:1080px}
+.foto{position:absolute;inset:0;background-image:url('../../acervo/por-do-sol-chapeco.jpg');
+  background-size:1080px auto;z-index:1}
+.f45 .foto{background-position:50% -300px}
+.f11 .foto{background-position:50% -470px}
+.tone{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,rgba(18,12,8,.88) 0%,rgba(18,12,8,.62) 30%,
+             rgba(18,12,8,.10) 48%,rgba(18,12,8,.05) 58%,rgba(18,12,8,.70) 74%,rgba(18,12,8,.96) 86%)}
+
+.topo{position:absolute;left:80px;right:80px;z-index:10}
+.f45 .topo{top:84px}
+.f11 .topo{top:64px}
+.tag{display:inline-block;font-size:21px;font-weight:700;letter-spacing:.22em;
+  padding:12px 24px 10px;border:2px solid var(--ouro);border-radius:40px;color:var(--ouro)}
+h1{font-family:'BS';font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:.005em;
+  margin-top:30px}
+.f45 h1{font-size:116px}
+.f11 h1{font-size:100px;margin-top:24px}
+h1 .ou{color:var(--ouro)}
+
+.base{position:absolute;left:80px;right:80px;z-index:10}
+.f45 .base{bottom:72px}
+.f11 .base{bottom:56px}
+.local{font-size:34px;line-height:1.28;font-weight:400;color:rgba(255,255,255,.94)}
+.local b{font-weight:700;color:var(--white)}
+.f11 .local{font-size:30px}
+.entrada{margin-top:22px;font-family:'BS';font-weight:700;text-transform:uppercase;
+  font-size:52px;line-height:1;color:var(--ouro);letter-spacing:.01em}
+.f11 .entrada{font-size:46px;margin-top:18px}
+.rodape{margin-top:30px;padding-top:24px;border-top:2px solid rgba(255,255,255,.22);
+  display:flex;align-items:center;justify-content:space-between;gap:24px}
+.f11 .rodape{margin-top:22px;padding-top:18px}
+.convite{font-size:24px;line-height:1.35;color:rgba(255,255,255,.80)}
+.marca{font-family:'BS';font-weight:700;font-size:44px;letter-spacing:.08em;line-height:1;white-space:nowrap}
+.marca span{display:block;font-family:'IN';font-size:14px;letter-spacing:.42em;margin-top:6px;
+  color:rgba(255,255,255,.70);text-align:right}
+</style></head><body>
+
+<!-- O mesmo conteúdo nos dois formatos; o render tira um screenshot de cada .card -->
+<div class="card f45" id="f45">
+  <div class="foto"></div><div class="tone"></div>
+  <div class="topo">
+    <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
+    <h1>Sair do aluguel<br><span class="ou">ainda em 2026?</span></h1>
+  </div>
+  <div class="base">
+    <p class="local">Studios com <b>área de lazer completa</b>,<br>a <b>550 m da Av. Getúlio Vargas</b>.</p>
+    <p class="entrada">Entrada facilitada como você nunca viu</p>
+    <div class="rodape">
+      <p class="convite">Você está convidado para a<br>apresentação exclusiva.</p>
+      <div class="marca">EXATA<span>IMÓVEIS</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="card f11" id="f11">
+  <div class="foto"></div><div class="tone"></div>
+  <div class="topo">
+    <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
+    <h1>Sair do aluguel<br><span class="ou">ainda em 2026?</span></h1>
+  </div>
+  <div class="base">
+    <p class="local">Studios com <b>área de lazer completa</b>,<br>a <b>550 m da Av. Getúlio Vargas</b>.</p>
+    <p class="entrada">Entrada facilitada como você nunca viu</p>
+    <div class="rodape">
+      <p class="convite">Você está convidado para a<br>apresentação exclusiva.</p>
+      <div class="marca">EXATA<span>IMÓVEIS</span></div>
+    </div>
+  </div>
+</div>
+
+</body></html>
