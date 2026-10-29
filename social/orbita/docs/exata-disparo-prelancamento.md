@@ -135,14 +135,18 @@ Para os lotes seguintes, troque a etiqueta e a janela de `created_at`.
 
 ## 6. Legenda de apoio (feed/stories)
 
+A pedido do Willian (29/10): resumo do que foi combinado, com a referência de "550 m do McDonald's" (o card segue com a Av. Getúlio Vargas).
+
 ```
 Sair do aluguel ainda em 2026?
 
-Vem aí o pré-lançamento de studios com área de lazer completa, a 550 m da Av. Getúlio Vargas, no coração de Chapecó.
+Vem aí o pré-lançamento de studios a 550 m do McDonald's, numa das regiões mais centrais de Chapecó, com área de lazer completa.
 
-Financiados pelo Minha Casa, Minha Vida, com entrada facilitada como você nunca viu. As condições do pré-lançamento só serão apresentadas pessoalmente.
+São apartamentos financiados pelo Minha Casa, Minha Vida, com entrada facilitada de um jeito que você nunca viu.
 
-Quer ser convidado para a apresentação? Chama a Exata no WhatsApp.
+As condições do pré-lançamento só serão apresentadas pessoalmente. Quer ser convidado para a apresentação exclusiva? Chama a Exata no WhatsApp.
 
-#ExataImóveis #Chapecó #PréLançamento #SairDoAluguel #MinhaCasaMinhaVida #Studio
+Exata Imobiliária + KA Empreendimentos
+
+#ExataImóveis #KAEmpreendimentos #Chapecó #PréLançamento #SairDoAluguel #MinhaCasaMinhaVida #Studio
 ```
