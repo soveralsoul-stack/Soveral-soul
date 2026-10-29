@@ -25,6 +25,14 @@ body[data-faixa="dourado"]{--faixa-rgb:242,182,107;--faixa-txt:#120C08;--faixa-t
 body[data-faixa="laranja"] .logo.mono{display:block}
 body[data-faixa="dourado"] .logo.cor{display:block}
 
+/* Selo do Minha Casa, Minha Vida: uma variante por body[data-selo], com transparência.
+   laranja: laranja da marca translúcido, texto branco.
+   dourado: vidro dourado com contorno, no mesmo idioma da etiqueta do topo. */
+body[data-selo="laranja"] .mcmv{background:rgba(255,97,0,.72);border:2px solid rgba(255,140,70,.9)}
+body[data-selo="laranja"] .mcmv i{color:var(--white)}
+body[data-selo="dourado"] .mcmv{background:rgba(242,182,107,.16);border:2px solid var(--ouro)}
+body[data-selo="dourado"] .mcmv i{color:var(--ouro)}
+
 /* Um card por formato: 4:5 (feed e cabeçalho do WhatsApp) e 1:1 (reserva).
    A foto (1125x2000) entra pela largura; o horizonte de Chapecó fica no meio
    e a faixa translúcida deixa os telhados aparecerem por baixo. */
@@ -34,11 +42,11 @@ body[data-faixa="dourado"] .logo.cor{display:block}
 .card.f11{height:1080px}
 .foto{position:absolute;inset:0;background-image:url('../../acervo/por-do-sol-chapeco.jpg');
   background-size:1080px auto;z-index:1}
-.f45 .foto{background-position:50% -330px}
-.f11 .foto{background-position:50% -560px}
+.f45 .foto{background-position:50% -430px}
+.f11 .foto{background-position:50% -620px}
 .tone{position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg,rgba(18,12,8,.88) 0%,rgba(18,12,8,.58) 26%,
-             rgba(18,12,8,.04) 40%,rgba(18,12,8,0) 54%,rgba(18,12,8,.62) 64%,rgba(18,12,8,.70) 100%)}
+  background:linear-gradient(180deg,rgba(18,12,8,.88) 0%,rgba(18,12,8,.58) 24%,
+             rgba(18,12,8,.04) 36%,rgba(18,12,8,0) 46%,rgba(18,12,8,.50) 56%,rgba(18,12,8,.70) 100%)}
 
 .topo{position:absolute;left:var(--margem);right:var(--margem);z-index:10}
 .f45 .topo{top:76px}
@@ -53,12 +61,12 @@ h1 .ou{color:var(--ouro)}
 
 /* Bloco de oferta: sobe para o horizonte, com folga grande acima da faixa */
 .oferta{position:absolute;left:var(--margem);right:var(--margem);z-index:10}
-.f45 .oferta{bottom:316px}
-.f11 .oferta{bottom:252px}
-.mcmv{display:inline-block;background:var(--azul);border-radius:12px;
-  padding:13px 22px 11px;font-size:30px;font-weight:700;letter-spacing:.03em;line-height:1}
-.mcmv i{font-style:normal;color:var(--ouro)}
-.f11 .mcmv{font-size:27px;padding:11px 20px 10px}
+.f45 .oferta{bottom:372px}
+.f11 .oferta{bottom:282px}
+.mcmv{display:inline-block;border-radius:12px;backdrop-filter:blur(8px);
+  padding:12px 22px 10px;font-size:30px;font-weight:700;letter-spacing:.03em;line-height:1}
+.mcmv i{font-style:normal}
+.f11 .mcmv{font-size:27px;padding:10px 20px 9px}
 .local{margin-top:20px;font-size:34px;line-height:1.26;color:rgba(255,255,255,.95);
   text-shadow:0 2px 14px rgba(0,0,0,.55)}
 .local b{font-weight:700;color:var(--white)}
@@ -82,7 +90,7 @@ h1 .ou{color:var(--ouro)}
 .f11 .convite{font-size:26px}
 .f45 .logo{height:88px}
 .f11 .logo{height:74px}
-</style></head><body data-faixa="laranja">
+</style></head><body data-faixa="dourado" data-selo="dourado">
 
 <!-- O mesmo conteúdo nos dois formatos; o render tira um screenshot de cada .card por variante -->
 <div class="card f45" id="f45">

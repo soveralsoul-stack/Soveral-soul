@@ -6,9 +6,9 @@ Ideia do Willian (áudio de 29/10/2026): um card com pouca informação, imagem 
 
 - Template: `social/orbita/templates/exata-prelancamento.html`
 - Render: `node social/orbita/build/render-exata-prelancamento.js`
-- Saída: `social/orbita/build/exata-prelancamento-<faixa>-4x5.jpg` (1080x1350, cabeçalho do WhatsApp e feed) e `-1x1.jpg` (1080x1080, reserva), com `<faixa>` = `laranja` ou `dourado`
+- Saída: `social/orbita/build/exata-prelancamento-selo-<selo>-4x5.jpg` (1080x1350, cabeçalho do WhatsApp e feed) e `-1x1.jpg` (1080x1080, reserva), com a faixa dourada (a escolhida) e `<selo>` = `laranja` ou `dourado`
 - Foto: `social/acervo/por-do-sol-chapeco.jpg`, o skyline de Chapecó no pôr do sol, escurecida em cima e embaixo para a escrita mandar.
-- Identidade da Exata, pelo manual de marca 2025/26 (Teeza): logo oficial em vetor, acima do mínimo digital de 45 px e com a margem de segurança da altura do "e"; o selo do Minha Casa, Minha Vida usa o azul tradicional **#0047BA**. O dourado continua como cor de destaque da campanha.
+- Identidade da Exata, pelo manual de marca 2025/26 (Teeza): logo oficial em vetor, acima do mínimo digital de 45 px e com a margem de segurança da altura do "e"; o selo do Minha Casa, Minha Vida e a faixa ficam em laranja ou dourado com transparência. O dourado continua como cor de destaque da campanha.
 - A fonte da marca (Anteb) fica restrita ao logo, que entra como vetor oficial; os textos do card usam as fontes do kit.
 
 ### Sistema do card
@@ -18,8 +18,8 @@ Tokens (no `:root` do template):
 | Token | Valor | Uso |
 |---|---|---|
 | `--ouro` | #F2B66B | destaque da campanha: etiqueta, "ainda em 2026?", entrada facilitada |
-| `--azul` | #0047BA | azul tradicional da Exata: selo do MCMV |
-| `--laranja` | #FF6100 | laranja da Exata Imobiliária: faixa laranja |
+| `--azul` | #0047BA | azul tradicional da Exata: reservado (logo colorido) |
+| `--laranja` | #FF6100 | laranja da Exata Imobiliária: selo e faixa na variante laranja |
 | `--noite` | #120C08 | fundo e texto escuro |
 | `--margem` | 80 px | recuo lateral de todo o conteúdo |
 
@@ -29,6 +29,15 @@ Faixa da assinatura (`body[data-faixa]`): um degradê que nasce transparente den
 |---|---|---|---|---|
 | `laranja` | laranja da marca | branco | branco monocromático (`exata-imobiliaria-branca-mono.svg`), porque o "imobiliária" laranja sumiria no laranja | 3,6:1, ok para texto grande (30 px) |
 | `dourado` | dourado da campanha | escuro | colorido oficial (`exata-imobiliaria-azul.svg`), como o manual aplica em fundo claro | 9,1:1 |
+
+A faixa escolhida é a **dourada**.
+
+Selo do Minha Casa, Minha Vida (`body[data-selo]`), sempre com transparência:
+
+| Variante | Visual |
+|---|---|
+| `laranja` | laranja da marca translúcido, texto branco |
+| `dourado` | vidro dourado com contorno, "FINANCIADO" em dourado, no mesmo desenho da etiqueta do topo |
 
 Não fazer: pôr o logo sobre outro tom de azul (o manual veta), usar o logo com "imobiliária" laranja sobre a faixa laranja, ou trocar a fonte do logo.
 
