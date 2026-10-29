@@ -8,12 +8,14 @@ Ideia do Willian (áudio de 29/10/2026): um card com pouca informação, imagem 
 - Render: `node social/orbita/build/render-exata-prelancamento.js`
 - Saída: `social/orbita/build/exata-prelancamento-4x5.jpg` (1080x1350, cabeçalho do WhatsApp e feed) e `exata-prelancamento-1x1.jpg` (1080x1080, reserva)
 - Foto: `social/acervo/por-do-sol-chapeco.jpg`, o skyline de Chapecó no pôr do sol, escurecida em cima e embaixo para a escrita mandar.
-- A marca no rodapé é o nome em texto ("EXATA / IMÓVEIS"). Se a Exata quiser o logo oficial, troca o `.marca` por um `<img>`.
+- Identidade da Exata: faixa azul no rodapé (o azul do painel de LED dos eventos) com a marca em branco; o dourado continua como cor de destaque.
+- Logo: o card usa `social/acervo/exata-logo.png` (versão branca, fundo transparente) quando o arquivo existe. Sem ele, entra o nome "eXata" em texto. Basta salvar o logo oficial nesse caminho e renderizar de novo.
 
 Texto do card:
 
 > PRÉ-LANÇAMENTO · CHAPECÓ
 > **Sair do aluguel ainda em 2026?**
+> MINHA CASA, MINHA VIDA · financiado
 > Studios com área de lazer completa, a 550 m da Av. Getúlio Vargas.
 > **Entrada facilitada como você nunca viu**
 > Você está convidado para a apresentação exclusiva.
@@ -32,7 +34,7 @@ Olá! Aqui é da Exata Imóveis.
 
 Estamos preparando o pré-lançamento de studios com área de lazer completa, a 550 m da Av. Getúlio Vargas, numa das regiões mais centrais de Chapecó.
 
-Para quem quer sair do aluguel ainda em 2026, a entrada vai ser facilitada de um jeito que você nunca viu. As condições do pré-lançamento só serão mostradas pessoalmente, na apresentação do empreendimento.
+São apartamentos financiados pelo Minha Casa, Minha Vida. Para quem quer sair do aluguel ainda em 2026, a entrada vai ser facilitada de um jeito que você nunca viu. As condições do pré-lançamento só serão mostradas pessoalmente, na apresentação do empreendimento.
 
 Você está convidado. Quer reservar um horário para conhecer?
 ```
@@ -107,9 +109,9 @@ Sair do aluguel ainda em 2026?
 
 Vem aí o pré-lançamento de studios com área de lazer completa, a 550 m da Av. Getúlio Vargas, no coração de Chapecó.
 
-Entrada facilitada como você nunca viu. As condições do pré-lançamento só serão apresentadas pessoalmente.
+Financiados pelo Minha Casa, Minha Vida, com entrada facilitada como você nunca viu. As condições do pré-lançamento só serão apresentadas pessoalmente.
 
 Quer ser convidado para a apresentação? Chama a Exata no WhatsApp.
 
-#ExataImóveis #Chapecó #PréLançamento #SairDoAluguel #Studio
+#ExataImóveis #Chapecó #PréLançamento #SairDoAluguel #MinhaCasaMinhaVida #Studio
 ```

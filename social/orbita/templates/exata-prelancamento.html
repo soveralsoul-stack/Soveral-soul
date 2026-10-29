@@ -5,51 +5,68 @@
 @font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Regular.ttf') format('truetype');font-weight:400}
 @font-face{font-family:'IN';src:url('../build/fonts/InstrumentSans-Bold.ttf') format('truetype');font-weight:700}
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--noite:#120C08;--ouro:#F2B66B;--white:#FFF}
+/* --azul e --azul-fundo vêm do painel de LED da Exata nos eventos (galeria/EXATA_*). */
+:root{--noite:#120C08;--ouro:#F2B66B;--azul:#1E46A8;--azul-fundo:#0E2463;--white:#FFF}
 body{background:#111}
 
 /* Um card por formato: 4:5 (feed e cabeçalho do WhatsApp) e 1:1 (reserva).
    A foto (1125x2000) entra pela largura; o recorte deixa o horizonte de
-   Chapecó no último terço e o céu limpo para o texto. */
+   Chapecó acima da faixa azul e o céu limpo para o título. */
 .card{position:relative;width:1080px;overflow:hidden;background:var(--noite);
   font-family:'IN',sans-serif;color:var(--white)}
 .card.f45{height:1350px}
 .card.f11{height:1080px}
 .foto{position:absolute;inset:0;background-image:url('../../acervo/por-do-sol-chapeco.jpg');
   background-size:1080px auto;z-index:1}
-.f45 .foto{background-position:50% -300px}
-.f11 .foto{background-position:50% -470px}
+.f45 .foto{background-position:50% -380px}
+.f11 .foto{background-position:50% -520px}
 .tone{position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg,rgba(18,12,8,.88) 0%,rgba(18,12,8,.62) 30%,
-             rgba(18,12,8,.10) 48%,rgba(18,12,8,.05) 58%,rgba(18,12,8,.70) 74%,rgba(18,12,8,.96) 86%)}
+  background:linear-gradient(180deg,rgba(18,12,8,.88) 0%,rgba(18,12,8,.60) 28%,
+             rgba(18,12,8,.08) 44%,rgba(18,12,8,.05) 52%,rgba(18,12,8,.72) 66%,rgba(18,12,8,.97) 76%)}
 
 .topo{position:absolute;left:80px;right:80px;z-index:10}
-.f45 .topo{top:84px}
-.f11 .topo{top:64px}
+.f45 .topo{top:80px}
+.f11 .topo{top:60px}
 .tag{display:inline-block;font-size:21px;font-weight:700;letter-spacing:.22em;
   padding:12px 24px 10px;border:2px solid var(--ouro);border-radius:40px;color:var(--ouro)}
 h1{font-family:'BS';font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:.005em;
-  margin-top:30px}
+  margin-top:28px}
 .f45 h1{font-size:116px}
-.f11 h1{font-size:100px;margin-top:24px}
+.f11 h1{font-size:96px;margin-top:22px}
 h1 .ou{color:var(--ouro)}
 
-.base{position:absolute;left:80px;right:80px;z-index:10}
-.f45 .base{bottom:72px}
-.f11 .base{bottom:56px}
-.local{font-size:34px;line-height:1.28;font-weight:400;color:rgba(255,255,255,.94)}
+/* Bloco de oferta, logo acima da faixa azul */
+.oferta{position:absolute;left:80px;right:80px;z-index:10}
+.f45 .oferta{bottom:236px}
+.f11 .oferta{bottom:196px}
+.mcmv{display:inline-flex;align-items:center;gap:14px;background:var(--azul);
+  border-radius:12px;padding:12px 20px 11px;font-size:23px;font-weight:700;letter-spacing:.04em}
+.mcmv i{font-style:normal;font-weight:400;color:rgba(255,255,255,.82);letter-spacing:.02em}
+.f11 .mcmv{font-size:21px;padding:10px 18px 9px}
+.local{margin-top:20px;font-size:33px;line-height:1.28;color:rgba(255,255,255,.94)}
 .local b{font-weight:700;color:var(--white)}
-.f11 .local{font-size:30px}
-.entrada{margin-top:22px;font-family:'BS';font-weight:700;text-transform:uppercase;
+.f11 .local{font-size:29px;margin-top:16px}
+.entrada{margin-top:18px;font-family:'BS';font-weight:700;text-transform:uppercase;
   font-size:52px;line-height:1;color:var(--ouro);letter-spacing:.01em}
-.f11 .entrada{font-size:46px;margin-top:18px}
-.rodape{margin-top:30px;padding-top:24px;border-top:2px solid rgba(255,255,255,.22);
-  display:flex;align-items:center;justify-content:space-between;gap:24px}
-.f11 .rodape{margin-top:22px;padding-top:18px}
-.convite{font-size:24px;line-height:1.35;color:rgba(255,255,255,.80)}
-.marca{font-family:'BS';font-weight:700;font-size:44px;letter-spacing:.08em;line-height:1;white-space:nowrap}
-.marca span{display:block;font-family:'IN';font-size:14px;letter-spacing:.42em;margin-top:6px;
-  color:rgba(255,255,255,.70);text-align:right}
+.f11 .entrada{font-size:46px;margin-top:14px}
+
+/* Faixa azul da Exata, assinatura do card */
+.faixa{position:absolute;left:0;right:0;bottom:0;z-index:11;
+  background:linear-gradient(100deg,var(--azul) 0%,var(--azul-fundo) 100%);
+  border-top:3px solid var(--ouro);
+  display:flex;align-items:center;justify-content:space-between;padding:0 80px}
+.f45 .faixa{height:176px}
+.f11 .faixa{height:148px}
+.convite{font-size:25px;line-height:1.35;color:rgba(255,255,255,.92)}
+.convite b{color:var(--white)}
+.f11 .convite{font-size:23px}
+/* Logo oficial: social/acervo/exata-logo.png (versão branca, fundo transparente).
+   Sem o arquivo, entra o nome em texto. */
+.marca{display:flex;align-items:center}
+.marca img{height:78px;width:auto;display:block}
+.f11 .marca img{height:66px}
+.marca .txt{display:none;font-family:'IN';font-weight:700;font-size:64px;letter-spacing:-.02em;line-height:1}
+.marca .txt span{font-size:84px;line-height:.8}
 </style></head><body>
 
 <!-- O mesmo conteúdo nos dois formatos; o render tira um screenshot de cada .card -->
@@ -59,12 +76,16 @@ h1 .ou{color:var(--ouro)}
     <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
     <h1>Sair do aluguel<br><span class="ou">ainda em 2026?</span></h1>
   </div>
-  <div class="base">
+  <div class="oferta">
+    <div class="mcmv">MINHA CASA, MINHA VIDA <i>· financiado</i></div>
     <p class="local">Studios com <b>área de lazer completa</b>,<br>a <b>550 m da Av. Getúlio Vargas</b>.</p>
     <p class="entrada">Entrada facilitada como você nunca viu</p>
-    <div class="rodape">
-      <p class="convite">Você está convidado para a<br>apresentação exclusiva.</p>
-      <div class="marca">EXATA<span>IMÓVEIS</span></div>
+  </div>
+  <div class="faixa">
+    <p class="convite">Você está convidado para a<br><b>apresentação exclusiva.</b></p>
+    <div class="marca">
+      <img src="../../acervo/exata-logo.png" alt="Exata" onerror="this.remove();document.querySelectorAll('.marca .txt').forEach(t=>t.style.display='block')">
+      <div class="txt">e<span>X</span>ata</div>
     </div>
   </div>
 </div>
@@ -75,12 +96,16 @@ h1 .ou{color:var(--ouro)}
     <div class="tag">PRÉ-LANÇAMENTO · CHAPECÓ</div>
     <h1>Sair do aluguel<br><span class="ou">ainda em 2026?</span></h1>
   </div>
-  <div class="base">
+  <div class="oferta">
+    <div class="mcmv">MINHA CASA, MINHA VIDA <i>· financiado</i></div>
     <p class="local">Studios com <b>área de lazer completa</b>,<br>a <b>550 m da Av. Getúlio Vargas</b>.</p>
     <p class="entrada">Entrada facilitada como você nunca viu</p>
-    <div class="rodape">
-      <p class="convite">Você está convidado para a<br>apresentação exclusiva.</p>
-      <div class="marca">EXATA<span>IMÓVEIS</span></div>
+  </div>
+  <div class="faixa">
+    <p class="convite">Você está convidado para a<br><b>apresentação exclusiva.</b></p>
+    <div class="marca">
+      <img src="../../acervo/exata-logo.png" alt="Exata" onerror="this.remove();document.querySelectorAll('.marca .txt').forEach(t=>t.style.display='block')">
+      <div class="txt">e<span>X</span>ata</div>
     </div>
   </div>
 </div>
