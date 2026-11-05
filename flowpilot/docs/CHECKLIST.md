@@ -65,7 +65,7 @@ Objetivo: sair de "publica só na minha conta" (modo Dev / testadores) para
 - Causa real: o campo de uso só tinha roteiro de teste, sem descrever o produto, e a
   demo mostrava um botão "publicar post de teste" sem nenhuma agenda visível.
 
-### 2ª submissão — 02/09/2026
+### 2ª submissão — 02/09/2026 → rejeitada
 O que mudou antes de reenviar:
 - `/demo` mostra a **tabela da agenda** da conta conectada e o botão vira
   "Run the scheduler now". Tela inicial reescrita em torno da agenda.
@@ -81,7 +81,36 @@ O que mudou antes de reenviar:
 - Campo de uso com as três seções pedidas pela Meta (funcionalidade, integração,
   experiência), o "how to test" e as notas de reenvio, tudo num campo só.
 
-Enviado em 02/09/2026 via "Solicitar novamente", só `content_publish`.
+Enviado em 02/09/2026 via "Solicitar novamente", só `content_publish`. **Recusada.**
+Motivo exato: ler no painel (App Review → Requests) e registrar aqui.
+
+Leitura provável: o revisor ainda não via o usuário criando nada. A agenda já vinha
+pronta (preenchida pelo próprio app) e o botão publicava um cartão de teste nosso.
+Para a Meta isso parece app que posta o material dele na conta das pessoas, ou
+ferramenta interna, e nos dois casos cai na 1.6.
+
+### 3ª submissão — preparação
+O que mudou:
+- **Compositor na `/demo`**: o revisor envia a própria imagem, escreve a legenda,
+  escolhe feed ou story e a data/hora. O post entra na agenda dele e sai no horário
+  pelo cron (a cada 15 min), ou na hora pelo "Publish now". A demo começa vazia:
+  tudo o que é publicado foi o usuário que criou.
+- A imagem é recortada no navegador para um formato aceito (feed entre 4:5 e
+  1.91:1, story 1080x1920), vai em JPEG para o Upstash (`media:<id>`, expira 3 dias
+  depois do horário) e o Instagram busca em `flowpilot.app.br/m/<id>.jpg`.
+- A conta da demo fica presa ao navegador que conectou (cookie `fp_demo`): quem
+  abrir `/demo` de outro lugar vê só a tela de conectar, nunca a conta de outro.
+- O cron agora publica a **fila** do cliente `reviewer` (posts que o próprio usuário
+  agendou). A agenda semanal continua nunca rodando nessa conta.
+
+Falta fazer (Rodrigo):
+- [ ] **Nome do app = FlowPilot.** No vídeo anterior, a tela de consentimento e
+      "Apps e sites" mostravam "SoveralSoul Publisher". Painel da Meta → Configurações
+      do app → Básico → Nome de exibição; e Instagram → Configuração da API com login
+      do Instagram → nome do app no Instagram. Ícone: o do FlowPilot.
+- [ ] Testar a `/demo` no ar com uma conta real (feed e story) antes de gravar.
+- [ ] Regravar o vídeo com o roteiro novo (`roteiro-video.md`, versão 3).
+- [ ] Reescrever o campo de uso com o texto novo (mesmo arquivo).
 
 ### Se recusar de novo
 Ler o motivo no painel (o e-mail não traz). Se for 1.6 outra vez, o próximo passo

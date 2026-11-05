@@ -1,6 +1,7 @@
 /** Recebe o code do Instagram, troca por token longo e guarda no Upstash (por cliente). */
 const { exchangeCode, exchangeLong, getMe } = require("../../oauth");
 const { kvSet, saveClient } = require("../../lib");
+const { DEMO_CLIENT, newDemoSession } = require("../../demo-auth");
 
 const page = (title, body) =>
   `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title></head>` +
@@ -25,9 +26,16 @@ module.exports = async (req, res) => {
       igUserId: String(me.user_id || short.user_id || ""),
       username: me.username, accountType: me.account_type, connectedAt: new Date().toISOString(),
     });
-    // fluxo da demo do App Review: volta pra página com o botão de publicar
-    if (clientKey === "reviewer") {
-      res.writeHead(302, { Location: "/demo" });
+    // fluxo da demo do App Review: amarra a conta a este navegador e volta pro compositor
+    if (clientKey === DEMO_CLIENT) {
+      const sess = newDemoSession();
+      await kvSet(`igtoken:client:${clientKey}`, JSON.stringify({
+        token: long.access_token, userId: me.user_id || short.user_id, username: me.username,
+        at: new Date().toISOString(), sess: sess.hash,
+      }));
+      // conta nova na demo começa com a agenda vazia: nada herdado de quem testou antes
+      await saveClient(clientKey, { queue: [], schedule: [] });
+      res.writeHead(302, { Location: "/demo", "Set-Cookie": sess.cookie });
       return res.end();
     }
     return res.end(page("Conectado", `

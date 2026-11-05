@@ -5,7 +5,8 @@
   "rewrites": [
     { "source": "/privacidade", "destination": "/api/privacidade" },
     { "source": "/termos", "destination": "/api/termos" },
-    { "source": "/demo", "destination": "/api/demo" }
+    { "source": "/demo", "destination": "/api/demo" },
+    { "source": "/m/:file", "destination": "/api/media?id=:file" }
   ],
   "crons": [
     { "path": "/api/cron", "schedule": "*/15 * * * *" }
