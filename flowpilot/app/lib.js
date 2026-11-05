@@ -19,6 +19,17 @@ async function kvSet(key, value) {
   const j = await r.json().catch(() => ({}));
   return j.result === "OK";
 }
+/** SET key value EX <seconds> — valor que expira sozinho (mídia enviada pelo compositor). */
+async function kvSetEx(key, value, seconds) {
+  const c = kvCreds(); if (!c) return false;
+  const r = await fetch(c.url, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${c.tok}`, "Content-Type": "application/json" },
+    body: JSON.stringify(["SET", key, value, "EX", String(Math.max(60, Math.round(seconds)))]),
+  });
+  const j = await r.json().catch(() => ({}));
+  return j.result === "OK";
+}
 async function kvGet(key) {
   const c = kvCreds(); if (!c) return null;
   const r = await fetch(c.url, {
@@ -136,8 +147,17 @@ function targetMs(dow, timeStr, offsetHours, localNow) {
   return local - offsetHours * 3600e3;
 }
 
+// ---------- Cookies ----------
+function readCookie(req, name) {
+  for (const part of String(req.headers.cookie || "").split(";")) {
+    const i = part.indexOf("=");
+    if (i > 0 && part.slice(0, i).trim() === name) return decodeURIComponent(part.slice(i + 1).trim());
+  }
+  return null;
+}
+
 module.exports = {
-  kvSet, kvGet, kvDel, dedupOn, markOnce, rateLimit, scanKeys,
+  kvSet, kvSetEx, kvGet, kvDel, readCookie, dedupOn, markOnce, rateLimit, scanKeys,
   resolveClient, saveClient, defaultClientId, resolveToken, listClientIds,
   authOk, weekKey, targetMs,
 };

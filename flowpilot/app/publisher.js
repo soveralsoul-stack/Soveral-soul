@@ -114,4 +114,60 @@ async function publishDue(client, token, { dry = false, now = Date.now() } = {})
   return { week: wk, published, skipped, errors };
 }
 
-module.exports = { publishOne, publishDue, resolvePending };
+// ---------- Fila de posts avulsos (compositor) ----------
+// Diferente da agenda semanal (schedule), a fila guarda posts que o próprio usuário
+// criou: uma imagem enviada, uma legenda e um horário exato (ISO, UTC).
+//   { id, at, type: "image"|"story", url, caption, status: "scheduled"|"published"|"failed",
+//     mediaId?, publishedAt?, error? }
+// Só vale para clientes dinâmicos (Upstash), que é onde o compositor grava.
+
+/** Aplica um patch em um item da fila, relendo o registro para não perder escritas. */
+async function patchQueueItem(clientId, itemId, patch) {
+  const raw = await kvGet(`client:${clientId}`);
+  if (!raw) return null;
+  const rec = JSON.parse(raw);
+  rec.queue = (rec.queue || []).map((q) => (q.id === itemId ? { ...q, ...patch } : q));
+  await kvSet(`client:${clientId}`, JSON.stringify(rec));
+  return rec.queue.find((q) => q.id === itemId) || null;
+}
+
+/** Publica um item da fila (agora). A marca no Upstash impede publicar duas vezes. */
+async function publishQueued(client, token, item) {
+  const mark = await markOnce(`q:${client.id}:${item.id}`);
+  if (mark.enabled && !mark.fresh) return { id: item.id, skipped: "já publicado" };
+  try {
+    const mediaId = await publishItem({
+      igId: client.igUserId, token, type: item.type, urls: [item.url],
+      caption: item.type === "story" ? "" : item.caption || "", isVideo: false,
+    });
+    await patchQueueItem(client.id, item.id, {
+      status: "published", mediaId, publishedAt: new Date().toISOString(), error: null,
+    });
+    return { id: item.id, mediaId };
+  } catch (e) {
+    await kvDel(`q:${client.id}:${item.id}`); // libera para tentar de novo
+    await patchQueueItem(client.id, item.id, { status: "failed", error: e.message.slice(0, 300) });
+    throw e;
+  }
+}
+
+/** Publica os itens da fila que chegaram na hora (até windowHours de atraso). */
+async function publishDueQueue(client, token, { dry = false, now = Date.now() } = {}) {
+  const windowMs = (client.windowHours ?? 6) * 3600e3;
+  const published = [], errors = [];
+  for (const item of client.queue || []) {
+    if (item.status !== "scheduled") continue;
+    const t = Date.parse(item.at);
+    if (!(now >= t && now <= t + windowMs)) continue;
+    if (dry) { published.push({ id: item.id, dry: true }); continue; }
+    try {
+      const r = await publishQueued(client, token, item);
+      if (!r.skipped) published.push(r);
+    } catch (e) {
+      errors.push({ id: item.id, error: e.message });
+    }
+  }
+  return { published, errors };
+}
+
+module.exports = { publishOne, publishDue, resolvePending, patchQueueItem, publishQueued, publishDueQueue };

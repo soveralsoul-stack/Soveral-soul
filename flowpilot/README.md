@@ -54,6 +54,9 @@ Endpoints principais:
 - `GET /api/connect?client=<id>` — "Conectar Instagram" (OAuth)
 - `GET /api/admin/ui?client=<id>&key=SECRET` — painel (marca/mídia/agenda)
 - `GET /api/publish?client=<id>&key=SECRET` — publica os itens no horário (cron)
+- `GET /demo` — demo do App Review: conectar IG, compor post (imagem, legenda, horário),
+  agenda e "Publish now". Endpoints: `demo-schedule`, `demo-publish`, `demo-delete`, `demo-reset`
+- `GET /m/<id>.jpg` — imagem enviada pelo compositor (Upstash, expira sozinha)
 - `GET /api/health` · `GET /api/recent` — diagnóstico
 
 ### Deploy (Vercel)

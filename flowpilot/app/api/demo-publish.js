@@ -1,41 +1,36 @@
 /**
- * Publica o post de teste na conta que o revisor conectou em /demo.
- * Endpoint público (sem segredo) — por isso é estritamente limitado:
- *   - só o cliente "reviewer" (a conta que o próprio revisor autorizou);
- *   - só a mídia fixa de teste (story-teste.jpg deste mesmo domínio);
+ * "Publish now" de um post da fila da demo: o mesmo caminho do agendador, sem
+ * esperar o horário. Endpoint público, por isso estritamente limitado:
+ *   - só a sessão do navegador que conectou a conta (ver demo-auth.js);
+ *   - só itens que o próprio usuário colocou na fila pelo compositor;
  *   - rate limit de 1 publicação por minuto.
- * Ou seja: só consegue publicar na conta de quem acabou de dar consentimento.
  */
-const { publishItem } = require("../ig");
-const { kvGet, rateLimit } = require("../lib");
-
-const DEMO_CLIENT = "reviewer";
+const { resolveClient, rateLimit } = require("../lib");
+const { publishQueued } = require("../publisher");
+const { DEMO_CLIENT, demoAccount } = require("../demo-auth");
 
 module.exports = async (req, res) => {
   const back = (params) => {
     res.writeHead(302, { Location: `/demo?${new URLSearchParams(params).toString()}` });
     res.end();
   };
+  if (req.method !== "POST") return back({});
 
   try {
-    const stored = await kvGet(`igtoken:client:${DEMO_CLIENT}`);
-    if (!stored) return back({ error: "No account connected. Please connect Instagram first." });
-    const { token, userId } = JSON.parse(stored);
-    if (!token || !userId) return back({ error: "Connection incomplete. Please connect again." });
+    const acc = await demoAccount(req);
+    if (!acc || acc.other) return back({ error: "No account connected in this browser. Please connect Instagram first." });
 
-    const ok = await rateLimit(`demo:publish:${userId}`, 60);
+    const itemId = String((req.body || {}).item || "");
+    const client = await resolveClient(DEMO_CLIENT);
+    const item = (client?.queue || []).find((q) => q.id === itemId);
+    if (!item) return back({ error: "That post is no longer in the schedule." });
+    if (item.status === "published") return back({ published: item.id });
+
+    const ok = await rateLimit(`demo:publish:${acc.userId}`, 60);
     if (!ok) return back({ error: "Please wait a minute before publishing again." });
 
-    const host = (req.headers["x-forwarded-host"] || req.headers.host || "").split(",")[0].trim();
-    const mediaId = await publishItem({
-      igId: userId,
-      token,
-      type: "story",
-      urls: [`https://${host}/story-teste.jpg`],
-      caption: "",
-      isVideo: false,
-    });
-    return back({ published: "1", media: mediaId });
+    const r = await publishQueued({ ...client, igUserId: String(acc.userId) }, acc.token, item);
+    return back({ published: item.id, ...(r.skipped ? {} : { media: r.mediaId }) });
   } catch (e) {
     return back({ error: (e.message || "publish failed").slice(0, 200) });
   }

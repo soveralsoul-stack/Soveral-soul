@@ -15,6 +15,58 @@ script sem cortes que "pulem" a autorização ou a publicação.
 
 ---
 
+## Versão 3 (3ª submissão) — demo com compositor
+
+> As duas primeiras versões mostravam uma agenda pronta e um cartão de teste nosso.
+> Esta mostra o usuário **criando o próprio post** e o FlowPilot publicando. É o que
+> separa um app de agendamento de "uso desnecessário" (1.6).
+
+**Antes de gravar:** nome do app no painel = **FlowPilot** (ver `CHECKLIST.md`); se a
+conta de teste já estiver conectada, clique em "Disconnect this account" na `/demo` e
+revogue em Instagram → Apps e sites, para gravar a conexão limpa. Tenha uma foto
+qualquer no computador (do celular serve) e o Instagram da conta aberto noutra aba.
+
+Uma gravação só do Chrome, sem áudio; as legendas EN entram na edição (`src/AppReview.tsx`).
+
+| # | Tela | Legenda (EN) |
+|---|------|--------------|
+| 1 | `/demo` inicial, URL visível | FlowPilot is a scheduling service for Instagram. The owner connects their Instagram professional account to get started. |
+| 2 | Login + consentimento, parado 3 s nas duas permissões, até "Permitir" | Instagram Login: the owner grants basic profile access and content publishing (instagram_business_content_publish). |
+| 3 | Volta conectada, agenda vazia | Back in FlowPilot, connected. The schedule is empty: everything FlowPilot publishes is created by the owner. |
+| 4 | Feed post → escolhe a foto → preview aparece → escreve a legenda | The owner creates a post: uploads their own image and writes the caption. |
+| 5 | Escolhe data/hora (uns 10 min à frente) → Add to schedule → linha "Scheduled" | They pick the date and time. The post goes into their publishing schedule. |
+| 6 | Mostra o parágrafo do agendador | A scheduler runs every 15 minutes and publishes each post at its time, through the Instagram Graph API. That is why the app needs the publishing permission. |
+| 7 | Clica "Publish now" → "Published" + Media ID | To skip the wait, the owner clicks Publish now. FlowPilot publishes the post and returns the Media ID. |
+| 8 | Aba do Instagram → atualiza o perfil → abre o post com a legenda | The post is live on the authorized account, with the image and caption the owner created. |
+| 9 | (opcional) Story: mesmo fluxo, formato Story, Publish now, anel no perfil | Stories work the same way. |
+| 10 | Instagram → Configurações → Permissões do site → Apps e sites → FlowPilot | Access can be revoked at any time in Instagram settings. Our privacy policy covers data use and deletion. |
+
+**Campo "How your app uses this permission"** (substitui o texto anterior):
+> FlowPilot is a social media scheduling service for small businesses. Its core and only
+> function is to publish content that the account owner creates in FlowPilot to their
+> own Instagram professional account at the time they choose.
+>
+> How the permission is used: the owner connects their account with Instagram Login. In
+> FlowPilot they upload an image, write the caption, choose the format (feed post or story)
+> and the date and time. The post is saved in their publishing schedule. A scheduler runs
+> every 15 minutes and, when a post's time comes, uses instagram_business_content_publish to
+> create the media container and publish it to that account. Without this permission no
+> post in the schedule can be published, so the product has no function.
+>
+> FlowPilot never publishes content the owner did not create or schedule, never publishes
+> to an account that did not authorize it, and does not read or modify other content.
+>
+> How to test (no credentials needed): open https://www.flowpilot.app.br/demo, click
+> Connect Instagram and log in with any Instagram professional account you control. Grant
+> the permissions. Back in FlowPilot, upload any image, write a caption, keep the suggested
+> time and click Add to schedule. Then click Publish now (or wait for the scheduled time)
+> and open the account's Instagram profile to see the post. "Disconnect this account"
+> removes your schedule and images; access can also be revoked in Instagram settings.
+
+---
+
+> A partir daqui, o roteiro da 1ª versão (referência).
+
 ## Antes de gravar (preparação — 10 min)
 
 Deixe tudo aberto e pronto para não travar durante a tomada:
