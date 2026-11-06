@@ -139,6 +139,19 @@
       "caption": "Tem empresa querendo IA pra resolver um problema que ela nem sabe qual é.\n\nAí automatiza a bagunça, e a bagunça só fica mais rápida.\n\nAntes de escolher ferramenta, eu sento e olho o fluxo: quem faz cada coisa, em que ponto o trabalho empaca, onde o tempo vai embora. Depois organizo. Só então automatizo.\n\nIA boa não é a mais cara. É a que resolve a dor certa.\n\nMe conta onde trava aí. É só me chamar, do jeito que for melhor pra você.\n\n#automacao #inteligenciaartificial #processos #chapeco #soveralsoul",
       "from": "2026-11-09",
       "until": "2026-11-09"
+    },
+    {
+      "id": "assinaturas-reels",
+      "dow": 6,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-assinaturas.mp4"
+      ],
+      "cover": "reels-assinaturas-capa.jpg",
+      "caption": "Quanto a sua empresa paga por mês em assinatura de software? Já fez essa conta?\n\nUm programa pro financeiro, outro pro atendimento, outro pras vendas. Cada um cobra por usuário, cada um tem seu login. E quem faz a ponte entre eles é gente copiando dado na mão. É ali que o tempo some e o erro aparece.\n\nAgora pensa numa automação só, conversando com todos os setores. Um sistema que é da sua empresa: sem aluguel por usuário, o custo passa a ser manter ele no ar. E a IA cuidando do trabalho repetitivo, que é onde costuma nascer o erro de digitação e o retrabalho.\n\nFaz a conta das suas assinaturas. Depois me chama que a gente conversa.\n\n#automacao #inteligenciaartificial #sistemas #chapeco #soveralsoul",
+      "from": "2026-11-07",
+      "until": "2026-11-07"
     }
   ]
 }
