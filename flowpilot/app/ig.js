@@ -70,14 +70,21 @@ async function statusOf(containerId, token) {
   } catch { return null; }
 }
 
+/** Parâmetros do reel. A capa (cover_url, JPEG público) é opcional: sem ela o Instagram usa um quadro do vídeo. */
+function reelsParams(videoUrl, caption, coverUrl) {
+  const p = { media_type: "REELS", video_url: videoUrl, caption };
+  if (coverUrl) p.cover_url = coverUrl;
+  return p;
+}
+
 /**
  * Cria o container de mídia SEM esperar/publicar. Usado no fluxo assíncrono:
  * vídeo demora para o Instagram processar e não cabe no limite da função.
  * Retorna o creation id.
  */
-async function createFor({ igId, token, type, urls, caption, isVideo }) {
+async function createFor({ igId, token, type, urls, caption, isVideo, coverUrl }) {
   if (type === "image") return createContainer(igId, token, { image_url: urls[0], caption });
-  if (type === "reels") return createContainer(igId, token, { media_type: "REELS", video_url: urls[0], caption });
+  if (type === "reels") return createContainer(igId, token, reelsParams(urls[0], caption, coverUrl));
   if (type === "story") {
     return createContainer(igId, token, isVideo
       ? { media_type: "STORIES", video_url: urls[0] }
@@ -96,14 +103,14 @@ async function createFor({ igId, token, type, urls, caption, isVideo }) {
  *  type: "image" | "carousel" | "reels" | "story"
  *  urls: array de URLs públicas (JPEG p/ imagem, MP4 H.264/AAC p/ vídeo)
  */
-async function publishItem({ igId, token, type, urls, caption, isVideo }) {
+async function publishItem({ igId, token, type, urls, caption, isVideo, coverUrl }) {
   if (type === "image") {
     const id = await createContainer(igId, token, { image_url: urls[0], caption });
     return publish(igId, token, id);
   }
 
   if (type === "reels") {
-    const id = await createContainer(igId, token, { media_type: "REELS", video_url: urls[0], caption });
+    const id = await createContainer(igId, token, reelsParams(urls[0], caption, coverUrl));
     await waitReady(id, token, { tries: 16, delayMs: 3000 });
     return publish(igId, token, id);
   }

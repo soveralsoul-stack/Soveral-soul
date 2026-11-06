@@ -22,7 +22,9 @@ const pendKey = (clientId, itemId) => `pending:${clientId}:${itemId}`;
 async function publishOne(client, token, item, { dry = false } = {}) {
   const base = (client.mediaBaseUrl || "").replace(/\/$/, "");
   const urls = (item.media || []).map((m) => `${base}/${m}`);
-  if (dry) return { id: item.id, dry: true, urls };
+  // capa opcional do reel: arquivo JPEG em mediaBaseUrl, como a mídia
+  const coverUrl = item.cover ? `${base}/${item.cover}` : undefined;
+  if (dry) return { id: item.id, dry: true, urls, coverUrl };
 
   const isVideo = String(item.media?.[0] || "").toLowerCase().endsWith(".mp4");
 
@@ -36,7 +38,7 @@ async function publishOne(client, token, item, { dry = false } = {}) {
 
   // vídeo: cria o container e tenta publicar dentro de uma janela curta
   const containerId = await createFor({
-    igId: client.igUserId, token, type: item.type, urls, caption: item.caption || "", isVideo,
+    igId: client.igUserId, token, type: item.type, urls, caption: item.caption || "", isVideo, coverUrl,
   });
 
   const deadline = Date.now() + 30000; // ~30s, com folga para o resto da função
