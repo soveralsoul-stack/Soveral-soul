@@ -165,6 +165,19 @@
       "caption": "Quantas mensagens a sua empresa deixou sem resposta hoje?\n\nEnquanto você atende quem tá na sua frente, o WhatsApp continua chegando.\n\nO SoulBot é o atendente de IA da sua empresa no WhatsApp. Ele aprende o seu negócio, responde na hora, tira dúvida, anota pedido e organiza os contatos. Quando o assunto pede uma pessoa, ele passa a conversa pra você e te avisa.\n\nQuer ver funcionando no seu negócio? Me chama que eu te mostro.\n\n#soulbot #atendimento #whatsapp #inteligenciaartificial #chapeco",
       "from": "2026-11-11",
       "until": "2026-11-11"
+    },
+    {
+      "id": "outcome-as-a-service-reels",
+      "dow": 5,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-outcome.mp4"
+      ],
+      "cover": "reels-outcome-capa.jpg",
+      "caption": "Ninguém quer comprar software. Nem hora de programador.\n\nO que o dono de empresa quer é o problema resolvido: o atendimento respondendo, o financeiro fechando sem retrabalho, o time com tempo pra vender.\n\nLá fora isso já tem nome: Outcome as a Service. Em bom português, você paga pelo resultado. No começo a gente combina o que vai mudar, mede antes e mede depois. É esse número que mostra se valeu a pena.\n\nEu não vendo IA. Eu entrego resultado. Me conta qual resultado você quer.\n\n#outcomeasaservice #automacao #inteligenciaartificial #chapeco #soveralsoul",
+      "from": "2026-11-13",
+      "until": "2026-11-13"
     }
   ]
 }
