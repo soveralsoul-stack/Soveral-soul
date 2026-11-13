@@ -81,13 +81,68 @@ O que mudou antes de reenviar:
 - Campo de uso com as três seções pedidas pela Meta (funcionalidade, integração,
   experiência), o "how to test" e as notas de reenvio, tudo num campo só.
 
-Enviado em 02/09/2026 via "Solicitar novamente", só `content_publish`. **Recusada.**
-Motivo exato: ler no painel (App Review → Requests) e registrar aqui.
+Solicitação de 02/09/2026 19:25, envio registrado no painel em 11/09/2026 15:05, só
+`content_publish`. **Recusada.** Renovadas no mesmo envio: `instagram_basic`,
+`instagram_business_basic`, `public_profile`.
 
-Leitura provável: o revisor ainda não via o usuário criando nada. A agenda já vinha
-pronta (preenchida pelo próprio app) e o botão publicava um cartão de teste nosso.
-Para a Meta isso parece app que posta o material dele na conta das pessoas, ou
-ferramenta interna, e nos dois casos cai na 1.6.
+**Motivo exato (lido no painel em 13/11/2026, Análise do app → Envios → feedback):**
+- Título: **"Screencast não alinhado com detalhes do caso de uso"**, Política do
+  Desenvolvedor 1.6.
+- A Meta diz que **o caso de uso é permitido**; o problema é só o vídeo: "o screencast
+  enviado não demonstra a experiência completa do caso de uso descrito nas observações
+  do envio".
+- Pede um screencast novo com: (1) o fluxo de login completo da Meta; (2) o usuário
+  concedendo a permissão; (3) a experiência completa do caso de uso; (4) o Guia de
+  gravação de tela, incluindo **inglês como idioma da interface**, legendas e dicas
+  explicando o que fazem os botões e outros elementos da tela; (5) se for servidor a
+  servidor, dizer isso no envio (não é o nosso caso).
+- Notas do analista (texto original, em inglês): "To verify content publish, please
+  re-record: compose and publish a post from your app, then open the Instagram client
+  and show the same post visible on the linked account. Ensure the post's caption and
+  media match what was submitted."
+
+Leitura: confirma a hipótese. O revisor queria ver o post **sendo composto dentro do
+app** e depois **o mesmo post, com a mesma imagem e a mesma legenda**, no Instagram.
+O vídeo v2 publicava um story pronto nosso (story nem tem legenda), então não havia
+o que comparar. O compositor da 3ª submissão resolve isso, desde que o vídeo use
+**post de feed** e mostre a legenda aberta no Instagram.
+
+### Conferência do painel em 13/11/2026
+- App **Publicado** (Live). Categoria: Utilitários e produtividade.
+- Nome de exibição: **ainda "SoveralSoul Publisher"** (trocar para FlowPilot).
+- Nome do app do Instagram (Casos de uso → API do Instagram → Configuração da API com
+  login do Instagram): **"SoveralSoul Publisher-IG"**. Depois de trocar o nome de
+  exibição, usar o botão "Sincronizar nome do app" nessa tela.
+- Ícone: arquivo `appiconmeta1024.png` carregado, mas a miniatura aparece em branco no
+  painel e quebrada na barra lateral. Recarregar o ícone do FlowPilot (1024x1024).
+- Domínio `flowpilot.app.br`, e-mail `comercial@soveralsoul.com.br`, Privacidade
+  `/privacidade`, Termos `/termos`, exclusão de dados (URL de instruções)
+  `/privacidade`, site `https://www.flowpilot.app.br/`: ok.
+- Verificação da empresa (Analisar → Verificação): **Verificado**.
+- Verificação de Uso de Dados: concluída.
+- A `/demo` no ar mostrava "Another Instagram account is connected to this demo from a
+  different browser": alguém conectou de outro navegador. Desconectar antes de gravar.
+
+### Teste da `/demo` no ar em 13/11/2026 (conta @soveralsoul, post de feed)
+- Connect Instagram → consentimento → volta "Connected: @soveralsoul", agenda vazia: ok.
+- Imagem 2400x1260 recortada no navegador para 1080x567 JPEG (59 KB); legenda
+  "FlowPilot test post, Nov 13. Scheduled and published from FlowPilot."; Add to
+  schedule → linha "Scheduled" às 12:03: ok.
+- Publish now → "Published to @soveralsoul", Media ID 17975462889185457: ok.
+- `/m/<id>.jpg` responde 200, `image/jpeg`, 1080x567: ok.
+- No Instagram web o post apareceu no topo do perfil (`/p/Dfr5HasIIzG/`) com a
+  legenda idêntica. A imagem ficou cinza no navegador, mas a foto de perfil e um
+  destaque também não carregavam na mesma sessão: falha de carregamento do Instagram
+  web nesse Chrome, não do post. Conferir no app do celular.
+- Achados para a gravação:
+  - Como o app já estava autorizado, o Instagram mostrou o consentimento curto
+    ("Você conectou anteriormente..."), **sem a lista de permissões**. Antes de gravar,
+    remover o app em Apps and websites para a tela completa aparecer.
+  - O consentimento mostrou "SoveralSoul Publisher-IG" e estava em português. O nome
+    foi trocado no mesmo dia (agora "FlowPilot - IG"); falta o idioma.
+  - O campo de arquivo da `/demo` usa o botão nativo do Chrome ("Escolher arquivo"),
+    que segue o idioma do navegador. Gravar com o Chrome em inglês, ou trocar por um
+    botão próprio "Choose image".
 
 ### 3ª submissão — preparação
 O que mudou:
@@ -104,11 +159,23 @@ O que mudou:
   agendou). A agenda semanal continua nunca rodando nessa conta.
 
 Falta fazer (Rodrigo):
-- [ ] **Nome do app = FlowPilot.** No vídeo anterior, a tela de consentimento e
-      "Apps e sites" mostravam "SoveralSoul Publisher". Painel da Meta → Configurações
-      do app → Básico → Nome de exibição; e Instagram → Configuração da API com login
-      do Instagram → nome do app no Instagram. Ícone: o do FlowPilot.
+- [x] **Nome do app = FlowPilot** (13/11/2026). Básico → Nome de exibição agora é
+      "FlowPilot"; na API do Instagram, "Sincronizar nome do app" deixou
+      **"FlowPilot - IG"** (a Meta põe o sufixo sozinha). A tela de consentimento já
+      mostra "FlowPilot - IG".
+- [x] Ícone (13/11/2026): o antigo (`appiconmeta1024.png`) não abria nem no recorte
+      da Meta ("Couldn't load the image"). Removido e trocado por
+      `brand/flowpilot-icon-1024.png` (degradê do FlowPilot com a seta branca; o recorte
+      da Meta pegou o quadrado de dentro, sem a moldura). Salvo em Básico.
+      Obs.: no Chrome usado, as imagens dos servidores da Meta não carregavam (ícone e
+      posts do Instagram ficavam cinza); conferir o ícone em outro navegador ou no celular.
+      Obs. 2: o `app/favicon.png` tem um defeito na ponta da seta (o caminho SVG do logo
+      fecha no ponto errado); o ícone novo foi desenhado sem esse defeito.
 - [ ] Testar a `/demo` no ar com uma conta real (feed e story) antes de gravar.
+- [ ] Antes de gravar: Instagram e Chrome em **inglês** (pedido do feedback de 11/09)
+      e Instagram deslogado no navegador, para o login completo aparecer no vídeo.
+- [ ] No vídeo, o post principal é de **feed** (story não tem legenda para comparar) e
+      termina com o post aberto no Instagram, imagem e legenda legíveis.
 - [ ] Regravar o vídeo com o roteiro novo (`roteiro-video.md`, versão 3).
 - [ ] Reescrever o campo de uso com o texto novo (mesmo arquivo).
 

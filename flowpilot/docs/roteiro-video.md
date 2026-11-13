@@ -21,25 +21,62 @@ script sem cortes que "pulem" a autorização ou a publicação.
 > Esta mostra o usuário **criando o próprio post** e o FlowPilot publicando. É o que
 > separa um app de agendamento de "uso desnecessário" (1.6).
 
-**Antes de gravar:** nome do app no painel = **FlowPilot** (ver `CHECKLIST.md`); se a
-conta de teste já estiver conectada, clique em "Disconnect this account" na `/demo` e
-revogue em Instagram → Apps e sites, para gravar a conexão limpa. Tenha uma foto
-qualquer no computador (do celular serve) e o Instagram da conta aberto noutra aba.
+**O que a Meta pediu (feedback de 11/09, ver `CHECKLIST.md`):** compor e publicar um
+post pelo app, abrir o Instagram e mostrar **o mesmo post** na conta conectada, com
+**imagem e legenda iguais** às que foram enviadas; login completo da Meta; interface em
+inglês; legendas explicando os botões.
+
+**Antes de gravar:**
+- Nome do app no painel = **FlowPilot** e ícone novo (ver `CHECKLIST.md`).
+- **Instagram em inglês** (instagram.com → More → Settings → Language → English) e
+  **Chrome em inglês**. A tela de consentimento precisa sair com "Allow", não "Permitir".
+- Na `/demo`, "Disconnect this account"; revogue em Instagram → Apps and websites; e
+  **saia do Instagram nesse navegador**, para a tela de login aparecer no vídeo.
+- Uma foto fácil de reconhecer (com o logo ou um texto grande) e uma legenda curta e
+  única, por exemplo: `FlowPilot test post, Nov 13. Scheduled and published from FlowPilot.`
+- O post principal é de **feed**. Story não tem legenda, então não serve de prova.
 
 Uma gravação só do Chrome, sem áudio; as legendas EN entram na edição (`src/AppReview.tsx`).
+Cada legenda diz o que o botão da cena faz (é o "tooltip" que o guia pede).
 
 | # | Tela | Legenda (EN) |
 |---|------|--------------|
-| 1 | `/demo` inicial, URL visível | FlowPilot is a scheduling service for Instagram. The owner connects their Instagram professional account to get started. |
-| 2 | Login + consentimento, parado 3 s nas duas permissões, até "Permitir" | Instagram Login: the owner grants basic profile access and content publishing (instagram_business_content_publish). |
-| 3 | Volta conectada, agenda vazia | Back in FlowPilot, connected. The schedule is empty: everything FlowPilot publishes is created by the owner. |
-| 4 | Feed post → escolhe a foto → preview aparece → escreve a legenda | The owner creates a post: uploads their own image and writes the caption. |
-| 5 | Escolhe data/hora (uns 10 min à frente) → Add to schedule → linha "Scheduled" | They pick the date and time. The post goes into their publishing schedule. |
-| 6 | Mostra o parágrafo do agendador | A scheduler runs every 15 minutes and publishes each post at its time, through the Instagram Graph API. That is why the app needs the publishing permission. |
-| 7 | Clica "Publish now" → "Published" + Media ID | To skip the wait, the owner clicks Publish now. FlowPilot publishes the post and returns the Media ID. |
-| 8 | Aba do Instagram → atualiza o perfil → abre o post com a legenda | The post is live on the authorized account, with the image and caption the owner created. |
-| 9 | (opcional) Story: mesmo fluxo, formato Story, Publish now, anel no perfil | Stories work the same way. |
-| 10 | Instagram → Configurações → Permissões do site → Apps e sites → FlowPilot | Access can be revoked at any time in Instagram settings. Our privacy policy covers data use and deletion. |
+| 1 | `/demo` inicial, URL visível | FlowPilot is a scheduling service for Instagram. The account owner creates posts in FlowPilot, and FlowPilot publishes them to their own account at the time they choose. |
+| 2 | Clica "Connect Instagram" | The "Connect Instagram" button starts Instagram Login, Meta's login flow. |
+| 3 | Tela de login do Instagram, digita usuário e senha (a senha sai mascarada) | The owner logs in to their Instagram professional account. |
+| 4 | Consentimento, parado 3 s nas permissões, até "Allow" | Consent screen: the owner grants FlowPilot basic profile access and content publishing (instagram_business_content_publish), then clicks Allow. |
+| 5 | Volta conectada, agenda vazia | Back in FlowPilot, connected as the owner's account. The schedule is empty: FlowPilot only publishes what the owner creates here. |
+| 6 | "Feed post" → escolhe a foto → preview | "Feed post" sets the format. "Choose image" uploads the owner's own photo, shown in the preview. |
+| 7 | Escreve a legenda | The owner writes the caption. This exact text will appear on Instagram. |
+| 8 | Data/hora (uns 10 min à frente) → "Add to schedule" → linha "Scheduled" | The owner picks the date and time and clicks "Add to schedule". The post is now in their schedule, marked Scheduled. |
+| 9 | Parágrafo do agendador | A scheduler runs every 15 minutes and publishes each post at its time through the Instagram API. This is why FlowPilot needs instagram_business_content_publish. |
+| 10 | "Publish now" → "Published" + Media ID | "Publish now" publishes this post immediately instead of waiting for its time. FlowPilot shows the Instagram Media ID. |
+| 11 | Aba do Instagram → atualiza o perfil → post novo no topo | Opening Instagram on the authorized account: the new post is at the top of the profile. |
+| 12 | Abre o post, parado 3 s com imagem e legenda legíveis | The same post, live: the image and the caption match exactly what the owner created in FlowPilot. |
+| 13 | Settings → Website permissions → Apps and websites → "FlowPilot - IG" | Access can be revoked at any time in Instagram Settings > Website permissions > Apps and websites. Our privacy policy covers data use and deletion. |
+
+Story fica fora do vídeo principal. Se quiser mostrar, grave depois da cena 13, com a
+legenda "Stories use the same flow." e sem prometer legenda no story.
+
+**Notas ao revisor** (campo de observações do envio, junto com o texto de uso abaixo):
+> Changes since the last review (feedback: "Screencast not aligned with use case details"):
+>
+> - The new screencast follows the analyst's note step by step: we compose a feed post
+>   inside FlowPilot (our own image and caption), publish it, then open Instagram and show
+>   the same post on the linked account, with the same image and caption.
+> - The full Meta login flow is recorded from a logged-out browser: the Instagram Login
+>   screen, the consent screen with instagram_business_content_publish, and the return
+>   to FlowPilot.
+> - FlowPilot, Instagram and the browser are in English, and every step has an English
+>   caption explaining what the buttons on screen do.
+> - The app is now named FlowPilot ("FlowPilot - IG" on the Instagram consent screen and
+>   in Apps and websites).
+> - This is not a server-to-server integration and does not use a system user token.
+>   Each account is connected by its owner through Instagram Login, and FlowPilot
+>   publishes with that owner's access token.
+>
+> You can reproduce everything at https://www.flowpilot.app.br/demo with any Instagram
+> professional account you control. No credentials are needed.
 
 **Campo "How your app uses this permission"** (substitui o texto anterior):
 > FlowPilot is a social media scheduling service for small businesses. Its core and only
@@ -53,7 +90,8 @@ Uma gravação só do Chrome, sem áudio; as legendas EN entram na edição (`sr
 > create the media container and publish it to that account. Without this permission no
 > post in the schedule can be published, so the product has no function.
 >
-> FlowPilot never publishes content the owner did not create or schedule, never publishes
+> The image and caption that appear on Instagram are exactly the ones the owner created
+> in FlowPilot. FlowPilot never publishes content the owner did not create or schedule, never publishes
 > to an account that did not authorize it, and does not read or modify other content.
 >
 > How to test (no credentials needed): open https://www.flowpilot.app.br/demo, click
