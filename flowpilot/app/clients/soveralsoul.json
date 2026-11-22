@@ -178,6 +178,19 @@
       "caption": "Ninguém quer comprar software. Nem hora de programador.\n\nO que o dono de empresa quer é o problema resolvido: o atendimento respondendo, o financeiro fechando sem retrabalho, o time com tempo pra vender.\n\nLá fora isso já tem nome: Outcome as a Service. Em bom português, você paga pelo resultado. No começo a gente combina o que vai mudar, mede antes e mede depois. É esse número que mostra se valeu a pena.\n\nEu não vendo IA. Eu entrego resultado. Me conta qual resultado você quer.\n\n#outcomeasaservice #automacao #inteligenciaartificial #chapeco #soveralsoul",
       "from": "2026-11-13",
       "until": "2026-11-13"
+    },
+    {
+      "id": "app-de-um-prompt-reels",
+      "dow": 1,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-app-de-um-prompt.mp4"
+      ],
+      "cover": "reels-app-de-um-prompt-capa.jpg",
+      "caption": "Ficou pronto em dez minutos. E por trás, o que tem segurando?\n\nApp feito em um prompt é ótimo pra testar uma ideia. O problema começa quando a empresa passa a depender dele: funciona no teste e trava no dia a dia.\n\nQuando eu construo um sistema, começo pela fundação. Banco de dados de verdade, com os dados de cada cliente separados. Servidor que escala sozinho e atualiza sem sair do ar. IA com reserva, pra quando um fornecedor parar. Registro de quem fez o quê. E o código fica com você.\n\nQuer saber como ficaria na sua empresa? Me chama no direct que a gente conversa.\n\n#automacao #sistemasobmedida #inteligenciaartificial #chapeco #soveralsoul",
+      "from": "2026-11-23",
+      "until": "2026-11-23"
     }
   ]
 }
