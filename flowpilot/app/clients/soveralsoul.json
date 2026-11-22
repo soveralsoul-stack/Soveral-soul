@@ -256,6 +256,18 @@
       "caption": "O TikTok anunciou mais de R$ 200 bilhões para um data center no Ceará. Por que lá?\n\nEnergia: o Nordeste gerou 93% da energia eólica do Brasil em 2025 (ABEEólica), e parte dela se perde por falta de linha de transmissão. Conexão: Fortaleza recebe cabos submarinos que ligam o Brasil à Europa e à África.\n\nA IA precisa de muito computador e muita energia. Fica a pergunta: com energia limpa, conexão e gente boa, o que mais dá pra construir em cima disso?\n\n(O valor é do anúncio do TikTok, de dezembro de 2025, e se refere ao projeto completo, ao longo de anos.)\n\n#inteligenciaartificial #datacenter #ceara #nordeste #tecnologia",
       "from": "2026-11-28",
       "until": "2026-11-28"
+    },
+    {
+      "id": "story-gta6-missao",
+      "dow": 7,
+      "time": "20:00",
+      "type": "story",
+      "media": [
+        "story-gta6-missao.mp4"
+      ],
+      "caption": "",
+      "from": "2026-11-22",
+      "until": "2026-11-22"
     }
   ]
 }
