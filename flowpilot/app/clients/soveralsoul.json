@@ -217,6 +217,19 @@
       "caption": "Ainda tem corretor digitando ficha de cliente na mão?\n\nNo sistema que eu implanto, ele só tira foto dos documentos. A IA lê RG, CNH e comprovante, entende o que é cada um e preenche a ficha sozinha. O que o corretor já tinha digitado continua lá.\n\nO back office para de redigitar e passa a conferir. A venda continua com quem sabe vender.\n\nQuer ver como isso funcionaria na sua empresa? Me chama no WhatsApp.\n\n#imobiliaria #corretordeimoveis #automacao #inteligenciaartificial #chapeco",
       "from": "2026-11-24",
       "until": "2026-11-24"
+    },
+    {
+      "id": "simulador-proposta-reels",
+      "dow": 5,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-simulador-proposta.mp4"
+      ],
+      "cover": "reels-simulador-proposta-capa.jpg",
+      "caption": "Toda imobiliária que vende lote parcelado precisa ver isso.\n\nEm muita imobiliária a proposta ainda nasce numa planilha e viaja por print no WhatsApp. No sistema que eu implanto, o corretor monta o parcelamento na frente do cliente: empreendimento, plano, lote, entrada e reforços. Sai o PDF pronto pro cliente.\n\nA casa vê a outra versão, quanto deixa de ganhar em juros, em reais. E o corretor acompanha cada passo da proposta no celular.\n\nQuer ver como isso ficaria na sua imobiliária? Me chama no WhatsApp.\n\n#imobiliaria #loteamento #corretordeimoveis #automacao #chapeco",
+      "from": "2026-11-27",
+      "until": "2026-11-27"
     }
   ]
 }
