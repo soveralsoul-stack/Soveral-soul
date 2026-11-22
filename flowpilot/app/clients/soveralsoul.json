@@ -230,6 +230,32 @@
       "caption": "Toda imobiliária que vende lote parcelado precisa ver isso.\n\nEm muita imobiliária a proposta ainda nasce numa planilha e viaja por print no WhatsApp. No sistema que eu implanto, o corretor monta o parcelamento na frente do cliente: empreendimento, plano, lote, entrada e reforços. Sai o PDF pronto pro cliente.\n\nA casa vê a outra versão, quanto deixa de ganhar em juros, em reais. E o corretor acompanha cada passo da proposta no celular.\n\nQuer ver como isso ficaria na sua imobiliária? Me chama no WhatsApp.\n\n#imobiliaria #loteamento #corretordeimoveis #automacao #chapeco",
       "from": "2026-11-27",
       "until": "2026-11-27"
+    },
+    {
+      "id": "geo-explicado-reels",
+      "dow": 4,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-geo-explicado.mp4"
+      ],
+      "cover": "reels-geo-explicado-capa.jpg",
+      "caption": "Seu cliente não pesquisa mais só no Google. Ele pergunta pra IA.\n\nE a IA responde com nome de empresa. GEO é o trabalho de deixar a sua empresa fácil de ser entendida e citada pelas inteligências artificiais: site organizado, informação clara sobre o que você faz e onde atende, e presença nos lugares que as IAs consultam.\n\nÉ orgânico e leva tempo. Ninguém sério garante que a IA vai citar você, mas dá pra medir e melhorar.\n\nQuer entender como isso funciona na sua empresa? Me chama no WhatsApp.\n\n#geo #inteligenciaartificial #marketingdigital #chapeco #soveralsoul",
+      "from": "2026-11-26",
+      "until": "2026-11-26"
+    },
+    {
+      "id": "datacenter-ceara-reels",
+      "dow": 6,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-datacenter-ceara.mp4"
+      ],
+      "cover": "reels-datacenter-ceara-capa.jpg",
+      "caption": "O TikTok anunciou mais de R$ 200 bilhões para um data center no Ceará. Por que lá?\n\nEnergia: o Nordeste gerou 93% da energia eólica do Brasil em 2025 (ABEEólica), e parte dela se perde por falta de linha de transmissão. Conexão: Fortaleza recebe cabos submarinos que ligam o Brasil à Europa e à África.\n\nA IA precisa de muito computador e muita energia. Fica a pergunta: com energia limpa, conexão e gente boa, o que mais dá pra construir em cima disso?\n\n(O valor é do anúncio do TikTok, de dezembro de 2025, e se refere ao projeto completo, ao longo de anos.)\n\n#inteligenciaartificial #datacenter #ceara #nordeste #tecnologia",
+      "from": "2026-11-28",
+      "until": "2026-11-28"
     }
   ]
 }
