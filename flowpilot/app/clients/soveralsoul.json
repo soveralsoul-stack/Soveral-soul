@@ -204,6 +204,19 @@
       "caption": "Este vídeo começou com um pedido escrito. Ninguém abriu um programa de edição.\n\nO roteiro, a voz (é a minha, clonada), a animação desenhada quadro por quadro em código, a música que abaixa quando eu falo. No fim, o próprio vídeo se assistiu e comparou o áudio com o roteiro, palavra por palavra.\n\nMontei esse motor com o Claude Code. A IA faz a montagem, mas a ideia e o critério continuam sendo de gente: sou eu que digo se ficou bom.\n\nMe segue, que eu vou mostrar como isso funciona por dentro.\n\n#inteligenciaartificial #claudecode #automacao #edicaodevideo #soveralsoul",
       "from": "2026-11-25",
       "until": "2026-11-25"
+    },
+    {
+      "id": "ficha-por-foto-reels",
+      "dow": 2,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-ficha-por-foto.mp4"
+      ],
+      "cover": "reels-ficha-por-foto-capa.jpg",
+      "caption": "Ainda tem corretor digitando ficha de cliente na mão?\n\nNo sistema que eu implanto, ele só tira foto dos documentos. A IA lê RG, CNH e comprovante, entende o que é cada um e preenche a ficha sozinha. O que o corretor já tinha digitado continua lá.\n\nO back office para de redigitar e passa a conferir. A venda continua com quem sabe vender.\n\nQuer ver como isso funcionaria na sua empresa? Me chama no WhatsApp.\n\n#imobiliaria #corretordeimoveis #automacao #inteligenciaartificial #chapeco",
+      "from": "2026-11-24",
+      "until": "2026-11-24"
     }
   ]
 }
