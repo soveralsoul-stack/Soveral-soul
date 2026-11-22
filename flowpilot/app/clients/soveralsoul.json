@@ -191,6 +191,19 @@
       "caption": "Ficou pronto em dez minutos. E por trás, o que tem segurando?\n\nApp feito em um prompt é ótimo pra testar uma ideia. O problema começa quando a empresa passa a depender dele: funciona no teste e trava no dia a dia.\n\nQuando eu construo um sistema, começo pela fundação. Banco de dados de verdade, com os dados de cada cliente separados. Servidor que escala sozinho e atualiza sem sair do ar. IA com reserva, pra quando um fornecedor parar. Registro de quem fez o quê. E o código fica com você.\n\nQuer saber como ficaria na sua empresa? Me chama no direct que a gente conversa.\n\n#automacao #sistemasobmedida #inteligenciaartificial #chapeco #soveralsoul",
       "from": "2026-11-23",
       "until": "2026-11-23"
+    },
+    {
+      "id": "do-pedido-ao-reel-reels",
+      "dow": 3,
+      "time": "07:00",
+      "type": "reels",
+      "media": [
+        "reels-do-pedido-ao-reel.mp4"
+      ],
+      "cover": "reels-do-pedido-ao-reel-capa.jpg",
+      "caption": "Este vídeo começou com um pedido escrito. Ninguém abriu um programa de edição.\n\nO roteiro, a voz (é a minha, clonada), a animação desenhada quadro por quadro em código, a música que abaixa quando eu falo. No fim, o próprio vídeo se assistiu e comparou o áudio com o roteiro, palavra por palavra.\n\nMontei esse motor com o Claude Code. A IA faz a montagem, mas a ideia e o critério continuam sendo de gente: sou eu que digo se ficou bom.\n\nMe segue, que eu vou mostrar como isso funciona por dentro.\n\n#inteligenciaartificial #claudecode #automacao #edicaodevideo #soveralsoul",
+      "from": "2026-11-25",
+      "until": "2026-11-25"
     }
   ]
 }
